@@ -1,0 +1,412 @@
+{
+  "notes": "관용 표기 및 사용자 우선 선택 사전. 키는 한글 원형.",
+  "surnames": {
+    "가": ["Ga", "Ka", "Kah", "Kha", "Gha"],
+    "간": ["Gan", "Kan", "Khan", "Kahn", "Kann"],
+    "갈": ["Gal", "Kal", "Gar", "Karl"],
+    "감": ["Gam", "Kam", "Kahm", "Kang", "Gahm"],
+    "강": ["Kang", "Gang", "Khang", "Kahng", "Kwang", "Ghang", "Kaing"],
+    "강전": ["Gangjeon", "Kangjŏn", "Kangjun"],
+    "개": ["Gae", "Kae"],
+    "견": ["Gyeon", "Kyŏn", "Kyun", "Kyeon", "Kyoun", "Gyun", "Kyon"],
+    "경": ["Gyeong", "Kyŏng", "Kyung", "Kyoung", "Kyeong", "Guong", "Gyeng"],
+    "계": ["Gye", "Kye", "Kae", "Kay", "Keh", "Key", "Gae"],
+    "고": ["Go", "Ko", "Koh", "Goh", "Kho", "Gho", "Koo"],
+    "곡": ["Gok", "Kok", "Koock"],
+    "공": ["Gong", "Kong", "Kohng", "Ghong", "Con", "Gohng", "Goung"],
+    "곽": ["Gwak", "Kwak", "Kwag", "Kwack", "Gwag", "Koak", "Koag"],
+    "관": ["Gwan", "Kwan"],
+    "교": ["Gyo", "Kyo"],
+    "구": ["Gu", "Ku", "Koo", "Goo", "Kuh", "Kou", "Khu"],
+    "국": ["Guk", "Kuk", "Kook", "Gook", "Kug", "Cook", "Koog"],
+    "군": ["Gun", "Kun", "Goon", "Koon"],
+    "궁": ["Gung", "Kung", "Koong", "Goong", "Koung"],
+    "궉": ["Gwok", "Kwŏk", "Kwok", "Kweok", "Kwoc"],
+    "권": ["Gwon", "Kwŏn", "Kwon", "Kweon", "Kwun", "Gweon", "Kwan"],
+    "근": ["Geun", "Kŭn", "Keun", "Gun"],
+    "금": ["Geum", "Kŭm", "Keum", "Kum", "Gum", "Kuem", "Guem"],
+    "기": ["Gi", "Ki", "Kee", "Key", "Kie", "Kih", "Gee"],
+    "길": ["Gil", "Kil", "Gill", "Gihl", "Khil", "Keel", "Kill"],
+    "김": ["Gim", "Kim", "Keem", "Ghim", "Kym", "Kin"],
+    "나": ["Na", "Ra", "La", "Nah", "Rha", "Rah"],
+    "난": ["Nan", "An"],
+    "남": ["Nam", "Nahm", "Nham", "Nan", "Lam", "Narm"],
+    "남궁": ["Namgung", "Namkung", "Namkoong", "Namgoong", "Namgoung", "Namkoung"],
+    "낭": ["Nang", "Lang"],
+    "내": ["Nae"],
+    "노": ["No", "Noh", "Roh", "Ro", "Rho", "Nho"],
+    "뇌": ["Noe", "Noi", "Lei"],
+    "누": ["Nu"],
+    "다": ["Da", "Ta"],
+    "단": ["Dan", "Tan", "Dahn", "Dhan"],
+    "담": ["Dam", "Tam", "Tan"],
+    "당": ["Dang", "Tang", "Dhang"],
+    "대": ["Dae", "Tae", "Dai", "Dea"],
+    "도": ["Do", "To", "Doh", "Dho", "Doe", "Toh", "Doo"],
+    "독": ["Dok", "Tok"],
+    "독고": ["Dokgo", "Tokko", "Dokko", "Dockko", "Dogko", "Dockgo", "Dohkgoh"],
+    "돈": ["Don", "Ton"],
+    "동": ["Dong", "Tong", "Dhong", "Doung"],
+    "동방": ["Dongbang", "Tongbang"],
+    "두": ["Du", "Tu", "Doo", "Do", "Dou", "Dow"],
+    "등": ["Deung", "Tŭng"],
+    "등정": ["Deungjeong", "Tŭngjŏng"],
+    "라": ["Ra", "Na", "La", "Rha", "Rah", "Nah"],
+    "란": ["Ran", "Lan"],
+    "랑": ["Rang", "Nang"],
+    "량": ["Ryang", "Lyang"],
+    "려": ["Ryeo", "Ryŏ"],
+    "렴": ["Ryeom", "Ryŏm"],
+    "로": ["Ro", "Lo"],
+    "뢰": ["Roe", "Loi"],
+    "루": ["Ru", "Lu", "Lou", "Roo", "Ryu"],
+    "류": ["Ryu", "Yoo", "Ryoo", "Yu", "You", "Lyu", "Liu"],
+    "륙": ["Ryuk"],
+    "리": ["Ri"],
+    "림": ["Rim", "Lim", "Im", "Reem"],
+    "마": ["Ma", "Mah", "Mar", "Mach", "Mha"],
+    "만": ["Man", "Mahn", "Mhan"],
+    "망절": ["Mangjeol", "Mangjŏl", "Mangjul"],
+    "매": ["Mae", "Mai", "Mea", "Mei"],
+    "맹": ["Maeng", "Meang", "Mang", "Maing", "Meng", "Meing"],
+    "명": ["Myeong", "Myŏng", "Myung", "Myoung", "Myong", "Moung", "Myoeng"],
+    "모": ["Mo", "Moh", "Mho", "Moo", "Moe", "Meo"],
+    "목": ["Mok", "Mock", "Mog", "Mook", "Mork", "Mouk"],
+    "묘": ["Myo"],
+    "무": ["Mu"],
+    "무본": ["Mubon"],
+    "묵": ["Muk", "Mook", "Mok", "Moog"],
+    "문": ["Mun", "Moon", "Mon", "Moun", "Muhn", "Moom"],
+    "미": ["Mi", "Mee"],
+    "민": ["Min", "Minn", "Mihn", "Meen", "Mheen", "Mean"],
+    "박": ["Bak", "Pak", "Park", "Bark", "Pack", "Pag", "Baak", "Bahk"],
+    "반": ["Ban", "Pan", "Bahn", "Van", "Bhan", "Barn", "Pahn"],
+    "방": ["Bang", "Pang", "Bhang", "Bahng", "Barng", "Baang", "Fang"],
+    "배": ["Bae", "Pae", "Bea", "Bai", "Pai", "Be", "Bay"],
+    "백": ["Baek", "Paek", "Back", "Baik", "Paik", "Beak", "Baeg"],
+    "번": ["Beon", "Pŏn"],
+    "범": ["Beom", "Pŏm", "Bum", "Buhm", "Beum", "Bom", "Burm"],
+    "변": ["Byeon", "Pyŏn", "Byun", "Byon", "Byoun", "Pyun", "Byen"],
+    "보": ["Bo", "Po"],
+    "복": ["Bok", "Pok", "Bog", "Bock", "Pock", "Boc", "Bouk"],
+    "봉": ["Bong", "Pong", "Vong"],
+    "부": ["Bu", "Pu", "Boo", "Poo", "Vu", "Booh", "Buh"],
+    "비": ["Bi", "Pi", "Vy", "Vi", "Bie", "Bee"],
+    "빈": ["Bin", "Pin", "Been", "Bhin", "Bean", "Vin", "Bihn"],
+    "빙": ["Bing", "Ping"],
+    "사": ["Sa", "Sha", "Sah", "Sar"],
+    "사공": ["Sagong", "Sakong", "Shakong", "Sagoung", "Sagung"],
+    "산": ["San"],
+    "삼": ["Sam"],
+    "상": ["Sang", "Shang", "Sahng", "Sarng"],
+    "서": ["Seo", "Sŏ", "Suh", "Su", "Sur", "So", "Sea"],
+    "서문": ["Seomun", "Sŏmun", "Seomoon", "Suhmoon", "Seamoon", "Sumoon", "Semun"],
+    "석": ["Seok", "Sŏk", "Suk", "Seog", "Sok", "Suck", "Seuk"],
+    "선": ["Seon", "Sŏn", "Sun", "Son", "Shun", "Sen", "Suhn"],
+    "선우": ["Seonu", "Sŏnu", "Sunwoo", "Seonwoo", "Sonu", "Sunoo", "Sunu"],
+    "설": ["Seol", "Sŏl", "Sul", "Seul", "Sol", "Sel", "Seal"],
+    "섭": ["Seop", "Sŏp", "Seoub", "Sub", "Sup"],
+    "성": ["Seong", "Sŏng", "Sung", "Soung", "Seoung", "Seung", "Song"],
+    "소": ["So", "Soh", "Sho", "Soo", "Seo", "Sou"],
+    "소봉": ["Sobong"],
+    "손": ["Son", "Sohn", "Shon", "Sun", "Soun", "Soon"],
+    "송": ["Song", "Soung", "Shong", "Sohng", "Sung", "Seung"],
+    "수": ["Su"],
+    "순": ["Sun", "Soon"],
+    "승": ["Seung", "Sŭng", "Sung", "Seoung", "Seong", "Sheung", "Soeung"],
+    "시": ["Si", "Shi", "See", "Sea", "Se"],
+    "신": ["Sin", "Shin", "Sheen", "Sihn", "Shinn", "Synn"],
+    "심": ["Sim", "Shim", "Sym", "Seem", "Sem", "Sihm"],
+    "십": ["Sip"],
+    "아": ["A", "Ah"],
+    "안": ["An", "Ahn", "Ann", "Anh", "Ane", "Aun"],
+    "애": ["Ae", "Ai"],
+    "야": ["Ya", "Yha"],
+    "양": ["Yang", "Ryang", "Yaung", "Young", "Yahng", "Yhang"],
+    "어": ["Eo", "Ŏ", "Uh", "Eoh", "Auh", "Eu", "Au"],
+    "어금": ["Eogeum", "Ŏgŭm", "Eokum", "Eokeum", "Akeum", "Uhkum"],
+    "엄": ["Eom", "Ŏm", "Um", "Eum", "Uhm", "Aum", "Om", "Ohm"],
+    "여": ["Yeo", "Yŏ", "Yuh", "Yo", "Yu", "Yea", "Yeu"],
+    "연": ["Yeon", "Yŏn", "Youn", "Yun", "Yon", "Yeun", "Yeoun"],
+    "염": ["Yeom", "Yŏm", "Yum", "Youm", "Yeum", "Yom", "Yeoum"],
+    "엽": ["Yeop", "Yŏp", "Yub", "Yup", "Yop", "Youb", "Yeb"],
+    "영": ["Yeong", "Yŏng"],
+    "예": ["Ye", "Yea", "Yae", "Yeh", "Yee", "Yei"],
+    "오": ["O", "Oh", "Ou", "Ohe", "Oe", "Olh"],
+    "옥": ["Ok", "Ock", "Og", "Ohk", "Oak", "Ouk"],
+    "온": ["On", "Ohn", "Eon", "Onn", "Own", "Yon"],
+    "옹": ["Ong", "Ohng", "Ohong", "Ung"],
+    "완": ["Wan"],
+    "왕": ["Wang", "Whang", "Woang", "Ywang", "Yang", "Whyang"],
+    "요": ["Yo"],
+    "용": ["Yong", "Young", "Lyong", "Yung", "Ryong", "Yeong"],
+    "우": ["U", "Woo", "Wu", "Wo", "Ou", "Uh"],
+    "운": ["Un", "Woon"],
+    "원": ["Won", "Wŏn", "Weon", "Woon", "One", "Wone", "Woun"],
+    "위": ["Wi", "Wee", "We", "Wie", "Wei", "Wui"],
+    "유": ["Yu", "Yoo", "You", "Ryu", "Ryoo", "Lyu"],
+    "육": ["Yuk", "Yook", "Youk", "Yug", "Yuck", "Ryuk"],
+    "윤": ["Yun", "Yoon", "Youn", "Yune", "Yeun", "Yon"],
+    "은": ["Eun", "Ŭn", "Un", "En", "Een", "Uhan", "Eyn"],
+    "음": ["Eum", "Ŭm", "Um", "Em", "Yum", "Ehum", "Ng"],
+    "이": ["I", "Lee", "Yi", "Rhee", "Yee", "Rhie"],
+    "인": ["In", "Ihn", "Yin", "Inn", "Leen", "Lin"],
+    "임": ["Im", "Lim", "Yim", "Rim", "Leem", "Rhim"],
+    "자": ["Ja", "Cha"],
+    "장": ["Jang", "Chang", "Jhang", "Zhang", "Jahng", "Zang", "Jaung"],
+    "장곡": ["Janggok", "Changgok"],
+    "저": ["Jeo", "Chŏ", "Cho", "Ji", "Chu", "Jo"],
+    "전": ["Jeon", "Chŏn", "Jun", "Chun", "Chon", "Jeun", "Cheon"],
+    "점": ["Jeom", "Chŏm", "Jum"],
+    "정": ["Jeong", "Chŏng", "Jung", "Chung", "Joung", "Chong", "Cheong", "Jong"],
+    "제": ["Je", "Che", "Jae", "Jea", "Jeh", "Jye", "Jee"],
+    "제갈": ["Jegal", "Chegal", "Jekal", "Jaegal", "Jaekal", "Jeagal", "Jeakal"],
+    "조": ["Jo", "Cho", "Joe", "Joh", "Jho", "Jou", "Zo"],
+    "종": ["Jong", "Chong"],
+    "좌": ["Jwa", "Chwa", "Joa", "Choa", "Chua", "Jua", "Chaw"],
+    "주": ["Ju", "Chu", "Joo", "Choo", "Jou", "Zoo", "Zhu"],
+    "준": ["Jun", "Chun", "June", "Joon"],
+    "즙": ["Jeup", "Chŭp", "Chup"],
+    "증": ["Jeung", "Chŭng", "Zeng", "Tsang", "Duong", "Tseng", "Cheng"],
+    "지": ["Ji", "Chi", "Jee", "Gi", "Gee", "Chee", "Jie"],
+    "진": ["Jin", "Chin", "Jean", "Jhin", "Gin", "Chen", "Jeen"],
+    "차": ["Cha", "Ch'a", "Char", "Tcha", "Tchah", "Chah", "Tscha"],
+    "창": ["Chang", "Ch'ang"],
+    "채": ["Chae", "Ch'ae", "Chai", "Che", "Chea", "Cha", "Choi", "Chey"],
+    "천": ["Cheon", "Ch'ŏn", "Chun", "Chon", "Chen", "Choun", "Cheun"],
+    "초": ["Cho", "Ch'o", "Tcho"],
+    "총": ["Chong", "Ch'ong"],
+    "최": ["Choe", "Ch'oe", "Choi", "Choy", "Che", "Chai", "Chae", "Chey"],
+    "추": ["Chu", "Ch'u", "Choo", "Chou", "Cho", "Chue", "Chew"],
+    "춘": ["Chun", "Ch'un"],
+    "쾌": ["Kwae", "K'wae"],
+    "탁": ["Tak", "T'ak", "Tark", "Tag", "Tack", "Tahk", "Thak"],
+    "탄": ["Tan", "T'an", "Than", "Tahn", "Tran"],
+    "탕": ["Tang", "T'ang"],
+    "태": ["Tae", "T'ae", "Tai", "Tea", "Te", "Thae"],
+    "판": ["Pan", "P'an"],
+    "팽": ["Paeng", "P'aeng", "Paing", "Peang", "Pang", "Peng", "Phang"],
+    "편": ["Pyeon", "P'yŏn", "Pyun", "Pyon", "Pyoun", "Pyen", "Pyeun"],
+    "평": ["Pyeong", "P'yŏng", "Pyung", "Pyoung", "Pyong", "Pyeoung"],
+    "포": ["Po", "P'o"],
+    "표": ["Pyo", "P'yo", "Phyo", "Poy", "Peo", "Pho", "Pou"],
+    "풍": ["Pung", "P'ung", "Poong", "Poung"],
+    "피": ["Pi", "P'i", "Pee", "Phee", "Phi", "Pe", "Phie"],
+    "필": ["Pil", "P'il", "Phil", "Fil", "Peel"],
+    "하": ["Ha", "Hah", "Har", "Hwa", "Haa", "Hagh"],
+    "학": ["Hak"],
+    "한": ["Han", "Hahn", "Hann", "Haan", "Khan", "Hwan"],
+    "함": ["Ham", "Hahm", "Harm", "Hamm", "Haam", "Hwam"],
+    "해": ["Hae"],
+    "허": ["Heo", "Hŏ", "Hur", "Huh", "Her", "Hu", "Ho"],
+    "현": ["Hyeon", "Hyŏn", "Hyun", "Hyon", "Hyoun", "Hyen", "Hyeun"],
+    "형": ["Hyeong", "Hyŏng", "Hyung", "Hyoung", "Hyong", "Hung", "Houng"],
+    "호": ["Ho", "Hoh"],
+    "홍": ["Hong", "Houng", "Heung", "Heong", "Whong", "Hohng"],
+    "화": ["Hwa", "Wha", "Hoa", "Hua"],
+    "환": ["Hwan"],
+    "황": ["Hwang", "Whang", "Hoang", "Huang", "Hang", "Hawng"],
+    "황목": ["Hwangmok"],
+    "황보": ["Hwangbo", "Whangbo", "Hoangbo", "Hwangpo", "Whoangbo", "Howangbo"],
+    "후": ["Hu", "Hou", "Hoo", "Hong", "Who", "Huu"],
+    "흥": ["Heung", "Hŭng", "Hong", "Huynh", "Khuong"]
+  },
+  "negative_words": {
+    "강": {
+      "Gang": "폭력단, 갱단",
+      "suggestions": ["Kang", "Ghang", "Kahng"]
+    },
+    "건": {
+      "Gun": "총기, 무기",
+      "Kun": "일본어 남성 호칭",
+      "suggestions": ["Geon", "Keon"]
+    },
+    "곽": {
+      "Kwack": "돌팔이 의사",
+      "Quack": "돌팔이 의사, 가짜",
+      "suggestions": ["Gwak", "Kwak"]
+    },
+    "구": {
+      "Goo": "끈적한 물질, 오물",
+      "suggestions": ["Gu", "Ku", "Koo"]
+    },
+    "국": {
+      "Gook": "아시아인에 대한 멸칭",
+      "Kook": "괴짜, 이상한 사람",
+      "Cook": "요리사 (직업명으로 오해 가능)",
+      "suggestions": ["Guk", "Kuk", "Goog"]
+    },
+    "군": {
+      "Gun": "총기, 무기",
+      "Goon": "폭력배, 깡패, 바보",
+      "Coon": "흑인에 대한 멸칭",
+      "suggestions": ["Kun", "Kwun", "Gwun"]
+    },
+    "길": {
+      "Kill": "죽이다, 살인",
+      "Gill": "아가미 (물고기)",
+      "suggestions": ["Gil", "Kil", "Ghil"]
+    },
+    "노": {
+      "No": "거부, 안 된다",
+      "Noh": "일본 전통극",
+      "suggestions": ["Roh", "Ro"]
+    },
+    "덕": {
+      "Duck": "오리, 잘 속는 사람",
+      "Deck": "갑판, 카드 한 벌",
+      "suggestions": ["Deok", "Duk"]
+    },
+    "동": {
+      "Dong": "남성 생식기 속어",
+      "suggestions": ["Daung", "Deong", "Downg"]
+    },
+    "민": {
+      "Mean": "비열한, 심술궂은",
+      "suggestions": ["Min", "Minn", "Meen"]
+    },
+    "박": {
+      "Bark": "개가 짖다, 나무껍질",
+      "Pack": "무리, 짐꾸러미",
+      "suggestions": ["Bak", "Park", "Pahk"]
+    },
+    "반": {
+      "Ban": "금지하다, 차단하다",
+      "Pan": "팬, 냄비",
+      "Van": "밴, 화물차",
+      "suggestions": ["Bahn", "Bhan"]
+    },
+    "방": {
+      "Bang": "총소리, 강한 충격음",
+      "Pang": "날카로운 고통",
+      "suggestions": ["Bahng", "Vang", "Bhang"]
+    },
+    "범": {
+      "Bum": "엉덩이, 부랑자",
+      "Bomb": "폭탄",
+      "suggestions": ["Beom", "Beum"]
+    },
+    "부": {
+      "Boo": "야유하는 소리",
+      "Poo": "대변 속어",
+      "Boo": "유령이 내는 소리",
+      "suggestions": ["Bu", "Pu"]
+    },
+    "빈": {
+      "Bin": "쓰레기통, 저장고",
+      "Been": "과거분사 (어색함)",
+      "suggestions": ["Bean", "Bhin"]
+    },
+    "석": {
+      "Suck": "빨다, 형편없다 (속어)",
+      "Sack": "자루, 해고하다",
+      "suggestions": ["Seok", "Sok", "Seuk"]
+    },
+    "식": {
+      "Sick": "병든, 아픈",
+      "Seek": "찾다 (어색함)",
+      "suggestions": ["Sik", "Shik", "Sheek"]
+    },
+    "신": {
+      "Sin": "죄, 죄악",
+      "Shin": "정강이",
+      "suggestions": ["Shinn", "Seen"]
+    },
+    "완": {
+      "Wan": "창백한, 약한",
+      "One": "숫자 1 (이름으로 부적절)",
+      "suggestions": ["Wahn", "Woan"]
+    },
+    "일": {
+      "Ill": "아픈, 병든",
+      "I'll": "나는 ~할 것이다 (축약형)",
+      "suggestions": ["Il", "Eel"]
+    },
+    "피": {
+      "Pee": "소변 속어",
+      "Pea": "완두콩",
+      "suggestions": ["Pi", "Phi"]
+    },
+    "필": {
+      "Pill": "알약, 피임약",
+      "Phil": "남성 이름 (혼동 가능)",
+      "Fill": "채우다",
+      "suggestions": ["Pil", "Pheel"]
+    },
+    "학": {
+      "Hack": "해킹, 자르다",
+      "Hag": "마녀, 못생긴 노파",
+      "suggestions": ["Hak", "Haek"]
+    },
+    "혜나": {
+      "Hyena": "하이에나 (동물)",
+      "suggestions": ["Hena", "Hannah", "Hyenna"]
+    },
+    "호": {
+      "Ho": "매춘부에 대한 속어",
+      "Hoe": "농기구 괭이",
+      "suggestions": ["Hoh", "Hu"]
+    },
+    "죽": {
+      "Jook": "아시아인 멸칭의 변형",
+      "Juke": "속이다",
+      "suggestions": ["Juk", "Jouk"]
+    },
+    "킬": {
+      "Kill": "죽이다, 살인",
+      "suggestions": ["Kil", "Khil"]
+    },
+    "펑": {
+      "Funk": "악취, 우울감",
+      "Punk": "불량배, 펑크족",
+      "suggestions": ["Peong", "Poong"]
+    },
+    "헬": {
+      "Hell": "지옥, 저주",
+      "suggestions": ["Hel", "Heel"]
+    },
+    "데드": {
+      "Dead": "죽은, 사망한",
+      "suggestions": ["Ded", "Daed"]
+    },
+    "킹": {
+      "King": "왕 (과도한 자부심으로 오해)",
+      "suggestions": ["Kyng", "Keeng"]
+    },
+    "갓": {
+      "God": "신 (종교적 민감성)",
+      "Got": "얻었다 (어색함)",
+      "suggestions": ["Gat", "Gaht"]
+    },
+    "데빌": {
+      "Devil": "악마, 마귀",
+      "suggestions": ["Debil", "Deveel"]
+    },
+    "크랩": {
+      "Crap": "똥, 쓰레기 (속어)",
+      "Crab": "게 (동물)",
+      "suggestions": ["Krap", "Kerap"]
+    },
+    "덤": {
+      "Dumb": "바보, 멍청한",
+      "Dump": "버리다, 쓰레기장",
+      "suggestions": ["Dum", "Deom"]
+    },
+    "팻": {
+      "Fat": "뚱뚱한",
+      "Fart": "방귀 (유사 발음)",
+      "suggestions": ["Paet", "Phaet"]
+    },
+    "슬럿": {
+      "Slut": "음란한 여자 (성적 모독어)",
+      "suggestions": ["Seulleot", "Sleut"]
+    },
+    "비치": {
+      "Bitch": "암캐, 여성 모독어",
+      "Beach": "해변 (혼동 가능)",
+      "suggestions": ["Bichi", "Beachi"]
+    }
+  },
+  "organizations": {},
+  "brands": {}
+}

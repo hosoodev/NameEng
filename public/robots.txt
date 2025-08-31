@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://nameeng.com/sitemap.xml
+
+# 주요 페이지 우선 크롤링
+Allow: /about
+Allow: /how-to-use
+Allow: /faq
+Allow: /passport-guide
+Allow: /romanization-guide
+
+# 영문이름변환기 관련 키워드 최적화
+Allow: /?*name=*
+Allow: /?*n=*
