@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, Suspense } from 'react';
+import { useState, useEffect, Suspense, useRef } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import {
   Card,
@@ -43,6 +43,7 @@ function NameEngConverter() {
     singleFamily: string;
   }>({ hasCompoundOption: false, compoundFamily: '', singleFamily: '' });
   const [copied, setCopied] = useState(false);
+  const debounceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // URL 파라미터에서 초기값 로드
   useEffect(() => {
@@ -98,15 +99,30 @@ function NameEngConverter() {
     }
   }, [searchParams]);
 
+  // 컴포넌트 언마운트 시 타이머 정리
+  useEffect(() => {
+    return () => {
+      if (debounceTimeoutRef.current) {
+        clearTimeout(debounceTimeoutRef.current);
+      }
+    };
+  }, []);
+
   const handleNameChange = (value: string) => {
     setInputName(value);
+    
+    // 이전 타이머 정리
+    if (debounceTimeoutRef.current) {
+      clearTimeout(debounceTimeoutRef.current);
+    }
     
     if (value.trim()) {
       const nameOptions = getFamilyNameOptions(value.trim());
       setFamilyNameOptions(nameOptions);
       
-      const defaultFamilyNameType = nameOptions.hasCompoundOption ? 'compound' : 'single';
-      const currentFamilyNameType = options.familyNameType || defaultFamilyNameType;
+      const defaultFamilyNameType: 'compound' | 'single' = nameOptions.hasCompoundOption ? 'compound' : 'single';
+      // 복성이 검색되면 무조건 복성으로 설정, 단성만 있으면 단성으로 설정
+      const currentFamilyNameType = defaultFamilyNameType;
       const familyName = currentFamilyNameType === 'compound' && nameOptions.hasCompoundOption 
         ? nameOptions.compoundFamily 
         : nameOptions.singleFamily;
@@ -114,21 +130,20 @@ function NameEngConverter() {
       const variants = getSurnameVariants(familyName);
       setSurnameVariants(variants);
       
-      setOptions(prev => ({
-        ...prev,
-        familyNameType: currentFamilyNameType,
-        surnameVariant: variants.length > 0 ? variants[0] : undefined
-      }));
-      
-      // 즉시 변환
       const newOptions = {
         ...options,
         familyNameType: currentFamilyNameType,
         surnameVariant: variants.length > 0 ? variants[0] : undefined
       };
-      const convertResult = romanizeKoreanName(value.trim(), newOptions);
-      setResult(convertResult);
-      updateUrl(value, newOptions);
+      
+      setOptions(newOptions);
+      
+      // 디바운싱 적용 - 500ms 후에 변환
+      debounceTimeoutRef.current = setTimeout(() => {
+        const convertResult = romanizeKoreanName(value.trim(), newOptions);
+        setResult(convertResult);
+        updateUrl(value, newOptions);
+      }, 500);
     } else {
       setSurnameVariants([]);
       setFamilyNameOptions({ hasCompoundOption: false, compoundFamily: '', singleFamily: '' });
@@ -167,6 +182,7 @@ function NameEngConverter() {
   const handleConvert = () => {
     if (!inputName.trim()) return;
     
+    // 디바운싱을 우회하고 즉시 변환
     const convertResult = romanizeKoreanName(inputName.trim(), options);
     setResult(convertResult);
     updateUrl(inputName, options);
@@ -213,6 +229,12 @@ function NameEngConverter() {
   };
 
   const handleOptionChange = (newOptions: Partial<RomanizationOptions>) => {
+    // 이전 디바운싱 타이머 정리
+    if (debounceTimeoutRef.current) {
+      clearTimeout(debounceTimeoutRef.current);
+      debounceTimeoutRef.current = null;
+    }
+    
     const updatedOptions = { ...options, ...newOptions };
     setOptions(updatedOptions);
     
@@ -228,12 +250,36 @@ function NameEngConverter() {
       <Box className="max-w-2xl mx-auto">
         {/* Simplified Header */}
         <Box className="text-center mb-8">
-          <Flex align="center" justify="center" gap="3" className="mb-4">
-            <img src="/logo.svg" alt="NameEng Logo" className="w-12 h-12" />
-            <Heading size="7" style={{ letterSpacing: '-0.02em' }}>
-              NameEng
-            </Heading>
-          </Flex>
+          <Link 
+            href="/" 
+            className="block"
+            onClick={() => {
+              // 로고 클릭 시 모든 상태 초기화
+              setInputName('');
+              setResult(null);
+              setSurnameVariants([]);
+              setFamilyNameOptions({ hasCompoundOption: false, compoundFamily: '', singleFamily: '' });
+              setOptions({
+                order: 'family-given',
+                hyphen: false,
+                caseStyle: 'capitalized',
+                surnameVariant: undefined,
+                familyNameType: undefined
+              });
+              // 디바운싱 타이머 정리
+              if (debounceTimeoutRef.current) {
+                clearTimeout(debounceTimeoutRef.current);
+                debounceTimeoutRef.current = null;
+              }
+            }}
+          >
+            <Flex align="center" justify="center" gap="3" className="mb-4 cursor-pointer hover:opacity-80 transition-opacity">
+              <img src="/logo.svg" alt="NameEng Logo" className="w-12 h-12" />
+              <Heading size="7" style={{ letterSpacing: '-0.02em' }}>
+                NameEng
+              </Heading>
+            </Flex>
+          </Link>
           <Text size="3" color="gray">
             한글 이름을 영문으로 변환
           </Text>
@@ -470,25 +516,35 @@ function NameEngConverter() {
 
         {/* Footer Links */}
         <Box className="mt-12 text-center">
-          <Flex gap="4" justify="center" className="mb-4">
-            <Link href="/passport-guide">
-              <Text size="2" color="gray" className="hover:text-blue-600">
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 mb-6 px-4">
+            <Link href="/about" className="text-center">
+              <Text size="2" color="gray" className="hover:text-blue-600 transition-colors duration-200">
+                사이트 소개
+              </Text>
+            </Link>
+            <Link href="/how-to-use" className="text-center">
+              <Text size="2" color="gray" className="hover:text-blue-600 transition-colors duration-200">
+                이용방법
+              </Text>
+            </Link>
+            <Link href="/passport-guide" className="text-center">
+              <Text size="2" color="gray" className="hover:text-blue-600 transition-colors duration-200">
                 여권 규정
               </Text>
             </Link>
-            <Link href="/romanization-guide">
-              <Text size="2" color="gray" className="hover:text-blue-600">
+            <Link href="/romanization-guide" className="text-center">
+              <Text size="2" color="gray" className="hover:text-blue-600 transition-colors duration-200">
                 표기법 가이드
               </Text>
             </Link>
-            <Link href="/faq">
-              <Text size="2" color="gray" className="hover:text-blue-600">
+            <Link href="/faq" className="text-center">
+              <Text size="2" color="gray" className="hover:text-blue-600 transition-colors duration-200">
                 FAQ
               </Text>
             </Link>
-          </Flex>
+          </div>
                   
-          <Text size="1" color="gray">
+          <Text size="1" color="gray" className="px-4">
             © {new Date().getFullYear()} Nameeng. 
           </Text>
         </Box>
