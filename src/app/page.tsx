@@ -184,10 +184,10 @@ function NameEngConverter() {
     const variants = getSurnameVariants(familyName);
     setSurnameVariants(variants);
     
-    const newOptions = {
+    const newOptions: RomanizationOptions = {
       order: 'family-given',
       hyphen: false,
-      caseStyle: 'capitalized' as const,
+      caseStyle: 'capitalized',
       familyNameType: defaultFamilyNameType,
       surnameVariant: variants.length > 0 ? variants[0] : undefined
     };
