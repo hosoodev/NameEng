@@ -1,5 +1,3 @@
-'use client';
-
 import { 
   Card, 
   Text, 
@@ -13,6 +11,24 @@ import {
 } from '@radix-ui/themes';
 import { ArrowLeft, ExternalLink, AlertCircle, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: '외교부 여권 로마자 표기 규정 - 영문이름변환기 가이드 | Nameeng 네이밍',
+  description: '외교부 여권 발급 시 로마자 성명 표기에 대한 공식 규정을 정리했습니다. 여권 로마자 표기 변경, 관용 표기 허용, 주의사항 등 모든 정보를 확인하세요.',
+  keywords: '여권 로마자 표기 규정, 외교부 여권 가이드, 로마자 성명 표기, 여권 발급 로마자, 관용 표기 허용, 여권 로마자 변경, 영문이름변환기 여권',
+  openGraph: {
+    title: '외교부 여권 로마자 표기 규정 - 영문이름변환기 가이드',
+    description: '외교부 여권 발급 시 로마자 성명 표기에 대한 공식 규정을 정리했습니다. 여권 로마자 표기 변경, 관용 표기 허용, 주의사항 등 모든 정보를 확인하세요.',
+    type: 'website',
+    url: 'https://nameeng.com/passport-guide',
+  },
+  twitter: {
+    card: 'summary',
+    title: '외교부 여권 로마자 표기 규정 - 영문이름변환기 가이드',
+    description: '외교부 여권 발급 시 로마자 성명 표기에 대한 공식 규정을 정리했습니다.',
+  },
+};
 
 export default function PassportGuide() {
   return (

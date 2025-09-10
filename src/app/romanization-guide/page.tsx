@@ -1,5 +1,3 @@
-'use client';
-
 import { 
   Card, 
   Text, 
@@ -14,6 +12,24 @@ import {
 } from '@radix-ui/themes';
 import { ArrowLeft, ExternalLink, BookOpen, Info } from 'lucide-react';
 import Link from 'next/link';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: '국어의 로마자 표기법 - 영문이름변환기 규정 가이드 | Nameeng 네이밍',
+  description: '국립국어원에서 제정한 한국어 로마자 표기 공식 규정을 정리했습니다. 자음 표기법, 모음 표기법, 표기 세칙, 인명 표기 특례 등 모든 규정을 확인하세요.',
+  keywords: '국어의 로마자 표기법, 국립국어원 로마자 표기, 한국어 로마자 변환 규정, 자음 표기법, 모음 표기법, 인명 로마자 표기, 영문이름변환기 규정',
+  openGraph: {
+    title: '국어의 로마자 표기법 - 영문이름변환기 규정 가이드',
+    description: '국립국어원에서 제정한 한국어 로마자 표기 공식 규정을 정리했습니다. 자음 표기법, 모음 표기법, 표기 세칙, 인명 표기 특례 등 모든 규정을 확인하세요.',
+    type: 'website',
+    url: 'https://nameeng.com/romanization-guide',
+  },
+  twitter: {
+    card: 'summary',
+    title: '국어의 로마자 표기법 - 영문이름변환기 규정 가이드',
+    description: '국립국어원에서 제정한 한국어 로마자 표기 공식 규정을 정리했습니다.',
+  },
+};
 
 export default function RomanizationGuide() {
   return (

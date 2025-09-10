@@ -1,5 +1,3 @@
-'use client';
-
 import { 
   Card, 
   Text, 
@@ -13,6 +11,24 @@ import {
 } from '@radix-ui/themes';
 import { ArrowLeft, Target, Shield, Zap, Heart, Users } from 'lucide-react';
 import Link from 'next/link';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'NameEng 소개 - 영문이름변환기 서비스 개요 | Nameeng 네이밍',
+  description: 'NameEng는 한국어 이름의 정확하고 안전한 로마자 표기를 위한 전문 서비스입니다. 국어의 로마자 표기법 준수, 부정적 의미 필터링, 관용 표기 지원 등 모든 기능을 확인하세요.',
+  keywords: 'NameEng 소개, 영문이름변환기 서비스, 한글 이름 로마자 변환, 국어의 로마자 표기법, 부정적 의미 필터링, 관용 성씨 표기, 여권 로마자 표기',
+  openGraph: {
+    title: 'NameEng 소개 - 영문이름변환기 서비스 개요',
+    description: 'NameEng는 한국어 이름의 정확하고 안전한 로마자 표기를 위한 전문 서비스입니다. 국어의 로마자 표기법 준수, 부정적 의미 필터링, 관용 표기 지원 등 모든 기능을 확인하세요.',
+    type: 'website',
+    url: 'https://nameeng.com/about',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'NameEng 소개 - 영문이름변환기 서비스 개요',
+    description: 'NameEng는 한국어 이름의 정확하고 안전한 로마자 표기를 위한 전문 서비스입니다.',
+  },
+};
 
 export default function About() {
   return (

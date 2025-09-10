@@ -15,9 +15,10 @@ import {
   Container,
   SegmentedControl
 } from '@radix-ui/themes';
-import { Copy, AlertTriangle, Share2, Check } from 'lucide-react';
+import { Copy, AlertTriangle, Share2, Check, X, Clock, Trash2 } from 'lucide-react';
 import Link from 'next/link';
 import { romanizeKoreanName, getSurnameVariants, getFamilyNameOptions, type RomanizationOptions, type Warning } from '@/lib/romanization';
+import Image from "next/image";
 
 function NameEngConverter() {
   const searchParams = useSearchParams();
@@ -43,6 +44,12 @@ function NameEngConverter() {
     singleFamily: string;
   }>({ hasCompoundOption: false, compoundFamily: '', singleFamily: '' });
   const [copied, setCopied] = useState(false);
+  const [history, setHistory] = useState<Array<{
+    name: string;
+    result: string;
+    timestamp: number;
+  }>>([]);
+  const [showHistory, setShowHistory] = useState(false);
   const debounceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // URL 파라미터에서 초기값 로드
@@ -107,6 +114,93 @@ function NameEngConverter() {
       }
     };
   }, []);
+
+  // 히스토리 로드
+  useEffect(() => {
+    const savedHistory = localStorage.getItem('nameeng-history');
+    if (savedHistory) {
+      try {
+        const parsedHistory = JSON.parse(savedHistory);
+        setHistory(parsedHistory);
+      } catch (error) {
+        console.error('Failed to parse history:', error);
+      }
+    }
+  }, []);
+
+  // 히스토리 저장
+  const saveToHistory = (name: string, result: string) => {
+    const newEntry = {
+      name: name.trim(),
+      result,
+      timestamp: Date.now()
+    };
+
+    setHistory(prevHistory => {
+      // 중복 제거 (같은 이름과 결과가 있으면 제거)
+      const filteredHistory = prevHistory.filter(
+        item => !(item.name === newEntry.name && item.result === newEntry.result)
+      );
+      
+      // 새 항목을 맨 앞에 추가
+      const updatedHistory = [newEntry, ...filteredHistory].slice(0, 10); // 최대 10개만 저장
+      
+      // 로컬 스토리지에 저장
+      localStorage.setItem('nameeng-history', JSON.stringify(updatedHistory));
+      
+      return updatedHistory;
+    });
+  };
+
+  // 히스토리에서 항목 삭제
+  const removeFromHistory = (index: number) => {
+    setHistory(prevHistory => {
+      const updatedHistory = prevHistory.filter((_, i) => i !== index);
+      localStorage.setItem('nameeng-history', JSON.stringify(updatedHistory));
+      return updatedHistory;
+    });
+  };
+
+  // 히스토리 전체 삭제
+  const clearHistory = () => {
+    setHistory([]);
+    localStorage.removeItem('nameeng-history');
+  };
+
+  // 히스토리 항목 클릭 시 해당 이름으로 설정
+  const selectHistoryItem = (name: string) => {
+    setInputName(name);
+    setShowHistory(false);
+    
+    // 해당 이름으로 즉시 변환
+    const nameOptions = getFamilyNameOptions(name.trim());
+    setFamilyNameOptions(nameOptions);
+    
+    const defaultFamilyNameType: 'compound' | 'single' = nameOptions.hasCompoundOption ? 'compound' : 'single';
+    const familyName = defaultFamilyNameType === 'compound' && nameOptions.hasCompoundOption 
+      ? nameOptions.compoundFamily 
+      : nameOptions.singleFamily;
+    
+    const variants = getSurnameVariants(familyName);
+    setSurnameVariants(variants);
+    
+    const newOptions = {
+      order: 'family-given',
+      hyphen: false,
+      caseStyle: 'capitalized' as const,
+      familyNameType: defaultFamilyNameType,
+      surnameVariant: variants.length > 0 ? variants[0] : undefined
+    };
+    
+    setOptions(newOptions);
+    
+    const convertResult = romanizeKoreanName(name.trim(), newOptions);
+    setResult(convertResult);
+    updateUrl(name, newOptions);
+    
+    // 히스토리에 다시 저장 (최신 순서로 업데이트)
+    saveToHistory(name.trim(), convertResult.romanized);
+  };
 
   const handleNameChange = (value: string) => {
     setInputName(value);
@@ -186,6 +280,9 @@ function NameEngConverter() {
     const convertResult = romanizeKoreanName(inputName.trim(), options);
     setResult(convertResult);
     updateUrl(inputName, options);
+    
+    // 히스토리에 저장
+    saveToHistory(inputName.trim(), convertResult.romanized);
   };
 
   const copyToClipboard = (text: string) => {
@@ -274,8 +371,8 @@ function NameEngConverter() {
             }}
           >
             <Flex align="center" justify="center" gap="3" className="mb-4 cursor-pointer hover:opacity-80 transition-opacity">
-              <img src="/logo.svg" alt="NameEng Logo" className="w-12 h-12" />
-              <Heading size="7" style={{ letterSpacing: '-0.02em' }}>
+            <Image src="/logo.svg" alt="NameEng Logo" width={48} height={48} className="w-12 h-12" />
+            <Heading size="7" style={{ letterSpacing: '-0.02em' }}>
                 NameEng
               </Heading>
             </Flex>
@@ -295,13 +392,100 @@ function NameEngConverter() {
               if (e.key === 'Enter') {
                 e.preventDefault();
                 handleConvert();
+                setShowHistory(false);
               }
+              if (e.key === 'Escape') {
+                setShowHistory(false);
+              }
+            }}
+            onFocus={() => setShowHistory(true)}
+            onBlur={() => {
+              // 약간의 지연을 두어 클릭 이벤트가 처리되도록 함
+              setTimeout(() => setShowHistory(false), 200);
             }}
             size="3"
             style={{ fontSize: '18px' }}
             autoFocus
           />
         </Card>
+
+        {/* Search History */}
+        {showHistory && history.length > 0 && (
+          <Card size="2" className="mb-6" style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
+            <Flex justify="between" align="center" className="mb-3">
+              <Flex align="center" gap="2">
+                <Clock size={16} color="gray" />
+                <Text size="2" weight="medium">
+                  최근 검색 기록
+                </Text>
+                <Badge color="gray" variant="soft" size="1">
+                  {history.length}
+                </Badge>
+              </Flex>
+              <Flex gap="2">
+                <Button
+                  variant="ghost"
+                  size="1"
+                  onClick={clearHistory}
+                  className="text-gray-500 hover:text-red-600"
+                >
+                  <Trash2 size={14} />
+                  전체 삭제
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="1"
+                  onClick={() => setShowHistory(false)}
+                  className="text-gray-500"
+                >
+                  <X size={14} />
+                </Button>
+              </Flex>
+            </Flex>
+            
+            <Box className="space-y-2">
+              {history.slice(0, 5).map((item, index) => (
+                <Flex
+                  key={`${item.name}-${item.timestamp}`}
+                  justify="between"
+                  align="center"
+                  className="p-2 rounded-md hover:bg-gray-50 cursor-pointer transition-colors"
+                  onClick={() => selectHistoryItem(item.name)}
+                >
+                  <Box>
+                    <Text size="2" weight="medium">
+                      {item.name}
+                    </Text>
+                    <Text size="1" color="gray">
+                      {item.result}
+                    </Text>
+                  </Box>
+                  <Flex align="center" gap="2">
+                    <Text size="1" color="gray">
+                      {new Date(item.timestamp).toLocaleDateString('ko-KR', {
+                        month: 'short',
+                        day: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                      })}
+                    </Text>
+                    <Button
+                      variant="ghost"
+                      size="1"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        removeFromHistory(index);
+                      }}
+                      className="text-gray-400 hover:text-red-500"
+                    >
+                      <X size={12} />
+                    </Button>
+                  </Flex>
+                </Flex>
+              ))}
+            </Box>
+          </Card>
+        )}
 
         {/* Result Display */}
         {result && (
@@ -345,7 +529,7 @@ function NameEngConverter() {
                   </a>
                   을 확인하시기 바랍니다.
                 </Text>
-              </div>
+        </div>
             </Box>
           </Card>
         )}
@@ -542,7 +726,7 @@ function NameEngConverter() {
                 FAQ
               </Text>
             </Link>
-          </div>
+    </div>
                   
           <Text size="1" color="gray" className="px-4">
             © {new Date().getFullYear()} Nameeng. 

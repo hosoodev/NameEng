@@ -1,5 +1,3 @@
-'use client';
-
 import { 
   Card, 
   Text, 
@@ -20,6 +18,24 @@ import {
   ExternalLink
 } from 'lucide-react';
 import Link from 'next/link';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: '자주 묻는 질문 FAQ - 영문이름변환기 질문과 답변 | Nameeng 네이밍',
+  description: 'NameEng 영문이름변환기 사용 중 자주 묻는 질문들을 모아 정리했습니다. 무료 사용, 여권 발급, 로마자 표기, 부정적 의미 필터 등 모든 궁금증을 해결하세요.',
+  keywords: '영문이름변환기 FAQ, NameEng 자주묻는질문, 로마자 변환 질문답변, 여권 로마자 표기 FAQ, 부정적 의미 필터 질문, 한글 이름 영문 변환 문의',
+  openGraph: {
+    title: '자주 묻는 질문 FAQ - 영문이름변환기 질문과 답변',
+    description: 'NameEng 영문이름변환기 사용 중 자주 묻는 질문들을 모아 정리했습니다. 무료 사용, 여권 발급, 로마자 표기, 부정적 의미 필터 등 모든 궁금증을 해결하세요.',
+    type: 'website',
+    url: 'https://nameeng.com/faq',
+  },
+  twitter: {
+    card: 'summary',
+    title: '자주 묻는 질문 FAQ - 영문이름변환기 질문과 답변',
+    description: 'NameEng 영문이름변환기 사용 중 자주 묻는 질문들을 모아 정리했습니다.',
+  },
+};
 
 export default function FAQ() {
   const faqData = [

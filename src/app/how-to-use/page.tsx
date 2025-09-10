@@ -1,5 +1,3 @@
-'use client';
-
 import { 
   Card, 
   Text, 
@@ -25,6 +23,24 @@ import {
   MousePointer
 } from 'lucide-react';
 import Link from 'next/link';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: '이용방법 가이드 - 영문이름변환기 사용법 | Nameeng 네이밍',
+  description: 'NameEng 영문이름변환기 사용법을 단계별로 안내합니다. 한글 이름 입력부터 복성 선택, 성씨 표기 선택, 옵션 설정까지 모든 기능을 쉽게 배워보세요.',
+  keywords: '영문이름변환기 사용법, NameEng 이용방법, 한글 이름 로마자 변환 가이드, 복성 선택 방법, 성씨 표기 선택, 로마자 변환 옵션 설정',
+  openGraph: {
+    title: '이용방법 가이드 - 영문이름변환기 사용법',
+    description: 'NameEng 영문이름변환기 사용법을 단계별로 안내합니다. 한글 이름 입력부터 복성 선택, 성씨 표기 선택, 옵션 설정까지 모든 기능을 쉽게 배워보세요.',
+    type: 'website',
+    url: 'https://nameeng.com/how-to-use',
+  },
+  twitter: {
+    card: 'summary',
+    title: '이용방법 가이드 - 영문이름변환기 사용법',
+    description: 'NameEng 영문이름변환기 사용법을 단계별로 안내합니다.',
+  },
+};
 
 export default function HowToUse() {
   return (
