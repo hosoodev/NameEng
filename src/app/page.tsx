@@ -698,6 +698,152 @@ function NameEngConverter() {
           </Box>
         )}
 
+        {/* 추가 콘텐츠 섹션 */}
+        <Box className="mt-12 space-y-8">
+          {/* 블로그 섹션 */}
+          <Card size="3">
+            <Box className="p-6">
+              <Flex justify="between" align="center" className="mb-4">
+                <Heading as="h2" size="4">
+                  📚 유용한 가이드
+                </Heading>
+                <Button asChild variant="ghost" size="2">
+                  <Link href="/blog">
+                    더 보기 →
+                  </Link>
+                </Button>
+              </Flex>
+              
+              <Box className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <Link href="/blog/korean-surname-history" className="block">
+                  <Box className="p-4 rounded-md hover:bg-gray-50 transition-colors">
+                    <Text size="2" weight="medium" className="mb-1 block">
+                      한국 성씨의 영문 표기 역사
+                    </Text>
+                    <Text size="1" color="gray">
+                      조선시대부터 현재까지의 변천사를 살펴보세요
+                    </Text>
+                  </Box>
+                </Link>
+                
+                <Link href="/blog/passport-name-guide" className="block">
+                  <Box className="p-4 rounded-md hover:bg-gray-50 transition-colors">
+                    <Text size="2" weight="medium" className="mb-1 block">
+                      여권 발급 시 영문명 작성법
+                    </Text>
+                    <Text size="1" color="gray">
+                      여권 신청 시 주의사항과 실제 사례
+                    </Text>
+                  </Box>
+                </Link>
+                
+                <Link href="/blog/overseas-name-tips" className="block">
+                  <Box className="p-4 rounded-md hover:bg-gray-50 transition-colors">
+                    <Text size="2" weight="medium" className="mb-1 block">
+                      해외 거주 시 영문명 사용 팁
+                    </Text>
+                    <Text size="1" color="gray">
+                      문화적 차이를 고려한 실용적인 조언
+                    </Text>
+                  </Box>
+                </Link>
+                
+                <Link href="/blog/business-name-etiquette" className="block">
+                  <Box className="p-4 rounded-md hover:bg-gray-50 transition-colors">
+                    <Text size="2" weight="medium" className="mb-1 block">
+                      국제 비즈니스 영문명 에티켓
+                    </Text>
+                    <Text size="1" color="gray">
+                      전문적인 영문명 사용법과 명함 작성 가이드
+                    </Text>
+                  </Box>
+                </Link>
+              </Box>
+            </Box>
+          </Card>
+
+          {/* 도구 섹션 */}
+          <Card size="3">
+            <Box className="p-6">
+              <Flex justify="between" align="center" className="mb-4">
+                <Heading as="h2" size="4">
+                  🛠️ 추가 도구
+                </Heading>
+                <Button asChild variant="ghost" size="2">
+                  <Link href="/tools">
+                    모든 도구 보기 →
+                  </Link>
+                </Button>
+              </Flex>
+              
+              <Box className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <Link href="/tools/name-generator" className="block">
+                  <Box className="p-4 rounded-md hover:bg-gray-50 transition-colors">
+                    <Text size="2" weight="medium" className="mb-1 block">
+                      영문명 조합 생성기
+                    </Text>
+                    <Text size="1" color="gray">
+                      다양한 성씨 표기와 이름 옵션을 조합하여 생성
+                    </Text>
+                  </Box>
+                </Link>
+                
+                <Link href="/tools/name-checker" className="block">
+                  <Box className="p-4 rounded-md hover:bg-gray-50 transition-colors">
+                    <Text size="2" weight="medium" className="mb-1 block">
+                      영문명 적합성 검사기
+                    </Text>
+                    <Text size="1" color="gray">
+                      기존 영문명의 적합성을 종합적으로 분석
+                    </Text>
+                  </Box>
+                </Link>
+              </Box>
+            </Box>
+          </Card>
+
+          {/* 실용 정보 섹션 */}
+          <Card size="3">
+            <Box className="p-6">
+              <Heading as="h2" size="4" className="mb-4">
+                💡 알아두면 유용한 정보
+              </Heading>
+              
+              <Box className="space-y-4">
+                <Box className="p-4 bg-blue-50 rounded-md">
+                  <Text size="2" weight="medium" className="mb-2 block">
+                    🛂 여권 발급 시 주의사항
+                  </Text>
+                  <Text size="2" color="gray">
+                    표준 표기를 기본으로 하되, 기존에 사용하던 관용 표기가 있다면 
+                    증빙서류와 함께 신청할 수 있습니다. 하이픈 사용 여부는 신중히 결정하세요.
+                  </Text>
+                </Box>
+                
+                <Box className="p-4 bg-green-50 rounded-md">
+                  <Text size="2" weight="medium" className="mb-2 block">
+                    🌍 해외 거주 시 팁
+                  </Text>
+                  <Text size="2" color="gray">
+                    부정적 의미 경고가 있는 경우 반드시 대안 표기를 고려하고, 
+                    현지에서 발음하기 쉬운 표기를 선택하는 것이 좋습니다.
+                  </Text>
+                </Box>
+                
+                <Box className="p-4 bg-purple-50 rounded-md">
+                  <Text size="2" weight="medium" className="mb-2 block">
+                    💼 비즈니스 용도
+                  </Text>
+                  <Text size="2" color="gray">
+                    전문적이고 격식 있는 표기를 선택하고, 
+                    명함, 이메일 서명 등에서 일관성을 유지하는 것이 중요합니다.
+                  </Text>
+                </Box>
+              </Box>
+            </Box>
+          </Card>
+        </Box>
+
         {/* Footer Links */}
         <Box className="mt-12 text-center">
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 mb-6 px-4">
@@ -724,6 +870,16 @@ function NameEngConverter() {
             <Link href="/faq" className="text-center">
               <Text size="2" color="gray" className="hover:text-blue-600 transition-colors duration-200">
                 FAQ
+              </Text>
+            </Link>
+            <Link href="/blog" className="text-center">
+              <Text size="2" color="gray" className="hover:text-blue-600 transition-colors duration-200">
+                블로그
+              </Text>
+            </Link>
+            <Link href="/tools" className="text-center">
+              <Text size="2" color="gray" className="hover:text-blue-600 transition-colors duration-200">
+                도구
               </Text>
             </Link>
     </div>
