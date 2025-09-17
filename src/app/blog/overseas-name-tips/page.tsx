@@ -188,9 +188,9 @@ export default function OverseasNameTipsPage() {
                 <Box className="space-y-2">
                   <Text size="3">영어권 사람들이 이해하기 쉬운 발음 설명을 준비하세요:</Text>
                   <Box className="p-3 bg-gray-50 rounded-md">
-                    <Text size="2">• 김민준 → "Kim Min-jun, like 'mean June'"</Text>
-                    <Text size="2">• 이소영 → "Lee So-young, like 'so young'"</Text>
-                    <Text size="2">• 박지훈 → "Park Ji-hoon, like 'gee who'"</Text>
+                    <Text size="2">• 김민준 → &ldquo;Kim Min-jun, like &lsquo;mean June&rsquo;&rdquo;</Text>
+                    <Text size="2">• 이소영 → &ldquo;Lee So-young, like &lsquo;so young&rsquo;&rdquo;</Text>
+                    <Text size="2">• 박지훈 → &ldquo;Park Ji-hoon, like &lsquo;gee who&rsquo;&rdquo;</Text>
                   </Box>
                 </Box>
               </Card>

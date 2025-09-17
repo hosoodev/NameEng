@@ -211,9 +211,9 @@ export default function BusinessNameEtiquettePage() {
                 <Heading size="3" className="mb-3">🎤 자기소개 스크립트</Heading>
                 <Box className="p-4 bg-blue-50 rounded-md">
                   <Text size="2" className="italic">
-                    "Hello everyone, I am James Kim, you can call me James. 
+                    &ldquo;Hello everyone, I am James Kim, you can call me James. 
                     I am the Senior Marketing Manager from our Seoul office. 
-                    My Korean name is Minjun, but James works perfectly for our international meetings."
+                    My Korean name is Minjun, but James works perfectly for our international meetings.&rdquo;
                   </Text>
                 </Box>
               </Card>

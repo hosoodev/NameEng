@@ -6,8 +6,7 @@ import {
   Flex, 
   Box,
   Separator,
-  Container,
-  Badge
+  Container
 } from '@radix-ui/themes';
 import { 
   ArrowLeft, 

@@ -15,6 +15,8 @@ const Adsense: React.FC<AdsenseProps> = ({
   dataFullWidthResponsive = true,
   className = ''
 }) => {
+  const adClient = process.env.NEXT_PUBLIC_ADSENSE_ID;
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       try {
@@ -30,7 +32,7 @@ const Adsense: React.FC<AdsenseProps> = ({
       <ins
         className="adsbygoogle"
         style={{ display: 'block' }}
-        data-ad-client="ca-pub-3029530441363057"
+        data-ad-client={adClient}
         data-ad-slot={dataAdSlot}
         data-ad-format={dataAdFormat}
         data-full-width-responsive={dataFullWidthResponsive ? 'true' : 'false'}

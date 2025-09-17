@@ -9,7 +9,7 @@ import {
   Badge,
   Separator
 } from '@radix-ui/themes';
-import { ArrowLeft, Calendar, Clock, Share2, AlertTriangle, Shield, CheckCircle, XCircle } from 'lucide-react';
+import { ArrowLeft, Calendar, Clock, Share2, Shield, CheckCircle, XCircle } from 'lucide-react';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 
@@ -148,7 +148,7 @@ export default function NegativeMeaningWordsPage() {
                 <Flex direction="column" gap="4">
                   <Box className="p-4 border rounded-md">
                     <Text size="2" weight="medium" className="mb-2 text-red-600">❌ 문제가 될 수 있는 표기</Text>
-                    <Text size="2" className="mb-2">석진 → Seokjin → "Suck Jin"으로 들릴 수 있음</Text>
+                    <Text size="2" className="mb-2">석진 → Seokjin → &ldquo;Suck Jin&rdquo;으로 들릴 수 있음</Text>
                     <Text size="2" weight="medium" className="mb-2 text-green-600">✅ 안전한 대안</Text>
                     <Text size="2">• Seok-jin (하이픈 사용)</Text>
                     <Text size="2">• Sukjin (다른 로마자 표기)</Text>
@@ -157,7 +157,7 @@ export default function NegativeMeaningWordsPage() {
                   
                   <Box className="p-4 border rounded-md">
                     <Text size="2" weight="medium" className="mb-2 text-red-600">❌ 문제가 될 수 있는 표기</Text>
-                    <Text size="2" className="mb-2">지옥 → Jiok → "지옥(Hell)"의 의미</Text>
+                    <Text size="2" className="mb-2">지옥 → Jiok → &ldquo;지옥(Hell)&rdquo;의 의미</Text>
                     <Text size="2" weight="medium" className="mb-2 text-green-600">✅ 안전한 대안</Text>
                     <Text size="2">• Ji-ok (하이픈으로 구분)</Text>
                     <Text size="2">• Jiuk (다른 발음 표기)</Text>

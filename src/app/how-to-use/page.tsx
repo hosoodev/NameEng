@@ -18,9 +18,7 @@ import {
   Share2, 
   AlertTriangle,
   CheckCircle,
-  ArrowRight,
-  Keyboard,
-  MousePointer
+  Keyboard
 } from 'lucide-react';
 import Link from 'next/link';
 import type { Metadata } from 'next';

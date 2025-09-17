@@ -3,8 +3,7 @@ import { Nanum_Gothic } from "next/font/google";
 import { Theme } from "@radix-ui/themes";
 import "@radix-ui/themes/styles.css";
 import "./globals.css";
-import Analytics from '@/components/analytics/Analytics'
-import Adsense from '@/components/google/Adsense';
+import Analytics from '@/components/analytics/Analytics';
 
 const nanumGothic = Nanum_Gothic({
   subsets: ["latin"],

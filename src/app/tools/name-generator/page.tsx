@@ -11,7 +11,6 @@ import {
   Container,
   Badge,
   TextField,
-  Select,
   Separator
 } from '@radix-ui/themes';
 import { ArrowLeft, Calculator, Copy, Download } from 'lucide-react';
