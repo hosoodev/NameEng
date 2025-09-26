@@ -9,9 +9,9 @@ interface AdsenseProps {
   className?: string;
 }
 
-const Adsense: React.FC<AdsenseProps> = ({ 
-  dataAdSlot, 
-  dataAdFormat = 'auto', 
+const Adsense: React.FC<AdsenseProps> = ({
+  dataAdSlot,
+  dataAdFormat = 'auto',
   dataFullWidthResponsive = true,
   className = ''
 }) => {
