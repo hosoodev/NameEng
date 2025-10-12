@@ -19,6 +19,54 @@ import { Copy, AlertTriangle, Share2, Check, X, Clock, Trash2 } from 'lucide-rea
 import Link from 'next/link';
 import { romanizeKoreanName, getSurnameVariants, getFamilyNameOptions, type RomanizationOptions, type Warning } from '@/lib/romanization';
 import Image from "next/image";
+import Adsense from '@/components/google/Adsense';
+
+// URL 파라미터 압축/해제 함수들
+const encodeOptions = (options: RomanizationOptions): string => {
+  const parts = [];
+  
+  // 순서: 0=family-given, 1=given-family
+  parts.push(options.order === 'given-family' ? '1' : '0');
+  
+  // 하이픈: 0=false, 1=true
+  parts.push(options.hyphen ? '1' : '0');
+  
+  // 대소문자: c=capitalized, l=lowercase, u=uppercase
+  const caseMap = { 'capitalized': 'c', 'lowercase': 'l', 'uppercase': 'u' };
+  parts.push(caseMap[options.caseStyle || 'capitalized']);
+  
+  // 성씨 타입: c=compound, s=single, -=undefined
+  if (options.familyNameType) {
+    parts.push(options.familyNameType === 'compound' ? 'c' : 's');
+  } else {
+    parts.push('-');
+  }
+  
+  return parts.join('');
+};
+
+const decodeOptions = (encoded: string): Partial<RomanizationOptions> => {
+  if (encoded.length < 4) return {};
+  
+  const options: Partial<RomanizationOptions> = {};
+  
+  // 순서
+  options.order = encoded[0] === '1' ? 'given-family' : 'family-given';
+  
+  // 하이픈
+  options.hyphen = encoded[1] === '1';
+  
+  // 대소문자
+  const caseMap = { 'c': 'capitalized', 'l': 'lowercase', 'u': 'uppercase' } as const;
+  options.caseStyle = caseMap[encoded[2] as keyof typeof caseMap] || 'capitalized';
+  
+  // 성씨 타입
+  if (encoded[3] !== '-') {
+    options.familyNameType = encoded[3] === 'c' ? 'compound' : 'single';
+  }
+  
+  return options;
+};
 
 function NameEngConverter() {
   const searchParams = useSearchParams();
@@ -55,11 +103,14 @@ function NameEngConverter() {
   // URL 파라미터에서 초기값 로드
   useEffect(() => {
     const name = searchParams.get('n');
-    const orderParam = searchParams.get('o');
+    const optionsParam = searchParams.get('o'); // 압축된 옵션
+    const surname = searchParams.get('s');
+    
+    // 기존 파라미터들 (호환성을 위해)
+    const orderParam = searchParams.get('order');
     const hyphenParam = searchParams.get('h');
     const caseParam = searchParams.get('c');
     const familyNameTypeParam = searchParams.get('f');
-    const surname = searchParams.get('s');
 
     if (name) {
       setInputName(name);
@@ -67,17 +118,31 @@ function NameEngConverter() {
       const nameOptions = getFamilyNameOptions(name);
       setFamilyNameOptions(nameOptions);
       
-      const order = orderParam === '1' ? 'given-family' : 'family-given';
-      const hyphen = hyphenParam === '1';
+      let decodedOptions: Partial<RomanizationOptions> = {};
       
-      const caseMap = { 'c': 'capitalized', 'l': 'lowercase', 'u': 'uppercase' } as const;
-      const caseStyle = caseMap[caseParam as keyof typeof caseMap] || 'capitalized';
+      // 새로운 압축 형식이 있으면 사용, 없으면 기존 파라미터들 사용
+      if (optionsParam && optionsParam.length === 4) {
+        decodedOptions = decodeOptions(optionsParam);
+      } else {
+        // 기존 파라미터들로부터 옵션 구성
+        if (orderParam !== null) {
+          decodedOptions.order = orderParam === '1' ? 'given-family' : 'family-given';
+        }
+        if (hyphenParam !== null) {
+          decodedOptions.hyphen = hyphenParam === '1';
+        }
+        if (caseParam) {
+          const caseMap = { 'c': 'capitalized', 'l': 'lowercase', 'u': 'uppercase' } as const;
+          decodedOptions.caseStyle = caseMap[caseParam as keyof typeof caseMap] || 'capitalized';
+        }
+        if (familyNameTypeParam) {
+          decodedOptions.familyNameType = familyNameTypeParam === 'c' ? 'compound' : 'single';
+        }
+      }
       
       let familyNameType: 'compound' | 'single' | undefined;
-      if (familyNameTypeParam === 'c') {
-        familyNameType = 'compound';
-      } else if (familyNameTypeParam === 's') {
-        familyNameType = 'single';
+      if (decodedOptions.familyNameType) {
+        familyNameType = decodedOptions.familyNameType;
       } else if (nameOptions.hasCompoundOption) {
         familyNameType = 'compound';
       } else {
@@ -92,9 +157,9 @@ function NameEngConverter() {
       setSurnameVariants(variants);
       
       const newOptions: RomanizationOptions = {
-        order,
-        hyphen,
-        caseStyle,
+        order: decodedOptions.order || 'family-given',
+        hyphen: decodedOptions.hyphen || false,
+        caseStyle: decodedOptions.caseStyle || 'capitalized',
         familyNameType,
         surnameVariant: surname || (variants.length > 0 ? variants[0] : undefined)
       };
@@ -255,15 +320,7 @@ function NameEngConverter() {
     
     const params = new URLSearchParams();
     params.set('n', name);
-    params.set('o', newOptions.order === 'given-family' ? '1' : '0');
-    params.set('h', newOptions.hyphen ? '1' : '0');
-    
-    const caseMap = { 'capitalized': 'c', 'lowercase': 'l', 'uppercase': 'u' };
-    params.set('c', caseMap[newOptions.caseStyle || 'capitalized']);
-    
-    if (newOptions.familyNameType) {
-      params.set('f', newOptions.familyNameType === 'compound' ? 'c' : 's');
-    }
+    params.set('o', encodeOptions(newOptions));
     
     if (newOptions.surnameVariant) {
       params.set('s', newOptions.surnameVariant);
@@ -296,15 +353,7 @@ function NameEngConverter() {
     
     const params = new URLSearchParams();
     params.set('n', inputName);
-    params.set('o', options.order === 'given-family' ? '1' : '0');
-    params.set('h', options.hyphen ? '1' : '0');
-    
-    const caseMap = { 'capitalized': 'c', 'lowercase': 'l', 'uppercase': 'u' };
-    params.set('c', caseMap[options.caseStyle || 'capitalized']);
-    
-    if (options.familyNameType) {
-      params.set('f', options.familyNameType === 'compound' ? 'c' : 's');
-    }
+    params.set('o', encodeOptions(options));
     
     if (options.surnameVariant) {
       params.set('s', options.surnameVariant);
@@ -380,6 +429,14 @@ function NameEngConverter() {
           <Text size="3" color="gray">
             한글 이름을 영문으로 변환
           </Text>
+        </Box>
+
+        {/* AdSense 광고 */}
+        <Box className="mb-6">
+          <Adsense 
+            dataAdSlot="2738626516" 
+            className="py-4"
+          />
         </Box>
 
         {/* Main Input */}
