@@ -170,7 +170,7 @@ export default function NameCheckerPage() {
           
           <Flex direction="column" gap="3">
             <Badge color="purple" size="2">영문명 도구</Badge>
-            <Heading size="8" weight="bold">
+            <Heading as="h1" size="8" weight="bold">
               영문명 적합성 검사기
             </Heading>
             <Text size="3" color="gray">
@@ -184,7 +184,7 @@ export default function NameCheckerPage() {
         {/* 입력 폼 */}
         <Card>
           <Flex direction="column" gap="4">
-            <Heading size="4">영문명 입력</Heading>
+            <Heading as="h2" size="4">영문명 입력</Heading>
             
             <Box>
               <Text size="2" weight="medium" className="mb-2 block">
@@ -216,7 +216,7 @@ export default function NameCheckerPage() {
         {results.length > 0 && (
           <Card>
             <Flex direction="column" gap="4">
-              <Heading size="4">종합 점수</Heading>
+              <Heading as="h2" size="4">종합 점수</Heading>
               <Flex align="center" gap="4">
                 <Box className="flex-1">
                   <Progress value={overallScore} color={getScoreColor(overallScore)} size="3" />
@@ -237,14 +237,14 @@ export default function NameCheckerPage() {
         {/* 상세 결과 */}
         {results.length > 0 && (
           <Box className="space-y-4">
-            <Heading size="4">상세 분석 결과</Heading>
+            <Heading as="h2" size="4">상세 분석 결과</Heading>
             {results.map((result, index) => (
               <Card key={index}>
                 <Flex direction="column" gap="3">
                   <Flex justify="between" align="center">
                     <Flex align="center" gap="2">
                       {getStatusIcon(result.status)}
-                      <Heading size="3">{result.category}</Heading>
+                      <Heading as="h3" size="3">{result.category}</Heading>
                     </Flex>
                     <Badge color={getScoreColor(result.score)} size="2">
                       {result.score}점
@@ -276,7 +276,7 @@ export default function NameCheckerPage() {
         {/* 검사 기준 안내 */}
         <Card className="border-blue-200 bg-blue-50">
           <Flex direction="column" gap="3">
-            <Heading size="4">검사 기준 안내</Heading>
+            <Heading as="h2" size="4">검사 기준 안내</Heading>
             <Flex direction="column" gap="2">
               <Text size="2"><strong>부정적 의미 검사:</strong> 부적절하거나 부정적인 의미를 가진 단어 포함 여부</Text>
               <Text size="2"><strong>발음 난이도:</strong> 영어권에서의 발음 용이성과 이름 길이</Text>

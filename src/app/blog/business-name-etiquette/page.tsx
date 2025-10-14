@@ -34,7 +34,7 @@ export default function BusinessNameEtiquettePage() {
           
           <Flex direction="column" gap="3">
             <Badge color="purple" size="2">비즈니스</Badge>
-            <Heading size="8" weight="bold">
+            <Heading as="h1" size="8" weight="bold">
               국제 비즈니스에서의 영문명 에티켓
             </Heading>
             <Flex align="center" gap="4" className="text-gray-600">

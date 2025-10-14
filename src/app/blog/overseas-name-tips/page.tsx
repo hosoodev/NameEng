@@ -34,7 +34,7 @@ export default function OverseasNameTipsPage() {
           
           <Flex direction="column" gap="3">
             <Badge color="green" size="2">해외생활</Badge>
-            <Heading size="8" weight="bold">
+            <Heading as="h1" size="8" weight="bold">
               해외 거주 시 영문명 사용 팁과 주의사항
             </Heading>
             <Flex align="center" gap="4" className="text-gray-600">

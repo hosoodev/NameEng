@@ -39,7 +39,7 @@ export
 
                     <Flex direction="column" gap="3">
                         <Badge color="blue" size="2">여권 가이드</Badge>
-                        <Heading size="8" weight="bold">
+                        <Heading as="h1" size="8" weight="bold">
                             여권 발급 시 영문명 작성 완벽 가이드
                         </Heading>
                         <Flex align="center" gap="4" className="text-gray-600">

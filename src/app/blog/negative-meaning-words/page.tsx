@@ -34,7 +34,7 @@ export default function NegativeMeaningWordsPage() {
           
           <Flex direction="column" gap="3">
             <Badge color="red" size="2">안전가이드</Badge>
-            <Heading size="8" weight="bold">
+            <Heading as="h1" size="8" weight="bold">
               영어권에서 피해야 할 한국 이름 표기들
             </Heading>
             <Flex align="center" gap="4" className="text-gray-600">
@@ -58,7 +58,7 @@ export default function NegativeMeaningWordsPage() {
           <Card className="border-orange-200 bg-orange-50">
             <Flex align="center" gap="3" className="mb-4">
               <Shield className="text-orange-500" size={20} />
-              <Heading size="4">문화적 차이를 고려한 안전한 영문명</Heading>
+              <Heading as="h2" size="4">문화적 차이를 고려한 안전한 영문명</Heading>
             </Flex>
             <Text size="3" className="leading-relaxed">
               한글 이름을 로마자로 변환할 때, 의도치 않게 영어권에서 부정적이거나 부적절한 의미를 가질 수 있습니다. 
@@ -68,11 +68,11 @@ export default function NegativeMeaningWordsPage() {
 
           {/* 1. 왜 중요한가? */}
           <Box>
-            <Heading size="5" className="mb-4">1. 왜 이런 주의가 필요할까요?</Heading>
+            <Heading as="h2" size="5" className="mb-4">1. 왜 이런 주의가 필요할까요?</Heading>
             
             <Flex direction="column" gap="4">
               <Card>
-                <Heading size="3" className="mb-3">🌍 실제 경험담들</Heading>
+                <Heading as="h3" size="3" className="mb-3">🌍 실제 경험담들</Heading>
                 <Flex direction="column" gap="2">
                   <Text size="3">• 해외 취업 면접에서 이름 때문에 어색한 분위기가 된 경우</Text>
                   <Text size="3">• 학교에서 친구들이 이름을 부르기 꺼려하는 상황</Text>
@@ -82,7 +82,7 @@ export default function NegativeMeaningWordsPage() {
               </Card>
 
               <Card>
-                <Heading size="3" className="mb-3">💡 해결의 중요성</Heading>
+                <Heading as="h3" size="3" className="mb-3">💡 해결의 중요성</Heading>
                 <Flex direction="column" gap="2">
                   <Text size="3">• <strong>첫인상:</strong> 이름은 첫 만남에서 가장 먼저 전달되는 정보</Text>
                   <Text size="3">• <strong>전문성:</strong> 비즈니스 환경에서의 신뢰도에 영향</Text>
@@ -95,13 +95,13 @@ export default function NegativeMeaningWordsPage() {
 
           {/* 2. 주의해야 할 표기들 */}
           <Box>
-            <Heading size="5" className="mb-4">2. 주의해야 할 표기 유형들</Heading>
+            <Heading as="h2" size="5" className="mb-4">2. 주의해야 할 표기 유형들</Heading>
             
             <Flex direction="column" gap="4">
               <Card className="border-red-200 bg-red-50">
                 <Flex align="center" gap="3" className="mb-3">
                   <XCircle className="text-red-500" size={18} />
-                  <Heading size="3">부적절한 의미를 가진 단어들</Heading>
+                  <Heading as="h3" size="3">부적절한 의미를 가진 단어들</Heading>
                 </Flex>
                 
                 <Flex direction="column" gap="3">
@@ -126,7 +126,7 @@ export default function NegativeMeaningWordsPage() {
               </Card>
 
               <Card>
-                <Heading size="3" className="mb-3">😅 우스꽝스럽게 들릴 수 있는 경우</Heading>
+                <Heading as="h3" size="3" className="mb-3">😅 우스꽝스럽게 들릴 수 있는 경우</Heading>
                 <Flex direction="column" gap="2">
                   <Text size="3">• 동물 이름과 유사: Pig, Dog, Cat 등</Text>
                   <Text size="3">• 음식 이름과 유사: Ham, Cheese, Bean 등</Text>
@@ -139,11 +139,11 @@ export default function NegativeMeaningWordsPage() {
 
           {/* 3. 구체적인 예시와 대안 */}
           <Box>
-            <Heading size="5" className="mb-4">3. 구체적인 예시와 대안</Heading>
+            <Heading as="h2" size="5" className="mb-4">3. 구체적인 예시와 대안</Heading>
             
             <Flex direction="column" gap="4">
               <Card>
-                <Heading size="3" className="mb-3">📝 실제 사례별 해결책</Heading>
+                <Heading as="h3" size="3" className="mb-3">📝 실제 사례별 해결책</Heading>
                 
                 <Flex direction="column" gap="4">
                   <Box className="p-4 border rounded-md">
@@ -179,13 +179,13 @@ export default function NegativeMeaningWordsPage() {
 
           {/* 4. 예방 전략 */}
           <Box>
-            <Heading size="5" className="mb-4">4. 문제 예방 전략</Heading>
+            <Heading as="h2" size="5" className="mb-4">4. 문제 예방 전략</Heading>
             
             <Flex direction="column" gap="4">
               <Card className="border-blue-200 bg-blue-50">
                 <Flex align="center" gap="3" className="mb-3">
                   <CheckCircle className="text-blue-500" size={18} />
-                  <Heading size="3">사전 검토 방법</Heading>
+                  <Heading as="h3" size="3">사전 검토 방법</Heading>
                 </Flex>
                 
                 <Flex direction="column" gap="3">
@@ -212,7 +212,7 @@ export default function NegativeMeaningWordsPage() {
               </Card>
 
               <Card>
-                <Heading size="3" className="mb-3">🛡️ 안전한 표기 원칙</Heading>
+                <Heading as="h3" size="3" className="mb-3">🛡️ 안전한 표기 원칙</Heading>
                 <Flex direction="column" gap="2">
                   <Text size="3">• <strong>하이픈 활용:</strong> 음절을 명확히 구분하여 오해 방지</Text>
                   <Text size="3">• <strong>대체 표기:</strong> 같은 소리의 다른 로마자 표기 고려</Text>
@@ -225,11 +225,11 @@ export default function NegativeMeaningWordsPage() {
 
           {/* 5. 대안 선택 가이드 */}
           <Box>
-            <Heading size="5" className="mb-4">5. 대안 선택 가이드</Heading>
+            <Heading as="h2" size="5" className="mb-4">5. 대안 선택 가이드</Heading>
             
             <Flex direction="column" gap="4">
               <Card>
-                <Heading size="3" className="mb-3">🎯 상황별 대응 전략</Heading>
+                <Heading as="h3" size="3" className="mb-3">🎯 상황별 대응 전략</Heading>
                 
                 <Flex direction="column" gap="3">
                   <Box>
@@ -262,7 +262,7 @@ export default function NegativeMeaningWordsPage() {
               </Card>
 
               <Card>
-                <Heading size="3" className="mb-3">💡 창의적 해결책들</Heading>
+                <Heading as="h3" size="3" className="mb-3">💡 창의적 해결책들</Heading>
                 <Flex direction="column" gap="2">
                   <Text size="3">• <strong>미들네임 활용:</strong> James Minjun Kim처럼 영문명과 한국명 조합</Text>
                   <Text size="3">• <strong>이니셜 사용:</strong> M.J. Kim처럼 이니셜로 간단하게</Text>
@@ -275,12 +275,12 @@ export default function NegativeMeaningWordsPage() {
 
           {/* 6. NameEng의 안전 기능 */}
           <Box>
-            <Heading size="5" className="mb-4">6. NameEng의 안전 검사 기능</Heading>
+            <Heading as="h2" size="5" className="mb-4">6. NameEng의 안전 검사 기능</Heading>
             
             <Card className="border-green-200 bg-green-50">
               <Flex align="center" gap="3" className="mb-3">
                 <Shield className="text-green-500" size={18} />
-                <Heading size="3">자동 안전성 검사</Heading>
+                <Heading as="h3" size="3">자동 안전성 검사</Heading>
               </Flex>
               
               <Flex direction="column" gap="3">
@@ -310,7 +310,7 @@ export default function NegativeMeaningWordsPage() {
 
           {/* 마무리 */}
           <Card>
-            <Heading size="4" className="mb-3">안전하고 자신감 있는 영문명으로</Heading>
+            <Heading as="h2" size="4" className="mb-3">안전하고 자신감 있는 영문명으로</Heading>
             <Text size="3" className="leading-relaxed">
               영문명 선택 시 문화적 차이를 고려하는 것은 단순한 주의사항이 아니라 
               성공적인 국제적 소통을 위한 필수 요소입니다. 

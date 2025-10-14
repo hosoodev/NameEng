@@ -34,7 +34,7 @@ export default function RomanizationRulesPage() {
           
           <Flex direction="column" gap="3">
             <Badge color="indigo" size="2">언어학</Badge>
-            <Heading size="8" weight="bold">
+            <Heading as="h1" size="8" weight="bold">
               국어의 로마자 표기법 규칙 상세 해설
             </Heading>
             <Flex align="center" gap="4" className="text-gray-600">

@@ -110,7 +110,7 @@ export default function NameGeneratorPage() {
           
           <Flex direction="column" gap="3">
             <Badge color="blue" size="2">영문명 도구</Badge>
-            <Heading size="8" weight="bold">
+            <Heading as="h1" size="8" weight="bold">
               영문명 조합 생성기
             </Heading>
             <Text size="3" color="gray">
@@ -124,7 +124,7 @@ export default function NameGeneratorPage() {
         {/* 입력 폼 */}
         <Card>
           <Flex direction="column" gap="4">
-            <Heading size="4">이름 정보 입력</Heading>
+            <Heading as="h2" size="4">이름 정보 입력</Heading>
             
             <Flex direction="column" gap="3">
               <Box>
@@ -197,7 +197,7 @@ export default function NameGeneratorPage() {
           <Card>
             <Flex direction="column" gap="4">
               <Flex justify="between" align="center">
-                <Heading size="4">생성된 영문명 조합 ({results.length}개)</Heading>
+                <Heading as="h2" size="4">생성된 영문명 조합 ({results.length}개)</Heading>
                 <Button variant="outline" size="2" onClick={downloadResults}>
                   <Download size={16} />
                   다운로드
@@ -225,7 +225,7 @@ export default function NameGeneratorPage() {
         {/* 사용 팁 */}
         <Card className="border-blue-200 bg-blue-50">
           <Flex direction="column" gap="3">
-            <Heading size="4">사용 팁</Heading>
+            <Heading as="h2" size="4">사용 팁</Heading>
             <Flex direction="column" gap="2">
               <Text size="2">• 여러 스타일을 선택하여 다양한 옵션을 확인해보세요</Text>
               <Text size="2">• 생성된 조합 중에서 발음하기 쉽고 기억하기 좋은 것을 선택하세요</Text>
