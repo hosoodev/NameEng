@@ -468,14 +468,6 @@ function NameEngConverter() {
           />
         </Card>
 
-        {/* AdSense 광고 */}
-        <Box className="mb-6">
-          <Adsense 
-            dataAdSlot="2738626516" 
-            className="py-4"
-          />
-        </Box>
-        
         {/* Search History */}
         {showHistory && history.length > 0 && (
           <Card size="2" className="mb-6" style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
@@ -631,6 +623,14 @@ function NameEngConverter() {
             </Flex>
           </Card>
         )}
+        
+        {/* AdSense 광고 */}
+        <Box className="mb-6">
+          <Adsense 
+            dataAdSlot="2738626516" 
+            className="py-4"
+          />
+        </Box>
 
         {/* Options - Only show when name is entered */}
         {inputName.trim() && (
