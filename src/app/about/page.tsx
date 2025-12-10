@@ -32,8 +32,8 @@ export const metadata: Metadata = {
 
 export default function About() {
   return (
-    <Container size="2" className="py-6 px-4">
-      <Box className="max-w-2xl mx-auto">
+    <Container size="3" className="py-6 px-4">
+      <Box className="max-w-5xl mx-auto">
         {/* Header */}
         <Flex align="center" gap="4" className="mb-6">
           <Link href="/">

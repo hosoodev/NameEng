@@ -21,6 +21,12 @@ import { romanizeKoreanName, getSurnameVariants, getFamilyNameOptions, type Roma
 import Image from "next/image";
 import Adsense from '@/components/google/Adsense';
 
+const createHistoryEntry = (name: string, result: string) => ({
+  name: name.trim(),
+  result,
+  timestamp: Date.now(),
+});
+
 // URL 파라미터 압축/해제 함수들
 const encodeOptions = (options: RomanizationOptions): string => {
   const parts = [];
@@ -195,11 +201,7 @@ function NameEngConverter() {
 
   // 히스토리 저장
   const saveToHistory = (name: string, result: string) => {
-    const newEntry = {
-      name: name.trim(),
-      result,
-      timestamp: Date.now()
-    };
+    const newEntry = createHistoryEntry(name, result);
 
     setHistory(prevHistory => {
       // 중복 제거 (같은 이름과 결과가 있으면 제거)
@@ -392,8 +394,8 @@ function NameEngConverter() {
   };
 
   return (
-    <Container size="2" className="py-6 px-4">
-      <Box className="max-w-2xl mx-auto">
+    <Container size="3" className="py-6 px-4">
+      <Box className="max-w-5xl mx-auto">
         {/* Simplified Header */}
         <Box className="text-center mb-8">
           <Link 
@@ -466,6 +468,14 @@ function NameEngConverter() {
           />
         </Card>
 
+        {/* AdSense 광고 */}
+        <Box className="mb-6">
+          <Adsense 
+            dataAdSlot="2738626516" 
+            className="py-4"
+          />
+        </Box>
+        
         {/* Search History */}
         {showHistory && history.length > 0 && (
           <Card size="2" className="mb-6" style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
@@ -953,8 +963,8 @@ function NameEngConverter() {
 export default function Home() {
   return (
     <Suspense fallback={
-      <Container size="2" className="py-6">
-        <Box className="max-w-2xl mx-auto text-center">
+      <Container size="3" className="py-6">
+        <Box className="max-w-5xl mx-auto text-center">
           <Text color="gray">Loading...</Text>
         </Box>
       </Container>
