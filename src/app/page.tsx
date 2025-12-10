@@ -570,17 +570,16 @@ function NameEngConverter() {
                 </Button>
               </Flex>
             </Flex>
-            
-            {/* AdSense 광고 */}
-            <Box className="mb-6">
-              <Adsense 
-                dataAdSlot="2738626516" 
-                className="max-w-[728px]"
-              />
-            </Box>
 
             {/* 안내 문구 추가 */}
             <Box className="mt-4 pt-3 border-t border-gray-200">
+              
+              {/* AdSense 광고 */}
+                <Adsense 
+                  dataAdSlot="2738626516" 
+                  className="my-6 max-w-[336px] md:max-w-[728px]"
+                />
+
               <div className="flex flex-col space-y-2">
                 <Text size="1" color="gray">
                   국어의 로마자 표기법 (2024.05.23) 기준
@@ -595,7 +594,7 @@ function NameEngConverter() {
                   </a>
                   을 확인하시기 바랍니다.
                 </Text>
-        </div>
+              </div>
             </Box>
           </Card>
         )}
