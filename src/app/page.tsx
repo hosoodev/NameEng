@@ -424,25 +424,17 @@ function NameEngConverter() {
             <Flex align="center" justify="center" gap="3" className="mb-4 cursor-pointer hover:opacity-80 transition-opacity">
             <Image src="/logo.svg" alt="NameEng Logo" width={48} height={48} className="w-12 h-12" />
             <Heading size="7" style={{ letterSpacing: '-0.02em' }}>
-                NameEng
+                Nameeng
               </Heading>
             </Flex>
           </Link>
           <Text size="3" color="gray">
-            한글 이름을 영문으로 변환
+            한글 이름 영문 변환
           </Text>
         </Box>
 
-        {/* AdSense 광고 */}
-        <Box className="mb-6">
-          <Adsense 
-            dataAdSlot="2738626516" 
-            className="py-4"
-          />
-        </Box>
-
         {/* Main Input */}
-        <Card size="3" className="mb-6" style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
+        <Card size="3" className="mb-6">
           <TextField.Root
             placeholder="한글 이름을 입력하세요 (예: 김민수)"
             value={inputName}
@@ -470,7 +462,7 @@ function NameEngConverter() {
 
         {/* Search History */}
         {showHistory && history.length > 0 && (
-          <Card size="2" className="mb-6" style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
+          <Card size="2" className="mb-6">
             <Flex justify="between" align="center" className="mb-3">
               <Flex align="center" gap="2">
                 <Clock size={16} color="gray" />
@@ -546,6 +538,13 @@ function NameEngConverter() {
           </Card>
         )}
 
+        {/* AdSense 광고 */}
+        <Box className="mb-6">
+          <Adsense 
+            dataAdSlot="2738626516" 
+          />
+        </Box>
+
         {/* Result Display */}
         {result && (
           <Card size="3" className="mb-6">
@@ -572,6 +571,14 @@ function NameEngConverter() {
               </Flex>
             </Flex>
             
+            {/* AdSense 광고 */}
+            <Box className="mb-6">
+              <Adsense 
+                dataAdSlot="2738626516" 
+                className="max-w-[728px]"
+              />
+            </Box>
+
             {/* 안내 문구 추가 */}
             <Box className="mt-4 pt-3 border-t border-gray-200">
               <div className="flex flex-col space-y-2">
@@ -623,14 +630,6 @@ function NameEngConverter() {
             </Flex>
           </Card>
         )}
-        
-        {/* AdSense 광고 */}
-        <Box className="mb-6">
-          <Adsense 
-            dataAdSlot="2738626516" 
-            className="py-4"
-          />
-        </Box>
 
         {/* Options - Only show when name is entered */}
         {inputName.trim() && (
