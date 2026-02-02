@@ -30,54 +30,54 @@ const createHistoryEntry = (name: string, result: string) => ({
 // URL 파라미터 압축/해제 함수들
 const encodeOptions = (options: RomanizationOptions): string => {
   const parts = [];
-  
+
   // 순서: 0=family-given, 1=given-family
   parts.push(options.order === 'given-family' ? '1' : '0');
-  
+
   // 하이픈: 0=false, 1=true
   parts.push(options.hyphen ? '1' : '0');
-  
+
   // 대소문자: c=capitalized, l=lowercase, u=uppercase
   const caseMap = { 'capitalized': 'c', 'lowercase': 'l', 'uppercase': 'u' };
   parts.push(caseMap[options.caseStyle || 'capitalized']);
-  
+
   // 성씨 타입: c=compound, s=single, -=undefined
   if (options.familyNameType) {
     parts.push(options.familyNameType === 'compound' ? 'c' : 's');
   } else {
     parts.push('-');
   }
-  
+
   return parts.join('');
 };
 
 const decodeOptions = (encoded: string): Partial<RomanizationOptions> => {
   if (encoded.length < 4) return {};
-  
+
   const options: Partial<RomanizationOptions> = {};
-  
+
   // 순서
   options.order = encoded[0] === '1' ? 'given-family' : 'family-given';
-  
+
   // 하이픈
   options.hyphen = encoded[1] === '1';
-  
+
   // 대소문자
   const caseMap = { 'c': 'capitalized', 'l': 'lowercase', 'u': 'uppercase' } as const;
   options.caseStyle = caseMap[encoded[2] as keyof typeof caseMap] || 'capitalized';
-  
+
   // 성씨 타입
   if (encoded[3] !== '-') {
     options.familyNameType = encoded[3] === 'c' ? 'compound' : 'single';
   }
-  
+
   return options;
 };
 
 function NameEngConverter() {
   const searchParams = useSearchParams();
   const router = useRouter();
-  
+
   const [inputName, setInputName] = useState('');
   const [options, setOptions] = useState<RomanizationOptions>({
     order: 'family-given',
@@ -111,7 +111,7 @@ function NameEngConverter() {
     const name = searchParams.get('n');
     const optionsParam = searchParams.get('o'); // 압축된 옵션
     const surname = searchParams.get('s');
-    
+
     // 기존 파라미터들 (호환성을 위해)
     const orderParam = searchParams.get('order');
     const hyphenParam = searchParams.get('h');
@@ -120,12 +120,12 @@ function NameEngConverter() {
 
     if (name) {
       setInputName(name);
-      
+
       const nameOptions = getFamilyNameOptions(name);
       setFamilyNameOptions(nameOptions);
-      
+
       let decodedOptions: Partial<RomanizationOptions> = {};
-      
+
       // 새로운 압축 형식이 있으면 사용, 없으면 기존 파라미터들 사용
       if (optionsParam && optionsParam.length === 4) {
         decodedOptions = decodeOptions(optionsParam);
@@ -145,7 +145,7 @@ function NameEngConverter() {
           decodedOptions.familyNameType = familyNameTypeParam === 'c' ? 'compound' : 'single';
         }
       }
-      
+
       let familyNameType: 'compound' | 'single' | undefined;
       if (decodedOptions.familyNameType) {
         familyNameType = decodedOptions.familyNameType;
@@ -154,14 +154,14 @@ function NameEngConverter() {
       } else {
         familyNameType = 'single';
       }
-      
-      const familyName = familyNameType === 'compound' && nameOptions.hasCompoundOption 
-        ? nameOptions.compoundFamily 
+
+      const familyName = familyNameType === 'compound' && nameOptions.hasCompoundOption
+        ? nameOptions.compoundFamily
         : nameOptions.singleFamily;
-      
+
       const variants = getSurnameVariants(familyName);
       setSurnameVariants(variants);
-      
+
       const newOptions: RomanizationOptions = {
         order: decodedOptions.order || 'family-given',
         hyphen: decodedOptions.hyphen || false,
@@ -169,9 +169,9 @@ function NameEngConverter() {
         familyNameType,
         surnameVariant: surname || (variants.length > 0 ? variants[0] : undefined)
       };
-      
+
       setOptions(newOptions);
-      
+
       const convertResult = romanizeKoreanName(name.trim(), newOptions);
       setResult(convertResult);
     }
@@ -208,13 +208,13 @@ function NameEngConverter() {
       const filteredHistory = prevHistory.filter(
         item => !(item.name === newEntry.name && item.result === newEntry.result)
       );
-      
+
       // 새 항목을 맨 앞에 추가
       const updatedHistory = [newEntry, ...filteredHistory].slice(0, 10); // 최대 10개만 저장
-      
+
       // 로컬 스토리지에 저장
       localStorage.setItem('nameeng-history', JSON.stringify(updatedHistory));
-      
+
       return updatedHistory;
     });
   };
@@ -238,19 +238,19 @@ function NameEngConverter() {
   const selectHistoryItem = (name: string) => {
     setInputName(name);
     setShowHistory(false);
-    
+
     // 해당 이름으로 즉시 변환
     const nameOptions = getFamilyNameOptions(name.trim());
     setFamilyNameOptions(nameOptions);
-    
+
     const defaultFamilyNameType: 'compound' | 'single' = nameOptions.hasCompoundOption ? 'compound' : 'single';
-    const familyName = defaultFamilyNameType === 'compound' && nameOptions.hasCompoundOption 
-      ? nameOptions.compoundFamily 
+    const familyName = defaultFamilyNameType === 'compound' && nameOptions.hasCompoundOption
+      ? nameOptions.compoundFamily
       : nameOptions.singleFamily;
-    
+
     const variants = getSurnameVariants(familyName);
     setSurnameVariants(variants);
-    
+
     const newOptions: RomanizationOptions = {
       order: 'family-given',
       hyphen: false,
@@ -258,47 +258,47 @@ function NameEngConverter() {
       familyNameType: defaultFamilyNameType,
       surnameVariant: variants.length > 0 ? variants[0] : undefined
     };
-    
+
     setOptions(newOptions);
-    
+
     const convertResult = romanizeKoreanName(name.trim(), newOptions);
     setResult(convertResult);
     updateUrl(name, newOptions);
-    
+
     // 히스토리에 다시 저장 (최신 순서로 업데이트)
     saveToHistory(name.trim(), convertResult.romanized);
   };
 
   const handleNameChange = (value: string) => {
     setInputName(value);
-    
+
     // 이전 타이머 정리
     if (debounceTimeoutRef.current) {
       clearTimeout(debounceTimeoutRef.current);
     }
-    
+
     if (value.trim()) {
       const nameOptions = getFamilyNameOptions(value.trim());
       setFamilyNameOptions(nameOptions);
-      
+
       const defaultFamilyNameType: 'compound' | 'single' = nameOptions.hasCompoundOption ? 'compound' : 'single';
       // 복성이 검색되면 무조건 복성으로 설정, 단성만 있으면 단성으로 설정
       const currentFamilyNameType = defaultFamilyNameType;
-      const familyName = currentFamilyNameType === 'compound' && nameOptions.hasCompoundOption 
-        ? nameOptions.compoundFamily 
+      const familyName = currentFamilyNameType === 'compound' && nameOptions.hasCompoundOption
+        ? nameOptions.compoundFamily
         : nameOptions.singleFamily;
-      
+
       const variants = getSurnameVariants(familyName);
       setSurnameVariants(variants);
-      
+
       const newOptions = {
         ...options,
         familyNameType: currentFamilyNameType,
         surnameVariant: variants.length > 0 ? variants[0] : undefined
       };
-      
+
       setOptions(newOptions);
-      
+
       // 디바운싱 적용 - 500ms 후에 변환
       debounceTimeoutRef.current = setTimeout(() => {
         const convertResult = romanizeKoreanName(value.trim(), newOptions);
@@ -319,27 +319,27 @@ function NameEngConverter() {
 
   const updateUrl = (name: string, newOptions: RomanizationOptions) => {
     if (!name.trim()) return;
-    
+
     const params = new URLSearchParams();
     params.set('n', name);
     params.set('o', encodeOptions(newOptions));
-    
+
     if (newOptions.surnameVariant) {
       params.set('s', newOptions.surnameVariant);
     }
-    
+
     const newUrl = `${window.location.pathname}?${params.toString()}`;
-    router.replace(newUrl, { scroll: false });
+    window.history.replaceState(null, '', newUrl);
   };
 
   const handleConvert = () => {
     if (!inputName.trim()) return;
-    
+
     // 디바운싱을 우회하고 즉시 변환
     const convertResult = romanizeKoreanName(inputName.trim(), options);
     setResult(convertResult);
     updateUrl(inputName, options);
-    
+
     // 히스토리에 저장
     saveToHistory(inputName.trim(), convertResult.romanized);
   };
@@ -352,18 +352,18 @@ function NameEngConverter() {
 
   const shareResult = () => {
     if (!result) return;
-    
+
     const params = new URLSearchParams();
     params.set('n', inputName);
     params.set('o', encodeOptions(options));
-    
+
     if (options.surnameVariant) {
       params.set('s', options.surnameVariant);
     }
-    
+
     const baseUrl = window.location.origin + window.location.pathname;
     const shareUrl = `${baseUrl}?${params.toString()}`;
-    
+
     if (navigator.share) {
       navigator.share({
         title: 'NameEng - 한글 이름 로마자 표기',
@@ -382,10 +382,10 @@ function NameEngConverter() {
       clearTimeout(debounceTimeoutRef.current);
       debounceTimeoutRef.current = null;
     }
-    
+
     const updatedOptions = { ...options, ...newOptions };
     setOptions(updatedOptions);
-    
+
     if (inputName.trim()) {
       const convertResult = romanizeKoreanName(inputName.trim(), updatedOptions);
       setResult(convertResult);
@@ -398,8 +398,9 @@ function NameEngConverter() {
       <Box className="max-w-5xl mx-auto">
         {/* Simplified Header */}
         <Box className="text-center mb-8">
-          <Link 
-            href="/" 
+          <Link
+            href="/"
+            prefetch={false}
             className="block"
             onClick={() => {
               // 로고 클릭 시 모든 상태 초기화
@@ -422,8 +423,8 @@ function NameEngConverter() {
             }}
           >
             <Flex align="center" justify="center" gap="3" className="mb-4 cursor-pointer hover:opacity-80 transition-opacity">
-            <Image src="/logo.svg" alt="NameEng Logo" width={48} height={48} className="w-12 h-12" />
-            <Heading size="7" style={{ letterSpacing: '-0.02em' }}>
+              <Image src="/logo.svg" alt="NameEng Logo" width={48} height={48} className="w-12 h-12" />
+              <Heading size="7" style={{ letterSpacing: '-0.02em' }}>
                 Nameeng
               </Heading>
             </Flex>
@@ -493,7 +494,7 @@ function NameEngConverter() {
                 </Button>
               </Flex>
             </Flex>
-            
+
             <Box className="space-y-2">
               {history.slice(0, 5).map((item, index) => (
                 <Flex
@@ -540,8 +541,8 @@ function NameEngConverter() {
 
         {/* AdSense 광고 */}
         <Box className="mb-6">
-          <Adsense 
-            dataAdSlot="2738626516" 
+          <Adsense
+            dataAdSlot="2738626516"
           />
         </Box>
 
@@ -573,12 +574,12 @@ function NameEngConverter() {
 
             {/* 안내 문구 추가 */}
             <Box className="mt-4 pt-3 border-t border-gray-200">
-              
+
               {/* AdSense 광고 */}
-                <Adsense 
-                  dataAdSlot="2738626516" 
-                  className="my-6 max-w-[336px] md:max-w-[728px]"
-                />
+              <Adsense
+                dataAdSlot="2738626516"
+                className="my-6 max-w-[336px] md:max-w-[728px]"
+              />
 
               <div className="flex flex-col space-y-2">
                 <Text size="1" color="gray">
@@ -586,8 +587,8 @@ function NameEngConverter() {
                 </Text>
                 <Text size="1" color="gray">
                   ※ 여권 발급 시에는{' '}
-                  <a 
-                    href="/passport-guide" 
+                  <a
+                    href="/passport-guide"
                     className="underline hover:text-blue-600"
                   >
                     외교부 여권 로마자 표기 규정
@@ -601,7 +602,7 @@ function NameEngConverter() {
 
         {/* Warnings */}
         {result?.warnings && result.warnings.length > 0 && (
-          <Card size="2" className="mb-6" style={{ 
+          <Card size="2" className="mb-6" style={{
             background: '#FEF3C7',
             border: '1px solid #FDE68A'
           }}>
@@ -642,13 +643,13 @@ function NameEngConverter() {
                 <SegmentedControl.Root
                   value={options.familyNameType || 'compound'}
                   onValueChange={(value: 'compound' | 'single') => {
-                    const familyName = value === 'compound' 
-                      ? familyNameOptions.compoundFamily 
+                    const familyName = value === 'compound'
+                      ? familyNameOptions.compoundFamily
                       : familyNameOptions.singleFamily;
-                    
+
                     const variants = getSurnameVariants(familyName);
                     setSurnameVariants(variants);
-                    
+
                     handleOptionChange({
                       familyNameType: value,
                       surnameVariant: variants.length > 0 ? variants[0] : undefined
@@ -692,14 +693,14 @@ function NameEngConverter() {
               <Text size="2" weight="medium" className="mb-3">
                 표기 옵션
               </Text>
-              
+
               <Flex direction="column" gap="3">
                 {/* Name Order */}
                 <Flex align="center" justify="between">
                   <Text size="2">이름 순서</Text>
                   <SegmentedControl.Root
                     value={options.order}
-                    onValueChange={(value: 'family-given' | 'given-family') => 
+                    onValueChange={(value: 'family-given' | 'given-family') =>
                       handleOptionChange({ order: value })
                     }
                     size="1"
@@ -718,7 +719,7 @@ function NameEngConverter() {
                   <Text size="2">대소문자</Text>
                   <SegmentedControl.Root
                     value={options.caseStyle}
-                    onValueChange={(value: 'capitalized' | 'lowercase' | 'uppercase') => 
+                    onValueChange={(value: 'capitalized' | 'lowercase' | 'uppercase') =>
                       handleOptionChange({ caseStyle: value })
                     }
                     size="1"
@@ -773,14 +774,14 @@ function NameEngConverter() {
                   📚 유용한 가이드
                 </Heading>
                 <Button asChild variant="ghost" size="2">
-                  <Link href="/blog">
+                  <Link href="/blog" prefetch={false}>
                     더 보기 →
                   </Link>
                 </Button>
               </Flex>
-              
+
               <Box className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Link href="/blog/korean-surname-history" className="block">
+                <Link href="/blog/korean-surname-history" className="block" prefetch={false}>
                   <Box className="p-4 rounded-md hover:bg-gray-50 transition-colors">
                     <Text size="2" weight="medium" className="mb-1 block">
                       한국 성씨의 영문 표기 역사
@@ -790,8 +791,8 @@ function NameEngConverter() {
                     </Text>
                   </Box>
                 </Link>
-                
-                <Link href="/blog/passport-name-guide" className="block">
+
+                <Link href="/blog/passport-name-guide" className="block" prefetch={false}>
                   <Box className="p-4 rounded-md hover:bg-gray-50 transition-colors">
                     <Text size="2" weight="medium" className="mb-1 block">
                       여권 발급 시 영문명 작성법
@@ -801,7 +802,7 @@ function NameEngConverter() {
                     </Text>
                   </Box>
                 </Link>
-                
+
                 <Link href="/blog/overseas-name-tips" className="block">
                   <Box className="p-4 rounded-md hover:bg-gray-50 transition-colors">
                     <Text size="2" weight="medium" className="mb-1 block">
@@ -812,7 +813,7 @@ function NameEngConverter() {
                     </Text>
                   </Box>
                 </Link>
-                
+
                 <Link href="/blog/business-name-etiquette" className="block">
                   <Box className="p-4 rounded-md hover:bg-gray-50 transition-colors">
                     <Text size="2" weight="medium" className="mb-1 block">
@@ -840,7 +841,7 @@ function NameEngConverter() {
                   </Link>
                 </Button>
               </Flex>
-              
+
               <Box className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Link href="/tools/name-generator" className="block">
                   <Box className="p-4 rounded-md hover:bg-gray-50 transition-colors">
@@ -852,7 +853,7 @@ function NameEngConverter() {
                     </Text>
                   </Box>
                 </Link>
-                
+
                 <Link href="/tools/name-checker" className="block">
                   <Box className="p-4 rounded-md hover:bg-gray-50 transition-colors">
                     <Text size="2" weight="medium" className="mb-1 block">
@@ -873,34 +874,34 @@ function NameEngConverter() {
               <Heading as="h2" size="4" className="mb-4">
                 💡 알아두면 유용한 정보
               </Heading>
-              
+
               <Box className="space-y-4">
                 <Box className="p-4 bg-blue-50 rounded-md">
                   <Text size="2" weight="medium" className="mb-2 block">
                     🛂 여권 발급 시 주의사항
                   </Text>
                   <Text size="2" color="gray">
-                    표준 표기를 기본으로 하되, 기존에 사용하던 관용 표기가 있다면 
+                    표준 표기를 기본으로 하되, 기존에 사용하던 관용 표기가 있다면
                     증빙서류와 함께 신청할 수 있습니다. 하이픈 사용 여부는 신중히 결정하세요.
                   </Text>
                 </Box>
-                
+
                 <Box className="p-4 bg-green-50 rounded-md">
                   <Text size="2" weight="medium" className="mb-2 block">
                     🌍 해외 거주 시 팁
                   </Text>
                   <Text size="2" color="gray">
-                    부정적 의미 경고가 있는 경우 반드시 대안 표기를 고려하고, 
+                    부정적 의미 경고가 있는 경우 반드시 대안 표기를 고려하고,
                     현지에서 발음하기 쉬운 표기를 선택하는 것이 좋습니다.
                   </Text>
                 </Box>
-                
+
                 <Box className="p-4 bg-purple-50 rounded-md">
                   <Text size="2" weight="medium" className="mb-2 block">
                     💼 비즈니스 용도
                   </Text>
                   <Text size="2" color="gray">
-                    전문적이고 격식 있는 표기를 선택하고, 
+                    전문적이고 격식 있는 표기를 선택하고,
                     명함, 이메일 서명 등에서 일관성을 유지하는 것이 중요합니다.
                   </Text>
                 </Box>
@@ -912,45 +913,45 @@ function NameEngConverter() {
         {/* Footer Links */}
         <Box className="mt-12 text-center">
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 mb-6 px-4">
-            <Link href="/about" className="text-center">
+            <Link href="/about" className="text-center" prefetch={false}>
               <Text size="2" color="gray" className="hover:text-blue-600 transition-colors duration-200">
                 사이트 소개
               </Text>
             </Link>
-            <Link href="/how-to-use" className="text-center">
+            <Link href="/how-to-use" className="text-center" prefetch={false}>
               <Text size="2" color="gray" className="hover:text-blue-600 transition-colors duration-200">
                 이용방법
               </Text>
             </Link>
-            <Link href="/passport-guide" className="text-center">
+            <Link href="/passport-guide" className="text-center" prefetch={false}>
               <Text size="2" color="gray" className="hover:text-blue-600 transition-colors duration-200">
                 여권 규정
               </Text>
             </Link>
-            <Link href="/romanization-guide" className="text-center">
+            <Link href="/romanization-guide" className="text-center" prefetch={false}>
               <Text size="2" color="gray" className="hover:text-blue-600 transition-colors duration-200">
                 표기법 가이드
               </Text>
             </Link>
-            <Link href="/faq" className="text-center">
+            <Link href="/faq" className="text-center" prefetch={false}>
               <Text size="2" color="gray" className="hover:text-blue-600 transition-colors duration-200">
                 FAQ
               </Text>
             </Link>
-            <Link href="/blog" className="text-center">
+            <Link href="/blog" className="text-center" prefetch={false}>
               <Text size="2" color="gray" className="hover:text-blue-600 transition-colors duration-200">
                 블로그
               </Text>
             </Link>
-            <Link href="/tools" className="text-center">
+            <Link href="/tools" className="text-center" prefetch={false}>
               <Text size="2" color="gray" className="hover:text-blue-600 transition-colors duration-200">
                 도구
               </Text>
             </Link>
-    </div>
-                  
+          </div>
+
           <Text size="1" color="gray" className="px-4">
-            © {new Date().getFullYear()} Nameeng. 
+            © {new Date().getFullYear()} Nameeng.
           </Text>
         </Box>
       </Box>
