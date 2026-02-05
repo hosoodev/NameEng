@@ -263,7 +263,7 @@ function NameEngConverter() {
 
     const convertResult = romanizeKoreanName(name.trim(), newOptions);
     setResult(convertResult);
-    updateUrl(name, newOptions);
+    // updateUrl(name, newOptions); // 공유하기 버튼으로 대체
 
     // 히스토리에 다시 저장 (최신 순서로 업데이트)
     saveToHistory(name.trim(), convertResult.romanized);
@@ -303,7 +303,7 @@ function NameEngConverter() {
       debounceTimeoutRef.current = setTimeout(() => {
         const convertResult = romanizeKoreanName(value.trim(), newOptions);
         setResult(convertResult);
-        updateUrl(value, newOptions); // 즉시 URL 업데이트로 복원
+        // updateUrl(value, newOptions); // 공유하기 버튼으로 대체
       }, 500);
     } else {
       setSurnameVariants([]);
@@ -317,35 +317,13 @@ function NameEngConverter() {
     }
   };
 
-  const updateUrl = (name: string, newOptions: RomanizationOptions) => {
-    if (!name.trim()) return;
-
-    const params = new URLSearchParams();
-    params.set('n', name);
-    params.set('o', encodeOptions(newOptions));
-
-    if (newOptions.surnameVariant) {
-      params.set('s', newOptions.surnameVariant);
-    }
-
-    const newUrl = `${window.location.pathname}?${params.toString()}`;
-    
-    // 현재 URL과 같으면 업데이트하지 않음
-    if (window.location.search === `?${params.toString()}`) {
-      return;
-    }
-    
-    // replaceState 사용으로 히스토리에 추가하지 않고 URL만 변경
-    window.history.replaceState(null, '', newUrl);
-  };
-
   const handleConvert = () => {
     if (!inputName.trim()) return;
 
     // 디바운싱을 우회하고 즉시 변환
     const convertResult = romanizeKoreanName(inputName.trim(), options);
     setResult(convertResult);
-    updateUrl(inputName, options);
+    // updateUrl(inputName, options); // 공유하기 버튼으로 대체
 
     // 히스토리에 저장
     saveToHistory(inputName.trim(), convertResult.romanized);
@@ -396,7 +374,7 @@ function NameEngConverter() {
     if (inputName.trim()) {
       const convertResult = romanizeKoreanName(inputName.trim(), updatedOptions);
       setResult(convertResult);
-      updateUrl(inputName, updatedOptions); // 즉시 URL 업데이트로 복원
+      // updateUrl(inputName, updatedOptions); // 공유하기 버튼으로 대체
     }
   };
 
