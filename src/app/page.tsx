@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, Suspense, useRef } from 'react';
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import {
   Card,
   Text,
@@ -75,9 +75,17 @@ const decodeOptions = (encoded: string): Partial<RomanizationOptions> => {
   return options;
 };
 
+// 간단한 debounce 함수
+function debounce<T extends (...args: any[]) => void>(func: T, delay: number): T {
+  let timeoutId: NodeJS.Timeout;
+  return ((...args: any[]) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => func(...args), delay);
+  }) as T;
+}
+
 function NameEngConverter() {
   const searchParams = useSearchParams();
-  const router = useRouter();
 
   const [inputName, setInputName] = useState('');
   const [options, setOptions] = useState<RomanizationOptions>({
@@ -304,7 +312,7 @@ function NameEngConverter() {
       debounceTimeoutRef.current = setTimeout(() => {
         const convertResult = romanizeKoreanName(value.trim(), newOptions);
         setResult(convertResult);
-        updateUrl(value, newOptions);
+        debouncedUpdateUrl(value, newOptions); // 디바운싱된 URL 업데이트 사용
       }, 500);
     } else {
       setSurnameVariants([]);
@@ -330,8 +338,19 @@ function NameEngConverter() {
     }
 
     const newUrl = `${window.location.pathname}?${params.toString()}`;
+    
+    // 현재 URL과 같으면 업데이트하지 않음
+    if (window.location.search === `?${params.toString()}`) {
+      return;
+    }
+    
     window.history.replaceState(null, '', newUrl);
   };
+
+  // URL 업데이트를 위한 디바운싱
+  const debouncedUpdateUrl = debounce((name: string, newOptions: RomanizationOptions) => {
+    updateUrl(name, newOptions);
+  }, 1000); // 1초 디바운싱
 
   const handleConvert = () => {
     if (!inputName.trim()) return;
@@ -390,7 +409,7 @@ function NameEngConverter() {
     if (inputName.trim()) {
       const convertResult = romanizeKoreanName(inputName.trim(), updatedOptions);
       setResult(convertResult);
-      updateUrl(inputName, updatedOptions);
+      debouncedUpdateUrl(inputName, updatedOptions); // 디바운싱된 URL 업데이트 사용
     }
   };
 

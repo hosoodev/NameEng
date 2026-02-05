@@ -20,12 +20,20 @@ const Adsense: React.FC<AdsenseProps> = ({
   useEffect(() => {
     if (typeof window !== 'undefined') {
       try {
-        (window.adsbygoogle = window.adsbygoogle || []).push({});
+        // 이미 초기화된 광고가 있는지 확인
+        const existingAds = document.querySelectorAll(`ins[data-ad-slot="${dataAdSlot}"]`);
+        const isAlreadyInitialized = Array.from(existingAds).some(ad => 
+          ad.getAttribute('data-adsbygoogle-status') === 'done'
+        );
+        
+        if (!isAlreadyInitialized) {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        }
       } catch (e) {
         console.error('Adsense error', e);
       }
     }
-  }, []);
+  }, [dataAdSlot]); // dataAdSlot을 의존성으로 추가
 
   return (
     <div className={`mx-auto text-center ${className}`}>
