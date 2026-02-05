@@ -335,6 +335,7 @@ function NameEngConverter() {
       return;
     }
     
+    // replaceState 사용으로 히스토리에 추가하지 않고 URL만 변경
     window.history.replaceState(null, '', newUrl);
   };
 

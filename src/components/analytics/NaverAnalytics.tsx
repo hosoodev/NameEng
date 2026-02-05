@@ -24,32 +24,31 @@ export default function NaverAnalytics() {
       <Script id="naver-analytics-execute" strategy="afterInteractive">
         {`
           let isNaverInitialized = false;
-          let lastUrl = '';
+          let lastPathname = '';
           
           function wcsInit() {
-            if (!window.wcs || isNaverInitialized) return;
+            if (!window.wcs) return;
             
-            const currentUrl = window.location.href;
-            if (currentUrl === lastUrl) return; // 같은 URL이면 스킵
+            const currentPathname = window.location.pathname;
             
-            lastUrl = currentUrl;
+            // 경로(pathname)가 변경된 경우에만 페이지뷰 카운트
+            // URL 파라미터(?n=이름&o=옵션) 변경은 무시
+            if (currentPathname === lastPathname && lastPathname !== '') {
+              return; // 같은 페이지 내 파라미터 변경은 스킵
+            }
+            
+            lastPathname = currentPathname;
             window.wcs_do = window.wcs_do || function() {};
             window.wcs_do();
-            isNaverInitialized = true;
-            
-            // 5초 후 다시 초기화 가능하도록 (실제 페이지 이동 시에만)
-            setTimeout(() => {
-              isNaverInitialized = false;
-            }, 5000);
           }
           
-          // 페이지 로드 시 실행
+          // 페이지 로드 시 실행 (최초 1회만)
           wcsInit();
           
-          // 실제 페이지 이동 시에만 실행 (URL 파라미터 변경 제외)
+          // 실제 페이지 이동 시에만 실행
           if (typeof window !== 'undefined') {
             window.addEventListener('popstate', () => {
-              setTimeout(wcsInit, 100); // 약간의 지연 후 실행
+              setTimeout(wcsInit, 100);
             });
           }
         `}
