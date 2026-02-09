@@ -1,9 +1,9 @@
-import { 
-  Card, 
-  Text, 
-  Heading, 
-  Button, 
-  Flex, 
+import {
+  Card,
+  Text,
+  Heading,
+  Button,
+  Flex,
   Box,
   Container,
   Badge,
@@ -31,7 +31,7 @@ export default function RomanizationRulesPage() {
               블로그로 돌아가기
             </Button>
           </Link>
-          
+
           <Flex direction="column" gap="3">
             <Badge color="indigo" size="2">언어학</Badge>
             <Heading as="h1" size="8" weight="bold">
@@ -58,24 +58,24 @@ export default function RomanizationRulesPage() {
           <Card>
             <Flex align="center" gap="3" className="mb-4">
               <BookOpen className="text-indigo-500" size={20} />
-              <Heading size="4">정확한 로마자 표기의 중요성</Heading>
+              <Heading size="4" as="h2">정확한 로마자 표기의 중요성</Heading>
             </Flex>
             <Text size="3" className="leading-relaxed">
-              2000년에 제정된 국어의 로마자 표기법은 한국어를 로마자로 표기하는 공식 기준입니다. 
-              이 규칙을 정확히 이해하면 일관되고 표준적인 영문명을 만들 수 있습니다. 
+              2000년에 제정된 국어의 로마자 표기법은 한국어를 로마자로 표기하는 공식 기준입니다.
+              이 규칙을 정확히 이해하면 일관되고 표준적인 영문명을 만들 수 있습니다.
               복잡해 보이는 규칙들을 실제 예시와 함께 쉽게 풀어보겠습니다.
             </Text>
           </Card>
 
           {/* 1. 기본 원칙 */}
           <Box>
-            <Heading size="5" className="mb-4">1. 로마자 표기법의 기본 원칙</Heading>
-            
+            <Heading size="5" as="h2" className="mb-4">1. 로마자 표기법의 기본 원칙</Heading>
+
             <Flex direction="column" gap="4">
               <Card className="border-blue-200 bg-blue-50">
                 <Flex align="center" gap="3" className="mb-3">
                   <CheckCircle className="text-blue-500" size={18} />
-                  <Heading size="3">핵심 원칙 3가지</Heading>
+                  <Heading size="3" as="h3">핵심 원칙 3가지</Heading>
                 </Flex>
                 <Flex direction="column" gap="2">
                   <Text size="3">• <strong>음성 중심:</strong> 한글의 실제 발음을 기준으로 표기</Text>
@@ -85,7 +85,7 @@ export default function RomanizationRulesPage() {
               </Card>
 
               <Card>
-                <Heading size="3" className="mb-3">📝 표기 순서</Heading>
+                <Heading size="3" as="h3" className="mb-3">📝 표기 순서</Heading>
                 <Flex direction="column" gap="2">
                   <Text size="3">1. 한글을 소리 나는 대로 적되</Text>
                   <Text size="3">2. 음성 변화는 표기에 반영하고</Text>
@@ -97,10 +97,10 @@ export default function RomanizationRulesPage() {
 
           {/* 2. 자음 표기법 */}
           <Box>
-            <Heading size="5" className="mb-4">2. 자음 표기법</Heading>
-            
+            <Heading size="5" as="h2" className="mb-4">2. 자음 표기법</Heading>
+
             <Card>
-              <Heading size="3" className="mb-4">기본 자음 대응표</Heading>
+              <Heading size="3" as="h3" className="mb-4">기본 자음 대응표</Heading>
               <Box className="space-y-2">
                 <Flex className="p-2 bg-gray-100 rounded font-medium">
                   <Box className="w-16">한글</Box>
@@ -183,11 +183,11 @@ export default function RomanizationRulesPage() {
 
           {/* 3. 모음 표기법 */}
           <Box>
-            <Heading size="5" className="mb-4">3. 모음 표기법</Heading>
-            
+            <Heading size="5" as="h2" className="mb-4">3. 모음 표기법</Heading>
+
             <Flex direction="column" gap="4">
               <Card>
-                <Heading size="3" className="mb-4">단모음</Heading>
+                <Heading size="3" as="h3" className="mb-4">단모음</Heading>
                 <Box className="grid grid-cols-2 md:grid-cols-4 gap-3">
                   <Box className="p-2 bg-gray-50 rounded text-center">
                     <Text size="2" weight="bold">ㅏ → a</Text>
@@ -225,7 +225,7 @@ export default function RomanizationRulesPage() {
               </Card>
 
               <Card>
-                <Heading size="3" className="mb-4">복합모음</Heading>
+                <Heading size="3" as="h3" className="mb-4">복합모음</Heading>
                 <Box className="grid grid-cols-2 md:grid-cols-3 gap-3">
                   <Box className="p-2 bg-blue-50 rounded text-center">
                     <Text size="2" weight="bold">ㅑ → ya</Text>
@@ -258,17 +258,17 @@ export default function RomanizationRulesPage() {
 
           {/* 4. 받침 표기법 */}
           <Box>
-            <Heading size="5" className="mb-4">4. 받침 표기법</Heading>
-            
+            <Heading size="5" as="h2" className="mb-4">4. 받침 표기법</Heading>
+
             <Card className="border-orange-200 bg-orange-50">
               <Flex align="center" gap="3" className="mb-3">
                 <AlertCircle className="text-orange-500" size={18} />
-                <Heading size="3">받침의 특별 규칙</Heading>
+                <Heading size="3" as="h3">받침의 특별 규칙</Heading>
               </Flex>
               <Text size="3" className="mb-3">
                 받침은 뒤에 오는 소리에 따라 표기가 달라집니다.
               </Text>
-              
+
               <Flex direction="column" gap="3">
                 <Box>
                   <Text size="2" weight="medium" className="mb-2">1. 자음 앞이나 어말에서</Text>
@@ -282,7 +282,7 @@ export default function RomanizationRulesPage() {
                     <Text size="2">• ㅇ → ng: 강물 → gangmul, 방 → bang</Text>
                   </Box>
                 </Box>
-                
+
                 <Box>
                   <Text size="2" weight="medium" className="mb-2">2. 모음 앞에서</Text>
                   <Box className="p-3 bg-white rounded-md">
@@ -295,14 +295,14 @@ export default function RomanizationRulesPage() {
 
           {/* 5. 인명 표기 특례 */}
           <Box>
-            <Heading size="5" className="mb-4">5. 인명 표기의 특별 규칙</Heading>
-            
+            <Heading size="5" as="h2" className="mb-4">5. 인명 표기의 특별 규칙</Heading>
+
             <Card className="border-green-200 bg-green-50">
               <Flex align="center" gap="3" className="mb-3">
                 <CheckCircle className="text-green-500" size={18} />
-                <Heading size="3">성씨와 이름 표기</Heading>
+                <Heading size="3" as="h3">성씨와 이름 표기</Heading>
               </Flex>
-              
+
               <Flex direction="column" gap="3">
                 <Box>
                   <Text size="2" weight="medium" className="mb-2">성씨 표기 원칙</Text>
@@ -313,7 +313,7 @@ export default function RomanizationRulesPage() {
                     <Text size="2">• 최 → Choe (표준) / Choi (관용)</Text>
                   </Box>
                 </Box>
-                
+
                 <Box>
                   <Text size="2" weight="medium" className="mb-2">이름 표기 방식</Text>
                   <Box className="p-3 bg-white rounded-md">
@@ -328,11 +328,11 @@ export default function RomanizationRulesPage() {
 
           {/* 마무리 */}
           <Card>
-            <Heading size="4" className="mb-3">정확한 표기법으로 더 나은 소통을</Heading>
+            <Heading size="4" as="h2" className="mb-3">정확한 표기법으로 더 나은 소통을</Heading>
             <Text size="3" className="leading-relaxed">
-              로마자 표기법은 복잡해 보이지만, 기본 원칙을 이해하면 누구나 정확한 표기를 할 수 있습니다. 
-              표준 표기와 관용 표기 중 자신의 상황에 맞는 것을 선택하되, 
-              일관성을 유지하는 것이 가장 중요합니다. 
+              로마자 표기법은 복잡해 보이지만, 기본 원칙을 이해하면 누구나 정확한 표기를 할 수 있습니다.
+              표준 표기와 관용 표기 중 자신의 상황에 맞는 것을 선택하되,
+              일관성을 유지하는 것이 가장 중요합니다.
               NameEng는 이러한 규칙들을 자동으로 적용하여 정확하고 일관된 영문명을 제공합니다.
             </Text>
           </Card>

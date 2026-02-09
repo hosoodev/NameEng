@@ -68,6 +68,7 @@ export default function KoreanSurnameHistory() {
                     {/* 서론 */}
                     <Card size="3" className="mb-6">
                         <Box className="p-6">
+                            <Heading size="3" as="h3">김(Kim), 이(Lee), 박(Park)</Heading>
                             <Text size="3" className="leading-relaxed">
                                 한국인의 성씨를 로마자로 표기하는 것은 단순한 언어 변환을 넘어서
                                 역사적, 문화적, 정치적 맥락이 복합적으로 얽힌 복잡한 과정입니다.

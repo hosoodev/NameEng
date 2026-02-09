@@ -63,7 +63,7 @@ export
                     <Card>
                         <Flex align="center" gap="3" className="mb-4">
                             <Info className="text-blue-500" size={20} />
-                            <Heading size="4">여권 영문명, 왜 중요할까요?</Heading>
+                            <Heading size="4" as="h2">여권 영문명, 왜 중요할까요?</Heading>
                         </Flex>
                         <Text size="3" className="leading-relaxed">
                             여권의 영문명은 해외여행 시 항공권, 호텔 예약, 비자 신청 등 모든 공식 문서에 사용되는 중요한 정보입니다.
@@ -73,12 +73,12 @@ export
 
                     {/* 기본 원칙 */}
                     <Box>
-                        <Heading size="5" className="mb-4">1. 영문명 작성 기본 원칙</Heading>
+                        <Heading size="5" as="h2" className="mb-4">1. 영문명 작성 기본 원칙</Heading>
                         <Flex direction="column" gap="4">
                             <Card>
                                 <Flex align="center" gap="3" className="mb-3">
                                     <CheckCircle className="text-green-500" size={18} />
-                                    <Heading size="3">외교부 공식 가이드라인</Heading>
+                                    <Heading size="3" as="h3">외교부 공식 가이드라인</Heading>
                                 </Flex>
                                 <Flex direction="column" gap="2">
                                     <Text size="3">• 성(姓)은 대문자로, 이름은 첫 글자만 대문자로 작성</Text>
@@ -89,7 +89,7 @@ export
                             </Card>
 
                             <Card>
-                                <Heading size="3" className="mb-3">로마자 표기법 예시</Heading>
+                                <Heading size="3" as="h3" className="mb-3">로마자 표기법 예시</Heading>
                                 <Flex direction="column" gap="2">
                                     <Text size="3">• 김철수 → KIM Cheolsu</Text>
                                     <Text size="3">• 박영희 → PARK Younghee</Text>
@@ -102,12 +102,12 @@ export
 
                     {/* 주의사항 */}
                     <Box>
-                        <Heading size="5" className="mb-4">2. 영문명 작성 시 주의사항</Heading>
+                        <Heading size="5" as="h2" className="mb-4">2. 영문명 작성 시 주의사항</Heading>
                         <Flex direction="column" gap="4">
                             <Card className="border-orange-200 bg-orange-50">
                                 <Flex align="center" gap="3" className="mb-3">
                                     <AlertTriangle className="text-orange-500" size={18} />
-                                    <Heading size="3">반드시 확인해야 할 사항들</Heading>
+                                    <Heading size="3" as="h3">반드시 확인해야 할 사항들</Heading>
                                 </Flex>
                                 <Flex direction="column" gap="2">
                                     <Text size="3">• 기존 여권이나 비자에 사용된 영문명과 일치하는지 확인</Text>
@@ -118,7 +118,7 @@ export
                             </Card>
 
                             <Card>
-                                <Heading size="3" className="mb-3">흔한 실수 사례</Heading>
+                                <Heading size="3" as="h3" className="mb-3">흔한 실수 사례</Heading>
                                 <Flex direction="column" gap="2">
                                     <Text size="3">❌ 잘못된 예: kim cheol su (모두 소문자)</Text>
                                     <Text size="3">✅ 올바른 예: KIM Cheolsu</Text>
@@ -131,13 +131,13 @@ export
 
                     {/* 변경 절차 */}
                     <Box>
-                        <Heading size="5" className="mb-4">3. 영문명 변경이 필요한 경우</Heading>
+                        <Heading size="5" as="h2" className="mb-4">3. 영문명 변경이 필요한 경우</Heading>
                         <Card>
                             <Text size="3" className="mb-4">
                                 이미 발급된 여권의 영문명을 변경하려면 새로운 여권을 발급받아야 합니다.
                             </Text>
                             <Flex direction="column" gap="3">
-                                <Heading size="3">변경 절차</Heading>
+                                <Heading size="3" as="h3">변경 절차</Heading>
                                 <Flex direction="column" gap="2">
                                     <Text size="3">1. 여권 발급 신청서 작성 (정정된 영문명으로)</Text>
                                     <Text size="3">2. 기존 여권 반납</Text>
@@ -150,11 +150,11 @@ export
 
                     {/* 유용한 도구 */}
                     <Box>
-                        <Heading size="5" className="mb-4">4. 영문명 작성에 도움되는 도구</Heading>
+                        <Heading size="5" as="h2" className="mb-4">4. 영문명 작성에 도움되는 도구</Heading>
                         <Card className="border-blue-200 bg-blue-50">
                             <Flex align="center" gap="3" className="mb-3">
                                 <CheckCircle className="text-blue-500" size={18} />
-                                <Heading size="3">NameEng 영문명 변환기 활용하기</Heading>
+                                <Heading size="3" as="h3">NameEng 영문명 변환기 활용하기</Heading>
                             </Flex>
                             <Text size="3" className="mb-4">
                                 정확한 로마자 표기법에 따른 영문명 변환을 원한다면 NameEng의 영문명 변환기를 사용해보세요.
@@ -169,7 +169,7 @@ export
 
                     {/* 마무리 */}
                     <Card>
-                        <Heading size="4" className="mb-3">정리</Heading>
+                        <Heading size="4" as="h2" className="mb-3">정리</Heading>
                         <Text size="3" className="leading-relaxed">
                             여권 영문명은 해외여행의 첫 단추입니다. 정확한 로마자 표기법을 따르고,
                             기존 문서들과의 일치성을 확인하여 불필요한 문제를 예방하세요.
