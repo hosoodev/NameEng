@@ -4,6 +4,7 @@ import GoogleAdsense from './GoogleAdsense';
 // import CoupangPartners from './CoupangPartners';
 import GoogleAnalytics from './GoogleAnalytics';
 import NaverAnalytics from './NaverAnalytics';
+import MicrosoftClarity from './MicrosoftClarity';
 // import VercelSpeedInsights from './VercelSpeedInsights';
 
 export default function Analytics() {
@@ -13,6 +14,7 @@ export default function Analytics() {
       {/* <CoupangPartners /> */}
       <GoogleAnalytics />
       <NaverAnalytics />
+      <MicrosoftClarity />
       {/* <VercelSpeedInsights /> */}
     </>
   );
