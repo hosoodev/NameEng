@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef, Suspense, useCallback } from 'react';
 import { useSearchParams } from 'next/navigation';
-import Link from 'next/link';
 import {
   romanizeKoreanName,
   getSurnameVariants,
@@ -541,7 +540,7 @@ function NameEngConverter() {
 
                 {/* 주요 기능 특징 안내 */}
                 <div className="mt-4">
-                  <Link
+                  <a
                     href="/about"
                     className="group bg-white rounded-2xl border border-gray-100 p-5 flex items-center justify-between transition-all hover:border-blue-300 hover:shadow-md hover:-translate-y-0.5"
                   >
@@ -556,7 +555,7 @@ function NameEngConverter() {
                     <div className="shrink-0 text-gray-300 group-hover:text-blue-500 transition-colors bg-gray-50 group-hover:bg-blue-50 p-2 rounded-full">
                       <ChevronRight size={20} />
                     </div>
-                  </Link>
+                  </a>
                 </div>
 
                 {/* 모바일에서만 노출되는 초기화면 가이드 링크 */}

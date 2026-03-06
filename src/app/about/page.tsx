@@ -20,7 +20,6 @@ import {
   Search,
   Ruler
 } from 'lucide-react';
-import Link from 'next/link';
 import type { Metadata } from 'next';
 import DesktopNavBar from '@/components/layout/DesktopNavBar';
 import SiteHeader from '@/components/layout/SiteHeader';
@@ -61,10 +60,10 @@ export default function About() {
 
             {/* Header Content */}
             <div className="mb-8">
-              <Link href="/" className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors mb-6 bg-white border border-gray-200 px-3 py-1.5 rounded-lg hover:bg-gray-50">
+              <a href="/" className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors mb-6 bg-white border border-gray-200 px-3 py-1.5 rounded-lg hover:bg-gray-50">
                 <ArrowLeft size={16} />
                 NameEng로 돌아가기
-              </Link>
+              </a>
               <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">
                 NameEng 소개
               </h1>

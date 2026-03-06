@@ -1,4 +1,3 @@
-import Link from 'next/link';
 
 const footerLinks = [
   { href: '/how-to-use', label: '사용 방법' },
@@ -14,14 +13,13 @@ export default function SiteFooter() {
     <footer className="mt-12 pb-8 border-t border-gray-100 pt-6">
       <nav className="flex flex-wrap justify-center gap-x-4 gap-y-2 mb-4">
         {footerLinks.map((link) => (
-          <Link
+          <a
             key={link.href}
             href={link.href}
-            prefetch={false}
             className="text-xs text-gray-400 hover:text-gray-700 transition-colors"
           >
             {link.label}
-          </Link>
+          </a>
         ))}
       </nav>
       <p className="text-center text-[11px] text-gray-300">

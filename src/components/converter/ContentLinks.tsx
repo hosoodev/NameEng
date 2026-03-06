@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { ChevronRight } from 'lucide-react';
 
 interface ContentItem {
@@ -26,10 +25,9 @@ export default function ContentLinks({
       </h2>
       <div className="flex flex-col gap-2">
         {items.map((item) => (
-          <Link
+          <a
             key={item.href}
             href={item.href}
-            prefetch={false}
             className="flex items-center gap-3 bg-white rounded-xl border border-gray-100 px-4 py-3.5 hover:border-blue-200 hover:bg-blue-50/30 active:bg-blue-50 transition-colors group"
           >
             <span className="text-xl flex-shrink-0">{item.icon}</span>
@@ -43,7 +41,7 @@ export default function ContentLinks({
               size={15}
               className="text-gray-300 group-hover:text-blue-400 group-hover:translate-x-0.5 transition-all flex-shrink-0"
             />
-          </Link>
+          </a>
         ))}
       </div>
     </div>

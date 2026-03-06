@@ -1,6 +1,5 @@
 import { notFound } from 'next/navigation';
 import { ArrowLeft, BarChart3, ChevronRight, Search, Star, Users } from 'lucide-react';
-import Link from 'next/link';
 import DesktopNavBar from '@/components/layout/DesktopNavBar';
 import SiteHeader from '@/components/layout/SiteHeader';
 import SiteFooter from '@/components/layout/SiteFooter';
@@ -79,10 +78,10 @@ export default async function SurnameDetail({ params }: PageProps) {
                     <div className="w-full px-4 md:px-0">
                         {/* Header Content */}
                         <div className="mb-8">
-                            <Link href="/tools/surname-frequency" className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors mb-6 bg-white border border-gray-200 px-3 py-1.5 rounded-lg hover:bg-gray-50 shadow-sm">
+                            <a href="/tools/surname-frequency" className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors mb-6 bg-white border border-gray-200 px-3 py-1.5 rounded-lg hover:bg-gray-50 shadow-sm">
                                 <ArrowLeft size={16} />
                                 성씨 빈도 검색 목록으로
-                            </Link>
+                            </a>
                             <div className="mb-3">
                                 <span className="inline-flex items-center rounded-full bg-blue-50 px-2.5 py-0.5 text-xs font-semibold text-blue-700 border border-blue-200 shadow-sm">
                                     성씨 상세 통계 분석
@@ -95,13 +94,13 @@ export default async function SurnameDetail({ params }: PageProps) {
                                 한국에서 '{decodedSurname}'씨 성을 가진 사람들이 가장 많이 사용하는 영문 표기와 각 출처별 세부 통계를 확인해 보세요.
                             </p>
 
-                            <Link
+                            <a
                                 href={`/tools/name-checker?input=${decodedSurname}`}
                                 className="inline-flex items-center gap-2 bg-gray-900 text-white px-5 py-3 rounded-xl font-bold hover:bg-gray-800 transition-colors shadow-md"
                             >
                                 <Search size={18} />
                                 '{decodedSurname}'씨 영문명 적합성 바로 검사하기
-                            </Link>
+                            </a>
                         </div>
 
                         {/* Combined Ranking Section */}

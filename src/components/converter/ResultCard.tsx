@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { Copy, Check, Share2, ChevronRight } from 'lucide-react';
-import Link from 'next/link';
 
 interface ContextualLink {
   href: string;
@@ -88,10 +87,9 @@ export default function ResultCard({
           </p>
           <div className="flex flex-col gap-1.5">
             {contextualLinks.map((link) => (
-              <Link
+              <a
                 key={link.href}
                 href={link.href}
-                prefetch={false}
                 className="flex items-center justify-between bg-white hover:bg-blue-50 active:bg-blue-100 rounded-xl px-3 py-2.5 transition-colors group border border-gray-100 hover:border-blue-200"
               >
                 <span className="flex items-center gap-2 text-sm text-gray-700 group-hover:text-blue-700 font-medium transition-colors">
@@ -102,7 +100,7 @@ export default function ResultCard({
                   size={13}
                   className="text-gray-300 group-hover:text-blue-400 group-hover:translate-x-0.5 transition-all"
                 />
-              </Link>
+              </a>
             ))}
           </div>
         </div>

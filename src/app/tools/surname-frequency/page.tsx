@@ -10,7 +10,6 @@ import {
     Star,
     ChevronDown
 } from 'lucide-react';
-import Link from 'next/link';
 import DesktopNavBar from '@/components/layout/DesktopNavBar';
 import SiteHeader from '@/components/layout/SiteHeader';
 import SiteFooter from '@/components/layout/SiteFooter';
@@ -77,10 +76,10 @@ export default function SurnameFrequencyPage() {
                     <div className="w-full px-4 md:px-0">
                         {/* Header Content */}
                         <div className="mb-8">
-                            <Link href="/tools" className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors mb-6 bg-white border border-gray-200 px-3 py-1.5 rounded-lg hover:bg-gray-50">
+                            <a href="/tools" className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors mb-6 bg-white border border-gray-200 px-3 py-1.5 rounded-lg hover:bg-gray-50">
                                 <ArrowLeft size={16} />
                                 도구 목록으로 돌아가기
-                            </Link>
+                            </a>
                             <div className="mb-3">
                                 <span className="inline-flex items-center rounded-full bg-blue-50 px-2.5 py-0.5 text-xs font-semibold text-blue-700 border border-blue-200">
                                     성씨 데이터 도구
@@ -136,18 +135,18 @@ export default function SurnameFrequencyPage() {
                                                 <span className="text-xs text-gray-400 font-medium">씨</span>
                                             </div>
                                             <div className="flex items-center gap-3">
-                                                <Link
+                                                <a
                                                     href={`/tools/surname-frequency/${entry.hangul}`}
                                                     className="text-[11px] font-bold text-gray-500 hover:text-gray-900 border border-gray-200 px-2 py-1 rounded-md bg-white flex items-center gap-0.5 transition-colors"
                                                 >
                                                     상세 통계 <ChevronRight size={12} />
-                                                </Link>
-                                                <Link
+                                                </a>
+                                                <a
                                                     href={`/tools/name-checker?input=${entry.hangul}`}
                                                     className="text-[11px] font-bold text-blue-600 hover:text-blue-700 flex items-center gap-0.5"
                                                 >
                                                     적합성 검사 <ChevronRight size={12} />
-                                                </Link>
+                                                </a>
                                             </div>
                                         </div>
                                         <div className="p-5 space-y-3">

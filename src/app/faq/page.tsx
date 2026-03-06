@@ -12,7 +12,6 @@ import {
   Search,
   Ruler
 } from 'lucide-react';
-import Link from 'next/link';
 import type { Metadata } from 'next';
 import DesktopNavBar from '@/components/layout/DesktopNavBar';
 import SiteHeader from '@/components/layout/SiteHeader';
@@ -170,10 +169,10 @@ export default function FAQ() {
           <div className="w-full px-4 md:px-0">
             {/* Header Content */}
             <div className="mb-8">
-              <Link href="/" className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors mb-6 bg-white border border-gray-200 px-3 py-1.5 rounded-lg hover:bg-gray-50">
+              <a href="/" className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors mb-6 bg-white border border-gray-200 px-3 py-1.5 rounded-lg hover:bg-gray-50">
                 <ArrowLeft size={16} />
                 NameEng로 돌아가기
-              </Link>
+              </a>
               <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">
                 자주 묻는 질문 (FAQ)
               </h1>
@@ -248,15 +247,15 @@ export default function FAQ() {
                   <p className="text-sm text-gray-600 mb-4">아래 가이드 페이지에서 더 상세한 정보를 확인하실 수 있습니다.</p>
 
                   <div className="flex flex-wrap gap-3">
-                    <Link href="/how-to-use" className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                    <a href="/how-to-use" className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
                       이용방법 가이드
-                    </Link>
-                    <Link href="/romanization-guide" className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                    </a>
+                    <a href="/romanization-guide" className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
                       로마자 표기법 가이드
-                    </Link>
-                    <Link href="/passport-guide" className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                    </a>
+                    <a href="/passport-guide" className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
                       여권 규정 가이드
-                    </Link>
+                    </a>
                   </div>
                 </div>
 

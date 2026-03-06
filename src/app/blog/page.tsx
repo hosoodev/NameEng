@@ -8,7 +8,6 @@ import {
   Briefcase,
   Search
 } from 'lucide-react';
-import Link from 'next/link';
 import type { Metadata } from 'next';
 import DesktopNavBar from '@/components/layout/DesktopNavBar';
 import SiteHeader from '@/components/layout/SiteHeader';
@@ -94,10 +93,10 @@ export default function Blog() {
           <div className="w-full px-4 md:px-0">
             {/* Header Content */}
             <div className="mb-8">
-              <Link href="/" className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors mb-6 bg-white border border-gray-200 px-3 py-1.5 rounded-lg hover:bg-gray-50">
+              <a href="/" className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors mb-6 bg-white border border-gray-200 px-3 py-1.5 rounded-lg hover:bg-gray-50">
                 <ArrowLeft size={16} />
                 NameEng로 돌아가기
-              </Link>
+              </a>
               <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">
                 블로그
               </h1>
@@ -120,7 +119,7 @@ export default function Blog() {
             {/* 블로그 포스트 목록 */}
             <div className="space-y-4 mb-8">
               {blogPosts.map((post) => (
-                <Link key={post.id} href={`/blog/${post.id}`} className="block">
+                <a key={post.id} href={`/blog/${post.id}`} className="block">
                   <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 hover:shadow-md transition-shadow group">
                     <div className="flex justify-between items-start mb-4">
                       <span className="inline-flex items-center rounded-sm bg-blue-50 px-2.5 py-0.5 text-xs font-semibold text-blue-700 border border-blue-100">
@@ -161,7 +160,7 @@ export default function Blog() {
                       </div>
                     </div>
                   </div>
-                </Link>
+                </a>
               ))}
             </div>
 

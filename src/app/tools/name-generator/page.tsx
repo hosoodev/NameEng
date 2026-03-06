@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { ArrowLeft, Calculator, Copy, Download, Zap } from 'lucide-react';
-import Link from 'next/link';
 import DesktopNavBar from '@/components/layout/DesktopNavBar';
 import SiteFooter from '@/components/layout/SiteFooter';
 import AdSlot from '@/components/ads/AdSlot';
@@ -104,10 +103,10 @@ export default function NameGeneratorPage() {
             <div className="flex flex-col gap-6">
               {/* Header */}
               <div>
-                <Link href="/tools" className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-blue-600 transition-colors mb-4">
+                <a href="/tools" className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-blue-600 transition-colors mb-4">
                   <ArrowLeft size={16} />
                   <span>도구 목록으로 돌아가기</span>
-                </Link>
+                </a>
 
                 <div className="flex flex-col gap-3">
                   <span className="inline-flex px-2.5 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800 self-start">

@@ -1,7 +1,6 @@
 'use client';
 
 import { ReactNode, useState } from 'react';
-import Link from 'next/link';
 import { Calendar, Clock, ArrowRight } from 'lucide-react';
 
 type BlogPost = {
@@ -48,7 +47,7 @@ export default function BlogFilterList({ posts, adSlot }: { posts: BlogPost[], a
             <div className="space-y-4">
                 {filteredPosts.length > 0 ? (
                     filteredPosts.map((post) => (
-                        <Link
+                        <a
                             key={post.id}
                             href={`/blog/${post.id}`}
                             className="block bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md hover:border-blue-100 transition-all group"
@@ -91,7 +90,7 @@ export default function BlogFilterList({ posts, adSlot }: { posts: BlogPost[], a
                                     <ArrowRight size={16} />
                                 </div>
                             </div>
-                        </Link>
+                        </a>
                     ))
                 ) : (
                     <div className="text-center py-12 text-gray-500 bg-white rounded-2xl border border-gray-100">

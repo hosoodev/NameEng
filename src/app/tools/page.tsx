@@ -8,7 +8,6 @@ import {
   Zap,
   BarChart3
 } from 'lucide-react';
-import Link from 'next/link';
 import type { Metadata } from 'next';
 import DesktopNavBar from '@/components/layout/DesktopNavBar';
 import SiteFooter from '@/components/layout/SiteFooter';
@@ -82,13 +81,13 @@ export default function Tools() {
           <div className="w-full space-y-8">
             {/* Header Section */}
             <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
-              <Link
+              <a
                 href="/"
                 className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-blue-600 transition-colors mb-6"
               >
                 <ArrowLeft size={16} />
                 <span>NameEng로 돌아가기</span>
-              </Link>
+              </a>
 
               <div className="mb-2">
                 <h1 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight tracking-tight mb-4">
@@ -154,13 +153,13 @@ export default function Tools() {
 
                       <div className="pt-4 flex justify-end">
                         {tool.status === '사용 가능' ? (
-                          <Link
+                          <a
                             href={`/tools/${tool.id}`}
                             className="inline-flex items-center gap-2 px-6 py-2.5 bg-blue-600 text-white font-medium text-sm rounded-lg hover:bg-blue-700 transition-colors shadow-sm"
                           >
                             사용하기
                             <ArrowRight size={16} />
-                          </Link>
+                          </a>
                         ) : (
                           <button
                             disabled
@@ -208,12 +207,12 @@ export default function Tools() {
               <p className="text-gray-500 mb-4">
                 기본적인 한글 이름 변환이 필요하신가요?
               </p>
-              <Link
+              <a
                 href="/"
                 className="inline-flex items-center justify-center px-6 py-3 border border-gray-300 shadow-sm text-base font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
               >
                 NameEng 변환기 사용하기
-              </Link>
+              </a>
             </div>
 
           </div>

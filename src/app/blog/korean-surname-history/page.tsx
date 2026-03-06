@@ -7,7 +7,6 @@ import {
     History,
     Info
 } from 'lucide-react';
-import Link from 'next/link';
 import type { Metadata } from 'next';
 import DesktopNavBar from '@/components/layout/DesktopNavBar';
 import SiteHeader from '@/components/layout/SiteHeader';
@@ -36,10 +35,10 @@ export default function KoreanSurnameHistory() {
                     <div className="w-full px-4 md:px-0">
                         {/* Header Content */}
                         <div className="mb-8">
-                            <Link href="/blog" className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors mb-6 bg-white border border-gray-200 px-3 py-1.5 rounded-lg hover:bg-gray-50">
+                            <a href="/blog" className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors mb-6 bg-white border border-gray-200 px-3 py-1.5 rounded-lg hover:bg-gray-50">
                                 <ArrowLeft size={16} />
                                 블로그 목록으로 돌아가기
-                            </Link>
+                            </a>
                             <div className="mb-4">
                                 <span className="inline-flex items-center rounded-sm bg-blue-50 px-2.5 py-0.5 text-xs font-semibold text-blue-700 border border-blue-100">
                                     역사
@@ -263,14 +262,14 @@ export default function KoreanSurnameHistory() {
                                 관련 글 더 보기
                             </h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <Link href="/blog/romanization-rules-explained" className="block p-5 bg-white border border-gray-200 rounded-xl hover:border-blue-400 hover:shadow-md transition-all">
+                                <a href="/blog/romanization-rules-explained" className="block p-5 bg-white border border-gray-200 rounded-xl hover:border-blue-400 hover:shadow-md transition-all">
                                     <h4 className="text-base font-bold text-gray-900 mb-2">국어의 로마자 표기법 규칙 상세 해설</h4>
                                     <p className="text-sm text-gray-500">현재 사용되는 표기법의 구체적인 규칙들을 알아보세요.</p>
-                                </Link>
-                                <Link href="/blog/passport-name-guide" className="block p-5 bg-white border border-gray-200 rounded-xl hover:border-blue-400 hover:shadow-md transition-all">
+                                </a>
+                                <a href="/blog/passport-name-guide" className="block p-5 bg-white border border-gray-200 rounded-xl hover:border-blue-400 hover:shadow-md transition-all">
                                     <h4 className="text-base font-bold text-gray-900 mb-2">여권 발급 시 영문명 작성 완벽 가이드</h4>
                                     <p className="text-sm text-gray-500">여권 신청 시 영문명 작성법을 자세히 알아보세요.</p>
-                                </Link>
+                                </a>
                             </div>
                         </div>
                     </div>

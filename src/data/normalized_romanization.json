@@ -1005,87 +1005,87 @@
     "combined_ranking": [
       {
         "romanization": "KYOUN",
-        "weighted_score": 14.0639
+        "weighted_score": 16.5457
       },
       {
         "romanization": "KYUN",
-        "weighted_score": 12.6153
+        "weighted_score": 14.8415
       },
       {
         "romanization": "GYUN",
-        "weighted_score": 11.1165
+        "weighted_score": 13.0782
       },
       {
         "romanization": "KYON",
-        "weighted_score": 7.5421
+        "weighted_score": 8.8731
       },
       {
         "romanization": "KYEON",
-        "weighted_score": 6.1061
+        "weighted_score": 7.1836
       },
       {
         "romanization": "KYEN",
-        "weighted_score": 5.8784
+        "weighted_score": 6.9158
       },
       {
         "romanization": "KYUNG",
-        "weighted_score": 5.679
+        "weighted_score": 6.6812
       },
       {
         "romanization": "GYON",
-        "weighted_score": 4.3478
+        "weighted_score": 5.1151
       },
       {
         "romanization": "KYEOUN",
-        "weighted_score": 2.6841
+        "weighted_score": 3.1578
       },
       {
         "romanization": "KYEUN",
-        "weighted_score": 2.6841
+        "weighted_score": 3.1578
       },
       {
         "romanization": "GEON",
-        "weighted_score": 2.1739
+        "weighted_score": 2.5575
       },
       {
         "romanization": "GUAN",
-        "weighted_score": 2.1739
+        "weighted_score": 2.5575
       },
       {
         "romanization": "KUN",
-        "weighted_score": 2.1739
+        "weighted_score": 2.5575
       },
       {
         "romanization": "GYEONG",
-        "weighted_score": 1.358
+        "weighted_score": 1.5977
       },
       {
         "romanization": "KYOUNG",
-        "weighted_score": 1.358
+        "weighted_score": 1.5977
       },
       {
         "romanization": "GYEON",
-        "weighted_score": 0.8806
+        "weighted_score": 1.036
       },
       {
         "romanization": "KWION",
-        "weighted_score": 0.5102
+        "weighted_score": 0.6002
       },
       {
         "romanization": "KEON",
-        "weighted_score": 0.5102
+        "weighted_score": 0.6002
       },
       {
         "romanization": "GYOUN",
-        "weighted_score": 0.5102
+        "weighted_score": 0.6002
       },
       {
         "romanization": "GEUN",
-        "weighted_score": 0.5102
+        "weighted_score": 0.6002
       },
       {
         "romanization": "KYU",
-        "weighted_score": 0.1235
+        "weighted_score": 0.1452
       }
     ]
   },
@@ -2209,43 +2209,43 @@
     "combined_ranking": [
       {
         "romanization": "KONG",
-        "weighted_score": 35.4816
+        "weighted_score": 47.3088
       },
       {
         "romanization": "KOK",
-        "weighted_score": 16.6754
+        "weighted_score": 22.2338
       },
       {
         "romanization": "GONG",
-        "weighted_score": 14.2745
+        "weighted_score": 19.0327
       },
       {
         "romanization": "GOK",
-        "weighted_score": 8.4466
+        "weighted_score": 11.2621
       },
       {
         "romanization": "KOHNG",
-        "weighted_score": 0.0348
+        "weighted_score": 0.0464
       },
       {
         "romanization": "GHONG",
-        "weighted_score": 0.0261
+        "weighted_score": 0.0348
       },
       {
         "romanization": "CON",
-        "weighted_score": 0.0174
+        "weighted_score": 0.0232
       },
       {
         "romanization": "GOHNG",
-        "weighted_score": 0.0174
+        "weighted_score": 0.0232
       },
       {
         "romanization": "GOUNG",
-        "weighted_score": 0.0174
+        "weighted_score": 0.0232
       },
       {
         "romanization": "KOOCK",
-        "weighted_score": 0.0087
+        "weighted_score": 0.0116
       }
     ]
   },
@@ -4695,27 +4695,27 @@
     "combined_ranking": [
       {
         "romanization": "KOONG",
-        "weighted_score": 30.3989
+        "weighted_score": 40.5319
       },
       {
         "romanization": "KUNG",
-        "weighted_score": 28.0851
+        "weighted_score": 37.4468
       },
       {
         "romanization": "GUNG",
-        "weighted_score": 9.9468
+        "weighted_score": 13.2624
       },
       {
         "romanization": "GOONG",
-        "weighted_score": 4.2553
+        "weighted_score": 5.6738
       },
       {
         "romanization": "KWOONG",
-        "weighted_score": 1.25
+        "weighted_score": 1.6667
       },
       {
         "romanization": "KOUNG",
-        "weighted_score": 1.0638
+        "weighted_score": 1.4184
       }
     ]
   },
@@ -4973,247 +4973,247 @@
     "combined_ranking": [
       {
         "romanization": "KWON",
-        "weighted_score": 37.5207
+        "weighted_score": 50.0276
       },
       {
         "romanization": "KWEAG",
-        "weighted_score": 25.0
+        "weighted_score": 33.3333
       },
       {
         "romanization": "GWON",
-        "weighted_score": 4.6625
+        "weighted_score": 6.2166
       },
       {
         "romanization": "KWEON",
-        "weighted_score": 3.7376
+        "weighted_score": 4.9834
       },
       {
         "romanization": "KWUN",
-        "weighted_score": 0.9284
+        "weighted_score": 1.2378
       },
       {
         "romanization": "GWEON",
-        "weighted_score": 0.6074
+        "weighted_score": 0.8099
       },
       {
         "romanization": "KWAN",
-        "weighted_score": 0.4176
+        "weighted_score": 0.5568
       },
       {
         "romanization": "KWEN",
-        "weighted_score": 0.3934
+        "weighted_score": 0.5246
       },
       {
         "romanization": "KWOUN",
-        "weighted_score": 0.3675
+        "weighted_score": 0.4901
       },
       {
         "romanization": "KOWN",
-        "weighted_score": 0.1363
+        "weighted_score": 0.1818
       },
       {
         "romanization": "KYUN",
-        "weighted_score": 0.1018
+        "weighted_score": 0.1357
       },
       {
         "romanization": "KOUN",
-        "weighted_score": 0.0932
+        "weighted_score": 0.1242
       },
       {
         "romanization": "KUEN",
-        "weighted_score": 0.0932
+        "weighted_score": 0.1242
       },
       {
         "romanization": "KUEON",
-        "weighted_score": 0.0725
+        "weighted_score": 0.0966
       },
       {
         "romanization": "KUN",
-        "weighted_score": 0.0707
+        "weighted_score": 0.0943
       },
       {
         "romanization": "KEON",
-        "weighted_score": 0.0656
+        "weighted_score": 0.0874
       },
       {
         "romanization": "GWUN",
-        "weighted_score": 0.0535
+        "weighted_score": 0.0713
       },
       {
         "romanization": "KUON",
-        "weighted_score": 0.0518
+        "weighted_score": 0.069
       },
       {
         "romanization": "KUAN",
-        "weighted_score": 0.0466
+        "weighted_score": 0.0621
       },
       {
         "romanization": "KWOEN",
-        "weighted_score": 0.0449
+        "weighted_score": 0.0598
       },
       {
         "romanization": "KEUN",
-        "weighted_score": 0.0431
+        "weighted_score": 0.0575
       },
       {
         "romanization": "GUEN",
-        "weighted_score": 0.0397
+        "weighted_score": 0.0529
       },
       {
         "romanization": "GUEON",
-        "weighted_score": 0.0362
+        "weighted_score": 0.0483
       },
       {
         "romanization": "KWEUN",
-        "weighted_score": 0.0345
+        "weighted_score": 0.046
       },
       {
         "romanization": "KEWON",
-        "weighted_score": 0.0311
+        "weighted_score": 0.0414
       },
       {
         "romanization": "GUN",
-        "weighted_score": 0.0293
+        "weighted_score": 0.0391
       },
       {
         "romanization": "GUON",
-        "weighted_score": 0.019
+        "weighted_score": 0.0253
       },
       {
         "romanization": "KWOM",
-        "weighted_score": 0.019
+        "weighted_score": 0.0253
       },
       {
         "romanization": "KYEON",
-        "weighted_score": 0.019
+        "weighted_score": 0.0253
       },
       {
         "romanization": "GEON",
-        "weighted_score": 0.0173
+        "weighted_score": 0.023
       },
       {
         "romanization": "GWEN",
-        "weighted_score": 0.0155
+        "weighted_score": 0.0207
       },
       {
         "romanization": "KWEAN",
-        "weighted_score": 0.0155
+        "weighted_score": 0.0207
       },
       {
         "romanization": "KWONE",
-        "weighted_score": 0.0138
+        "weighted_score": 0.0184
       },
       {
         "romanization": "GWAN",
-        "weighted_score": 0.0121
+        "weighted_score": 0.0161
       },
       {
         "romanization": "KUWN",
-        "weighted_score": 0.0121
+        "weighted_score": 0.0161
       },
       {
         "romanization": "KYOUN",
-        "weighted_score": 0.0121
+        "weighted_score": 0.0161
       },
       {
         "romanization": "GOUN",
-        "weighted_score": 0.0104
+        "weighted_score": 0.0138
       },
       {
         "romanization": "KOOUN",
-        "weighted_score": 0.0104
+        "weighted_score": 0.0138
       },
       {
         "romanization": "GEUN",
-        "weighted_score": 0.0086
+        "weighted_score": 0.0115
       },
       {
         "romanization": "GWOEN",
-        "weighted_score": 0.0086
+        "weighted_score": 0.0115
       },
       {
         "romanization": "KAWN",
-        "weighted_score": 0.0086
+        "weighted_score": 0.0115
       },
       {
         "romanization": "KON",
-        "weighted_score": 0.0086
+        "weighted_score": 0.0115
       },
       {
         "romanization": "KOWEN",
-        "weighted_score": 0.0086
+        "weighted_score": 0.0115
       },
       {
         "romanization": "KYON",
-        "weighted_score": 0.0086
+        "weighted_score": 0.0115
       },
       {
         "romanization": "GOWN",
-        "weighted_score": 0.0069
+        "weighted_score": 0.0092
       },
       {
         "romanization": "GUAN",
-        "weighted_score": 0.0069
+        "weighted_score": 0.0092
       },
       {
         "romanization": "GWOM",
-        "weighted_score": 0.0069
+        "weighted_score": 0.0092
       },
       {
         "romanization": "GWOUN",
-        "weighted_score": 0.0069
+        "weighted_score": 0.0092
       },
       {
         "romanization": "GYUN",
-        "weighted_score": 0.0069
+        "weighted_score": 0.0092
       },
       {
         "romanization": "KEOUN",
-        "weighted_score": 0.0069
+        "weighted_score": 0.0092
       },
       {
         "romanization": "KEWN",
-        "weighted_score": 0.0069
+        "weighted_score": 0.0092
       },
       {
         "romanization": "KOWON",
-        "weighted_score": 0.0069
+        "weighted_score": 0.0092
       },
       {
         "romanization": "KWN",
-        "weighted_score": 0.0069
+        "weighted_score": 0.0092
       },
       {
         "romanization": "KWOAN",
-        "weighted_score": 0.0069
+        "weighted_score": 0.0092
       },
       {
         "romanization": "GHWON",
-        "weighted_score": 0.0052
+        "weighted_score": 0.0069
       },
       {
         "romanization": "GWAON",
-        "weighted_score": 0.0052
+        "weighted_score": 0.0069
       },
       {
         "romanization": "KAUN",
-        "weighted_score": 0.0052
+        "weighted_score": 0.0069
       },
       {
         "romanization": "KWOK",
-        "weighted_score": 0.0035
+        "weighted_score": 0.0046
       },
       {
         "romanization": "GWOK",
-        "weighted_score": 0.0017
+        "weighted_score": 0.0023
       },
       {
         "romanization": "KWEOK",
-        "weighted_score": 0.0017
+        "weighted_score": 0.0023
       },
       {
         "romanization": "KWOC",
-        "weighted_score": 0.0017
+        "weighted_score": 0.0023
       }
     ]
   },
@@ -6321,27 +6321,27 @@
     "combined_ranking": [
       {
         "romanization": "KEUM",
-        "weighted_score": 27.212
+        "weighted_score": 36.2827
       },
       {
         "romanization": "KUM",
-        "weighted_score": 12.8548
+        "weighted_score": 17.1397
       },
       {
         "romanization": "KEUN",
-        "weighted_score": 12.7504
+        "weighted_score": 17.0006
       },
       {
         "romanization": "GEUN",
-        "weighted_score": 12.5556
+        "weighted_score": 16.7409
       },
       {
         "romanization": "GEUM",
-        "weighted_score": 9.5993
+        "weighted_score": 12.7991
       },
       {
         "romanization": "GUN",
-        "weighted_score": 0.0278
+        "weighted_score": 0.0371
       }
     ]
   },
@@ -7299,47 +7299,47 @@
     "combined_ranking": [
       {
         "romanization": "KIM",
-        "weighted_score": 49.8838
+        "weighted_score": 99.7676
       },
       {
         "romanization": "GIM",
-        "weighted_score": 0.0743
+        "weighted_score": 0.1486
       },
       {
         "romanization": "GHIM",
-        "weighted_score": 0.0077
+        "weighted_score": 0.0153
       },
       {
         "romanization": "KYM",
-        "weighted_score": 0.0076
+        "weighted_score": 0.0152
       },
       {
         "romanization": "KIEM",
-        "weighted_score": 0.0054
+        "weighted_score": 0.0108
       },
       {
         "romanization": "KEEM",
-        "weighted_score": 0.0054
+        "weighted_score": 0.0108
       },
       {
         "romanization": "KIIM",
-        "weighted_score": 0.0045
+        "weighted_score": 0.0091
       },
       {
         "romanization": "KM",
-        "weighted_score": 0.0045
+        "weighted_score": 0.0091
       },
       {
         "romanization": "GIMM",
-        "weighted_score": 0.0023
+        "weighted_score": 0.0045
       },
       {
         "romanization": "KEAM",
-        "weighted_score": 0.0023
+        "weighted_score": 0.0045
       },
       {
         "romanization": "KIN",
-        "weighted_score": 0.0023
+        "weighted_score": 0.0045
       }
     ]
   },
@@ -8021,15 +8021,15 @@
     "combined_ranking": [
       {
         "romanization": "NANG",
-        "weighted_score": 64.1667
+        "weighted_score": 75.4902
       },
       {
         "romanization": "LANG",
-        "weighted_score": 16.6667
+        "weighted_score": 19.6078
       },
       {
         "romanization": "NAHNG",
-        "weighted_score": 4.1667
+        "weighted_score": 4.902
       }
     ]
   },
@@ -8135,91 +8135,91 @@
     "combined_ranking": [
       {
         "romanization": "NOH",
-        "weighted_score": 23.947
+        "weighted_score": 31.9293
       },
       {
         "romanization": "NAE",
-        "weighted_score": 22.9891
+        "weighted_score": 30.6521
       },
       {
         "romanization": "ROH",
-        "weighted_score": 9.2211
+        "weighted_score": 12.2948
       },
       {
         "romanization": "NO",
-        "weighted_score": 6.8643
+        "weighted_score": 9.1524
       },
       {
         "romanization": "RO",
-        "weighted_score": 5.0033
+        "weighted_score": 6.6711
       },
       {
         "romanization": "RHO",
-        "weighted_score": 2.9502
+        "weighted_score": 3.9336
       },
       {
         "romanization": "NA",
-        "weighted_score": 2.0833
+        "weighted_score": 2.7778
       },
       {
         "romanization": "NHO",
-        "weighted_score": 0.9026
+        "weighted_score": 1.2035
       },
       {
         "romanization": "LO",
-        "weighted_score": 0.1894
+        "weighted_score": 0.2526
       },
       {
         "romanization": "NOR",
-        "weighted_score": 0.1449
+        "weighted_score": 0.1932
       },
       {
         "romanization": "NOE",
-        "weighted_score": 0.1254
+        "weighted_score": 0.1671
       },
       {
         "romanization": "ROE",
-        "weighted_score": 0.1086
+        "weighted_score": 0.1449
       },
       {
         "romanization": "LHO",
-        "weighted_score": 0.0724
+        "weighted_score": 0.0966
       },
       {
         "romanization": "LOH",
-        "weighted_score": 0.0669
+        "weighted_score": 0.0891
       },
       {
         "romanization": "NOO",
-        "weighted_score": 0.0613
+        "weighted_score": 0.0817
       },
       {
         "romanization": "ROW",
-        "weighted_score": 0.0557
+        "weighted_score": 0.0743
       },
       {
         "romanization": "RNO",
-        "weighted_score": 0.0446
+        "weighted_score": 0.0594
       },
       {
         "romanization": "ROU",
-        "weighted_score": 0.0446
+        "weighted_score": 0.0594
       },
       {
         "romanization": "ROO",
-        "weighted_score": 0.0418
+        "weighted_score": 0.0557
       },
       {
         "romanization": "NOU",
-        "weighted_score": 0.039
+        "weighted_score": 0.052
       },
       {
         "romanization": "KNOW",
-        "weighted_score": 0.0223
+        "weighted_score": 0.0297
       },
       {
         "romanization": "NOW",
-        "weighted_score": 0.0223
+        "weighted_score": 0.0297
       }
     ]
   },
@@ -8847,19 +8847,19 @@
     "combined_ranking": [
       {
         "romanization": "DAN",
-        "weighted_score": 72.3061
+        "weighted_score": 96.4081
       },
       {
         "romanization": "DAHN",
-        "weighted_score": 1.2124
+        "weighted_score": 1.6166
       },
       {
         "romanization": "TAN",
-        "weighted_score": 1.1111
+        "weighted_score": 1.4815
       },
       {
         "romanization": "DHAN",
-        "weighted_score": 0.3704
+        "weighted_score": 0.4938
       }
     ]
   },
@@ -8971,35 +8971,35 @@
     "combined_ranking": [
       {
         "romanization": "DO",
-        "weighted_score": 44.3866
+        "weighted_score": 59.1821
       },
       {
         "romanization": "DAE",
-        "weighted_score": 19.3231
+        "weighted_score": 25.7641
       },
       {
         "romanization": "DOH",
-        "weighted_score": 4.2459
+        "weighted_score": 5.6612
       },
       {
         "romanization": "DAI",
-        "weighted_score": 4.1797
+        "weighted_score": 5.5729
       },
       {
         "romanization": "DEA",
-        "weighted_score": 2.0964
+        "weighted_score": 2.7951
       },
       {
         "romanization": "TO",
-        "weighted_score": 0.3907
+        "weighted_score": 0.521
       },
       {
         "romanization": "DHO",
-        "weighted_score": 0.3647
+        "weighted_score": 0.4862
       },
       {
         "romanization": "TAE",
-        "weighted_score": 0.013
+        "weighted_score": 0.0174
       }
     ]
   },
@@ -9267,51 +9267,51 @@
     "combined_ranking": [
       {
         "romanization": "DOKKO",
-        "weighted_score": 13.0952
+        "weighted_score": 17.4603
       },
       {
         "romanization": "DOCKKSO",
-        "weighted_score": 10.0
+        "weighted_score": 13.3333
       },
       {
         "romanization": "DOGKO",
-        "weighted_score": 10.0
+        "weighted_score": 13.3333
       },
       {
         "romanization": "DOKGO",
-        "weighted_score": 7.1429
+        "weighted_score": 9.5238
       },
       {
         "romanization": "DOCKGO",
-        "weighted_score": 5.0
+        "weighted_score": 6.6667
       },
       {
         "romanization": "DOHKGOH",
-        "weighted_score": 5.0
+        "weighted_score": 6.6667
       },
       {
         "romanization": "DOKGOH",
-        "weighted_score": 5.0
+        "weighted_score": 6.6667
       },
       {
         "romanization": "DOKO",
-        "weighted_score": 5.0
+        "weighted_score": 6.6667
       },
       {
         "romanization": "TOCKGO",
-        "weighted_score": 5.0
+        "weighted_score": 6.6667
       },
       {
         "romanization": "TOGGO",
-        "weighted_score": 5.0
+        "weighted_score": 6.6667
       },
       {
         "romanization": "TOKO",
-        "weighted_score": 2.381
+        "weighted_score": 3.1746
       },
       {
         "romanization": "TOKKO",
-        "weighted_score": 2.381
+        "weighted_score": 3.1746
       }
     ]
   },
@@ -9337,11 +9337,11 @@
     "combined_ranking": [
       {
         "romanization": "DON",
-        "weighted_score": 70.0
+        "weighted_score": 93.3333
       },
       {
         "romanization": "TON",
-        "weighted_score": 5.0
+        "weighted_score": 6.6667
       }
     ]
   },
@@ -9437,7 +9437,7 @@
     "combined_ranking": [
       {
         "romanization": "DONGBANG",
-        "weighted_score": 75.0
+        "weighted_score": 100.0
       }
     ]
   },
@@ -9529,51 +9529,51 @@
     "combined_ranking": [
       {
         "romanization": "DOO",
-        "weighted_score": 36.6043
+        "weighted_score": 40.6715
       },
       {
         "romanization": "RA",
-        "weighted_score": 24.8464
+        "weighted_score": 27.6071
       },
       {
         "romanization": "DU",
-        "weighted_score": 11.6171
+        "weighted_score": 12.9079
       },
       {
         "romanization": "NA",
-        "weighted_score": 7.2511
+        "weighted_score": 8.0568
       },
       {
         "romanization": "LA",
-        "weighted_score": 6.4728
+        "weighted_score": 7.192
       },
       {
         "romanization": "RHA",
-        "weighted_score": 1.0447
+        "weighted_score": 1.1607
       },
       {
         "romanization": "TU",
-        "weighted_score": 0.8632
+        "weighted_score": 0.9591
       },
       {
         "romanization": "DO",
-        "weighted_score": 0.7925
+        "weighted_score": 0.8806
       },
       {
         "romanization": "DOU",
-        "weighted_score": 0.2642
+        "weighted_score": 0.2935
       },
       {
         "romanization": "DUU",
-        "weighted_score": 0.1116
+        "weighted_score": 0.124
       },
       {
         "romanization": "DWO",
-        "weighted_score": 0.1116
+        "weighted_score": 0.124
       },
       {
         "romanization": "DOW",
-        "weighted_score": 0.0205
+        "weighted_score": 0.0228
       }
     ]
   },
@@ -10447,19 +10447,19 @@
     "combined_ranking": [
       {
         "romanization": "MAN",
-        "weighted_score": 59.7222
+        "weighted_score": 79.6296
       },
       {
         "romanization": "MAHN",
-        "weighted_score": 5.5556
+        "weighted_score": 7.4074
       },
       {
         "romanization": "MHAN",
-        "weighted_score": 5.5556
+        "weighted_score": 7.4074
       },
       {
         "romanization": "MANN",
-        "weighted_score": 4.1667
+        "weighted_score": 5.5556
       }
     ]
   },
@@ -10537,59 +10537,59 @@
     "combined_ranking": [
       {
         "romanization": "MAENG",
-        "weighted_score": 42.0561
+        "weighted_score": 56.0748
       },
       {
         "romanization": "MAE",
-        "weighted_score": 19.3419
+        "weighted_score": 25.7892
       },
       {
         "romanization": "MEA",
-        "weighted_score": 6.2812
+        "weighted_score": 8.3749
       },
       {
         "romanization": "MEANG",
-        "weighted_score": 2.3364
+        "weighted_score": 3.1153
       },
       {
         "romanization": "MANG",
-        "weighted_score": 2.243
+        "weighted_score": 2.9907
       },
       {
         "romanization": "MAING",
-        "weighted_score": 1.4019
+        "weighted_score": 1.8692
       },
       {
         "romanization": "MENG",
-        "weighted_score": 0.9034
+        "weighted_score": 1.2046
       },
       {
         "romanization": "MEING",
-        "weighted_score": 0.1869
+        "weighted_score": 0.2492
       },
       {
         "romanization": "MAEONG",
-        "weighted_score": 0.0623
+        "weighted_score": 0.0831
       },
       {
         "romanization": "MYAENG",
-        "weighted_score": 0.0623
+        "weighted_score": 0.0831
       },
       {
         "romanization": "MAI",
-        "weighted_score": 0.0312
+        "weighted_score": 0.0415
       },
       {
         "romanization": "MEI",
-        "weighted_score": 0.0312
+        "weighted_score": 0.0415
       },
       {
         "romanization": "MAANG",
-        "weighted_score": 0.0312
+        "weighted_score": 0.0415
       },
       {
         "romanization": "MAEING",
-        "weighted_score": 0.0312
+        "weighted_score": 0.0415
       }
     ]
   },
@@ -11453,31 +11453,31 @@
     "combined_ranking": [
       {
         "romanization": "MOON",
-        "weighted_score": 35.2268
+        "weighted_score": 41.4433
       },
       {
         "romanization": "MUK",
-        "weighted_score": 22.5166
+        "weighted_score": 26.4902
       },
       {
         "romanization": "MUN",
-        "weighted_score": 14.6424
+        "weighted_score": 17.2263
       },
       {
         "romanization": "MOOK",
-        "weighted_score": 12.5119
+        "weighted_score": 14.7199
       },
       {
         "romanization": "MON",
-        "weighted_score": 0.0975
+        "weighted_score": 0.1147
       },
       {
         "romanization": "MOK",
-        "weighted_score": 0.0024
+        "weighted_score": 0.0028
       },
       {
         "romanization": "MOOG",
-        "weighted_score": 0.0024
+        "weighted_score": 0.0028
       }
     ]
   },
@@ -11669,27 +11669,27 @@
     "combined_ranking": [
       {
         "romanization": "MIN",
-        "weighted_score": 49.6939
+        "weighted_score": 66.2585
       },
       {
         "romanization": "MI",
-        "weighted_score": 25.0118
+        "weighted_score": 33.349
       },
       {
         "romanization": "MINN",
-        "weighted_score": 0.1413
+        "weighted_score": 0.1884
       },
       {
         "romanization": "MIHN",
-        "weighted_score": 0.0765
+        "weighted_score": 0.102
       },
       {
         "romanization": "MEEN",
-        "weighted_score": 0.0706
+        "weighted_score": 0.0942
       },
       {
         "romanization": "MEE",
-        "weighted_score": 0.0059
+        "weighted_score": 0.0078
       }
     ]
   },
@@ -11975,71 +11975,71 @@
     "combined_ranking": [
       {
         "romanization": "PARK",
-        "weighted_score": 48.7535
+        "weighted_score": 97.507
       },
       {
         "romanization": "PAK",
-        "weighted_score": 0.6484
+        "weighted_score": 1.2969
       },
       {
         "romanization": "BAK",
-        "weighted_score": 0.3153
+        "weighted_score": 0.6307
       },
       {
         "romanization": "BARK",
-        "weighted_score": 0.1034
+        "weighted_score": 0.2067
       },
       {
         "romanization": "BAHK",
-        "weighted_score": 0.0503
+        "weighted_score": 0.1006
       },
       {
         "romanization": "PACK",
-        "weighted_score": 0.0371
+        "weighted_score": 0.0742
       },
       {
         "romanization": "PAHK",
-        "weighted_score": 0.0144
+        "weighted_score": 0.0287
       },
       {
         "romanization": "BAG",
-        "weighted_score": 0.0133
+        "weighted_score": 0.0265
       },
       {
         "romanization": "PAKR",
-        "weighted_score": 0.0114
+        "weighted_score": 0.0227
       },
       {
         "romanization": "PAG",
-        "weighted_score": 0.0076
+        "weighted_score": 0.0152
       },
       {
         "romanization": "BAAK",
-        "weighted_score": 0.0076
+        "weighted_score": 0.0152
       },
       {
         "romanization": "BACK",
-        "weighted_score": 0.0076
+        "weighted_score": 0.0152
       },
       {
         "romanization": "BHAK",
-        "weighted_score": 0.0076
+        "weighted_score": 0.0152
       },
       {
         "romanization": "BAC",
-        "weighted_score": 0.0057
+        "weighted_score": 0.0114
       },
       {
         "romanization": "BAHG",
-        "weighted_score": 0.0057
+        "weighted_score": 0.0114
       },
       {
         "romanization": "PARC",
-        "weighted_score": 0.0057
+        "weighted_score": 0.0114
       },
       {
         "romanization": "VARC",
-        "weighted_score": 0.0057
+        "weighted_score": 0.0114
       }
     ]
   },
@@ -15093,7 +15093,7 @@
     "combined_ranking": [
       {
         "romanization": "BEE",
-        "weighted_score": 25.0
+        "weighted_score": 100.0
       }
     ]
   },
@@ -15157,43 +15157,43 @@
     "combined_ranking": [
       {
         "romanization": "BIN",
-        "weighted_score": 38.0932
+        "weighted_score": 42.3258
       },
       {
         "romanization": "BEAN",
-        "weighted_score": 18.069
+        "weighted_score": 20.0767
       },
       {
         "romanization": "VIN",
-        "weighted_score": 10.7143
+        "weighted_score": 11.9048
       },
       {
         "romanization": "BIHN",
-        "weighted_score": 7.1429
+        "weighted_score": 7.9365
       },
       {
         "romanization": "BINN",
-        "weighted_score": 7.1429
+        "weighted_score": 7.9365
       },
       {
         "romanization": "BIEN",
-        "weighted_score": 3.5714
+        "weighted_score": 3.9683
       },
       {
         "romanization": "BINE",
-        "weighted_score": 3.5714
+        "weighted_score": 3.9683
       },
       {
         "romanization": "BEEN",
-        "weighted_score": 0.8475
+        "weighted_score": 0.9416
       },
       {
         "romanization": "BHIN",
-        "weighted_score": 0.4237
+        "weighted_score": 0.4708
       },
       {
         "romanization": "PIN",
-        "weighted_score": 0.4237
+        "weighted_score": 0.4708
       }
     ]
   },
@@ -15215,7 +15215,7 @@
     "combined_ranking": [
       {
         "romanization": "BING",
-        "weighted_score": 75.0
+        "weighted_score": 100.0
       }
     ]
   },
@@ -15385,7 +15385,7 @@
     "combined_ranking": [
       {
         "romanization": "SAM",
-        "weighted_score": 75.0
+        "weighted_score": 100.0
       }
     ]
   },
@@ -15513,107 +15513,107 @@
     "combined_ranking": [
       {
         "romanization": "SANG",
-        "weighted_score": 39.7535
+        "weighted_score": 44.1705
       },
       {
         "romanization": "SEO",
-        "weighted_score": 38.3868
+        "weighted_score": 42.652
       },
       {
         "romanization": "SUH",
-        "weighted_score": 8.4432
+        "weighted_score": 9.3814
       },
       {
         "romanization": "SU",
-        "weighted_score": 0.5915
+        "weighted_score": 0.6572
       },
       {
         "romanization": "SNAG",
-        "weighted_score": 0.4348
+        "weighted_score": 0.4831
       },
       {
         "romanization": "SUR",
-        "weighted_score": 0.3252
+        "weighted_score": 0.3614
       },
       {
         "romanization": "SO",
-        "weighted_score": 0.2948
+        "weighted_score": 0.3276
       },
       {
         "romanization": "SEA",
-        "weighted_score": 0.2591
+        "weighted_score": 0.2879
       },
       {
         "romanization": "SONG",
-        "weighted_score": 0.2174
+        "weighted_score": 0.2415
       },
       {
         "romanization": "SE",
-        "weighted_score": 0.2037
+        "weighted_score": 0.2263
       },
       {
         "romanization": "SUE",
-        "weighted_score": 0.1948
+        "weighted_score": 0.2164
       },
       {
         "romanization": "SER",
-        "weighted_score": 0.1876
+        "weighted_score": 0.2085
       },
       {
         "romanization": "SEU",
-        "weighted_score": 0.1751
+        "weighted_score": 0.1946
       },
       {
         "romanization": "SHU",
-        "weighted_score": 0.134
+        "weighted_score": 0.1489
       },
       {
         "romanization": "SOH",
-        "weighted_score": 0.084
+        "weighted_score": 0.0933
       },
       {
         "romanization": "SOU",
-        "weighted_score": 0.0661
+        "weighted_score": 0.0735
       },
       {
         "romanization": "SOE",
-        "weighted_score": 0.0429
+        "weighted_score": 0.0477
       },
       {
         "romanization": "SEH",
-        "weighted_score": 0.0375
+        "weighted_score": 0.0417
       },
       {
         "romanization": "SIR",
-        "weighted_score": 0.0375
+        "weighted_score": 0.0417
       },
       {
         "romanization": "SEOH",
-        "weighted_score": 0.0357
+        "weighted_score": 0.0397
       },
       {
         "romanization": "SHO",
-        "weighted_score": 0.0304
+        "weighted_score": 0.0338
       },
       {
         "romanization": "SURH",
-        "weighted_score": 0.0304
+        "weighted_score": 0.0338
       },
       {
         "romanization": "SUHR",
-        "weighted_score": 0.025
+        "weighted_score": 0.0278
       },
       {
         "romanization": "SHANG",
-        "weighted_score": 0.0054
+        "weighted_score": 0.006
       },
       {
         "romanization": "SAHNG",
-        "weighted_score": 0.0018
+        "weighted_score": 0.002
       },
       {
         "romanization": "SARNG",
-        "weighted_score": 0.0018
+        "weighted_score": 0.002
       }
     ]
   },
@@ -17413,47 +17413,47 @@
     "combined_ranking": [
       {
         "romanization": "SUNG",
-        "weighted_score": 31.8476
+        "weighted_score": 42.4635
       },
       {
         "romanization": "SUP",
-        "weighted_score": 18.7544
+        "weighted_score": 25.0058
       },
       {
         "romanization": "SEONG",
-        "weighted_score": 16.3354
+        "weighted_score": 21.7805
       },
       {
         "romanization": "SUB",
-        "weighted_score": 6.2544
+        "weighted_score": 8.3392
       },
       {
         "romanization": "SOUNG",
-        "weighted_score": 0.7137
+        "weighted_score": 0.9515
       },
       {
         "romanization": "SEOUNG",
-        "weighted_score": 0.4159
+        "weighted_score": 0.5546
       },
       {
         "romanization": "SEUNG",
-        "weighted_score": 0.3765
+        "weighted_score": 0.502
       },
       {
         "romanization": "SONG",
-        "weighted_score": 0.2189
+        "weighted_score": 0.2919
       },
       {
         "romanization": "SENG",
-        "weighted_score": 0.0657
+        "weighted_score": 0.0876
       },
       {
         "romanization": "SEOP",
-        "weighted_score": 0.0131
+        "weighted_score": 0.0175
       },
       {
         "romanization": "SEOUB",
-        "weighted_score": 0.0044
+        "weighted_score": 0.0058
       }
     ]
   },
@@ -18307,7 +18307,7 @@
     "combined_ranking": [
       {
         "romanization": "SU",
-        "weighted_score": 75.0
+        "weighted_score": 100.0
       }
     ]
   },
@@ -18343,11 +18343,11 @@
     "combined_ranking": [
       {
         "romanization": "SOON",
-        "weighted_score": 80.5723
+        "weighted_score": 89.5248
       },
       {
         "romanization": "SUN",
-        "weighted_score": 9.4277
+        "weighted_score": 10.4752
       }
     ]
   },
@@ -19241,43 +19241,43 @@
     "combined_ranking": [
       {
         "romanization": "AN",
-        "weighted_score": 28.8804
+        "weighted_score": 38.5072
       },
       {
         "romanization": "AH",
-        "weighted_score": 20.9029
+        "weighted_score": 27.8705
       },
       {
         "romanization": "AHN",
-        "weighted_score": 19.9423
+        "weighted_score": 26.5898
       },
       {
         "romanization": "A",
-        "weighted_score": 4.1735
+        "weighted_score": 5.5646
       },
       {
         "romanization": "ANN",
-        "weighted_score": 0.9483
+        "weighted_score": 1.2643
       },
       {
         "romanization": "ANH",
-        "weighted_score": 0.0628
+        "weighted_score": 0.0837
       },
       {
         "romanization": "ANE",
-        "weighted_score": 0.0271
+        "weighted_score": 0.0362
       },
       {
         "romanization": "AUN",
-        "weighted_score": 0.0271
+        "weighted_score": 0.0362
       },
       {
         "romanization": "YAN",
-        "weighted_score": 0.0187
+        "weighted_score": 0.0249
       },
       {
         "romanization": "AAN",
-        "weighted_score": 0.017
+        "weighted_score": 0.0226
       }
     ]
   },
@@ -19477,11 +19477,11 @@
     "combined_ranking": [
       {
         "romanization": "AE",
-        "weighted_score": 65.0
+        "weighted_score": 86.6667
       },
       {
         "romanization": "AI",
-        "weighted_score": 10.0
+        "weighted_score": 13.3333
       }
     ]
   },
@@ -19551,55 +19551,55 @@
     "combined_ranking": [
       {
         "romanization": "YANG",
-        "weighted_score": 49.5523
+        "weighted_score": 66.0697
       },
       {
         "romanization": "YA",
-        "weighted_score": 25.0224
+        "weighted_score": 33.3632
       },
       {
         "romanization": "RYANG",
-        "weighted_score": 0.1244
+        "weighted_score": 0.1658
       },
       {
         "romanization": "YAUNG",
-        "weighted_score": 0.1094
+        "weighted_score": 0.1459
       },
       {
         "romanization": "YOUNG",
-        "weighted_score": 0.0647
+        "weighted_score": 0.0862
       },
       {
         "romanization": "YAHNG",
-        "weighted_score": 0.0274
+        "weighted_score": 0.0365
       },
       {
         "romanization": "YHANG",
-        "weighted_score": 0.0274
+        "weighted_score": 0.0365
       },
       {
         "romanization": "YEANG",
-        "weighted_score": 0.0174
+        "weighted_score": 0.0232
       },
       {
         "romanization": "YAENG",
-        "weighted_score": 0.0149
+        "weighted_score": 0.0199
       },
       {
         "romanization": "YONG",
-        "weighted_score": 0.0149
+        "weighted_score": 0.0199
       },
       {
         "romanization": "LYANG",
-        "weighted_score": 0.0124
+        "weighted_score": 0.0166
       },
       {
         "romanization": "RANG",
-        "weighted_score": 0.0099
+        "weighted_score": 0.0133
       },
       {
         "romanization": "YHA",
-        "weighted_score": 0.0025
+        "weighted_score": 0.0033
       }
     ]
   },
@@ -23995,47 +23995,47 @@
     "combined_ranking": [
       {
         "romanization": "YEOP",
-        "weighted_score": 36.6912
+        "weighted_score": 40.768
       },
       {
         "romanization": "YEOB",
-        "weighted_score": 11.9118
+        "weighted_score": 13.2353
       },
       {
         "romanization": "YUB",
-        "weighted_score": 9.1912
+        "weighted_score": 10.2124
       },
       {
         "romanization": "YUP",
-        "weighted_score": 9.1912
+        "weighted_score": 10.2124
       },
       {
         "romanization": "YOUB",
-        "weighted_score": 6.6912
+        "weighted_score": 7.4346
       },
       {
         "romanization": "YOP",
-        "weighted_score": 5.2206
+        "weighted_score": 5.8007
       },
       {
         "romanization": "YOUP",
-        "weighted_score": 4.4118
+        "weighted_score": 4.902
       },
       {
         "romanization": "YEB",
-        "weighted_score": 2.5
+        "weighted_score": 2.7778
       },
       {
         "romanization": "YEUB",
-        "weighted_score": 1.4706
+        "weighted_score": 1.634
       },
       {
         "romanization": "YEUP",
-        "weighted_score": 1.4706
+        "weighted_score": 1.634
       },
       {
         "romanization": "YEOUP",
-        "weighted_score": 1.25
+        "weighted_score": 1.3889
       }
     ]
   },
@@ -24077,27 +24077,27 @@
     "combined_ranking": [
       {
         "romanization": "YE",
-        "weighted_score": 36.5458
+        "weighted_score": 48.7277
       },
       {
         "romanization": "YEONG",
-        "weighted_score": 12.6908
+        "weighted_score": 16.9211
       },
       {
         "romanization": "YOUNG",
-        "weighted_score": 12.5
+        "weighted_score": 16.6667
       },
       {
         "romanization": "YEA",
-        "weighted_score": 8.2538
+        "weighted_score": 11.0051
       },
       {
         "romanization": "YAE",
-        "weighted_score": 2.958
+        "weighted_score": 3.944
       },
       {
         "romanization": "YEH",
-        "weighted_score": 2.0515
+        "weighted_score": 2.7354
       }
     ]
   },
@@ -25039,31 +25039,31 @@
     "combined_ranking": [
       {
         "romanization": "ON",
-        "weighted_score": 63.8206
+        "weighted_score": 70.9118
       },
       {
         "romanization": "OHN",
-        "weighted_score": 25.5865
+        "weighted_score": 28.4294
       },
       {
         "romanization": "OHNN",
-        "weighted_score": 0.1701
+        "weighted_score": 0.189
       },
       {
         "romanization": "EON",
-        "weighted_score": 0.1057
+        "weighted_score": 0.1175
       },
       {
         "romanization": "ONN",
-        "weighted_score": 0.1057
+        "weighted_score": 0.1175
       },
       {
         "romanization": "OWN",
-        "weighted_score": 0.1057
+        "weighted_score": 0.1175
       },
       {
         "romanization": "YON",
-        "weighted_score": 0.1057
+        "weighted_score": 0.1175
       }
     ]
   },
@@ -25123,35 +25123,35 @@
     "combined_ranking": [
       {
         "romanization": "WANG",
-        "weighted_score": 47.1443
+        "weighted_score": 55.4638
       },
       {
         "romanization": "ONG",
-        "weighted_score": 31.2895
+        "weighted_score": 36.8112
       },
       {
         "romanization": "OHNG",
-        "weighted_score": 3.0492
+        "weighted_score": 3.5873
       },
       {
         "romanization": "OUNG",
-        "weighted_score": 3.0
+        "weighted_score": 3.5294
       },
       {
         "romanization": "WHANG",
-        "weighted_score": 0.32
+        "weighted_score": 0.3765
       },
       {
         "romanization": "WOANG",
-        "weighted_score": 0.1477
+        "weighted_score": 0.1738
       },
       {
         "romanization": "OHONG",
-        "weighted_score": 0.0246
+        "weighted_score": 0.029
       },
       {
         "romanization": "UNG",
-        "weighted_score": 0.0246
+        "weighted_score": 0.029
       }
     ]
   },
@@ -25763,19 +25763,19 @@
     "combined_ranking": [
       {
         "romanization": "WON",
-        "weighted_score": 46.2463
+        "weighted_score": 61.6618
       },
       {
         "romanization": "WOON",
-        "weighted_score": 25.176
+        "weighted_score": 33.5679
       },
       {
         "romanization": "WEON",
-        "weighted_score": 3.4531
+        "weighted_score": 4.6041
       },
       {
         "romanization": "ONE",
-        "weighted_score": 0.1246
+        "weighted_score": 0.1662
       }
     ]
   },
@@ -29029,55 +29029,55 @@
     "combined_ranking": [
       {
         "romanization": "IN",
-        "weighted_score": 35.8662
+        "weighted_score": 47.8216
       },
       {
         "romanization": "EUM",
-        "weighted_score": 33.3478
+        "weighted_score": 44.4637
       },
       {
         "romanization": "IHN",
-        "weighted_score": 1.582
+        "weighted_score": 2.1093
       },
       {
         "romanization": "UM",
-        "weighted_score": 1.4018
+        "weighted_score": 1.8691
       },
       {
         "romanization": "YIN",
-        "weighted_score": 1.1929
+        "weighted_score": 1.5906
       },
       {
         "romanization": "INN",
-        "weighted_score": 0.5446
+        "weighted_score": 0.7261
       },
       {
         "romanization": "EM",
-        "weighted_score": 0.3549
+        "weighted_score": 0.4732
       },
       {
         "romanization": "YEUM",
-        "weighted_score": 0.303
+        "weighted_score": 0.404
       },
       {
         "romanization": "EUN",
-        "weighted_score": 0.1515
+        "weighted_score": 0.202
       },
       {
         "romanization": "YEM",
-        "weighted_score": 0.1515
+        "weighted_score": 0.202
       },
       {
         "romanization": "YUM",
-        "weighted_score": 0.0519
+        "weighted_score": 0.0692
       },
       {
         "romanization": "EHUM",
-        "weighted_score": 0.0259
+        "weighted_score": 0.0346
       },
       {
         "romanization": "NG",
-        "weighted_score": 0.0259
+        "weighted_score": 0.0346
       }
     ]
   },
@@ -29197,67 +29197,67 @@
     "combined_ranking": [
       {
         "romanization": "LEE",
-        "weighted_score": 48.846
+        "weighted_score": 97.6919
       },
       {
         "romanization": "YI",
-        "weighted_score": 0.7198
+        "weighted_score": 1.4395
       },
       {
         "romanization": "RHEE",
-        "weighted_score": 0.3102
+        "weighted_score": 0.6204
       },
       {
         "romanization": "REE",
-        "weighted_score": 0.0222
+        "weighted_score": 0.0443
       },
       {
         "romanization": "I",
-        "weighted_score": 0.0162
+        "weighted_score": 0.0324
       },
       {
         "romanization": "REY",
-        "weighted_score": 0.0149
+        "weighted_score": 0.0298
       },
       {
         "romanization": "YEE",
-        "weighted_score": 0.0149
+        "weighted_score": 0.0297
       },
       {
         "romanization": "LI",
-        "weighted_score": 0.0132
+        "weighted_score": 0.0265
       },
       {
         "romanization": "EE",
-        "weighted_score": 0.0073
+        "weighted_score": 0.0146
       },
       {
         "romanization": "E",
-        "weighted_score": 0.0073
+        "weighted_score": 0.0146
       },
       {
         "romanization": "LEES",
-        "weighted_score": 0.0073
+        "weighted_score": 0.0146
       },
       {
         "romanization": "LEIGH",
-        "weighted_score": 0.0059
+        "weighted_score": 0.0119
       },
       {
         "romanization": "RHIE",
-        "weighted_score": 0.0059
+        "weighted_score": 0.0119
       },
       {
         "romanization": "RHI",
-        "weighted_score": 0.003
+        "weighted_score": 0.0059
       },
       {
         "romanization": "RHYE",
-        "weighted_score": 0.003
+        "weighted_score": 0.0059
       },
       {
         "romanization": "RHYIE",
-        "weighted_score": 0.003
+        "weighted_score": 0.0059
       }
     ]
   },
@@ -30319,95 +30319,95 @@
     "combined_ranking": [
       {
         "romanization": "JANG",
-        "weighted_score": 37.4008
+        "weighted_score": 49.8678
       },
       {
         "romanization": "JA",
-        "weighted_score": 25.0069
+        "weighted_score": 33.3425
       },
       {
         "romanization": "CHANG",
-        "weighted_score": 12.2354
+        "weighted_score": 16.3139
       },
       {
         "romanization": "JHANG",
-        "weighted_score": 0.0727
+        "weighted_score": 0.097
       },
       {
         "romanization": "ZHANG",
-        "weighted_score": 0.0563
+        "weighted_score": 0.075
       },
       {
         "romanization": "JAHNG",
-        "weighted_score": 0.0453
+        "weighted_score": 0.0604
       },
       {
         "romanization": "ZANG",
-        "weighted_score": 0.0398
+        "weighted_score": 0.0531
       },
       {
         "romanization": "JAUNG",
-        "weighted_score": 0.0192
+        "weighted_score": 0.0256
       },
       {
         "romanization": "CHIANG",
-        "weighted_score": 0.0178
+        "weighted_score": 0.0238
       },
       {
         "romanization": "JUNG",
-        "weighted_score": 0.0151
+        "weighted_score": 0.0201
       },
       {
         "romanization": "JEONG",
-        "weighted_score": 0.0124
+        "weighted_score": 0.0165
       },
       {
         "romanization": "CHONG",
-        "weighted_score": 0.0096
+        "weighted_score": 0.0128
       },
       {
         "romanization": "GANG",
-        "weighted_score": 0.0096
+        "weighted_score": 0.0128
       },
       {
         "romanization": "JAONG",
-        "weighted_score": 0.0096
+        "weighted_score": 0.0128
       },
       {
         "romanization": "CHUNG",
-        "weighted_score": 0.0082
+        "weighted_score": 0.011
       },
       {
         "romanization": "JOUNG",
-        "weighted_score": 0.0082
+        "weighted_score": 0.011
       },
       {
         "romanization": "JAING",
-        "weighted_score": 0.0069
+        "weighted_score": 0.0092
       },
       {
         "romanization": "JIANG",
-        "weighted_score": 0.0069
+        "weighted_score": 0.0092
       },
       {
         "romanization": "CANG",
-        "weighted_score": 0.0055
+        "weighted_score": 0.0073
       },
       {
         "romanization": "JAMG",
-        "weighted_score": 0.0041
+        "weighted_score": 0.0055
       },
       {
         "romanization": "JONG",
-        "weighted_score": 0.0041
+        "weighted_score": 0.0055
       },
       {
         "romanization": "JAN",
-        "weighted_score": 0.0027
+        "weighted_score": 0.0037
       },
       {
         "romanization": "JARNG",
-        "weighted_score": 0.0027
+        "weighted_score": 0.0037
       }
     ]
   },
@@ -33147,155 +33147,155 @@
     "combined_ranking": [
       {
         "romanization": "CHO",
-        "weighted_score": 34.9521
+        "weighted_score": 38.8356
       },
       {
         "romanization": "JEGAL",
-        "weighted_score": 21.7521
+        "weighted_score": 24.169
       },
       {
         "romanization": "JO",
-        "weighted_score": 13.9851
+        "weighted_score": 15.5391
       },
       {
         "romanization": "JAEGAL",
-        "weighted_score": 6.9872
+        "weighted_score": 7.7635
       },
       {
         "romanization": "JEKAL",
-        "weighted_score": 6.7735
+        "weighted_score": 7.5261
       },
       {
         "romanization": "JEAGAL",
-        "weighted_score": 1.0684
+        "weighted_score": 1.1871
       },
       {
         "romanization": "CHEGAL",
-        "weighted_score": 0.641
+        "weighted_score": 0.7123
       },
       {
         "romanization": "CHEKAL",
-        "weighted_score": 0.641
+        "weighted_score": 0.7123
       },
       {
         "romanization": "JOE",
-        "weighted_score": 0.444
+        "weighted_score": 0.4933
       },
       {
         "romanization": "JEIKAL",
-        "weighted_score": 0.4293
+        "weighted_score": 0.477
       },
       {
         "romanization": "JAEKAL",
-        "weighted_score": 0.4274
+        "weighted_score": 0.4748
       },
       {
         "romanization": "JOH",
-        "weighted_score": 0.3408
+        "weighted_score": 0.3787
       },
       {
         "romanization": "JEGAR",
-        "weighted_score": 0.2156
+        "weighted_score": 0.2396
       },
       {
         "romanization": "JAGAL",
-        "weighted_score": 0.2147
+        "weighted_score": 0.2385
       },
       {
         "romanization": "JEKALL",
-        "weighted_score": 0.2137
+        "weighted_score": 0.2374
       },
       {
         "romanization": "CHEKAR",
-        "weighted_score": 0.2137
+        "weighted_score": 0.2374
       },
       {
         "romanization": "JEIGAL",
-        "weighted_score": 0.2137
+        "weighted_score": 0.2374
       },
       {
         "romanization": "JAEGARL",
-        "weighted_score": 0.2137
+        "weighted_score": 0.2374
       },
       {
         "romanization": "JHO",
-        "weighted_score": 0.0805
+        "weighted_score": 0.0895
       },
       {
         "romanization": "JOU",
-        "weighted_score": 0.0776
+        "weighted_score": 0.0862
       },
       {
         "romanization": "ZO",
-        "weighted_score": 0.0363
+        "weighted_score": 0.0404
       },
       {
         "romanization": "JEO",
-        "weighted_score": 0.0187
+        "weighted_score": 0.0207
       },
       {
         "romanization": "CHOI",
-        "weighted_score": 0.0167
+        "weighted_score": 0.0186
       },
       {
         "romanization": "CHOUGH",
-        "weighted_score": 0.0138
+        "weighted_score": 0.0153
       },
       {
         "romanization": "ZOH",
-        "weighted_score": 0.0098
+        "weighted_score": 0.0109
       },
       {
         "romanization": "CHOO",
-        "weighted_score": 0.0059
+        "weighted_score": 0.0065
       },
       {
         "romanization": "JEKAR",
-        "weighted_score": 0.002
+        "weighted_score": 0.0022
       },
       {
         "romanization": "JEKARL",
-        "weighted_score": 0.002
+        "weighted_score": 0.0022
       },
       {
         "romanization": "CHEAGAL",
-        "weighted_score": 0.001
+        "weighted_score": 0.0011
       },
       {
         "romanization": "CHEKALL",
-        "weighted_score": 0.001
+        "weighted_score": 0.0011
       },
       {
         "romanization": "GEGAL",
-        "weighted_score": 0.001
+        "weighted_score": 0.0011
       },
       {
         "romanization": "GEOIGAL",
-        "weighted_score": 0.001
+        "weighted_score": 0.0011
       },
       {
         "romanization": "JAEKARL",
-        "weighted_score": 0.001
+        "weighted_score": 0.0011
       },
       {
         "romanization": "JEACAL",
-        "weighted_score": 0.001
+        "weighted_score": 0.0011
       },
       {
         "romanization": "JEAGAR",
-        "weighted_score": 0.001
+        "weighted_score": 0.0011
       },
       {
         "romanization": "JEGARL",
-        "weighted_score": 0.001
+        "weighted_score": 0.0011
       },
       {
         "romanization": "JEGHAL",
-        "weighted_score": 0.001
+        "weighted_score": 0.0011
       },
       {
         "romanization": "JYEGAL",
-        "weighted_score": 0.001
+        "weighted_score": 0.0011
       }
     ]
   },
@@ -33651,15 +33651,15 @@
     "combined_ranking": [
       {
         "romanization": "JONG",
-        "weighted_score": 66.875
+        "weighted_score": 89.1667
       },
       {
         "romanization": "CHONG",
-        "weighted_score": 6.5625
+        "weighted_score": 8.75
       },
       {
         "romanization": "JUNG",
-        "weighted_score": 1.5625
+        "weighted_score": 2.0833
       }
     ]
   },
@@ -34359,11 +34359,11 @@
     "combined_ranking": [
       {
         "romanization": "ZENG",
-        "weighted_score": 12.5
+        "weighted_score": 50.0
       },
       {
         "romanization": "ZEUNG",
-        "weighted_score": 12.5
+        "weighted_score": 50.0
       }
     ]
   },
@@ -35357,55 +35357,55 @@
     "combined_ranking": [
       {
         "romanization": "CHAE",
-        "weighted_score": 40.276
+        "weighted_score": 44.7511
       },
       {
         "romanization": "MYUNGCHANG",
-        "weighted_score": 25.0
+        "weighted_score": 27.7778
       },
       {
         "romanization": "CHANG",
-        "weighted_score": 15.5215
+        "weighted_score": 17.2461
       },
       {
         "romanization": "CHAI",
-        "weighted_score": 6.1308
+        "weighted_score": 6.812
       },
       {
         "romanization": "CHE",
-        "weighted_score": 1.3101
+        "weighted_score": 1.4557
       },
       {
         "romanization": "CHEA",
-        "weighted_score": 1.2338
+        "weighted_score": 1.3709
       },
       {
         "romanization": "CHA",
-        "weighted_score": 0.1463
+        "weighted_score": 0.1625
       },
       {
         "romanization": "CHOI",
-        "weighted_score": 0.1272
+        "weighted_score": 0.1413
       },
       {
         "romanization": "CHEI",
-        "weighted_score": 0.0954
+        "weighted_score": 0.106
       },
       {
         "romanization": "CAE",
-        "weighted_score": 0.0445
+        "weighted_score": 0.0495
       },
       {
         "romanization": "CAI",
-        "weighted_score": 0.0382
+        "weighted_score": 0.0424
       },
       {
         "romanization": "CHAY",
-        "weighted_score": 0.0382
+        "weighted_score": 0.0424
       },
       {
         "romanization": "CHI",
-        "weighted_score": 0.0382
+        "weighted_score": 0.0424
       }
     ]
   },
@@ -36265,107 +36265,107 @@
     "combined_ranking": [
       {
         "romanization": "CHOI",
-        "weighted_score": 44.2799
+        "weighted_score": 52.094
       },
       {
         "romanization": "CHO",
-        "weighted_score": 30.4695
+        "weighted_score": 35.8464
       },
       {
         "romanization": "CHOE",
-        "weighted_score": 5.1046
+        "weighted_score": 6.0055
       },
       {
         "romanization": "JOE",
-        "weighted_score": 2.5
+        "weighted_score": 2.9412
       },
       {
         "romanization": "CHU",
-        "weighted_score": 2.0833
+        "weighted_score": 2.451
       },
       {
         "romanization": "CHOY",
-        "weighted_score": 0.1198
+        "weighted_score": 0.1409
       },
       {
         "romanization": "CHE",
-        "weighted_score": 0.0953
+        "weighted_score": 0.1122
       },
       {
         "romanization": "CHAI",
-        "weighted_score": 0.0544
+        "weighted_score": 0.064
       },
       {
         "romanization": "CHAE",
-        "weighted_score": 0.0465
+        "weighted_score": 0.0547
       },
       {
         "romanization": "CHEI",
-        "weighted_score": 0.0339
+        "weighted_score": 0.0399
       },
       {
         "romanization": "CHEY",
-        "weighted_score": 0.0323
+        "weighted_score": 0.038
       },
       {
         "romanization": "CHI",
-        "weighted_score": 0.026
+        "weighted_score": 0.0306
       },
       {
         "romanization": "CHOIE",
-        "weighted_score": 0.0244
+        "weighted_score": 0.0287
       },
       {
         "romanization": "CHEA",
-        "weighted_score": 0.0236
+        "weighted_score": 0.0278
       },
       {
         "romanization": "CHIO",
-        "weighted_score": 0.0229
+        "weighted_score": 0.0269
       },
       {
         "romanization": "CUI",
-        "weighted_score": 0.0142
+        "weighted_score": 0.0167
       },
       {
         "romanization": "CHEO",
-        "weighted_score": 0.0118
+        "weighted_score": 0.0139
       },
       {
         "romanization": "CHOEI",
-        "weighted_score": 0.0102
+        "weighted_score": 0.0121
       },
       {
         "romanization": "CHUI",
-        "weighted_score": 0.0095
+        "weighted_score": 0.0111
       },
       {
         "romanization": "CHIE",
-        "weighted_score": 0.0071
+        "weighted_score": 0.0083
       },
       {
         "romanization": "CHWE",
-        "weighted_score": 0.0071
+        "weighted_score": 0.0083
       },
       {
         "romanization": "CHAY",
-        "weighted_score": 0.0055
+        "weighted_score": 0.0065
       },
       {
         "romanization": "CHEOI",
-        "weighted_score": 0.0055
+        "weighted_score": 0.0065
       },
       {
         "romanization": "CHWEH",
-        "weighted_score": 0.0055
+        "weighted_score": 0.0065
       },
       {
         "romanization": "CHAEY",
-        "weighted_score": 0.0039
+        "weighted_score": 0.0046
       },
       {
         "romanization": "TCHO",
-        "weighted_score": 0.0032
+        "weighted_score": 0.0037
       }
     ]
   },
@@ -37343,23 +37343,23 @@
     "combined_ranking": [
       {
         "romanization": "PAENG",
-        "weighted_score": 38.6525
+        "weighted_score": 51.5366
       },
       {
         "romanization": "PAN",
-        "weighted_score": 30.4965
+        "weighted_score": 40.6619
       },
       {
         "romanization": "PAING",
-        "weighted_score": 2.305
+        "weighted_score": 3.0733
       },
       {
         "romanization": "PEANG",
-        "weighted_score": 1.9504
+        "weighted_score": 2.6005
       },
       {
         "romanization": "PANG",
-        "weighted_score": 1.5957
+        "weighted_score": 2.1277
       }
     ]
   },
@@ -37463,75 +37463,75 @@
     "combined_ranking": [
       {
         "romanization": "PAENG",
-        "weighted_score": 34.2073
+        "weighted_score": 38.0081
       },
       {
         "romanization": "PYUN",
-        "weighted_score": 26.8734
+        "weighted_score": 29.8593
       },
       {
         "romanization": "PYEON",
-        "weighted_score": 16.4513
+        "weighted_score": 18.2793
       },
       {
         "romanization": "PANG",
-        "weighted_score": 2.439
+        "weighted_score": 2.71
       },
       {
         "romanization": "PYON",
-        "weighted_score": 2.3256
+        "weighted_score": 2.584
       },
       {
         "romanization": "PYOUN",
-        "weighted_score": 1.938
+        "weighted_score": 2.1533
       },
       {
         "romanization": "PAING",
-        "weighted_score": 1.2195
+        "weighted_score": 1.355
       },
       {
         "romanization": "PENG",
-        "weighted_score": 1.0869
+        "weighted_score": 1.2077
       },
       {
         "romanization": "PYEN",
-        "weighted_score": 0.9044
+        "weighted_score": 1.0049
       },
       {
         "romanization": "PYEUN",
-        "weighted_score": 0.646
+        "weighted_score": 0.7178
       },
       {
         "romanization": "PYEONG",
-        "weighted_score": 0.391
+        "weighted_score": 0.4345
       },
       {
         "romanization": "PYENG",
-        "weighted_score": 0.3479
+        "weighted_score": 0.3866
       },
       {
         "romanization": "PEANG",
-        "weighted_score": 0.3049
+        "weighted_score": 0.3388
       },
       {
         "romanization": "PFENG",
-        "weighted_score": 0.3049
+        "weighted_score": 0.3388
       },
       {
         "romanization": "PEON",
-        "weighted_score": 0.3015
+        "weighted_score": 0.335
       },
       {
         "romanization": "PHANG",
-        "weighted_score": 0.1723
+        "weighted_score": 0.1914
       },
       {
         "romanization": "PEING",
-        "weighted_score": 0.0431
+        "weighted_score": 0.0479
       },
       {
         "romanization": "PHAENG",
-        "weighted_score": 0.0431
+        "weighted_score": 0.0479
       }
     ]
   },
@@ -37831,27 +37831,27 @@
     "combined_ranking": [
       {
         "romanization": "PYUNG",
-        "weighted_score": 43.4615
+        "weighted_score": 57.9487
       },
       {
         "romanization": "PYOUNG",
-        "weighted_score": 11.7735
+        "weighted_score": 15.698
       },
       {
         "romanization": "PYEONG",
-        "weighted_score": 11.6239
+        "weighted_score": 15.4986
       },
       {
         "romanization": "PYONG",
-        "weighted_score": 5.1068
+        "weighted_score": 6.8091
       },
       {
         "romanization": "PYEOUNG",
-        "weighted_score": 2.0726
+        "weighted_score": 2.7635
       },
       {
         "romanization": "PYENG",
-        "weighted_score": 0.9615
+        "weighted_score": 1.2821
       }
     ]
   },
@@ -37889,23 +37889,23 @@
     "combined_ranking": [
       {
         "romanization": "PYO",
-        "weighted_score": 49.2076
+        "weighted_score": 65.6101
       },
       {
         "romanization": "PO",
-        "weighted_score": 25.1534
+        "weighted_score": 33.5378
       },
       {
         "romanization": "PHYO",
-        "weighted_score": 0.3579
+        "weighted_score": 0.4772
       },
       {
         "romanization": "POY",
-        "weighted_score": 0.1534
+        "weighted_score": 0.2045
       },
       {
         "romanization": "PEO",
-        "weighted_score": 0.1278
+        "weighted_score": 0.1704
       }
     ]
   },
@@ -38137,15 +38137,15 @@
     "combined_ranking": [
       {
         "romanization": "PUNG",
-        "weighted_score": 36.3787
+        "weighted_score": 48.505
       },
       {
         "romanization": "POONG",
-        "weighted_score": 36.2957
+        "weighted_score": 48.3942
       },
       {
         "romanization": "POUNG",
-        "weighted_score": 2.3256
+        "weighted_score": 3.1008
       }
     ]
   },
@@ -38277,71 +38277,71 @@
     "combined_ranking": [
       {
         "romanization": "PI",
-        "weighted_score": 50.3056
+        "weighted_score": 55.8951
       },
       {
         "romanization": "PEE",
-        "weighted_score": 15.6075
+        "weighted_score": 17.3416
       },
       {
         "romanization": "PYEE",
-        "weighted_score": 15.3167
+        "weighted_score": 17.0185
       },
       {
         "romanization": "PHEE",
-        "weighted_score": 2.5961
+        "weighted_score": 2.8846
       },
       {
         "romanization": "PHI",
-        "weighted_score": 2.2154
+        "weighted_score": 2.4615
       },
       {
         "romanization": "PIEH",
-        "weighted_score": 0.6653
+        "weighted_score": 0.7393
       },
       {
         "romanization": "PHY",
-        "weighted_score": 0.6025
+        "weighted_score": 0.6694
       },
       {
         "romanization": "PHIE",
-        "weighted_score": 0.5384
+        "weighted_score": 0.5983
       },
       {
         "romanization": "PIE",
-        "weighted_score": 0.4436
+        "weighted_score": 0.4928
       },
       {
         "romanization": "PIH",
-        "weighted_score": 0.3487
+        "weighted_score": 0.3874
       },
       {
         "romanization": "PEA",
-        "weighted_score": 0.3167
+        "weighted_score": 0.3518
       },
       {
         "romanization": "PE",
-        "weighted_score": 0.2846
+        "weighted_score": 0.3163
       },
       {
         "romanization": "PEI",
-        "weighted_score": 0.1898
+        "weighted_score": 0.2108
       },
       {
         "romanization": "PY",
-        "weighted_score": 0.1898
+        "weighted_score": 0.2108
       },
       {
         "romanization": "PYI",
-        "weighted_score": 0.1898
+        "weighted_score": 0.2108
       },
       {
         "romanization": "PEAY",
-        "weighted_score": 0.0949
+        "weighted_score": 0.1054
       },
       {
         "romanization": "PEEH",
-        "weighted_score": 0.0949
+        "weighted_score": 0.1054
       }
     ]
   },
@@ -38379,19 +38379,19 @@
     "combined_ranking": [
       {
         "romanization": "PIL",
-        "weighted_score": 38.3929
+        "weighted_score": 51.1905
       },
       {
         "romanization": "PHIL",
-        "weighted_score": 31.8452
+        "weighted_score": 42.4603
       },
       {
         "romanization": "FIL",
-        "weighted_score": 2.381
+        "weighted_score": 3.1746
       },
       {
         "romanization": "PEEL",
-        "weighted_score": 2.381
+        "weighted_score": 3.1746
       }
     ]
   },
@@ -38871,7 +38871,7 @@
     "combined_ranking": [
       {
         "romanization": "HAE",
-        "weighted_score": 75.0
+        "weighted_score": 100.0
       }
     ]
   },
@@ -40273,23 +40273,23 @@
     "combined_ranking": [
       {
         "romanization": "HWA",
-        "weighted_score": 85.3606
+        "weighted_score": 94.8451
       },
       {
         "romanization": "HOWA",
-        "weighted_score": 1.5625
+        "weighted_score": 1.7361
       },
       {
         "romanization": "WHA",
-        "weighted_score": 1.5385
+        "weighted_score": 1.7094
       },
       {
         "romanization": "HOA",
-        "weighted_score": 0.7692
+        "weighted_score": 0.8547
       },
       {
         "romanization": "HUA",
-        "weighted_score": 0.7692
+        "weighted_score": 0.8547
       }
     ]
   },
@@ -40785,15 +40785,15 @@
     "combined_ranking": [
       {
         "romanization": "HOO",
-        "weighted_score": 17.5
+        "weighted_score": 50.0
       },
       {
         "romanization": "HWANG",
-        "weighted_score": 12.5
+        "weighted_score": 35.7143
       },
       {
         "romanization": "WHO",
-        "weighted_score": 5.0
+        "weighted_score": 14.2857
       }
     ]
   },
@@ -40845,43 +40845,43 @@
     "combined_ranking": [
       {
         "romanization": "KOO",
-        "weighted_score": 21.124
+        "weighted_score": 42.2481
       },
       {
         "romanization": "KU",
-        "weighted_score": 12.181
+        "weighted_score": 24.3621
       },
       {
         "romanization": "GU",
-        "weighted_score": 11.8661
+        "weighted_score": 23.7322
       },
       {
         "romanization": "GOO",
-        "weighted_score": 4.6269
+        "weighted_score": 9.2539
       },
       {
         "romanization": "KUH",
-        "weighted_score": 0.0807
+        "weighted_score": 0.1615
       },
       {
         "romanization": "KOU",
-        "weighted_score": 0.0484
+        "weighted_score": 0.0969
       },
       {
         "romanization": "KHU",
-        "weighted_score": 0.0283
+        "weighted_score": 0.0565
       },
       {
         "romanization": "KHOO",
-        "weighted_score": 0.0242
+        "weighted_score": 0.0484
       },
       {
         "romanization": "GYO",
-        "weighted_score": 0.0121
+        "weighted_score": 0.0242
       },
       {
         "romanization": "KYO",
-        "weighted_score": 0.0081
+        "weighted_score": 0.0161
       }
     ]
   },
@@ -40905,15 +40905,15 @@
     "combined_ranking": [
       {
         "romanization": "NOE",
-        "weighted_score": 20.0
+        "weighted_score": 40.0
       },
       {
         "romanization": "NOI",
-        "weighted_score": 20.0
+        "weighted_score": 40.0
       },
       {
         "romanization": "LEI",
-        "weighted_score": 10.0
+        "weighted_score": 20.0
       }
     ]
   },
@@ -40933,11 +40933,11 @@
     "combined_ranking": [
       {
         "romanization": "DAM",
-        "weighted_score": 38.8889
+        "weighted_score": 77.7778
       },
       {
         "romanization": "TAN",
-        "weighted_score": 11.1111
+        "weighted_score": 22.2222
       }
     ]
   },
@@ -41137,179 +41137,179 @@
     "combined_ranking": [
       {
         "romanization": "RYU",
-        "weighted_score": 33.1437
+        "weighted_score": 44.1916
       },
       {
         "romanization": "RA",
-        "weighted_score": 17.0
+        "weighted_score": 22.6667
       },
       {
         "romanization": "YOO",
-        "weighted_score": 4.0898
+        "weighted_score": 5.4531
       },
       {
         "romanization": "LA",
-        "weighted_score": 3.3333
+        "weighted_score": 4.4444
       },
       {
         "romanization": "RHA",
-        "weighted_score": 3.0
+        "weighted_score": 4.0
       },
       {
         "romanization": "RYOO",
-        "weighted_score": 2.9982
+        "weighted_score": 3.9975
       },
       {
         "romanization": "YU",
-        "weighted_score": 2.0859
+        "weighted_score": 2.7812
       },
       {
         "romanization": "RAH",
-        "weighted_score": 1.8665
+        "weighted_score": 2.4887
       },
       {
         "romanization": "YOU",
-        "weighted_score": 1.8604
+        "weighted_score": 2.4805
       },
       {
         "romanization": "LYU",
-        "weighted_score": 1.5426
+        "weighted_score": 2.0569
       },
       {
         "romanization": "RYOU",
-        "weighted_score": 1.2095
+        "weighted_score": 1.6127
       },
       {
         "romanization": "RU",
-        "weighted_score": 0.3844
+        "weighted_score": 0.5125
       },
       {
         "romanization": "LYOU",
-        "weighted_score": 0.3793
+        "weighted_score": 0.5057
       },
       {
         "romanization": "LEW",
-        "weighted_score": 0.2409
+        "weighted_score": 0.3212
       },
       {
         "romanization": "ROU",
-        "weighted_score": 0.2358
+        "weighted_score": 0.3143
       },
       {
         "romanization": "LIU",
-        "weighted_score": 0.2306
+        "weighted_score": 0.3075
       },
       {
         "romanization": "REW",
-        "weighted_score": 0.1333
+        "weighted_score": 0.1777
       },
       {
         "romanization": "ROO",
-        "weighted_score": 0.1333
+        "weighted_score": 0.1777
       },
       {
         "romanization": "RUE",
-        "weighted_score": 0.1281
+        "weighted_score": 0.1708
       },
       {
         "romanization": "RHYU",
-        "weighted_score": 0.123
+        "weighted_score": 0.164
       },
       {
         "romanization": "RUY",
-        "weighted_score": 0.1128
+        "weighted_score": 0.1503
       },
       {
         "romanization": "NAH",
-        "weighted_score": 0.082
+        "weighted_score": 0.1093
       },
       {
         "romanization": "RHU",
-        "weighted_score": 0.0666
+        "weighted_score": 0.0888
       },
       {
         "romanization": "RHEW",
-        "weighted_score": 0.0615
+        "weighted_score": 0.082
       },
       {
         "romanization": "REU",
-        "weighted_score": 0.0513
+        "weighted_score": 0.0683
       },
       {
         "romanization": "RYO",
-        "weighted_score": 0.0513
+        "weighted_score": 0.0683
       },
       {
         "romanization": "LOU",
-        "weighted_score": 0.0461
+        "weighted_score": 0.0615
       },
       {
         "romanization": "LU",
-        "weighted_score": 0.041
+        "weighted_score": 0.0547
       },
       {
         "romanization": "LUE",
-        "weighted_score": 0.041
+        "weighted_score": 0.0547
       },
       {
         "romanization": "RHYOO",
-        "weighted_score": 0.0359
+        "weighted_score": 0.0478
       },
       {
         "romanization": "RYE",
-        "weighted_score": 0.0359
+        "weighted_score": 0.0478
       },
       {
         "romanization": "LUY",
-        "weighted_score": 0.0308
+        "weighted_score": 0.041
       },
       {
         "romanization": "RIEW",
-        "weighted_score": 0.0308
+        "weighted_score": 0.041
       },
       {
         "romanization": "RIU",
-        "weighted_score": 0.0308
+        "weighted_score": 0.041
       },
       {
         "romanization": "RYUE",
-        "weighted_score": 0.0308
+        "weighted_score": 0.041
       },
       {
         "romanization": "LEU",
-        "weighted_score": 0.0256
+        "weighted_score": 0.0342
       },
       {
         "romanization": "LUU",
-        "weighted_score": 0.0256
+        "weighted_score": 0.0342
       },
       {
         "romanization": "LAH",
-        "weighted_score": 0.0205
+        "weighted_score": 0.0273
       },
       {
         "romanization": "LOO",
-        "weighted_score": 0.0205
+        "weighted_score": 0.0273
       },
       {
         "romanization": "RAA",
-        "weighted_score": 0.0154
+        "weighted_score": 0.0205
       },
       {
         "romanization": "LHA",
-        "weighted_score": 0.0103
+        "weighted_score": 0.0137
       },
       {
         "romanization": "LAA",
-        "weighted_score": 0.0051
+        "weighted_score": 0.0068
       },
       {
         "romanization": "LAI",
-        "weighted_score": 0.0051
+        "weighted_score": 0.0068
       },
       {
         "romanization": "RAE",
-        "weighted_score": 0.0051
+        "weighted_score": 0.0068
       }
     ]
   },
@@ -41325,7 +41325,7 @@
     "combined_ranking": [
       {
         "romanization": "RYUK",
-        "weighted_score": 50.0
+        "weighted_score": 100.0
       }
     ]
   },
@@ -41341,7 +41341,7 @@
     "combined_ranking": [
       {
         "romanization": "MANGJUL",
-        "weighted_score": 50.0
+        "weighted_score": 100.0
       }
     ]
   },
@@ -41449,99 +41449,99 @@
     "combined_ranking": [
       {
         "romanization": "SEOK",
-        "weighted_score": 29.3818
+        "weighted_score": 58.7637
       },
       {
         "romanization": "SUK",
-        "weighted_score": 16.319
+        "weighted_score": 32.638
       },
       {
         "romanization": "SEOG",
-        "weighted_score": 1.1066
+        "weighted_score": 2.2132
       },
       {
         "romanization": "SOK",
-        "weighted_score": 0.8395
+        "weighted_score": 1.679
       },
       {
         "romanization": "SUCK",
-        "weighted_score": 0.636
+        "weighted_score": 1.2719
       },
       {
         "romanization": "SEUK",
-        "weighted_score": 0.3816
+        "weighted_score": 0.7632
       },
       {
         "romanization": "SOUK",
-        "weighted_score": 0.1908
+        "weighted_score": 0.3816
       },
       {
         "romanization": "SUG",
-        "weighted_score": 0.1908
+        "weighted_score": 0.3816
       },
       {
         "romanization": "SEAK",
-        "weighted_score": 0.1781
+        "weighted_score": 0.3561
       },
       {
         "romanization": "SUHK",
-        "weighted_score": 0.1272
+        "weighted_score": 0.2544
       },
       {
         "romanization": "SEK",
-        "weighted_score": 0.1145
+        "weighted_score": 0.2289
       },
       {
         "romanization": "SAK",
-        "weighted_score": 0.089
+        "weighted_score": 0.1781
       },
       {
         "romanization": "SEOCK",
-        "weighted_score": 0.089
+        "weighted_score": 0.1781
       },
       {
         "romanization": "SUEK",
-        "weighted_score": 0.0636
+        "weighted_score": 0.1272
       },
       {
         "romanization": "SECK",
-        "weighted_score": 0.0509
+        "weighted_score": 0.1018
       },
       {
         "romanization": "SEOUK",
-        "weighted_score": 0.0509
+        "weighted_score": 0.1018
       },
       {
         "romanization": "SEAMOON",
-        "weighted_score": 0.0382
+        "weighted_score": 0.0763
       },
       {
         "romanization": "SUMOON",
-        "weighted_score": 0.0382
+        "weighted_score": 0.0763
       },
       {
         "romanization": "SEMUN",
-        "weighted_score": 0.0254
+        "weighted_score": 0.0509
       },
       {
         "romanization": "SOMUN",
-        "weighted_score": 0.0254
+        "weighted_score": 0.0509
       },
       {
         "romanization": "SUMUN",
-        "weighted_score": 0.0254
+        "weighted_score": 0.0509
       },
       {
         "romanization": "SEMOON",
-        "weighted_score": 0.0127
+        "weighted_score": 0.0254
       },
       {
         "romanization": "SEUMOON",
-        "weighted_score": 0.0127
+        "weighted_score": 0.0254
       },
       {
         "romanization": "SUHMUN",
-        "weighted_score": 0.0127
+        "weighted_score": 0.0254
       }
     ]
   },
@@ -41557,7 +41557,7 @@
     "combined_ranking": [
       {
         "romanization": "YO",
-        "weighted_score": 50.0
+        "weighted_score": 100.0
       }
     ]
   },
@@ -41577,11 +41577,11 @@
     "combined_ranking": [
       {
         "romanization": "JEOM",
-        "weighted_score": 30.0
+        "weighted_score": 60.0
       },
       {
         "romanization": "JUM",
-        "weighted_score": 20.0
+        "weighted_score": 40.0
       }
     ]
   },
@@ -41597,7 +41597,7 @@
     "combined_ranking": [
       {
         "romanization": "HAK",
-        "weighted_score": 50.0
+        "weighted_score": 100.0
       }
     ]
   },
@@ -41639,27 +41639,27 @@
     "combined_ranking": [
       {
         "romanization": "HWANGBO",
-        "weighted_score": 62.6261
+        "weighted_score": 96.3479
       },
       {
         "romanization": "WHANGBO",
-        "weighted_score": 1.4837
+        "weighted_score": 2.2826
       },
       {
         "romanization": "HOANGBO",
-        "weighted_score": 0.2967
+        "weighted_score": 0.4565
       },
       {
         "romanization": "HWANGPO",
-        "weighted_score": 0.2967
+        "weighted_score": 0.4565
       },
       {
         "romanization": "WHOANGBO",
-        "weighted_score": 0.2226
+        "weighted_score": 0.3424
       },
       {
         "romanization": "HOWANGBO",
-        "weighted_score": 0.0742
+        "weighted_score": 0.1141
       }
     ]
   },
@@ -41675,7 +41675,7 @@
     "combined_ranking": [
       {
         "romanization": "RO",
-        "weighted_score": 15.0
+        "weighted_score": 100.0
       }
     ]
   },
@@ -41691,7 +41691,7 @@
     "combined_ranking": [
       {
         "romanization": "JUN",
-        "weighted_score": 10.0
+        "weighted_score": 100.0
       }
     ]
   },
@@ -41707,7 +41707,7 @@
     "combined_ranking": [
       {
         "romanization": "HWAN",
-        "weighted_score": 10.0
+        "weighted_score": 100.0
       }
     ]
   }

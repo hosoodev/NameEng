@@ -8,7 +8,6 @@ import {
   XCircle,
   AlertTriangle
 } from 'lucide-react';
-import Link from 'next/link';
 import type { Metadata } from 'next';
 import DesktopNavBar from '@/components/layout/DesktopNavBar';
 import SiteHeader from '@/components/layout/SiteHeader';
@@ -37,10 +36,10 @@ export default function NegativeMeaningWordsPage() {
           <div className="w-full px-4 md:px-0">
             {/* Header Content */}
             <div className="mb-8">
-              <Link href="/blog" className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors mb-6 bg-white border border-gray-200 px-3 py-1.5 rounded-lg hover:bg-gray-50">
+              <a href="/blog" className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors mb-6 bg-white border border-gray-200 px-3 py-1.5 rounded-lg hover:bg-gray-50">
                 <ArrowLeft size={16} />
                 블로그 목록으로 돌아가기
-              </Link>
+              </a>
               <div className="mb-4">
                 <span className="inline-flex items-center rounded-sm bg-red-50 px-2.5 py-0.5 text-xs font-semibold text-red-700 border border-red-100">
                   안전가이드
@@ -279,9 +278,9 @@ export default function NegativeMeaningWordsPage() {
                     NameEng에서는 로마자 변환 시 자동으로 영어권에서 오해의 소지가 있는 부정적 단어, 비속어를 필터링하고 안전한 대안을 제시해줍니다.
                   </p>
 
-                  <Link href="/tools/name-checker" className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-emerald-600 text-white font-medium rounded-xl hover:bg-emerald-700 transition-colors text-sm">
+                  <a href="/tools/name-checker" className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-emerald-600 text-white font-medium rounded-xl hover:bg-emerald-700 transition-colors text-sm">
                     영문명 안전 검사기 사용해보기
-                  </Link>
+                  </a>
                 </div>
               </section>
 
