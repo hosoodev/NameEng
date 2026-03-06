@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Copy, Check, Share2, ChevronRight } from 'lucide-react';
+import { Copy, Check, Share2, ChevronRight, Wifi } from 'lucide-react';
 
 interface ContextualLink {
   href: string;
@@ -86,6 +86,20 @@ export default function ResultCard({
             이 이름이 궁금하다면
           </p>
           <div className="flex flex-col gap-1.5">
+            {/* CTA: 인터넷 가입 배너 - 링크 카드 최상단 */}
+            <a
+              href="/go/internet"
+              className="flex items-center justify-between bg-white hover:bg-orange-50 active:bg-orange-100 rounded-xl px-3 py-2.5 transition-colors group border border-orange-100 hover:border-orange-200"
+            >
+              <span className="flex items-center gap-2 text-sm text-gray-700 group-hover:text-orange-600 font-medium transition-colors">
+                <Wifi size={14} className="text-orange-400 flex-shrink-0" />
+                인터넷 신규·환승 가입 시 40만원+@ 혜택!
+              </span>
+              <ChevronRight
+                size={13}
+                className="text-orange-200 group-hover:text-orange-400 group-hover:translate-x-0.5 transition-all"
+              />
+            </a>
             {contextualLinks.map((link) => (
               <a
                 key={link.href}
