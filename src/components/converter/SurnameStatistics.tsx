@@ -1,5 +1,5 @@
-import React from 'react';
-import { Check, Star, BookOpen } from 'lucide-react';
+import React, { useState } from 'react';
+import { Check, Star, BookOpen, ChevronDown } from 'lucide-react';
 import { getSurnameStatistics, getSurnameVariants, SurnameStatistic } from '@/lib/romanization';
 
 interface SurnameStatisticsProps {
@@ -17,6 +17,8 @@ export default function SurnameStatistics({
 }: SurnameStatisticsProps) {
     const stats = React.useMemo(() => getSurnameStatistics(familyName), [familyName]);
     const fallbackVariants = React.useMemo(() => getSurnameVariants(familyName), [familyName]);
+    // 모바일에서 '기타 표기' 섹션을 처음엔 숨기고 토글로 표시
+    const [showExtra, setShowExtra] = useState(false);
 
     if (!stats || stats.length === 0) {
         if (!fallbackVariants || fallbackVariants.length === 0) {
@@ -130,8 +132,21 @@ export default function SurnameStatistics({
 
             {stats.length > 5 && (
                 <div className="pt-2">
-                    <div className="text-[11px] font-bold text-gray-400 mb-2 px-1">기타 표기 (점수)</div>
-                    <div className="flex flex-wrap gap-1.5">
+                    {/* 모바일: 토글 버튼 | 데스크탑: 언제나 표시 */}
+                    <button
+                        className="sm:hidden w-full flex items-center justify-between text-[11px] font-bold text-gray-400 mb-2 px-1 hover:text-gray-600 transition-colors"
+                        onClick={() => setShowExtra((v) => !v)}
+                        aria-expanded={showExtra}
+                    >
+                        <span>기타 표기 ({stats.length - 5}개)</span>
+                        <ChevronDown
+                            size={13}
+                            className={`transition-transform duration-200 ${showExtra ? 'rotate-180' : ''}`}
+                        />
+                    </button>
+                    <div className="hidden sm:block text-[11px] font-bold text-gray-400 mb-2 px-1">기타 표기 (점수)</div>
+                    {/* 모바일: showExtra일 때만 | 데스크탑: 항상 가시 */}
+                    <div className={`flex flex-wrap gap-1.5 ${showExtra ? '' : 'hidden sm:flex'}`}>
                         {stats.slice(5).map((stat) => {
                             const isSelected = selectedVariant.toUpperCase() === stat.romanization;
                             return (

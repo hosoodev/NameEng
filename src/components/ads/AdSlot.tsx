@@ -54,9 +54,9 @@ export default function AdSlot({
       aria-label="광고"
     >
       {/* 광고 레이블 - 작고 눈에 덜 띄게 */}
-      <p className="text-[10px] text-center text-gray-300 leading-none mb-0.5 select-none">
+      {/* <p className="text-[10px] text-center text-gray-300 leading-none mb-0.5 select-none">
         광고
-      </p>
+      </p> */}
       <ins
         ref={adRef}
         className="adsbygoogle block"
