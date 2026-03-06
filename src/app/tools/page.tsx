@@ -19,8 +19,8 @@ export const metadata: Metadata = {
   keywords: '영문명 생성기, 발음 가이드, 이름 적합성 검사, 로마자 표기 도구, 한글 이름 변환 도구',
 };
 
-const AD_SLOT_SIDEBAR = "6516641528";
-const AD_SLOT_INFEED = "4769022630";
+const AD_SLOT_SIDEBAR = "2738626516";
+const AD_SLOT_INFEED = "2738626516";
 
 const tools = [
   {

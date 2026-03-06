@@ -311,7 +311,7 @@ export default function NegativeMeaningWordsPage() {
           {/* Sidebar Column */}
           <div className="hidden md:block w-[300px]">
             <div className="sticky top-4 space-y-4">
-              <AdSlot slot="4812260682" format="rectangle" />
+              <AdSlot slot="2738626516" format="rectangle" />
               <div className="mb-6">
                 <ContentLinks
                   title={<span className="flex items-center gap-1.5"><AlertTriangle size={16} className="text-orange-500" /> 연관 추천 콘텐츠</span>}

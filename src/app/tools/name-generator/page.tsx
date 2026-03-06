@@ -35,8 +35,8 @@ const nameStyles = [
   { id: 'spaced', label: '띄어쓰기', example: 'Min jun' }
 ];
 
-const AD_SLOT_SIDEBAR = "6516641528";
-const AD_SLOT_INFEED = "4769022630";
+const AD_SLOT_SIDEBAR = "2738626516";
+const AD_SLOT_INFEED = "2738626516";
 
 export default function NameGeneratorPage() {
   const [surname, setSurname] = useState('');

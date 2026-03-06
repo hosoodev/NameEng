@@ -343,7 +343,7 @@ export default function HowToUse() {
           {/* Sidebar Column */}
           <div className="hidden md:block w-[300px]">
             <div className="sticky top-4 space-y-4">
-              <AdSlot slot="4812260682" format="rectangle" />
+              <AdSlot slot="2738626516" format="rectangle" />
               <div className="mb-6">
                 <ContentLinks
                   title={<span className="flex items-center gap-1.5"><BookOpen size={16} className="text-blue-500" /> 유용한 가이드</span>}

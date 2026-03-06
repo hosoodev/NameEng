@@ -34,8 +34,8 @@ import {
 
 /* ─── 상수 ─── */
 const AD_SLOT_RESULT = '2738626516';    // 결과 카드 하단
-const AD_SLOT_CONTENT = '2738626517';   // 콘텐츠 섹션 진입 전
-const AD_SLOT_SIDEBAR = '2738626518';   // 데스크탑 사이드바
+const AD_SLOT_CONTENT = '2738626516';   // 콘텐츠 섹션 진입 전
+const AD_SLOT_SIDEBAR = '2738626516';   // 데스크탑 사이드바
 
 const DEFAULT_OPTIONS: RomanizationOptions = {
   order: 'family-given',
@@ -568,7 +568,7 @@ function NameEngConverter() {
 
           {/* Sidebar Column (Right) */}
           <div className="hidden md:block w-[300px]">
-            <AdSlot slot={AD_SLOT_SIDEBAR} format="rectangle" className="sticky top-4 mb-6 bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 min-h-[250px] flex items-center justify-center" />
+            <AdSlot slot={AD_SLOT_SIDEBAR} format="rectangle" className="sticky top-4 mb-6 overflow-hidden min-h-[250px]" />
 
             {/* 데스크탑에서 항상 보이는 가이드 및 도구 메뉴 */}
             <div className="sticky top-[290px]">
