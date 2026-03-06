@@ -494,6 +494,20 @@ function NameEngConverter() {
 
                 <div className="md:hidden">
                   <div className="px-4 mt-6">
+                    {/* CTA: 인터넷 가입 배너 (링크 카드 최상단) */}
+                    <a
+                      href="/go/internet"
+                      className="flex items-center gap-3 bg-white rounded-xl border border-orange-200 px-4 py-3.5 mb-2 hover:border-orange-300 hover:bg-orange-50/30 active:bg-orange-50 transition-colors group"
+                    >
+                      <span className="text-xl flex-shrink-0">📶</span>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-semibold text-gray-800 group-hover:text-orange-600 transition-colors">
+                          인터넷 신규·환승 가입 시 40만원+@ 혜택!
+                        </p>
+                        <p className="text-xs text-gray-400 mt-0.5 truncate">SK·KT·LG 요금 비교하고 상담받기</p>
+                      </div>
+                      <ChevronRight size={15} className="text-orange-300 group-hover:text-orange-500 group-hover:translate-x-0.5 transition-all flex-shrink-0" />
+                    </a>
                     <ContentLinks title={<span className="flex items-center gap-1.5"><BookOpen size={16} className="text-blue-500" /> 유용한 가이드</span>} items={guideLinks} />
                   </div>
                   <div className="px-4 pb-2 mt-4">
@@ -560,6 +574,20 @@ function NameEngConverter() {
 
                 {/* 모바일에서만 노출되는 초기화면 가이드 링크 */}
                 <div className="md:hidden mt-6">
+                  {/* CTA: 인터넷 가입 배너 (초기화면 링크 카드 최상단) */}
+                  <a
+                    href="/go/internet"
+                    className="flex items-center gap-3 bg-white rounded-xl border border-orange-200 px-4 py-3.5 mb-2 hover:border-orange-300 hover:bg-orange-50/30 active:bg-orange-50 transition-colors group"
+                  >
+                    <span className="text-xl flex-shrink-0">📶</span>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-semibold text-gray-800 group-hover:text-orange-600 transition-colors">
+                        인터넷 신규·환승 가입 시 40만원+@ 혜택!
+                      </p>
+                      <p className="text-xs text-gray-400 mt-0.5 truncate">SK·KT·LG 요금 비교하고 상담받기</p>
+                    </div>
+                    <ChevronRight size={15} className="text-orange-300 group-hover:text-orange-500 group-hover:translate-x-0.5 transition-all flex-shrink-0" />
+                  </a>
                   <ContentLinks title={<span className="flex items-center gap-1.5"><BookOpen size={16} className="text-blue-500" /> 인기 가이드</span>} items={guideLinks.slice(0, 3)} />
                 </div>
               </div>
@@ -572,6 +600,22 @@ function NameEngConverter() {
 
             {/* 데스크탑에서 항상 보이는 가이드 및 도구 메뉴 */}
             <div className="sticky top-[290px]">
+              {/* CTA: 인터넷 가입 배너 (데스크탑 사이드바 최상단) */}
+              <div className="mb-4">
+                <a
+                  href="/go/internet"
+                  className="flex items-center gap-3 bg-white rounded-xl border border-orange-200 px-4 py-3.5 hover:border-orange-300 hover:bg-orange-50/30 active:bg-orange-50 transition-colors group"
+                >
+                  <span className="text-xl flex-shrink-0">📶</span>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-semibold text-gray-800 group-hover:text-orange-600 transition-colors">
+                      인터넷 신규·환승 가입 시 40만원+@ 혜택!
+                    </p>
+                    <p className="text-xs text-gray-400 mt-0.5 truncate">SK·KT·LG 요금 비교하고 상담받기</p>
+                  </div>
+                  <ChevronRight size={15} className="text-orange-300 group-hover:text-orange-500 group-hover:translate-x-0.5 transition-all flex-shrink-0" />
+                </a>
+              </div>
               <div className="mb-6">
                 <ContentLinks title={<span className="flex items-center gap-1.5"><BookOpen size={16} className="text-blue-500" /> 유용한 가이드</span>} items={guideLinks} />
               </div>
