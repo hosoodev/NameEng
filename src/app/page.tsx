@@ -456,7 +456,7 @@ function NameEngConverter() {
                       <AdSlot
                         slot={AD_SLOT_RESULT}
                         format="auto"
-                        className="py-1 md:my-6 md:rounded-lg md:overflow-hidden"
+                        className="py-1 min-h-[100px] md:min-h-0 md:my-6 md:rounded-lg md:overflow-hidden"
                       />
 
                       {/* 4. 옵션 패널 */}
