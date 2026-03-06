@@ -29,7 +29,8 @@ import {
   Search,
   Ruler,
   CheckCircle2,
-  CircleDollarSign
+  CircleDollarSign,
+  ChevronRight
 } from 'lucide-react';
 
 /* ─── 상수 ─── */
@@ -539,25 +540,23 @@ function NameEngConverter() {
                 </div>
 
                 {/* 주요 기능 특징 안내 */}
-                <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
-                  {[
-                    { icon: <CheckCircle2 className="text-emerald-500" size={18} />, title: '최신 규정 반영', text: '로마자 표기법 2024 기준' },
-                    { icon: <FileText className="text-blue-500" size={18} />, title: '여권 발급 최적화', text: '여권용 영문 이름 표기 지원' },
-                    { icon: <AlertTriangle className="text-amber-500" size={18} />, title: '어감 자동 체크', text: '부정적 의미 영단어 필터링' },
-                    { icon: <CircleDollarSign className="text-indigo-500" size={18} />, title: '완전 무료', text: '제한 없는 이름 변환 제공' },
-                  ].map(({ icon, title, text }) => (
-                    <Link
-                      key={title}
-                      href="/about"
-                      className="group bg-white rounded-2xl border border-gray-100 p-3.5 sm:p-4 flex flex-col gap-1 transition-all hover:border-blue-300 hover:shadow-md hover:-translate-y-0.5"
-                    >
-                      <div className="flex items-center gap-1.5 sm:gap-2 mb-0.5">
-                        <span className="flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">{icon}</span>
-                        <span className="text-xs sm:text-sm font-semibold text-gray-800 tracking-tight group-hover:text-blue-600 transition-colors">{title}</span>
+                <div className="mt-4">
+                  <Link
+                    href="/about"
+                    className="group bg-white rounded-2xl border border-gray-100 p-5 flex items-center justify-between transition-all hover:border-blue-300 hover:shadow-md hover:-translate-y-0.5"
+                  >
+                    <div className="flex flex-col gap-1.5">
+                      <div className="flex items-center gap-2">
+                        <span className="text-base font-bold text-gray-900 group-hover:text-blue-600 transition-colors">Nameeng 서비스 소개</span>
                       </div>
-                      <span className="text-[11px] sm:text-xs text-gray-500 leading-snug">{text}</span>
-                    </Link>
-                  ))}
+                      <span className="text-sm text-gray-500 leading-relaxed pr-8 line-clamp-2 md:line-clamp-none">
+                        여권 로마자 표기 규정부터 부정적 영단어 어감 분석까지. 가장 쉽고 정확하게 내 이름의 영문 스펠링을 찾아보세요.
+                      </span>
+                    </div>
+                    <div className="shrink-0 text-gray-300 group-hover:text-blue-500 transition-colors bg-gray-50 group-hover:bg-blue-50 p-2 rounded-full">
+                      <ChevronRight size={20} />
+                    </div>
+                  </Link>
                 </div>
 
                 {/* 모바일에서만 노출되는 초기화면 가이드 링크 */}
