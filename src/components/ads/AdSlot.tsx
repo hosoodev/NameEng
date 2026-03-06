@@ -61,7 +61,7 @@ export default function AdSlot({
         ref={adRef}
         className="adsbygoogle block"
         style={{ display: 'block' }}
-        data-ad-client={process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID}
+        data-ad-client={process.env.NEXT_PUBLIC_ADSENSE_ID}
         data-ad-slot={slot}
         data-ad-format={format}
         data-full-width-responsive={fullWidth ? 'true' : 'false'}
