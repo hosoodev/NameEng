@@ -4,11 +4,11 @@ import { useState, useMemo } from 'react';
 import {
     ArrowLeft,
     Search,
-    Info,
     ChevronRight,
     BarChart3,
     Users,
-    Star
+    Star,
+    ChevronDown
 } from 'lucide-react';
 import Link from 'next/link';
 import DesktopNavBar from '@/components/layout/DesktopNavBar';
@@ -23,10 +23,24 @@ interface RomanizationStat {
     weighted_score: number;
 }
 
+interface SourceCount {
+    romanization: string;
+    count: number | null;
+    percentage?: number;
+}
+
 interface SurnameEntry {
     hangul: string;
     combined_ranking: RomanizationStat[];
+    sources?: Record<string, SourceCount[]>;
 }
+
+const SECTION_MARKERS: Record<string, string> = {
+    "1999_passport": "1999년 외교부 여권 자료",
+    "2011_passport": "2011년 외교부 여권 자료",
+    "2011_snu": "2011년 서울대 재학생 자료",
+    "2011_internet": "2011년 인터넷 표기 자료",
+};
 
 export default function SurnameFrequencyPage() {
     const [searchTerm, setSearchTerm] = useState('');
@@ -35,14 +49,17 @@ export default function SurnameFrequencyPage() {
     const allSurnames = useMemo(() => {
         return Object.entries(surnameData).map(([hangul, data]) => ({
             hangul,
-            combined_ranking: (data as any).combined_ranking as RomanizationStat[]
+            combined_ranking: (data as any).combined_ranking as RomanizationStat[],
+            sources: (data as any).sources as Record<string, SourceCount[]>
         })).sort((a, b) => a.hangul.localeCompare(b.hangul, 'ko'));
     }, []);
 
     // 검색 필터링 logic
     const filteredSurnames = useMemo(() => {
-        if (!searchTerm.trim()) return allSurnames.slice(0, 12); // 초기에는 상위/가나다순 일부만 표시
-        return allSurnames.filter(s => s.hangul.includes(searchTerm.trim())).slice(0, 20);
+        // 공백 무시
+        const term = searchTerm.replace(/\s/g, '');
+        if (!term) return allSurnames.slice(0, 12); // 초기에는 우선 상위 표기/가나다 일부
+        return allSurnames.filter(s => s.hangul.includes(term)).slice(0, 20);
     }, [searchTerm, allSurnames]);
 
     return (
@@ -64,12 +81,12 @@ export default function SurnameFrequencyPage() {
                                 도구 목록으로 돌아가기
                             </Link>
                             <div className="mb-3">
-                                <span className="inline-flex items-center rounded-full bg-amber-50 px-2.5 py-0.5 text-xs font-semibold text-amber-700 border border-amber-200">
+                                <span className="inline-flex items-center rounded-full bg-blue-50 px-2.5 py-0.5 text-xs font-semibold text-blue-700 border border-blue-200">
                                     성씨 데이터 도구
                                 </span>
                             </div>
                             <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">
-                                성씨 표기 빈도 검색
+                                성씨 영문 표기 빈도 검색
                             </h1>
                             <p className="text-lg text-gray-600 leading-relaxed">
                                 특정 성씨가 영문으로 어떻게 가장 많이 표기되는지, 실생활 데이터를 기반으로 분석한 통계를 제공합니다.
@@ -92,7 +109,7 @@ export default function SurnameFrequencyPage() {
                                         placeholder="예: 김, 이, 박, 남궁"
                                         value={searchTerm}
                                         onChange={(e) => setSearchTerm(e.target.value)}
-                                        className="block w-full pl-11 pr-4 py-4 border border-gray-300 rounded-xl leading-5 bg-white placeholder-gray-400 focus:outline-none focus:ring-4 focus:ring-amber-500/10 focus:border-amber-500 sm:text-lg transition-all"
+                                        className="block w-full pl-12 pr-4 py-3.5 border border-gray-300 rounded-xl leading-5 bg-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 sm:text-lg transition-colors"
                                     />
                                 </div>
                             </div>
@@ -102,7 +119,7 @@ export default function SurnameFrequencyPage() {
                         <section className="space-y-4 mb-8">
                             <div className="flex items-center justify-between px-1">
                                 <h2 className="text-lg font-bold text-gray-900">
-                                    {searchTerm ? `'${searchTerm}' 검색 결과` : '주요 성씨 목록'}
+                                    {searchTerm.trim() ? `'${searchTerm}' 검색 결과` : '주요 성씨 목록'}
                                 </h2>
                                 <span className="text-xs text-gray-500">
                                     {filteredSurnames.length}개 표시 중
@@ -111,7 +128,7 @@ export default function SurnameFrequencyPage() {
 
                             <div className="grid gap-4 sm:grid-cols-2">
                                 {filteredSurnames.map((entry) => (
-                                    <div key={entry.hangul} className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden hover:border-amber-200 transition-colors">
+                                    <div key={entry.hangul} className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden hover:border-blue-200 transition-colors">
                                         <div className="p-5 border-b border-gray-50 flex items-center justify-between bg-gray-50/50">
                                             <div className="flex items-center gap-2">
                                                 <span className="text-xl font-black text-gray-900">{entry.hangul}</span>
@@ -119,7 +136,7 @@ export default function SurnameFrequencyPage() {
                                             </div>
                                             <Link
                                                 href={`/tools/name-checker?input=${entry.hangul}`}
-                                                className="text-[11px] font-bold text-amber-600 hover:text-amber-700 flex items-center gap-0.5"
+                                                className="text-[11px] font-bold text-blue-600 hover:text-blue-700 flex items-center gap-0.5"
                                             >
                                                 적합성 검사하기 <ChevronRight size={12} />
                                             </Link>
@@ -128,7 +145,7 @@ export default function SurnameFrequencyPage() {
                                             {entry.combined_ranking.slice(0, 3).map((rank, idx) => (
                                                 <div key={rank.romanization} className="flex items-center justify-between">
                                                     <div className="flex items-center gap-2">
-                                                        <span className={`w-5 h-5 flex items-center justify-center rounded-md text-[10px] font-bold ${idx === 0 ? 'bg-amber-100 text-amber-700' : 'bg-gray-100 text-gray-500'}`}>
+                                                        <span className={`w-5 h-5 flex items-center justify-center rounded-md text-[10px] font-bold ${idx === 0 ? 'bg-blue-100 text-blue-700' : 'bg-gray-100 text-gray-500'}`}>
                                                             {idx + 1}
                                                         </span>
                                                         <span className="font-bold text-gray-800 tracking-wide text-sm">{rank.romanization}</span>
@@ -136,7 +153,7 @@ export default function SurnameFrequencyPage() {
                                                     <div className="flex items-center gap-2">
                                                         <div className="w-24 h-1.5 bg-gray-100 rounded-full overflow-hidden hidden sm:block">
                                                             <div
-                                                                className={`h-full rounded-full ${idx === 0 ? 'bg-amber-400' : 'bg-gray-300'}`}
+                                                                className={`h-full rounded-full ${idx === 0 ? 'bg-blue-500' : 'bg-gray-300'}`}
                                                                 style={{ width: `${Math.min(100, rank.weighted_score)}%` }}
                                                             ></div>
                                                         </div>
@@ -146,10 +163,53 @@ export default function SurnameFrequencyPage() {
                                                     </div>
                                                 </div>
                                             ))}
+
                                             {entry.combined_ranking.length > 3 && (
                                                 <p className="text-[11px] text-gray-400 pt-1">
                                                     외 {entry.combined_ranking.length - 3}개의 다른 표기가 더 있습니다.
                                                 </p>
+                                            )}
+
+                                            {/* 출처별 상세 통계 아코디언 */}
+                                            {entry.sources && Object.keys(entry.sources).length > 0 && (
+                                                <div className="mt-4 pt-4 border-t border-gray-100">
+                                                    <details className="group">
+                                                        <summary className="flex items-center justify-between cursor-pointer list-none text-xs font-bold text-gray-500 hover:text-blue-600 transition-colors select-none">
+                                                            <span className="flex items-center gap-1"><BarChart3 size={14} />상세 통계 자료 보기</span>
+                                                            <ChevronDown size={14} className="transition-transform group-open:-rotate-180" />
+                                                        </summary>
+                                                        <div className="mt-3 space-y-3">
+                                                            {Object.entries(SECTION_MARKERS).map(([sourceKey, sourceLabel]) => {
+                                                                const sourceData = entry.sources![sourceKey];
+                                                                if (!sourceData || sourceData.length === 0) return null;
+
+                                                                // 상위 5개까지만 표시하고 빈도순 정렬
+                                                                const sortedData = [...sourceData]
+                                                                    .sort((a, b) => (b.count || 0) - (a.count || 0))
+                                                                    .slice(0, 5);
+
+                                                                return (
+                                                                    <div key={sourceKey} className="bg-gray-50/80 rounded-lg p-3 border border-gray-100">
+                                                                        <h4 className="text-[10px] font-bold text-gray-500 mb-2.5 flex items-center gap-1.5">
+                                                                            <span className="w-1.5 h-1.5 rounded-full bg-blue-300"></span>
+                                                                            {sourceLabel}
+                                                                        </h4>
+                                                                        <div className="flex flex-wrap gap-1.5">
+                                                                            {sortedData.map(stat => (
+                                                                                <div key={stat.romanization} className="inline-flex items-baseline gap-1.5 px-2 py-1 bg-white border border-gray-200 rounded text-[11px] font-medium">
+                                                                                    <span className="font-bold text-gray-800">{stat.romanization}</span>
+                                                                                    {stat.count !== null && stat.count !== undefined && (
+                                                                                        <span className="text-[10px] text-gray-400">({stat.count.toLocaleString()}명)</span>
+                                                                                    )}
+                                                                                </div>
+                                                                            ))}
+                                                                        </div>
+                                                                    </div>
+                                                                );
+                                                            })}
+                                                        </div>
+                                                    </details>
+                                                </div>
                                             )}
                                         </div>
                                     </div>
@@ -192,7 +252,7 @@ export default function SurnameFrequencyPage() {
                                 <ContentLinks
                                     title={<span className="flex items-center gap-1.5"><Users size={16} className="text-gray-500" /> 다른 앱 보기</span>}
                                     items={[
-                                        { href: '/tools/name-checker', icon: <Search className="text-purple-500" size={20} />, title: '영문명 적합성 검사', desc: '나의 영문명 디자인 분석' },
+                                        { href: '/tools/name-checker', icon: <Search className="text-blue-500" size={20} />, title: '영문명 적합성 검사', desc: '나의 영문명 디자인 분석' },
                                         { href: '/', icon: <Search className="text-blue-500" size={20} />, title: '영문이름변환기', desc: '이름을 가장 적합한 로마자로 변환' }
                                     ]}
                                 />
