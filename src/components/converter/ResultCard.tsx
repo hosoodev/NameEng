@@ -93,12 +93,17 @@ export default function ResultCard({
             >
               <span className="flex items-center gap-2 text-sm text-gray-700 group-hover:text-orange-600 font-medium transition-colors">
                 <Wifi size={14} className="text-orange-400 flex-shrink-0" />
-                인터넷 신규·환승 가입 시 40만원+@ 혜택!
+                {/* 모바일: 짧은 문구, 데스크탑: 긴 문구 */}
+                <span className="sm:hidden">인터넷 가입 시 40만원+@ 혜택!</span>
+                <span className="hidden sm:inline">인터넷 신규·환승 가입 시 40만원+@ 혜택!</span>
               </span>
-              <ChevronRight
-                size={13}
-                className="text-orange-200 group-hover:text-orange-400 group-hover:translate-x-0.5 transition-all"
-              />
+              <span className="flex items-center gap-1.5 flex-shrink-0">
+                <span className="text-[9px] font-bold text-orange-300 border border-orange-200 rounded px-1 py-0.5 leading-none">광고</span>
+                <ChevronRight
+                  size={13}
+                  className="text-orange-200 group-hover:text-orange-400 group-hover:translate-x-0.5 transition-all"
+                />
+              </span>
             </a>
             {contextualLinks.map((link) => (
               <a
