@@ -452,16 +452,13 @@ function NameEngConverter() {
                         </div>
                       )}
 
-                      {/* 3. 광고 슬롯 A: 결과 직후
-                          AdSense JS가 .ad-slot에 min-height: 0px !important를 주입하므로
-                          부모 div에 min-height를 적용하여 우회 */}
-                      <div style={{ minHeight: 100 }}>
-                        <AdSlot
-                          slot={AD_SLOT_RESULT}
-                          format="auto"
-                          className="py-1 md:my-6 md:rounded-lg md:overflow-hidden"
-                        />
-                      </div>
+                      {/* 3. 광고 슬롯 A: 결과 직후 */}
+                      <AdSlot
+                        slot={AD_SLOT_RESULT}
+                        format="auto"
+                        className="py-1 md:my-6 md:rounded-lg md:overflow-hidden"
+                        style={{ minHeight: 100 }}
+                      />
 
                       {/* 4. 옵션 패널 */}
                       <div className="px-4 md:px-0">
