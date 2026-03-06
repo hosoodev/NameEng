@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 // import { Nanum_Gothic } from "next/font/google";
-import { Theme } from "@radix-ui/themes";
-import "@radix-ui/themes/styles.css";
 import "./globals.css";
 import Analytics from '@/components/analytics/Analytics';
 
@@ -91,11 +89,14 @@ export default function RootLayout({
         <meta name="msapplication-TileColor" content="#0090ff" />
         <meta name="msapplication-config" content="/browserconfig.xml" />
         <Analytics />
+        <script
+          async
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID}`}
+          crossOrigin="anonymous"
+        />
       </head>
       <body className="antialiased">
-        <Theme accentColor="blue" grayColor="slate" radius="medium">
-          {children}
-        </Theme>
+        {children}
       </body>
     </html>
   );

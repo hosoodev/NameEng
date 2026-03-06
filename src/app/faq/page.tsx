@@ -1,23 +1,24 @@
-import { 
-  Card, 
-  Text, 
-  Heading, 
-  Button, 
-  Flex, 
-  Box,
-  Separator,
-  Container
-} from '@radix-ui/themes';
-import { 
-  ArrowLeft, 
-  HelpCircle, 
-  AlertTriangle, 
-  CheckCircle, 
+import {
+  ArrowLeft,
+  HelpCircle,
+  AlertTriangle,
+  CheckCircle,
   Info,
-  ExternalLink
+  ExternalLink,
+  BookOpen,
+  FileText,
+  Globe,
+  Briefcase,
+  Search,
+  Ruler
 } from 'lucide-react';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import DesktopNavBar from '@/components/layout/DesktopNavBar';
+import SiteHeader from '@/components/layout/SiteHeader';
+import SiteFooter from '@/components/layout/SiteFooter';
+import AdSlot from '@/components/ads/AdSlot';
+import ContentLinks from '@/components/converter/ContentLinks';
 
 export const metadata: Metadata = {
   title: '자주 묻는 질문 FAQ - 영문이름변환기 질문과 답변 | Nameeng 네이밍',
@@ -41,7 +42,7 @@ export default function FAQ() {
     {
       category: "기본 사용법",
       color: "blue",
-      icon: <HelpCircle size={20} />,
+      icon: <HelpCircle size={24} className="text-blue-500" />,
       questions: [
         {
           q: "NameEng는 무료인가요?",
@@ -64,7 +65,7 @@ export default function FAQ() {
     {
       category: "로마자 표기",
       color: "green",
-      icon: <CheckCircle size={20} />,
+      icon: <CheckCircle size={24} className="text-green-500" />,
       questions: [
         {
           q: "어떤 표기법을 기준으로 하나요?",
@@ -87,7 +88,7 @@ export default function FAQ() {
     {
       category: "여권 및 공식 문서",
       color: "purple",
-      icon: <Info size={20} />,
+      icon: <Info size={24} className="text-purple-500" />,
       questions: [
         {
           q: "여권 발급 시 어떤 표기를 사용해야 하나요?",
@@ -110,7 +111,7 @@ export default function FAQ() {
     {
       category: "부정적 의미 필터",
       color: "red",
-      icon: <AlertTriangle size={20} />,
+      icon: <AlertTriangle size={24} className="text-red-500" />,
       questions: [
         {
           q: "부정적 의미 경고가 나타나면 어떻게 해야 하나요?",
@@ -133,7 +134,7 @@ export default function FAQ() {
     {
       category: "기술적 문제",
       color: "amber",
-      icon: <Info size={20} />,
+      icon: <Info size={24} className="text-amber-500" />,
       questions: [
         {
           q: "변환이 안 되는 이름이 있나요?",
@@ -156,210 +157,180 @@ export default function FAQ() {
   ];
 
   return (
-    <Container size="3" className="py-6 px-4">
-      <Box className="max-w-5xl mx-auto">
-        {/* Header */}
-        <Flex align="center" gap="4" className="mb-6">
-          <Link href="/">
-            <Button variant="ghost" size="2">
-              <ArrowLeft size={16} />
-              NameEng로 돌아가기
-            </Button>
-          </Link>
-        </Flex>
+    <div className="min-h-screen bg-gray-50 flex flex-col">
+      <DesktopNavBar />
 
-        <Box className="mb-8">
-          <Heading as="h1" size="7" className="mb-4" style={{ letterSpacing: '-0.02em' }}>
-            자주 묻는 질문 (FAQ)
-          </Heading>
-          <Text size="3" color="gray">
-            NameEng 사용 중 궁금한 점들을 모아 정리했습니다.
-          </Text>
-        </Box>
+      <main className="max-w-[1280px] mx-auto w-full px-0 md:px-8 flex-1">
+        <div className="px-4 md:hidden mt-4">
+          <SiteHeader />
+        </div>
 
-        {/* 빠른 답변 */}
-        <Card size="3" className="mb-6" style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
-          <Box className="p-6">
-            <Heading as="h2" size="5" className="mb-4">
-              🔥 가장 많이 묻는 질문
-            </Heading>
-            
-            <Box className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Box className="p-4 bg-blue-50 rounded-md">
-                <Text size="2" weight="medium" className="mb-2 block">
-                  Q. 무료인가요?
-                </Text>
-                <Text size="2" color="gray">
-                  A. 네, 완전 무료입니다! 🎉
-                </Text>
-              </Box>
+        <div className="md:grid md:grid-cols-[1fr_300px] gap-8 mt-8">
+          {/* Main Column */}
+          <div className="w-full px-4 md:px-0">
+            {/* Header Content */}
+            <div className="mb-8">
+              <Link href="/" className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors mb-6 bg-white border border-gray-200 px-3 py-1.5 rounded-lg hover:bg-gray-50">
+                <ArrowLeft size={16} />
+                NameEng로 돌아가기
+              </Link>
+              <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">
+                자주 묻는 질문 (FAQ)
+              </h1>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                NameEng 사용 중 궁금한 점들을 모아 정리했습니다.
+              </p>
+            </div>
 
-              <Box className="p-4 bg-green-50 rounded-md">
-                <Text size="2" weight="medium" className="mb-2 block">
-                  Q. 여권에 사용해도 되나요?
-                </Text>
-                <Text size="2" color="gray">
-                  A. 네, 공식 규정을 준수합니다. ✅
-                </Text>
-              </Box>
+            {/* 빠른 답변 */}
+            <section className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 mb-8">
+              <h2 className="text-xl font-bold flex items-center gap-2 text-gray-900 mb-6">
+                🔥 가장 많이 묻는 질문
+              </h2>
 
-              <Box className="p-4 bg-purple-50 rounded-md">
-                <Text size="2" weight="medium" className="mb-2 block">
-                  Q. 모바일에서 사용 가능한가요?
-                </Text>
-                <Text size="2" color="gray">
-                  A. 네, 모바일 최적화되어 있습니다. 📱
-                </Text>
-              </Box>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="p-4 bg-blue-50/50 border border-blue-100/50 rounded-xl">
+                  <h3 className="text-sm font-bold text-gray-900 mb-2">Q. 무료인가요?</h3>
+                  <p className="text-sm text-gray-600">A. 네, 완전 무료입니다! 🎉</p>
+                </div>
 
-              <Box className="p-4 bg-amber-50 rounded-md">
-                <Text size="2" weight="medium" className="mb-2 block">
-                  Q. 개인정보가 저장되나요?
-                </Text>
-                <Text size="2" color="gray">
-                  A. 아니요, 어떤 정보도 저장하지 않습니다. 🔒
-                </Text>
-              </Box>
-            </Box>
-          </Box>
-        </Card>
+                <div className="p-4 bg-green-50/50 border border-green-100/50 rounded-xl">
+                  <h3 className="text-sm font-bold text-gray-900 mb-2">Q. 여권에 사용해도 되나요?</h3>
+                  <p className="text-sm text-gray-600">A. 네, 공식 규정을 준수합니다. ✅</p>
+                </div>
 
-        {/* 카테고리별 FAQ */}
-        {faqData.map((category, categoryIndex) => (
-          <Card key={categoryIndex} size="3" className="mb-6" style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
-            <Box className="p-6">
-              <Heading as="h2" size="5" className="mb-4 flex items-center gap-2">
-                <Box className={`text-${category.color}-600`}>
-                  {category.icon}
-                </Box>
-                {category.category}
-              </Heading>
-              
-              <Box className="space-y-4">
-                {category.questions.map((faq, faqIndex) => (
-                  <Box key={faqIndex} className="border-l-4 border-gray-200 pl-4">
-                    <Text size="3" weight="medium" className="mb-2 block">
-                      Q. {faq.q}
-                    </Text>
-                    <Text size="2" color="gray" className="leading-relaxed">
-                      A. {faq.a}
-                    </Text>
-                  </Box>
-                ))}
-              </Box>
-            </Box>
-          </Card>
-        ))}
+                <div className="p-4 bg-purple-50/50 border border-purple-100/50 rounded-xl">
+                  <h3 className="text-sm font-bold text-gray-900 mb-2">Q. 모바일에서 사용 가능한가요?</h3>
+                  <p className="text-sm text-gray-600">A. 네, 모바일 최적화되어 있습니다. 📱</p>
+                </div>
 
-        {/* 추가 도움말 */}
-        <Card size="3" className="mb-8" style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
-          <Box className="p-6">
-            <Heading as="h2" size="5" className="mb-4">
-              💡 추가 도움말
-            </Heading>
-            
-            <Box className="space-y-4">
-              <Box>
-                <Text size="3" weight="medium" className="mb-2 block">
-                  더 자세한 정보가 필요하신가요?
-                </Text>
-                <Text size="2" color="gray" className="mb-3">
-                  아래 가이드 페이지에서 더 상세한 정보를 확인하실 수 있습니다.
-                </Text>
-                
-                <Flex gap="3" wrap="wrap">
-                  <Button asChild variant="outline" size="2">
-                    <Link href="/how-to-use">
+                <div className="p-4 bg-amber-50/50 border border-amber-100/50 rounded-xl">
+                  <h3 className="text-sm font-bold text-gray-900 mb-2">Q. 개인정보가 저장되나요?</h3>
+                  <p className="text-sm text-gray-600">A. 아니요, 어떤 정보도 저장하지 않습니다. 🔒</p>
+                </div>
+              </div>
+            </section>
+
+            {/* 카테고리별 FAQ */}
+            <div className="space-y-8 mb-8">
+              {faqData.map((category, categoryIndex) => (
+                <section key={categoryIndex} className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
+                  <h2 className="text-xl font-bold flex items-center gap-2 text-gray-900 mb-6">
+                    {category.icon}
+                    {category.category}
+                  </h2>
+
+                  <div className="space-y-6">
+                    {category.questions.map((faq, faqIndex) => (
+                      <div key={faqIndex} className="border-l-4 border-gray-200 pl-4 py-1">
+                        <h3 className="text-base font-bold text-gray-900 mb-2">
+                          Q. {faq.q}
+                        </h3>
+                        <p className="text-sm text-gray-600 leading-relaxed">
+                          A. {faq.a}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              ))}
+            </div>
+
+            {/* 추가 도움말 */}
+            <section className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 mb-8">
+              <h2 className="text-xl font-bold flex items-center gap-2 text-gray-900 mb-6">
+                💡 추가 도움말
+              </h2>
+
+              <div className="space-y-6">
+                <div>
+                  <h3 className="text-base font-bold text-gray-900 mb-2">더 자세한 정보가 필요하신가요?</h3>
+                  <p className="text-sm text-gray-600 mb-4">아래 가이드 페이지에서 더 상세한 정보를 확인하실 수 있습니다.</p>
+
+                  <div className="flex flex-wrap gap-3">
+                    <Link href="/how-to-use" className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
                       이용방법 가이드
                     </Link>
-                  </Button>
-                  
-                  <Button asChild variant="outline" size="2">
-                    <Link href="/romanization-guide">
+                    <Link href="/romanization-guide" className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
                       로마자 표기법 가이드
                     </Link>
-                  </Button>
-                  
-                  <Button asChild variant="outline" size="2">
-                    <Link href="/passport-guide">
+                    <Link href="/passport-guide" className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
                       여권 규정 가이드
                     </Link>
-                  </Button>
-                </Flex>
-              </Box>
+                  </div>
+                </div>
 
-              <Separator />
+                <hr className="border-gray-100" />
 
-              <Box>
-                <Text size="3" weight="medium" className="mb-2 block">
-                  공식 자료 참고
-                </Text>
-                <Text size="2" color="gray" className="mb-3">
-                  정확한 정보는 공식 기관의 자료를 참고하시기 바랍니다.
-                </Text>
-                
-                <Flex gap="3" wrap="wrap">
-                  <Button asChild variant="ghost" size="2">
-                    <a 
-                      href="https://www.korean.go.kr/" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2"
-                    >
-                      <ExternalLink size={14} />
-                      국립국어원
+                <div>
+                  <h3 className="text-base font-bold text-gray-900 mb-2">공식 자료 참고</h3>
+                  <p className="text-sm text-gray-600 mb-4">정확한 정보는 공식 기관의 자료를 참고하시기 바랍니다.</p>
+
+                  <div className="flex flex-wrap gap-3">
+                    <a href="https://www.korean.go.kr/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors">
+                      <ExternalLink size={16} /> 국립국어원
                     </a>
-                  </Button>
-                  
-                  <Button asChild variant="ghost" size="2">
-                    <a 
-                      href="https://www.passport.go.kr/" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2"
-                    >
-                      <ExternalLink size={14} />
-                      외교부 여권안내
+                    <a href="https://www.passport.go.kr/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors">
+                      <ExternalLink size={16} /> 외교부 여권안내
                     </a>
-                  </Button>
-                </Flex>
-              </Box>
+                  </div>
+                </div>
 
-              <Separator />
+                <hr className="border-gray-100" />
 
-              <Box className="p-4 bg-blue-50 rounded-md">
-                <Text size="2" weight="medium" className="mb-2 block">
-                  📧 질문이나 제안이 있으시다면
-                </Text>
-                <Text size="2" color="gray">
-                  서비스 개선을 위한 여러분의 소중한 의견을 기다립니다. 
-                  새로운 기능 제안, 오류 신고, 사용법 문의 등 
-                  어떤 피드백이든 환영합니다!
-                </Text>
-              </Box>
-            </Box>
-          </Box>
-        </Card>
+                <div className="p-5 bg-blue-50/50 rounded-xl border border-blue-100/50">
+                  <h3 className="text-sm font-bold text-gray-900 mb-2">📧 질문이나 제안이 있으시다면</h3>
+                  <p className="text-sm text-gray-600">
+                    서비스 개선을 위한 여러분의 소중한 의견을 기다립니다.
+                    새로운 기능 제안, 오류 신고, 사용법 문의 등 어떤 피드백이든 환영합니다!
+                  </p>
+                </div>
+              </div>
+            </section>
 
-        {/* 검색 팁 */}
-        <Box className="text-center">
-          <Separator className="mb-6" />
-          
-          <Box className="mb-4">
-            <Text size="2" weight="medium" className="mb-2 block">
-              원하는 답변을 찾지 못하셨나요?
-            </Text>
-            <Text size="2" color="gray">
-              브라우저의 검색 기능(Ctrl+F 또는 Cmd+F)을 사용하여 
-              키워드로 이 페이지에서 빠르게 검색해보세요.
-            </Text>
-          </Box>
+            {/* 검색 팁 */}
+            <div className="text-center pt-8 border-t border-gray-200">
+              <p className="text-sm font-bold text-gray-900 mb-2">원하는 답변을 찾지 못하셨나요?</p>
+              <p className="text-sm text-gray-600 mb-6">
+                브라우저의 검색 기능(Ctrl+F 또는 Cmd+F)을 사용하여 키워드로 이 페이지에서 빠르게 검색해보세요.
+              </p>
+              <p className="text-xs text-gray-400">
+                FAQ는 사용자 피드백을 바탕으로 지속적으로 업데이트됩니다.
+              </p>
+            </div>
+          </div>
 
-          <Text size="1" color="gray">
-            FAQ는 사용자 피드백을 바탕으로 지속적으로 업데이트됩니다.
-          </Text>
-        </Box>
-      </Box>
-    </Container>
+          {/* Sidebar Column */}
+          <div className="hidden md:block w-[300px]">
+            <div className="sticky top-4 space-y-4">
+              <AdSlot slot="4812260682" format="rectangle" />
+              <div className="mb-6">
+                <ContentLinks
+                  title={<span className="flex items-center gap-1.5"><BookOpen size={16} className="text-blue-500" /> 유용한 가이드</span>}
+                  items={[
+                    { href: '/blog/passport-name-guide', icon: <FileText className="text-blue-500" size={20} />, title: '여권 발급 시 영문명 작성법', desc: '여권 신청 시 주의사항과 실제 사례' },
+                    { href: '/blog/overseas-name-tips', icon: <Globe className="text-emerald-500" size={20} />, title: '해외 거주 시 영문명 사용 팁', desc: '문화적 차이를 고려한 실용적인 조언' },
+                    { href: '/blog/business-name-etiquette', icon: <Briefcase className="text-slate-500" size={20} />, title: '국제 비즈니스 영문명 에티켓', desc: '전문적인 영문명 사용법과 명함 작성 가이드' }
+                  ]}
+                />
+              </div>
+              <div>
+                <ContentLinks
+                  title={<span className="flex items-center gap-1.5"><Briefcase size={16} className="text-gray-500" /> 도구</span>}
+                  items={[
+                    { href: '/tools/name-checker', icon: <Search className="text-blue-500" size={20} />, title: '영문명 적합성 검사기', desc: '기존 영문명의 적합성을 종합적으로 분석' },
+                    { href: '/romanization-guide', icon: <Ruler className="text-amber-500" size={20} />, title: '로마자 표기법 가이드', desc: '국어의 로마자 표기법 2024년 기준 정리' }
+                  ]}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <div className="px-4 mb-8 max-w-[1280px] w-full mx-auto">
+        <SiteFooter />
+      </div>
+    </div>
   );
 }

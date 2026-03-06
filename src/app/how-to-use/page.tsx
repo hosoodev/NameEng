@@ -1,27 +1,26 @@
-import { 
-  Card, 
-  Text, 
-  Heading, 
-  Button, 
-  Flex, 
-  Box,
-  Separator,
-  Container,
-  Badge,
-  Code
-} from '@radix-ui/themes';
-import { 
-  ArrowLeft, 
-  Play, 
-  Settings, 
-  Copy, 
-  Share2, 
+import {
+  ArrowLeft,
+  Play,
+  Settings,
+  Copy,
+  Share2,
   AlertTriangle,
   CheckCircle,
-  Keyboard
+  Keyboard,
+  BookOpen,
+  FileText,
+  Globe,
+  Briefcase,
+  Search,
+  Ruler
 } from 'lucide-react';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import DesktopNavBar from '@/components/layout/DesktopNavBar';
+import SiteHeader from '@/components/layout/SiteHeader';
+import SiteFooter from '@/components/layout/SiteFooter';
+import AdSlot from '@/components/ads/AdSlot';
+import ContentLinks from '@/components/converter/ContentLinks';
 
 export const metadata: Metadata = {
   title: '이용방법 가이드 - 영문이름변환기 사용법 | Nameeng 네이밍',
@@ -42,469 +41,328 @@ export const metadata: Metadata = {
 
 export default function HowToUse() {
   return (
-    <Container size="3" className="py-6 px-4">
-      <Box className="max-w-5xl mx-auto">
-        {/* Header */}
-        <Flex align="center" gap="4" className="mb-6">
-          <Link href="/">
-            <Button variant="ghost" size="2">
-              <ArrowLeft size={16} />
-              NameEng로 돌아가기
-            </Button>
-          </Link>
-        </Flex>
+    <div className="min-h-screen bg-gray-50 flex flex-col">
+      <DesktopNavBar />
 
-        <Box className="mb-8">
-          <Heading as="h1" size="7" className="mb-4" style={{ letterSpacing: '-0.02em' }}>
-            이용방법 가이드
-          </Heading>
-          <Text size="3" color="gray">
-            NameEng를 효과적으로 활용하는 방법을 단계별로 안내합니다.
-          </Text>
-        </Box>
+      <main className="max-w-[1280px] mx-auto w-full px-0 md:px-8 flex-1">
+        <div className="px-4 md:hidden mt-4">
+          <SiteHeader />
+        </div>
 
-        {/* 빠른 시작 */}
-        <Card size="3" className="mb-6" style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
-          <Box className="p-6">
-            <Heading as="h2" size="5" className="mb-4 flex items-center gap-2">
-              <Play size={20} className="text-green-600" />
-              빠른 시작
-            </Heading>
-            
-            <Box className="space-y-4">
-              <Text size="3" className="mb-4">
-                가장 기본적인 사용법을 30초만에 익혀보세요!
-              </Text>
+        <div className="md:grid md:grid-cols-[1fr_300px] gap-8 mt-8">
+          {/* Main Column */}
+          <div className="w-full px-4 md:px-0">
+            {/* Header Content */}
+            <div className="mb-8">
+              <Link href="/" className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors mb-6 bg-white border border-gray-200 px-3 py-1.5 rounded-lg hover:bg-gray-50">
+                <ArrowLeft size={16} />
+                NameEng로 돌아가기
+              </Link>
+              <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">
+                이용방법 가이드
+              </h1>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                NameEng를 효과적으로 활용하는 방법을 단계별로 안내합니다.
+              </p>
+            </div>
 
-              <Box className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <Box className="p-4 bg-blue-50 rounded-md text-center">
-                  <Box className="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center mx-auto mb-2">
-                    1
-                  </Box>
-                  <Text size="2" weight="medium" className="mb-1 block">
-                    이름 입력
-                  </Text>
-                  <Text size="1" color="gray">
-                    한글 이름을 입력하세요
-                  </Text>
-                </Box>
+            {/* 빠른 시작 */}
+            <section className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 mb-8">
+              <h2 className="text-xl font-bold flex items-center gap-2 text-gray-900 mb-6">
+                <Play size={24} className="text-green-600" />
+                빠른 시작
+              </h2>
 
-                <Box className="p-4 bg-green-50 rounded-md text-center">
-                  <Box className="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center mx-auto mb-2">
-                    2
-                  </Box>
-                  <Text size="2" weight="medium" className="mb-1 block">
-                    엔터 또는 변환
-                  </Text>
-                  <Text size="1" color="gray">
-                    Enter키나 버튼 클릭
-                  </Text>
-                </Box>
+              <div className="space-y-6">
+                <p className="text-base text-gray-700">
+                  가장 기본적인 사용법을 30초만에 익혀보세요!
+                </p>
 
-                <Box className="p-4 bg-purple-50 rounded-md text-center">
-                  <Box className="w-8 h-8 bg-purple-500 text-white rounded-full flex items-center justify-center mx-auto mb-2">
-                    3
-                  </Box>
-                  <Text size="2" weight="medium" className="mb-1 block">
-                    결과 확인
-                  </Text>
-                  <Text size="1" color="gray">
-                    로마자 변환 결과 확인
-                  </Text>
-                </Box>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                  <div className="p-4 bg-blue-50/50 border border-blue-100/50 rounded-xl text-center">
+                    <div className="w-8 h-8 bg-blue-600 text-white font-bold rounded-full flex items-center justify-center mx-auto mb-3 shadow-[0_2px_10px_rgba(37,99,235,0.2)]">1</div>
+                    <h3 className="text-sm font-bold text-gray-900 mb-1">이름 입력</h3>
+                    <p className="text-xs text-gray-600">한글 이름을 입력하세요</p>
+                  </div>
 
-                <Box className="p-4 bg-amber-50 rounded-md text-center">
-                  <Box className="w-8 h-8 bg-amber-500 text-white rounded-full flex items-center justify-center mx-auto mb-2">
-                    4
-                  </Box>
-                  <Text size="2" weight="medium" className="mb-1 block">
-                    복사 & 활용
-                  </Text>
-                  <Text size="1" color="gray">
-                    결과 복사 후 사용
-                  </Text>
-                </Box>
-              </Box>
+                  <div className="p-4 bg-green-50/50 border border-green-100/50 rounded-xl text-center">
+                    <div className="w-8 h-8 bg-green-600 text-white font-bold rounded-full flex items-center justify-center mx-auto mb-3 shadow-[0_2px_10px_rgba(22,163,74,0.2)]">2</div>
+                    <h3 className="text-sm font-bold text-gray-900 mb-1">변환하기</h3>
+                    <p className="text-xs text-gray-600">Enter키나 버튼 클릭</p>
+                  </div>
 
-              <Box className="p-4 bg-gray-50 rounded-md">
-                <Text size="2" weight="medium" className="mb-2 block">
-                  💡 예시: &ldquo;김민수&rdquo; 입력 → &ldquo;Kim Minsu&rdquo; 출력
-                </Text>
-                <Text size="2" color="gray">
-                  추가 옵션 없이도 바로 표준 로마자 표기를 얻을 수 있습니다.
-                </Text>
-              </Box>
-            </Box>
-          </Box>
-        </Card>
+                  <div className="p-4 bg-purple-50/50 border border-purple-100/50 rounded-xl text-center">
+                    <div className="w-8 h-8 bg-purple-600 text-white font-bold rounded-full flex items-center justify-center mx-auto mb-3 shadow-[0_2px_10px_rgba(147,51,234,0.2)]">3</div>
+                    <h3 className="text-sm font-bold text-gray-900 mb-1">결과 확인</h3>
+                    <p className="text-xs text-gray-600">로마자 변환 결과 확인</p>
+                  </div>
 
-        {/* 상세 사용법 */}
-        <Card size="3" className="mb-6" style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
-          <Box className="p-6">
-            <Heading as="h2" size="5" className="mb-4 flex items-center gap-2">
-              <Settings size={20} className="text-blue-600" />
-              상세 사용법
-            </Heading>
-            
-            <Box className="space-y-6">
-              {/* 이름 입력 */}
-              <Box>
-                <Badge color="blue" className="mb-3">Step 1</Badge>
-                <Text size="3" weight="medium" className="mb-3 block">
-                  한글 이름 입력
-                </Text>
-                
-                <Box className="space-y-3">
-                  <Box className="p-3 bg-blue-50 rounded-md">
-                    <Text size="2" weight="medium" className="mb-1 block">
-                      ✅ 올바른 입력 예시
-                    </Text>
-                    <Text size="2" color="gray">
-                      • 김민수, 이영희, 박지성<br/>
-                      • 남궁민수, 선우용녀 (복성 포함)<br/>
-                      • 최민, 이준 (외자 이름 포함)
-                    </Text>
-                  </Box>
+                  <div className="p-4 bg-amber-50/50 border border-amber-100/50 rounded-xl text-center">
+                    <div className="w-8 h-8 bg-amber-600 text-white font-bold rounded-full flex items-center justify-center mx-auto mb-3 shadow-[0_2px_10px_rgba(217,119,6,0.2)]">4</div>
+                    <h3 className="text-sm font-bold text-gray-900 mb-1">복사 & 활용</h3>
+                    <p className="text-xs text-gray-600">결과 복사 후 사용</p>
+                  </div>
+                </div>
 
-                  <Box className="p-3 bg-red-50 rounded-md">
-                    <Text size="2" weight="medium" className="mb-1 block">
-                      ❌ 피해야 할 입력
-                    </Text>
-                    <Text size="2" color="gray">
-                      • 영어나 숫자 포함 (Kim민수, 이영희2)<br/>
-                      • 특수문자 포함 (김-민수, 이*영희)<br/>
-                      • 공백 포함 (김 민수, 이 영희)
-                    </Text>
-                  </Box>
+                <div className="p-4 bg-gray-50 rounded-xl border border-gray-100 flex gap-3 items-start">
+                  <span className="text-xl">💡</span>
+                  <div>
+                    <h3 className="text-sm font-bold text-gray-900 mb-1">예시: "김민수" 입력 → "Kim Minsu" 출력</h3>
+                    <p className="text-sm text-gray-600">추가 옵션 없이도 바로 표준 로마자 표기를 얻을 수 있습니다.</p>
+                  </div>
+                </div>
+              </div>
+            </section>
 
-                  <Box className="flex items-center gap-2 p-3 bg-amber-50 rounded-md">
-                    <Keyboard size={16} className="text-amber-600" />
-                    <Text size="2" color="gray">
-                      <Text weight="medium">팁:</Text> 입력 후 <Code>Enter</Code> 키를 누르면 바로 변환됩니다.
-                    </Text>
-                  </Box>
-                </Box>
-              </Box>
+            {/* 상세 사용법 */}
+            <section className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 mb-8">
+              <h2 className="text-xl font-bold flex items-center gap-2 text-gray-900 mb-6">
+                <Settings size={24} className="text-blue-600" />
+                상세 사용법
+              </h2>
 
-              {/* 복성 선택 */}
-              <Box>
-                <Badge color="purple" className="mb-3">Step 2</Badge>
-                <Text size="3" weight="medium" className="mb-3 block">
-                  복성 선택 (해당하는 경우)
-                </Text>
-                
-                <Box className="space-y-3">
-                  <Text size="2" color="gray">
+              <div className="space-y-10">
+                {/* 이름 입력 */}
+                <div>
+                  <span className="inline-flex items-center rounded-full bg-blue-50 px-2.5 py-0.5 text-xs font-semibold text-blue-700 border border-blue-200 mb-3">Step 1</span>
+                  <h3 className="text-lg font-bold text-gray-900 mb-4">한글 이름 입력</h3>
+
+                  <div className="space-y-3">
+                    <div className="p-4 bg-blue-50/50 border border-blue-100/50 rounded-xl">
+                      <h4 className="text-sm font-bold text-gray-900 mb-2">✅ 올바른 입력 예시</h4>
+                      <p className="text-sm text-gray-600 leading-relaxed">
+                        • 김민수, 이영희, 박지성<br />
+                        • 남궁민수, 선우용녀 (복성 포함)<br />
+                        • 최민, 이준 (외자 이름 포함)
+                      </p>
+                    </div>
+
+                    <div className="p-4 bg-red-50/50 border border-red-100/50 rounded-xl">
+                      <h4 className="text-sm font-bold text-gray-900 mb-2">❌ 피해야 할 입력</h4>
+                      <p className="text-sm text-gray-600 leading-relaxed">
+                        • 영어나 숫자 포함 (Kim민수, 이영희2)<br />
+                        • 특수문자 포함 (김-민수, 이*영희)<br />
+                        • 공백 포함 (김 민수, 이 영희)
+                      </p>
+                    </div>
+
+                    <div className="flex items-center gap-3 p-4 bg-amber-50/50 border border-amber-100/50 rounded-xl">
+                      <Keyboard size={20} className="text-amber-600 shrink-0" />
+                      <p className="text-sm text-gray-700">
+                        <strong>팁:</strong> 입력 후 <kbd className="px-2 py-1 bg-white border border-gray-200 rounded-md text-xs font-mono shadow-sm">Enter</kbd> 키를 누르면 바로 변환됩니다.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 복성 선택 */}
+                <div>
+                  <span className="inline-flex items-center rounded-full bg-purple-50 px-2.5 py-0.5 text-xs font-semibold text-purple-700 border border-purple-200 mb-3">Step 2</span>
+                  <h3 className="text-lg font-bold text-gray-900 mb-4">복성 선택 (해당하는 경우)</h3>
+
+                  <p className="text-sm text-gray-600 mb-4">
                     남궁, 선우, 사공, 제갈, 독고 등의 복성이 감지되면 선택 옵션이 나타납니다.
-                  </Text>
+                  </p>
 
-                  <Box className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    <Box className="p-3 bg-purple-50 rounded-md">
-                      <Text size="2" weight="medium" className="mb-1 block">
-                        복성 선택 시
-                      </Text>
-                      <Text size="2" color="gray">
-                        선우용녀 → <strong>Seonu</strong> Yongnyeo<br/>
-                        (선우를 하나의 성씨로 인식)
-                      </Text>
-                    </Box>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="p-4 bg-purple-50/50 border border-purple-100/50 rounded-xl">
+                      <h4 className="text-sm font-bold text-gray-900 mb-2">복성 선택 시</h4>
+                      <p className="text-sm text-gray-600">
+                        선우용녀 → <strong>Seonu</strong> Yongnyeo<br />
+                        <span className="text-gray-500 text-xs mt-1 block">(선우를 하나의 성씨로 인식)</span>
+                      </p>
+                    </div>
 
-                    <Box className="p-3 bg-gray-50 rounded-md">
-                      <Text size="2" weight="medium" className="mb-1 block">
-                        단성 선택 시
-                      </Text>
-                      <Text size="2" color="gray">
-                        선우용녀 → <strong>Seon</strong> Uyongnyeo<br/>
-                        (선만을 성씨로 인식)
-                      </Text>
-                    </Box>
-                  </Box>
-                </Box>
-              </Box>
+                    <div className="p-4 bg-gray-50/50 border border-gray-100/50 rounded-xl">
+                      <h4 className="text-sm font-bold text-gray-900 mb-2">단성 선택 시</h4>
+                      <p className="text-sm text-gray-600">
+                        선우용녀 → <strong>Seon</strong> Uyongnyeo<br />
+                        <span className="text-gray-500 text-xs mt-1 block">(선만을 성씨로 인식)</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
 
-              {/* 성씨 표기 선택 */}
-              <Box>
-                <Badge color="green" className="mb-3">Step 3</Badge>
-                <Text size="3" weight="medium" className="mb-3 block">
-                  성씨 표기 선택
-                </Text>
-                
-                <Box className="space-y-3">
-                  <Text size="2" color="gray">
-                    각 성씨마다 여러 표기 옵션이 제공됩니다. 첫 번째가 표준 표기이며, 
+                {/* 성씨 표기 선택 */}
+                <div>
+                  <span className="inline-flex items-center rounded-full bg-green-50 px-2.5 py-0.5 text-xs font-semibold text-green-700 border border-green-200 mb-3">Step 3</span>
+                  <h3 className="text-lg font-bold text-gray-900 mb-4">성씨 표기 선택</h3>
+
+                  <p className="text-sm text-gray-600 mb-4">
+                    각 성씨마다 여러 표기 옵션이 제공됩니다. 첫 번째가 표준 표기이며,
                     관용적으로 사용되는 다른 표기들도 선택할 수 있습니다.
-                  </Text>
+                  </p>
 
-                  <Box className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                    <Box className="p-3 bg-green-50 rounded-md">
-                      <Text size="2" weight="medium" className="mb-1 block">
-                        김(金) 씨
-                      </Text>
-                      <Text size="2" color="gray">
-                        Kim (표준) | Gim | Keem<br/>
-                        Ghim | Kym | Kin
-                      </Text>
-                    </Box>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div className="p-4 bg-green-50/50 border border-green-100/50 rounded-xl">
+                      <h4 className="text-sm font-bold text-gray-900 mb-2">김(金) 씨</h4>
+                      <p className="text-sm text-gray-600 leading-relaxed">
+                        Kim (관용) | Gim (표준)<br />
+                        Keem | Ghim | Kym
+                      </p>
+                    </div>
 
-                    <Box className="p-3 bg-green-50 rounded-md">
-                      <Text size="2" weight="medium" className="mb-1 block">
-                        이(李) 씨
-                      </Text>
-                      <Text size="2" color="gray">
-                        Lee (관용) | I (표준)<br/>
-                        Rhee | Yi | Yee | Rhie
-                      </Text>
-                    </Box>
+                    <div className="p-4 bg-green-50/50 border border-green-100/50 rounded-xl">
+                      <h4 className="text-sm font-bold text-gray-900 mb-2">이(李) 씨</h4>
+                      <p className="text-sm text-gray-600 leading-relaxed">
+                        Lee (관용) | I (표준)<br />
+                        Rhee | Yi | Yee
+                      </p>
+                    </div>
 
-                    <Box className="p-3 bg-green-50 rounded-md">
-                      <Text size="2" weight="medium" className="mb-1 block">
-                        박(朴) 씨
-                      </Text>
-                      <Text size="2" color="gray">
-                        Park (관용) | Bak (표준)<br/>
+                    <div className="p-4 bg-green-50/50 border border-green-100/50 rounded-xl">
+                      <h4 className="text-sm font-bold text-gray-900 mb-2">박(朴) 씨</h4>
+                      <p className="text-sm text-gray-600 leading-relaxed">
+                        Park (관용) | Bak (표준)<br />
                         Bark | Pack | Pag
-                      </Text>
-                    </Box>
-                  </Box>
-                </Box>
-              </Box>
+                      </p>
+                    </div>
+                  </div>
+                </div>
 
-              {/* 기타 옵션 */}
-              <Box>
-                <Badge color="amber" className="mb-3">Step 4</Badge>
-                <Text size="3" weight="medium" className="mb-3 block">
-                  추가 옵션 설정
-                </Text>
-                
-                <Box className="space-y-4">
-                  <Box className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <Box className="p-3 bg-amber-50 rounded-md">
-                      <Text size="2" weight="medium" className="mb-2 block">
-                        📝 이름 순서
-                      </Text>
-                      <Text size="2" color="gray">
-                        • <strong>성-이름</strong>: Kim Minsu (기본)<br/>
-                        • <strong>이름-성</strong>: Minsu Kim
-                      </Text>
-                    </Box>
+                {/* 기타 옵션 */}
+                <div>
+                  <span className="inline-flex items-center rounded-full bg-amber-50 px-2.5 py-0.5 text-xs font-semibold text-amber-700 border border-amber-200 mb-3">Step 4</span>
+                  <h3 className="text-lg font-bold text-gray-900 mb-4">추가 옵션 설정</h3>
 
-                    <Box className="p-3 bg-amber-50 rounded-md">
-                      <Text size="2" weight="medium" className="mb-2 block">
-                        🔤 대소문자 스타일
-                      </Text>
-                      <Text size="2" color="gray">
-                        • <strong>첫글자 대문자</strong>: Kim Minsu<br/>
-                        • <strong>소문자</strong>: kim minsu<br/>
-                        • <strong>대문자</strong>: KIM MINSU
-                      </Text>
-                    </Box>
-                  </Box>
+                  <div className="space-y-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="p-4 bg-amber-50/50 border border-amber-100/50 rounded-xl">
+                        <h4 className="text-sm font-bold text-gray-900 mb-2">📝 이름 순서</h4>
+                        <p className="text-sm text-gray-600 leading-relaxed">
+                          • <strong>성-이름</strong>: Kim Minsu (기본)<br />
+                          • <strong>이름-성</strong>: Minsu Kim
+                        </p>
+                      </div>
 
-                  <Box className="p-3 bg-amber-50 rounded-md">
-                    <Text size="2" weight="medium" className="mb-2 block">
-                      ➖ 이름 음절 구분 (하이픈)
-                    </Text>
-                    <Text size="2" color="gray">
-                      • <strong>사용 안함</strong>: Kim Minsu<br/>
-                      • <strong>사용함</strong>: Kim Min-su (이름 음절 사이에 하이픈)
-                    </Text>
-                  </Box>
-                </Box>
-              </Box>
-            </Box>
-          </Box>
-        </Card>
+                      <div className="p-4 bg-amber-50/50 border border-amber-100/50 rounded-xl">
+                        <h4 className="text-sm font-bold text-gray-900 mb-2">🔤 대소문자 스타일</h4>
+                        <p className="text-sm text-gray-600 leading-relaxed">
+                          • <strong>첫 글자 대문자</strong>: Kim Minsu<br />
+                          • <strong>소문자</strong>: kim minsu<br />
+                          • <strong>대문자</strong>: KIM MINSU
+                        </p>
+                      </div>
+                    </div>
 
-        {/* 결과 활용법 */}
-        <Card size="3" className="mb-6" style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
-          <Box className="p-6">
-            <Heading as="h2" size="5" className="mb-4 flex items-center gap-2">
-              <CheckCircle size={20} className="text-green-600" />
-              결과 활용법
-            </Heading>
-            
-            <Box className="space-y-4">
-              <Box className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Box className="p-4 bg-green-50 rounded-md">
-                  <Flex align="center" gap="2" className="mb-2">
-                    <Copy size={16} className="text-green-600" />
-                    <Text size="2" weight="medium">
-                      복사 기능
-                    </Text>
-                  </Flex>
-                  <Text size="2" color="gray">
-                    변환된 결과를 클릭 한 번으로 클립보드에 복사하여 
-                    다른 문서나 양식에 바로 붙여넣기할 수 있습니다.
-                  </Text>
-                </Box>
+                    <div className="p-4 bg-amber-50/50 border border-amber-100/50 rounded-xl">
+                      <h4 className="text-sm font-bold text-gray-900 mb-2">➖ 이름 음절 구분 (하이픈)</h4>
+                      <p className="text-sm text-gray-600 leading-relaxed">
+                        • <strong>사용 안함</strong>: Kim Minsu<br />
+                        • <strong>사용함</strong>: Kim Min-su (이름 음절 사이에 하이픈 추가)
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
 
-                <Box className="p-4 bg-blue-50 rounded-md">
-                  <Flex align="center" gap="2" className="mb-2">
-                    <Share2 size={16} className="text-blue-600" />
-                    <Text size="2" weight="medium">
-                      공유 기능
-                    </Text>
-                  </Flex>
-                  <Text size="2" color="gray">
-                    설정된 옵션과 함께 결과를 URL로 공유하여 
-                    다른 사람과 쉽게 공유하거나 나중에 다시 확인할 수 있습니다.
-                  </Text>
-                </Box>
-              </Box>
+            {/* 결과 활용법 */}
+            <section className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 mb-8">
+              <h2 className="text-xl font-bold flex items-center gap-2 text-gray-900 mb-6">
+                <CheckCircle size={24} className="text-green-600" />
+                결과 활용법
+              </h2>
 
-              <Box className="p-4 bg-yellow-50 rounded-md border-l-4 border-yellow-500">
-                <Flex align="center" gap="2" className="mb-2">
-                  <AlertTriangle size={16} className="text-yellow-600" />
-                  <Text size="2" weight="medium">
-                    부정적 의미 경고
-                  </Text>
-                </Flex>
-                <Text size="2" color="gray">
-                  변환 결과가 영어권에서 부정적 의미를 가질 수 있는 경우 
-                  자동으로 경고가 표시되며, 안전한 대안이 제시됩니다.
-                </Text>
-              </Box>
-            </Box>
-          </Box>
-        </Card>
+              <div className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="p-4 bg-green-50/50 border border-green-100/50 rounded-xl">
+                    <h3 className="flex items-center gap-2 text-sm font-bold text-gray-900 mb-2">
+                      <Copy size={16} className="text-green-600" /> 복사 기능
+                    </h3>
+                    <p className="text-sm text-gray-600 leading-relaxed">
+                      변환된 결과를 클릭 한 번으로 클립보드에 복사하여 다른 문서나 카카오톡에 바로 붙여넣기할 수 있습니다.
+                    </p>
+                  </div>
 
-        {/* 실용적 팁 */}
-        <Card size="3" className="mb-6" style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
-          <Box className="p-6">
-            <Heading as="h2" size="5" className="mb-4">
-              💡 실용적 팁
-            </Heading>
-            
-            <Box className="space-y-4">
-              <Box>
-                <Text size="3" weight="medium" className="mb-2 block">
-                  1. 여권 발급 시
-                </Text>
-                <Text size="2" color="gray">
-                  • 표준 표기를 기본으로 하되, 기존에 사용하던 관용 표기가 있다면 증빙서류와 함께 신청<br/>
-                  • 하이픈 사용 여부는 신중히 결정 (기존 비자와의 일치성 고려)<br/>
-                  • <Link href="/passport-guide" className="underline hover:text-blue-600">여권 규정 가이드</Link>에서 자세한 정보 확인
-                </Text>
-              </Box>
+                  <div className="p-4 bg-blue-50/50 border border-blue-100/50 rounded-xl">
+                    <h3 className="flex items-center gap-2 text-sm font-bold text-gray-900 mb-2">
+                      <Share2 size={16} className="text-blue-600" /> 공유 기능
+                    </h3>
+                    <p className="text-sm text-gray-600 leading-relaxed">
+                      설정된 옵션값을 포함해 결과를 URL로 생성합니다. 다른 사람의 확인을 받거나 기록해둘 때 매우 유용합니다.
+                    </p>
+                  </div>
+                </div>
 
-              <Box>
-                <Text size="3" weight="medium" className="mb-2 block">
-                  2. 해외 거주/유학 시
-                </Text>
-                <Text size="2" color="gray">
-                  • 부정적 의미 경고가 있는 경우 반드시 대안 표기 고려<br/>
-                  • 현지에서 발음하기 쉬운 표기 선택<br/>
-                  • 일관성 있게 동일한 표기 사용
-                </Text>
-              </Box>
+                <div className="p-4 bg-yellow-50/50 border border-yellow-200 rounded-xl mt-4">
+                  <h3 className="flex items-center gap-2 text-sm font-bold text-gray-900 mb-2">
+                    <AlertTriangle size={16} className="text-yellow-600" /> 부정적 의미 경고 알림
+                  </h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">
+                    만약 로마자 표기가 해외(영어권)에서 놀림의 대상이 되거나 부정적 의미를 가질 수 있다면 시스템이 자동으로 경고를 띄웁니다. 이 경우 함께 제공되는 대체 표기(Safe Alternative)를 선택하시면 안전합니다.
+                  </p>
+                </div>
+              </div>
+            </section>
 
-              <Box>
-                <Text size="3" weight="medium" className="mb-2 block">
-                  3. 비즈니스/학술 목적
-                </Text>
-                <Text size="2" color="gray">
-                  • 전문적이고 격식 있는 표기 선택<br/>
-                  • 국제 표준에 맞는 표기법 우선 고려<br/>
-                  • 명함, 이메일 서명 등에서 일관성 유지
-                </Text>
-              </Box>
+            {/* 실용적 팁 */}
+            <section className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 mb-8">
+              <h2 className="text-xl font-bold flex items-center gap-2 text-gray-900 mb-6">
+                💡 실용적 팁
+              </h2>
 
-              <Box>
-                <Text size="3" weight="medium" className="mb-2 block">
-                  4. 소셜미디어/일상 사용
-                </Text>
-                <Text size="2" color="gray">
-                  • 개성을 살릴 수 있는 관용 표기 활용<br/>
-                  • 기억하기 쉽고 입력하기 편한 표기 선택<br/>
-                  • 하이픈 사용으로 가독성 향상 고려
-                </Text>
-              </Box>
-            </Box>
-          </Box>
-        </Card>
+              <div className="space-y-6">
+                <div>
+                  <h3 className="text-base font-bold text-gray-900 mb-2">1. 여권 발급 시</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed pl-2 border-l-2 border-gray-200">
+                    • 표준 표기를 기본으로 하되, 기존에 사용하던 가족 관용 표기가 있다면 일치시키는 것이 좋습니다.<br />
+                    • 이름 사이 하이픈(-)은 꼭 필요할 때만 신중히 고려하세요.<br />
+                    • 여권청 직원의 안내를 최종적으로 따르는 것을 권장합니다.
+                  </p>
+                </div>
 
-        {/* 자주 하는 실수 */}
-        <Card size="3" className="mb-8" style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
-          <Box className="p-6">
-            <Heading as="h2" size="5" className="mb-4">
-              ⚠️ 자주 하는 실수와 해결법
-            </Heading>
-            
-            <Box className="space-y-4">
-              <Box className="p-4 bg-red-50 rounded-md border-l-4 border-red-500">
-                <Text size="2" weight="medium" className="mb-2 block">
-                  실수 1: 일관성 없는 표기 사용
-                </Text>
-                <Text size="2" color="gray" className="mb-2">
-                  문서마다 다른 표기를 사용하여 신원 확인에 문제가 생기는 경우
-                </Text>
-                <Text size="2" weight="medium" color="green">
-                  해결법: 한 번 결정한 표기를 모든 공식 문서에서 일관되게 사용
-                </Text>
-              </Box>
+                <div>
+                  <h3 className="text-base font-bold text-gray-900 mb-2">2. 해외 거주 및 비즈니스</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed pl-2 border-l-2 border-gray-200">
+                    • 부정적 의미 경고를 결코 무시하지 마십시오. 비즈니스 이메일에서 오해를 살 수 있습니다.<br />
+                    • 국제 학회 논문, 회사 이메일, 명함 등에서는 자신이 한 번 정한 표기를 평생 일관성 있게 동일하게 사용해야 합니다.
+                  </p>
+                </div>
+              </div>
+            </section>
 
-              <Box className="p-4 bg-red-50 rounded-md border-l-4 border-red-500">
-                <Text size="2" weight="medium" className="mb-2 block">
-                  실수 2: 부정적 의미 무시
-                </Text>
-                <Text size="2" color="gray" className="mb-2">
-                  경고를 무시하고 문제가 있는 표기를 계속 사용하는 경우
-                </Text>
-                <Text size="2" weight="medium" color="green">
-                  해결법: 경고가 나타나면 반드시 대안 표기 검토 후 결정
-                </Text>
-              </Box>
+            {/* 추가 도움말 */}
+            <div className="text-center pt-8 border-t border-gray-200">
+              <p className="text-sm font-bold text-gray-900 mb-4">질문이 더 있으신가요?</p>
 
-              <Box className="p-4 bg-red-50 rounded-md border-l-4 border-red-500">
-                <Text size="2" weight="medium" className="mb-2 block">
-                  실수 3: 복성 처리 오류
-                </Text>
-                <Text size="2" color="gray" className="mb-2">
-                  남궁민수를 Nam Gungminsu로 잘못 분리하는 경우
-                </Text>
-                <Text size="2" weight="medium" color="green">
-                  해결법: 복성 선택 옵션을 활용하여 올바른 성씨 구분 적용
-                </Text>
-              </Box>
-            </Box>
-          </Box>
-        </Card>
-
-        {/* 추가 도움말 */}
-        <Box className="text-center">
-          <Separator className="mb-6" />
-          
-          <Box className="mb-4">
-            <Text size="2" weight="medium" className="mb-2 block">
-              더 자세한 정보가 필요하신가요?
-            </Text>
-            
-            <Flex gap="3" justify="center" wrap="wrap">
-              <Button asChild variant="outline">
-                <Link href="/faq">
+              <div className="flex flex-wrap gap-3 justify-center mb-6">
+                <Link href="/faq" className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
                   자주 묻는 질문
                 </Link>
-              </Button>
-              
-              <Button asChild variant="outline">
-                <Link href="/romanization-guide">
-                  로마자 표기법 가이드
+                <Link href="/romanization-guide" className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                  로마자 표기법 기준
                 </Link>
-              </Button>
-              
-              <Button asChild variant="outline">
-                <Link href="/passport-guide">
-                  여권 규정 가이드
-                </Link>
-              </Button>
-            </Flex>
-          </Box>
+              </div>
 
-          <Text size="1" color="gray">
-            이용방법에 대한 추가 질문이 있으시면 언제든지 문의해 주세요.
-          </Text>
-        </Box>
-      </Box>
-    </Container>
+              <p className="text-xs text-gray-400">
+                원하는 결과를 위해 편하게 여러 번 테스트해보세요.
+              </p>
+            </div>
+          </div>
+
+          {/* Sidebar Column */}
+          <div className="hidden md:block w-[300px]">
+            <div className="sticky top-4 space-y-4">
+              <AdSlot slot="4812260682" format="rectangle" />
+              <div className="mb-6">
+                <ContentLinks
+                  title={<span className="flex items-center gap-1.5"><BookOpen size={16} className="text-blue-500" /> 유용한 가이드</span>}
+                  items={[
+                    { href: '/blog/passport-name-guide', icon: <FileText className="text-blue-500" size={20} />, title: '여권 발급 시 영문명 작성법', desc: '여권 신청 시 주의사항과 실제 사례' },
+                    { href: '/blog/overseas-name-tips', icon: <Globe className="text-emerald-500" size={20} />, title: '해외 거주 시 영문명 사용 팁', desc: '문화적 차이를 고려한 실용적인 조언' },
+                    { href: '/blog/business-name-etiquette', icon: <Briefcase className="text-slate-500" size={20} />, title: '국제 비즈니스 영문명 에티켓', desc: '전문적인 영문명 사용법과 명함 작성 가이드' }
+                  ]}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <div className="px-4 mb-8 max-w-[1280px] w-full mx-auto">
+        <SiteFooter />
+      </div>
+    </div>
   );
 }

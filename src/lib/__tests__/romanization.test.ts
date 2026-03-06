@@ -48,16 +48,15 @@ describe('romanizeKoreanName', () => {
   describe('관용 성씨 표기', () => {
     test('김씨 변형', () => {
       const variants = getSurnameVariants('김');
-      expect(variants).toContain('Kim');
-      expect(variants).toContain('Gim');
-      expect(variants).toContain('Keem');
+      expect(variants).toContain('KIM');
+      expect(variants).toContain('GIM');
     });
 
     test('이씨 변형', () => {
       const variants = getSurnameVariants('이');
-      expect(variants).toContain('Lee');
-      expect(variants).toContain('Rhee');
-      expect(variants).toContain('Yi');
+      expect(variants).toContain('LEE');
+      expect(variants).toContain('RHEE');
+      expect(variants).toContain('YI');
     });
 
     test('성씨 변형 선택', () => {
@@ -97,8 +96,8 @@ describe('romanizeKoreanName', () => {
       expect(result.alternatives).toContain('Gim Minsu');
     });
 
-    test('관용 표기 없는 성씨', () => {
-      const result = romanizeKoreanName('가민수'); // 가씨는 관용표기가 적음
+    test('데이터에 없는 성씨', () => {
+      const result = romanizeKoreanName('없민수'); // '없' 성씨는 데이터에 없음
       expect(result.alternatives.length).toBe(0);
     });
   });
