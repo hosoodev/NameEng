@@ -16,6 +16,7 @@ import SiteHeader from '@/components/layout/SiteHeader';
 import SiteFooter from '@/components/layout/SiteFooter';
 import AdSlot from '@/components/ads/AdSlot';
 import ContentLinks from '@/components/converter/ContentLinks';
+import SourceCitation from '@/components/converter/SourceCitation';
 import surnameData from '@/data/normalized_romanization.json';
 
 interface RomanizationStat {
@@ -134,12 +135,20 @@ export default function SurnameFrequencyPage() {
                                                 <span className="text-xl font-black text-gray-900">{entry.hangul}</span>
                                                 <span className="text-xs text-gray-400 font-medium">씨</span>
                                             </div>
-                                            <Link
-                                                href={`/tools/name-checker?input=${entry.hangul}`}
-                                                className="text-[11px] font-bold text-blue-600 hover:text-blue-700 flex items-center gap-0.5"
-                                            >
-                                                적합성 검사하기 <ChevronRight size={12} />
-                                            </Link>
+                                            <div className="flex items-center gap-3">
+                                                <Link
+                                                    href={`/tools/surname-frequency/${entry.hangul}`}
+                                                    className="text-[11px] font-bold text-gray-500 hover:text-gray-900 border border-gray-200 px-2 py-1 rounded-md bg-white flex items-center gap-0.5 transition-colors"
+                                                >
+                                                    상세 통계 <ChevronRight size={12} />
+                                                </Link>
+                                                <Link
+                                                    href={`/tools/name-checker?input=${entry.hangul}`}
+                                                    className="text-[11px] font-bold text-blue-600 hover:text-blue-700 flex items-center gap-0.5"
+                                                >
+                                                    적합성 검사 <ChevronRight size={12} />
+                                                </Link>
+                                            </div>
                                         </div>
                                         <div className="p-5 space-y-3">
                                             {entry.combined_ranking.slice(0, 3).map((rank, idx) => (
@@ -242,6 +251,11 @@ export default function SurnameFrequencyPage() {
                                 </p>
                             </div>
                         </section>
+
+                        {/* Citation Section */}
+                        <div className="mb-8">
+                            <SourceCitation />
+                        </div>
                     </div>
 
                     {/* Sidebar Column */}
