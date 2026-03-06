@@ -63,7 +63,7 @@ export default function SurnameStatistics({
                     <span className="text-blue-500">'{familyName}'</span>씨 로마자 표기 통계
                 </h3>
                 <span className="text-[10px] text-gray-400 font-medium bg-gray-50 px-2 py-0.5 rounded-full border border-gray-100">
-                    여권 발급 데이터 기준
+                    통계 점수 기준
                 </span>
             </div>
 
@@ -120,13 +120,7 @@ export default function SurnameStatistics({
                             {/* Percentage */}
                             <div className="relative z-10 text-right shrink-0">
                                 <span className={`text-sm font-bold ${isSelected ? 'text-blue-700' : 'text-gray-600'}`}>
-                                    {stat.percentage !== null && stat.percentage !== undefined ? stat.percentage.toFixed(1) : '알 수 없음'}%
-                                </span>
-                                <span className={`block text-[10px] sm:hidden ${isSelected ? 'text-blue-500/70' : 'text-gray-400'}`}>
-                                    ({stat.count ? `${stat.count.toLocaleString()}명` : '-'})
-                                </span>
-                                <span className={`hidden sm:inline-block ml-1.5 text-[11px] font-medium ${isSelected ? 'text-blue-500/70' : 'text-gray-400'}`}>
-                                    {stat.count ? `${stat.count.toLocaleString()}명` : '-'}
+                                    {stat.percentage !== null && stat.percentage !== undefined ? stat.percentage.toFixed(1) : '알 수 없음'}
                                 </span>
                             </div>
                         </button>

@@ -3,7 +3,7 @@
  */
 
 import romanizationData from '@/data/romanization.json';
-import surnameStatData from '@/data/korean_surnames_romanization.json';
+import surnameStatData from '@/data/combined_ranking_only.json';
 
 // 한글 자음/모음 매핑 테이블 (국어의 로마자 표기법 기준)
 const INITIAL_CONSONANTS = {
@@ -296,10 +296,9 @@ export function romanizeKoreanName(
  */
 export function getSurnameVariants(familyName: string): string[] {
   const data = (surnameStatData as any)[familyName];
-  const statVariants = data ? data.combined_ranking : [];
 
-  if (statVariants && statVariants.length > 0) {
-    return statVariants;
+  if (data && Array.isArray(data)) {
+    return data.map((item: any) => item.romanization);
   }
 
   // Fallback to legacy romanizationData if stats are missing
@@ -318,56 +317,18 @@ export function getSurnameVariants(familyName: string): string[] {
  */
 export function getSurnameStatistics(familyName: string): SurnameStatistic[] {
   const data = (surnameStatData as any)[familyName];
-  if (!data || !data.sources) {
+  if (!data || !Array.isArray(data)) {
     return [];
   }
 
   const standardRoman = standardRomanize(familyName).toUpperCase();
 
-  // 통계 품질 우선순위: 데이터가 풍부한 소스 먼저 시도
-  const SOURCE_PRIORITY = ['2011_passport', '2011_snu', '2011_internet', '1999_passport'];
-
-  // 실제 데이터(count가 null이 아닌)가 있는 소스 선택
-  let bestSource: any[] | null = null;
-  for (const sourceKey of SOURCE_PRIORITY) {
-    const source = data.sources[sourceKey];
-    if (!source || source.length === 0) continue;
-
-    // 소스 내 하나라도 count가 null이 아니면 유효한 소스로 판단
-    const hasRealData = source.some((item: any) => item.count !== null);
-    if (hasRealData) {
-      bestSource = source;
-      break;
-    }
-  }
-
-  if (!bestSource) {
-    // 모든 소스가 null이면: combined_ranking만이라도 활용 (0% 표시)
-    const combined: string[] = data.combined_ranking || [];
-    return combined.map((romanization: string) => ({
-      romanization,
-      percentage: 0,
-      count: null,
-      isStandard: romanization === standardRoman
-    }));
-  }
-
-  // 전체 카운트를 구해서 백분율이 없는 경우를 대비
-  const totalCount = bestSource.reduce((sum: number, item: any) => sum + (item.count ?? 0), 0);
-
-  return bestSource.map((item: any) => {
-    // 백분율이 있으면 사용하고, 없으면 count 기반으로 계산
-    const percentage = item.percentage !== null
-      ? item.percentage
-      : (totalCount > 0 ? Number(((item.count / totalCount) * 100).toFixed(2)) : 0);
-
-    return {
-      romanization: item.romanization,
-      percentage,
-      count: item.count,
-      isStandard: item.romanization === standardRoman
-    };
-  }).sort((a: SurnameStatistic, b: SurnameStatistic) => b.percentage - a.percentage); // percentage 기준 내림차순 정렬
+  return data.map((item: any) => ({
+    romanization: item.romanization,
+    percentage: item.weighted_score,
+    count: null, // New schema doesn't provide absolute counts
+    isStandard: item.romanization.toUpperCase() === standardRoman
+  })).sort((a: SurnameStatistic, b: SurnameStatistic) => b.percentage - a.percentage);
 }
 
 
