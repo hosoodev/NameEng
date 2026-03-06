@@ -1,145 +1,99 @@
-# 🌐 NameEng - 한글 이름 로마자 표기 변환기
+# 🌐 NameEng (네이밍) - 한글 이름 로마자 표기 전문 서비스
 
-**국어의 로마자 표기법 (2024.05.23 시행)** 기준으로 한글 이름을 영문으로 변환해주는 웹 서비스입니다.
+[![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.0-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
 
-## ✨ 주요 기능
+**NameEng(네이밍)**은 대한민국 국어의 로마자 표기법을 완벽히 준수하며, 실제 여권 데이터 및 통계 자료를 기반으로 사용자에게 최적의 영문 이름을 제안하는 전문 웹 서비스입니다. 단순한 규칙 변환을 넘어 해외 실생활에서 발생할 수 있는 부정적 의미 필터링과 성씨별 관용 표기 빈도 분석을 제공합니다.
 
-### 🔤 정확한 로마자 변환
-- 국립국어원 **「국어의 로마자 표기법」** 완전 준수
-- 한글 음성학적 특성을 반영한 정확한 변환
+---
 
-### 👥 관용 성씨 표기 지원
-- **김**: Kim, Gim, Keem, Ghim, Kym, Kin
-- **이**: Lee, Rhee, Yi, Yee, Rhie
-- **박**: Park, Bak, Bark, Pack, Pag, Baak
-- **최**: Choe, Choi, Choy, Che, Chai, Chae
-- 그 외 **100+ 성씨**의 다양한 관용 표기 옵션
+## ✨ 주요 핵심 기능
 
-### ⚠️ 부정적 의미 필터링
-- 영어권에서 부정적 의미를 가질 수 있는 표기 감지
-- 자동 경고 및 안전한 대안 제안
-- **예시**: `강 → Gang (폭력단)` → 권장: `Kang, Ghang`
+### 1. 🔤 지능형 로마자 변환 엔진
+- **표기법 준수**: 국립국어원 **「국어의 로마자 표기법 (2024.05.23 시행)」** 완전 반영.
+- **성씨 관용 표기**: 김(Kim/Gim), 이(Lee/Yi), 박(Park/Bak) 등 100여 개 성씨에 대한 다양한 관용 표기 옵션 제공.
+- **실시간 변환**: 입력과 동시에 성-이름 순서, 대소문자 세팅, 하이픈 유무를 즉시 반영.
 
-### ⚙️ 다양한 옵션
-- **이름 순서**: 성-이름 / 이름-성
-- **대소문자**: 첫글자 대문자 / 소문자 / 대문자
-- **하이픈**: 공백 / 하이픈 구분
-- **복사 기능**: 원클릭 클립보드 복사
+### 2. 📊 고급 분석 도구 (Advanced Tools)
+- **성씨 표기 빈도 검색**: 외교부 여권 자료, 서울대 재학생 통계 등 사실 기반 데이터(2011 연구자료)를 바탕으로 성씨별 로마자 표기 선호도 분석.
+- **영문 이름 적합성 검사 (Name Checker)**: 영어권 국가에서 사용하기 적합한 이름인지, 발음상의 어려움은 없는지 체크.
+- **추천 이름 생성기 (Name Generator)**: 트렌디하고 세련된 영문 이름을 성씨와 조화롭게 추천.
 
-## 🚀 사용 방법
+### 3. ⚠️ 부정적 의미 탐지 (Safety Guide)
+- **부정적 의미 필터링**: 영어권에서 부정적인 의미(예: Gang, Kill, Sin 등)로 해석될 수 있는 표기를 자동으로 탐지하여 경고.
+- **안전한 대안 제시**: 문화적 오해를 방지할 수 있는 최적의 대체 표기법 가이드 제공.
 
-### 1. 기본 변환
+### 4. 📚 전문 콘텐츠 및 가이드
+- **블로그 섹션**: 성씨의 역사, 여권 영문명 작성 팁, 해외 생활 에티켓 등 심도 있는 칼럼 제공.
+- **공식 가이드**: 여권 발급 가이드 및 로마자 표기 규칙 상세 해설 페이지 운영.
+
+---
+
+## 🛠️ 기술 스택 (Tech Stack)
+
+### Frontend
+- **Framework**: Next.js 15 (App Router)
+- **Library**: React 19, TypeScript
+- **Styling**: Tailwind CSS (Lucide-React Icons)
+- **Components**: 기능별 모듈화된 UI 컴포넌트 설계
+
+### Infrastructure & Automation
+- **SEO**: 정적/동적 경로를 포함한 자동화된 `sitemap.ts` 구현.
+- **Performance**: Next.js 서버 컴포넌트와 클라이언트 컴포넌트의 효율적 분리.
+- **Ads**: Google Adsense 연동 (`AdSlot` 컴포넌트 자동화).
+
+---
+
+## 🏗️ 프로젝트 구조 (Project Structure)
+
+```text
+src/
+├── app/                # Next.js App Router (Pages & Layouts)
+│   ├── blog/           # 블로그 칼럼 및 상세 페이지
+│   ├── tools/          # 고급 분석 도구 (성씨 빈도, 생성기 등)
+│   ├── passport-guide/ # 여권 발급 안내 가이드
+│   └── sitemap.ts      # 자동화된 사이트맵 생성 로직
+├── components/         # 재사용 가능한 UI 컴포넌트
+│   ├── ads/            # 광고 관리 컴포넌트
+│   ├── converter/      # 이름 변환 핵심 로직 컴포넌트
+│   └── layout/         # 네비게이션 및 푸터 레이아웃
+├── data/               # 성씨 통계 및 블로그 게시물 데이터
+└── lib/                # 로마자 변환 엔진 및 유틸리티 함수
 ```
-입력: 김민수
-결과: Kim Minsu
-```
 
-### 2. 관용 성씨 선택
-```
-입력: 이영희
-선택: Lee (기본) / Rhee / Yi / Yee / Rhie
-결과: Lee Younghee
-```
+---
 
-### 3. 부정적 의미 경고
-```
-입력: 강민수
-경고: ⚠️ Gang은 '폭력단' 의미가 있습니다
-권장: Kang Minsu
-```
-
-## 🛠️ 기술 스택
-
-- **Frontend**: Next.js 15, React 18, TypeScript
-- **UI**: Radix UI Themes, Tailwind CSS
-- **Icons**: Lucide React
-- **언어학**: 국어의 로마자 표기법 규칙 엔진
-
-## 📋 설치 및 실행
+## 🚀 시작하기 (Getting Started)
 
 ```bash
+# 레포지토리 클론
+git clone https://github.com/hosoodev/NameEng.git
+
 # 의존성 설치
 npm install
 
 # 개발 서버 실행
 npm run dev
 
-# 빌드
+# 빌드 및 프로덕션 실행
 npm run build
-
-# 프로덕션 실행
 npm start
 ```
 
-## 📚 API 사용법
+---
 
-```typescript
-import { romanizeKoreanName } from '@/lib/romanization';
+## � 개인정보 및 보안 (Privacy & Security)
 
-const result = romanizeKoreanName('김민수', {
-  order: 'family-given',
-  hyphen: false,
-  caseStyle: 'capitalized',
-  surnameVariant: 'Kim'
-});
-
-console.log(result.romanized); // "Kim Minsu"
-console.log(result.warnings);  // 부정적 의미 경고
-console.log(result.alternatives); // 다른 성씨 표기 옵션
-```
-
-## 🎯 사용 사례
-
-### 공식 문서 제출
-- 여권 신청
-- 비자 서류
-- 국제 학회 논문
-- 해외 대학 지원서
-
-### 글로벌 비즈니스
-- 영문 명함
-- 이메일 서명
-- LinkedIn 프로필
-- 국제 컨퍼런스 등록
-
-### 개인 브랜딩
-- 소셜 미디어
-- 개인 웹사이트
-- 포트폴리오
-- 온라인 프로필
-
-## 📖 로마자 표기법 기준
-
-본 서비스는 **국립국어원 고시 제2024-10호 (2024.05.23 시행)**에 따른 「국어의 로마자 표기법」을 준수합니다.
-
-### 주요 규칙
-1. **모음**: ㅏ→a, ㅓ→eo, ㅗ→o, ㅜ→u, ㅡ→eu, ㅣ→i
-2. **자음**: ㄱ→g/k, ㄴ→n, ㄷ→d/t, ㄹ→r/l, ㅁ→m, ㅂ→b/p, ㅅ→s, ㅇ→ng, ㅈ→j, ㅊ→ch, ㅋ→k, ㅌ→t, ㅍ→p, ㅎ→h
-3. **받침**: 음성 환경에 따른 변환
-
-## 🔒 개인정보 보호
-
-- **로컬 처리**: 모든 변환은 브라우저에서 처리됩니다
-- **데이터 미저장**: 입력한 이름은 서버에 전송되지 않습니다
-- **완전 익명**: 개인정보 수집하지 않습니다
-
-## 🤝 기여하기
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📞 문의 및 지원
-
-- **이슈 리포트**: [GitHub Issues](https://github.com/nameeng/nameeng/issues)
-- **기능 제안**: [GitHub Discussions](https://github.com/nameeng/nameeng/discussions)
-
-## 📄 라이선스
-
-MIT License - 자유롭게 사용, 수정, 배포 가능합니다.
+- **Client-Side Processing**: 사용자가 입력한 이름 데이터는 서버에 저장되지 않으며 대부분 브라우저에서 안전하게 처리됩니다.
+- **No Data Tracking**: 개인 식별 정보를 수집하지 않는 투명한 서비스를 지향합니다.
 
 ---
 
-**NameEng**는 한국인의 정확한 영문 이름 표기를 위해 만들어진 오픈소스 프로젝트입니다. 🇰🇷 ➡️ 🌍
+## 📄 라이선스 (License)
+
+본 프로젝트는 **MIT License**를 따릅니다. 누구나 자유롭게 수정 및 배포가 가능합니다.
+
+---
+
+**NameEng**는 한국인의 정체성을 담은 정확한 영문 표기를 도와 글로벌 시대를 연결합니다. 🇰🇷 ➡️ �
