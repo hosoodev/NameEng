@@ -68,7 +68,7 @@ export default function SurnameStatistics({
             </div>
 
             <div className="flex flex-col gap-2">
-                {stats.map((stat) => {
+                {stats.slice(0, 5).map((stat) => {
                     const isSelected = selectedVariant.toUpperCase() === stat.romanization;
                     const isMostUsed = stat.percentage === maxPercentage && maxPercentage > 0;
 
@@ -127,6 +127,32 @@ export default function SurnameStatistics({
                     );
                 })}
             </div>
+
+            {stats.length > 5 && (
+                <div className="pt-2">
+                    <div className="text-[11px] font-bold text-gray-400 mb-2 px-1">기타 표기 (점수)</div>
+                    <div className="flex flex-wrap gap-1.5">
+                        {stats.slice(5).map((stat) => {
+                            const isSelected = selectedVariant.toUpperCase() === stat.romanization;
+                            return (
+                                <button
+                                    key={stat.romanization}
+                                    onClick={() => onSelect(stat.romanization)}
+                                    className={`px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all border ${isSelected
+                                        ? 'bg-blue-500 text-white border-blue-500 shadow-sm'
+                                        : 'bg-white text-gray-600 border-gray-200 hover:border-blue-300 hover:bg-blue-50/50'
+                                        }`}
+                                >
+                                    {stat.romanization}
+                                    <span className={`ml-1.5 text-[10px] ${isSelected ? 'text-blue-100' : 'text-gray-400'}`}>
+                                        {stat.percentage.toFixed(1)}
+                                    </span>
+                                </button>
+                            );
+                        })}
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
