@@ -48,7 +48,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export function generateStaticParams() {
     const commonSurnames = ["김", "이", "박", "최", "정", "강", "조", "윤", "장", "임"];
     return commonSurnames.map((surname) => ({
-        surname: encodeURIComponent(surname),
+        surname,
     }));
 }
 
