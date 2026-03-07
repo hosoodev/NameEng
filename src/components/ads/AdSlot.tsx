@@ -43,7 +43,7 @@ export default function AdSlot({
   return (
     <div
       className={[
-        'ad-slot overflow-hidden',
+        'ad-slot overflow-hidden text-center',
         fullWidth
           ? 'w-screen relative left-1/2 -translate-x-1/2'
           : 'w-full',
