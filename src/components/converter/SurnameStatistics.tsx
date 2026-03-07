@@ -130,44 +130,83 @@ export default function SurnameStatistics({
                 })}
             </div>
 
-            {stats.length > 5 && (
-                <div className="pt-2">
-                    {/* 모바일: 토글 버튼 | 데스크탑: 언제나 표시 */}
-                    <button
-                        className="sm:hidden w-full flex items-center justify-between text-[11px] font-bold text-gray-400 mb-2 px-1 hover:text-gray-600 transition-colors"
-                        onClick={() => setShowExtra((v) => !v)}
-                        aria-expanded={showExtra}
-                    >
-                        <span>기타 표기 ({stats.length - 5}개)</span>
-                        <ChevronDown
-                            size={13}
-                            className={`transition-transform duration-200 ${showExtra ? 'rotate-180' : ''}`}
-                        />
-                    </button>
-                    <div className="hidden sm:block text-[11px] font-bold text-gray-400 mb-2 px-1">기타 표기 (점수)</div>
-                    {/* 모바일: showExtra일 때만 | 데스크탑: 항상 가시 */}
-                    <div className={`flex flex-wrap gap-1.5 ${showExtra ? '' : 'hidden sm:flex'}`}>
-                        {stats.slice(5).map((stat) => {
-                            const isSelected = selectedVariant.toUpperCase() === stat.romanization;
-                            return (
-                                <button
-                                    key={stat.romanization}
-                                    onClick={() => onSelect(stat.romanization)}
-                                    className={`px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all border ${isSelected
-                                        ? 'bg-blue-500 text-white border-blue-500 shadow-sm'
-                                        : 'bg-white text-gray-600 border-gray-200 hover:border-blue-300 hover:bg-blue-50/50'
-                                        }`}
-                                >
-                                    {stat.romanization}
-                                    <span className={`ml-1.5 text-[10px] ${isSelected ? 'text-blue-100' : 'text-gray-400'}`}>
-                                        {stat.percentage.toFixed(1)}
-                                    </span>
-                                </button>
-                            );
-                        })}
+            {stats.length > 5 && (() => {
+                // 미리보기로 보여줄 개수 (한 줄 분량, 약 8개)
+                const PREVIEW_COUNT = 8;
+                const extraStats = stats.slice(5);
+                const previewStats = extraStats.slice(0, PREVIEW_COUNT);
+                const hiddenStats = extraStats.slice(PREVIEW_COUNT);
+                const hasHidden = hiddenStats.length > 0;
+
+                const renderTag = (stat: SurnameStatistic) => {
+                    const isSelected = selectedVariant.toUpperCase() === stat.romanization;
+                    return (
+                        <button
+                            key={stat.romanization}
+                            onClick={() => onSelect(stat.romanization)}
+                            className={`px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all border ${isSelected
+                                ? 'bg-blue-500 text-white border-blue-500 shadow-sm'
+                                : 'bg-white text-gray-600 border-gray-200 hover:border-blue-300 hover:bg-blue-50/50'
+                                }`}
+                        >
+                            {stat.romanization}
+                            <span className={`ml-1.5 text-[10px] ${isSelected ? 'text-blue-100' : 'text-gray-400'}`}>
+                                {stat.percentage.toFixed(1)}
+                            </span>
+                        </button>
+                    );
+                };
+
+                return (
+                    <div className="pt-2">
+                        {/* 모바일: 전체 토글 방식 */}
+                        <div className="sm:hidden">
+                            <button
+                                className="w-full flex items-center justify-between text-[11px] font-bold text-gray-400 mb-2 px-1 hover:text-gray-600 transition-colors"
+                                onClick={() => setShowExtra((v) => !v)}
+                                aria-expanded={showExtra}
+                            >
+                                <span>기타 표기 ({extraStats.length}개)</span>
+                                <ChevronDown
+                                    size={13}
+                                    className={`transition-transform duration-200 ${showExtra ? 'rotate-180' : ''}`}
+                                />
+                            </button>
+                            <div className={`flex flex-wrap gap-1.5 ${showExtra ? '' : 'hidden'}`}>
+                                {extraStats.map(renderTag)}
+                            </div>
+                        </div>
+
+                        {/* 데스크탑: 1줄 미리보기 + 나머지 토글 방식 */}
+                        <div className="hidden sm:block">
+                            <div className="text-[11px] font-bold text-gray-400 mb-2 px-1">기타 표기 (점수)</div>
+                            {/* 미리보기: 항상 한 줄 분량 표시 */}
+                            <div className="flex flex-wrap gap-1.5">
+                                {previewStats.map(renderTag)}
+                            </div>
+                            {/* 나머지: 토글로 접기/펼치기 */}
+                            {hasHidden && (
+                                <>
+                                    <div className={`flex flex-wrap gap-1.5 mt-1.5 ${showExtra ? '' : 'hidden'}`}>
+                                        {hiddenStats.map(renderTag)}
+                                    </div>
+                                    <button
+                                        className="w-full flex items-center justify-center gap-1 text-[11px] font-bold text-gray-400 mt-2 px-1 py-1.5 hover:text-gray-600 transition-colors rounded-lg hover:bg-gray-50 bg-white border border-gray-100 shadow-sm"
+                                        onClick={() => setShowExtra((v) => !v)}
+                                        aria-expanded={showExtra}
+                                    >
+                                        <span>{showExtra ? '접기' : `외 ${hiddenStats.length}개 더 보기`}</span>
+                                        <ChevronDown
+                                            size={13}
+                                            className={`transition-transform duration-200 ${showExtra ? 'rotate-180' : ''}`}
+                                        />
+                                    </button>
+                                </>
+                            )}
+                        </div>
                     </div>
-                </div>
-            )}
+                );
+            })()}
         </div>
     );
 }
