@@ -33,6 +33,7 @@ import {
 } from 'lucide-react';
 
 /* ─── 상수 ─── */
+const AD_SLOT_INDEX_CONTENT = '2738626516';   // 초기화면 콘텐츠 섹션 진입 전
 const AD_SLOT_RESULT = '2738626516';    // 결과 카드 하단
 const AD_SLOT_CONTENT = '2738626516';   // 콘텐츠 섹션 진입 전
 const AD_SLOT_SIDEBAR = '2738626516';   // 데스크탑 사이드바
@@ -538,6 +539,14 @@ function NameEngConverter() {
                     ))}
                   </div>
                 </div>
+
+                {/* 2. 초기화면 광고 슬롯 */}
+                <AdSlot
+                  slot={AD_SLOT_INDEX_CONTENT}
+                  format="auto"
+                  className="py-1 md:my-6 md:rounded-lg md:overflow-hidden"
+                  style={{ minHeight: 100 }}
+                />
 
                 {/* 주요 기능 특징 안내 */}
                 <div className="mt-4">
