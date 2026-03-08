@@ -18,39 +18,25 @@ type AdFormat =
 type AdStatus = 'idle' | 'loading' | 'loaded' | 'blocked' | 'error';
 
 interface AdSlotProps {
-  /** AdSense 광고 슬롯 ID */
   slot: string;
-  /** 광고 포맷 (기본값: 'auto') */
   format?: AdFormat;
-  /** AdSense의 data-full-width-responsive 속성 제어 (기본값: true) */
   fullWidth?: boolean;
-  /** fluid 포맷에서 필요한 layout 속성 */
   layout?: string;
-  /** fluid 포맷에서 필요한 layout-key 속성 */
   layoutKey?: string;
-  /**
-   * 래퍼 <div>에 추가할 CSS 클래스
-   * (기존 className → wrapperClassName 으로 변경, 내부 고정 클래스와 충돌 방지)
-   */
   wrapperClassName?: string;
-  /** <ins> 태그에 직접 적용되는 스타일 */
+  /** <ins> 태그에 직접 적용되는 스타일 (mobileFixed 미적용 시에만 사용) */
   style?: React.CSSProperties;
-  /** 광고 차단 감지 시 보여줄 fallback UI */
   fallback?: React.ReactNode;
-  /** 광고 상태 변경 콜백 */
   onStatusChange?: (status: AdStatus) => void;
-  /** 뷰포트 진입 후 지연 로드 여부 (기본값: true) */
   lazyLoad?: boolean;
-  /** IntersectionObserver threshold (기본값: 0.1) */
   threshold?: number;
-  /** 광고 차단 감지 대기 시간 ms (기본값: 1500) */
   adBlockDetectDelay?: number;
-  /** 개발/테스트 모드 — 실제 push() 호출 없이 placeholder 렌더 */
   testMode?: boolean;
   /**
-   * 모바일 고정 크기 광고 여부 (기본값: false)
-   * true 시 모바일(767px 이하)에서 320×100px 고정 크기로 로드
-   * → data-full-width-responsive 자동으로 false 처리
+   * 모바일(767px 이하)에서 320×100px 고정 배너로 로드
+   * - data-ad-format 속성 제거 (AdSense 자동 크기 선택 비활성)
+   * - data-full-width-responsive="false" 강제
+   * - 래퍼를 320×100으로 고정
    */
   mobileFixed?: boolean;
 }
@@ -101,7 +87,7 @@ export default function AdSlot({
 
   const adClient = process.env.NEXT_PUBLIC_ADSENSE_ID;
 
-  // ── 모바일 감지 (mobileFixed 활성 시에만) ──
+  // ── 모바일 감지 ────────────────────────────
   useEffect(() => {
     if (typeof window === 'undefined' || !mobileFixed) return;
     const mq = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT}px)`);
@@ -119,7 +105,6 @@ export default function AdSlot({
     [onStatusChange],
   );
 
-  // ── 광고 push 핵심 로직 ────────────────────
   const pushAd = useCallback(() => {
     if (initialized.current) return;
     initialized.current = true;
@@ -133,7 +118,6 @@ export default function AdSlot({
       updateStatus('loading');
       (window.adsbygoogle = window.adsbygoogle || []).push({});
 
-      // 광고 차단 감지: 일정 시간 후 height 확인
       timerRef.current = setTimeout(() => {
         if (!adRef.current) return;
         const insEl = adRef.current;
@@ -148,13 +132,11 @@ export default function AdSlot({
     }
   }, [testMode, adBlockDetectDelay, updateStatus]);
 
-  // ── slot 변경 시 리셋 ──────────────────────
   useEffect(() => {
     initialized.current = false;
     updateStatus('idle');
   }, [slot, updateStatus]);
 
-  // ── 메인 effect: lazyLoad 분기 ─────────────
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
@@ -198,33 +180,16 @@ export default function AdSlot({
   // ── 광고 차단 감지 시 fallback ─────────────
   if (status === 'blocked') {
     return fallback ? (
-      <div
-        className={wrapperClassName}
-        role="complementary"
-        aria-label="광고 대체 콘텐츠"
-      >
+      <div className={wrapperClassName} role="complementary" aria-label="광고 대체 콘텐츠">
         {fallback}
       </div>
     ) : null;
   }
 
   // ── 모바일 고정 크기 적용 여부 ───────────────
-  // mobileFixed=true이고 실제 모바일 뷰포트일 때만 고정 크기 적용
   const applyMobileFixed = mobileFixed && isMobile;
 
-  const insStyle: React.CSSProperties = applyMobileFixed
-    ? {
-      display: 'block',
-      width: `${MOBILE_FIXED_WIDTH}px`,
-      height: `${MOBILE_FIXED_HEIGHT}px`,
-      ...style,
-    }
-    : { display: 'block', ...style };
-
-  // mobileFixed 시 full-width-responsive를 false로 강제
-  const responsiveValue = applyMobileFixed ? 'false' : fullWidth ? 'true' : 'false';
-
-  // ── testMode: 시각적 placeholder ──────────
+  // ── testMode placeholder ───────────────────
   if (testMode) {
     return (
       <div
@@ -240,28 +205,56 @@ export default function AdSlot({
             alignItems: 'center',
             justifyContent: 'center',
             width: applyMobileFixed ? `${MOBILE_FIXED_WIDTH}px` : '100%',
-            minHeight: applyMobileFixed ? `${MOBILE_FIXED_HEIGHT}px` : 90,
+            height: applyMobileFixed ? `${MOBILE_FIXED_HEIGHT}px` : undefined,
+            minHeight: applyMobileFixed ? undefined : 90,
             background:
               'repeating-linear-gradient(45deg, #f0f0f0, #f0f0f0 10px, #fafafa 10px, #fafafa 20px)',
             border: '2px dashed #ccc',
             color: '#999',
             fontSize: 12,
             fontFamily: 'monospace',
-            ...style,
           }}
         >
-          📢 [{slot}] {format}
-          {applyMobileFixed
-            ? ` · mobile fixed ${MOBILE_FIXED_WIDTH}×${MOBILE_FIXED_HEIGHT}`
-            : fullWidth
-              ? ' · responsive'
-              : ''}
+          📢 [{slot}] {applyMobileFixed ? `${MOBILE_FIXED_WIDTH}×${MOBILE_FIXED_HEIGHT} fixed` : format}
         </div>
       </div>
     );
   }
 
   // ── 실제 광고 렌더 ─────────────────────────
+  //
+  // [mobileFixed 적용 시 핵심 규칙]
+  // 1. 래퍼를 320×100 고정 크기로 만들어 AdSense가 더 큰 광고를 못 넣게 막음
+  // 2. <ins>에도 동일하게 display:inline-block + width/height 명시
+  // 3. data-ad-format 속성 제거 → AdSense 자동 크기 선택 비활성
+  // 4. data-full-width-responsive="false" 필수
+  //
+  // [일반 responsive 광고]
+  // - data-ad-format={format} 유지
+  // - data-full-width-responsive로 fullWidth 제어
+  // ──────────────────────────────────────────
+
+  if (applyMobileFixed) {
+    return (
+      <div
+        className={['ad-slot text-center', wrapperClassName].filter(Boolean).join(' ')}
+        aria-label="광고"
+        role="complementary"
+        style={{ width: MOBILE_FIXED_WIDTH, height: MOBILE_FIXED_HEIGHT, overflow: 'hidden', margin: '0 auto' }}
+      >
+        <ins
+          ref={adRef}
+          className="adsbygoogle"
+          style={{ display: 'inline-block', width: MOBILE_FIXED_WIDTH, height: MOBILE_FIXED_HEIGHT }}
+          data-ad-client={adClient}
+          data-ad-slot={slot}
+          // data-ad-format 의도적으로 제거: format prop 무시
+          data-full-width-responsive="false"
+        />
+      </div>
+    );
+  }
+
   return (
     <div
       className={['ad-slot overflow-hidden text-center w-full', wrapperClassName]
@@ -273,11 +266,11 @@ export default function AdSlot({
       <ins
         ref={adRef}
         className="adsbygoogle"
-        style={insStyle}
+        style={{ display: 'block', ...style }}
         data-ad-client={adClient}
         data-ad-slot={slot}
         data-ad-format={format}
-        data-full-width-responsive={responsiveValue}
+        data-full-width-responsive={fullWidth ? 'true' : 'false'}
         {...(layout ? { 'data-ad-layout': layout } : {})}
         {...(layoutKey ? { 'data-ad-layout-key': layoutKey } : {})}
       />
