@@ -572,9 +572,9 @@ function NameEngConverter() {
                 <AdSlot
                   slot={AD_SLOT_INDEX_CONTENT}
                   format="auto"
-                  wrapperClassName="py-1 md:my-6 md:rounded-lg md:overflow-hidden mt-2"
+                  wrapperClassName="py-1 md:my-6 md:rounded-lg md:overflow-hidden mt-4"
                   lazyLoad={false}
-                  mobileFixed={true} // 모바일에서 320×100 고정
+                  mobileFixed // 모바일에서 320×100 고정
                 />
 
                 <div className="px-4 md:px-0 space-y-6 mt-2">
