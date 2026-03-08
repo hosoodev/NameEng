@@ -259,8 +259,6 @@ export default function AdSlot({
       <div
         className={['ad-slot text-center', wrapperClassName].filter(Boolean).join(' ')}
         style={{
-          width: MOBILE_FIXED_WIDTH,
-          height: MOBILE_FIXED_HEIGHT,
           overflow: 'hidden',
           marginLeft: 'auto',
           marginRight: 'auto',
