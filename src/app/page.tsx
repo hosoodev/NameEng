@@ -609,7 +609,7 @@ function NameEngConverter() {
           <div className="hidden md:block w-[300px]">
             <AdSlot
               slot={AD_SLOT_SIDEBAR}
-              format="rectangle"
+              format="auto"
               className="sticky top-4 mb-6 overflow-hidden min-h-[250px]"
               lazyLoad={true}
             />

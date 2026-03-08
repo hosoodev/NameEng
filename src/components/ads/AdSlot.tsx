@@ -244,7 +244,7 @@ export default function AdSlot({
     >
       <ins
         ref={adRef}
-        className="adsbygoogle block"
+        className="adsbygoogle"
         style={{ display: 'block', ...style }}
         data-ad-client={adClient}
         data-ad-slot={slot}
