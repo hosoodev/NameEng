@@ -212,7 +212,7 @@ export default function AdSlot({
           .join(' ')}
         style={
           applyMobileFixed
-            ? { width: MOBILE_FIXED_WIDTH, height: MOBILE_FIXED_HEIGHT, margin: '0 auto' }
+            ? { width: MOBILE_FIXED_WIDTH, height: MOBILE_FIXED_HEIGHT, marginLeft: 'auto', marginRight: 'auto' }
             : { width: '100%' }
         }
         aria-label="광고 (테스트 모드)"
@@ -262,7 +262,8 @@ export default function AdSlot({
           width: MOBILE_FIXED_WIDTH,
           height: MOBILE_FIXED_HEIGHT,
           overflow: 'hidden',
-          margin: '0 auto',
+          marginLeft: 'auto',
+          marginRight: 'auto',
         }}
         aria-label="광고"
         role="complementary"
