@@ -531,39 +531,41 @@ function NameEngConverter() {
               </div>
             ) : (
               /* ─── 초기 화면 (입력 전) ─── */
-              <div className="px-4 md:px-0 space-y-6 mt-2">
-                {/* 빠른 예시: 유명인 이름에서 랜덤 추출 */}
-                <div>
-                  <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2.5">
-                    예시 이름
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {exampleNames.map((name, i) => (
-                      <button
-                        key={name}
-                        onClick={() => {
-                          setInputName(name);
-                          const nameOpts = getFamilyNameOptions(name);
-                          setFamilyNameOptions(nameOpts);
-                          const type: 'compound' | 'single' = nameOpts.hasCompoundOption ? 'compound' : 'single';
-                          const familyName = type === 'compound' ? nameOpts.compoundFamily : nameOpts.singleFamily;
-                          const variants = getSurnameVariants(familyName);
-                          setSurnameVariants(variants);
-                          const opts: RomanizationOptions = {
-                            ...DEFAULT_OPTIONS,
-                            familyNameType: type,
-                            surnameVariant: variants[0] ?? undefined,
-                          };
-                          setOptions(opts);
-                          const res = romanizeKoreanName(name, opts);
-                          setResult(res);
-                        }}
-                        className={`px-4 py-2 bg-white border border-gray-200 rounded-xl text-sm font-medium text-gray-700 hover:border-blue-300 hover:text-blue-600 hover:bg-blue-50 active:scale-95 transition-all ${i >= 4 ? 'hidden md:inline-flex' : ''
-                          }`}
-                      >
-                        {name}
-                      </button>
-                    ))}
+              <>
+                <div className="px-4 md:px-0 space-y-6 mt-2">
+                  {/* 빠른 예시: 유명인 이름에서 랜덤 추출 */}
+                  <div>
+                    <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2.5">
+                      예시 이름
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {exampleNames.map((name, i) => (
+                        <button
+                          key={name}
+                          onClick={() => {
+                            setInputName(name);
+                            const nameOpts = getFamilyNameOptions(name);
+                            setFamilyNameOptions(nameOpts);
+                            const type: 'compound' | 'single' = nameOpts.hasCompoundOption ? 'compound' : 'single';
+                            const familyName = type === 'compound' ? nameOpts.compoundFamily : nameOpts.singleFamily;
+                            const variants = getSurnameVariants(familyName);
+                            setSurnameVariants(variants);
+                            const opts: RomanizationOptions = {
+                              ...DEFAULT_OPTIONS,
+                              familyNameType: type,
+                              surnameVariant: variants[0] ?? undefined,
+                            };
+                            setOptions(opts);
+                            const res = romanizeKoreanName(name, opts);
+                            setResult(res);
+                          }}
+                          className={`px-4 py-2 bg-white border border-gray-200 rounded-xl text-sm font-medium text-gray-700 hover:border-blue-300 hover:text-blue-600 hover:bg-blue-50 active:scale-95 transition-all ${i >= 4 ? 'hidden md:inline-flex' : ''
+                            }`}
+                        >
+                          {name}
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 </div>
 
@@ -575,31 +577,33 @@ function NameEngConverter() {
                   lazyLoad={false} // 초기 화면 상단 광고는 바로 로드
                 />
 
-                {/* 주요 기능 특징 안내 */}
-                <div className="mt-4">
-                  <a
-                    href="/about"
-                    className="group bg-white rounded-2xl border border-gray-100 p-5 flex items-center justify-between transition-all hover:border-blue-300 hover:shadow-md hover:-translate-y-0.5"
-                  >
-                    <div className="flex flex-col gap-1.5">
-                      <div className="flex items-center gap-2">
-                        <span className="text-base font-bold text-gray-900 group-hover:text-blue-600 transition-colors">Nameeng 서비스 소개</span>
+                <div className="px-4 md:px-0 space-y-6 mt-2">
+                  {/* 주요 기능 특징 안내 */}
+                  <div className="mt-4">
+                    <a
+                      href="/about"
+                      className="group bg-white rounded-2xl border border-gray-100 p-5 flex items-center justify-between transition-all hover:border-blue-300 hover:shadow-md hover:-translate-y-0.5"
+                    >
+                      <div className="flex flex-col gap-1.5">
+                        <div className="flex items-center gap-2">
+                          <span className="text-base font-bold text-gray-900 group-hover:text-blue-600 transition-colors">Nameeng 서비스 소개</span>
+                        </div>
+                        <span className="text-sm text-gray-500 leading-relaxed pr-8 line-clamp-2 md:line-clamp-none">
+                          여권 로마자 표기 규정부터 부정적 영단어 어감 분석까지. 가장 쉽고 정확하게 내 이름의 영문 스펠링을 찾아보세요.
+                        </span>
                       </div>
-                      <span className="text-sm text-gray-500 leading-relaxed pr-8 line-clamp-2 md:line-clamp-none">
-                        여권 로마자 표기 규정부터 부정적 영단어 어감 분석까지. 가장 쉽고 정확하게 내 이름의 영문 스펠링을 찾아보세요.
-                      </span>
-                    </div>
-                    <div className="shrink-0 text-gray-300 group-hover:text-blue-500 transition-colors bg-gray-50 group-hover:bg-blue-50 p-2 rounded-full">
-                      <ChevronRight size={20} />
-                    </div>
-                  </a>
-                </div>
+                      <div className="shrink-0 text-gray-300 group-hover:text-blue-500 transition-colors bg-gray-50 group-hover:bg-blue-50 p-2 rounded-full">
+                        <ChevronRight size={20} />
+                      </div>
+                    </a>
+                  </div>
 
-                {/* 모바일에서만 노출되는 초기화면 가이드 링크 */}
-                <div className="md:hidden mt-6">
-                  <ContentLinks title={<span className="flex items-center gap-1.5"><BookOpen size={16} className="text-blue-500" /> 인기 가이드</span>} items={guideLinks.slice(0, 3)} />
+                  {/* 모바일에서만 노출되는 초기화면 가이드 링크 */}
+                  <div className="md:hidden mt-6">
+                    <ContentLinks title={<span className="flex items-center gap-1.5"><BookOpen size={16} className="text-blue-500" /> 인기 가이드</span>} items={guideLinks.slice(0, 3)} />
+                  </div>
                 </div>
-              </div>
+              </>
             )}
           </div>
 
