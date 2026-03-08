@@ -571,9 +571,8 @@ function NameEngConverter() {
                 {/* 2. 초기화면 광고 슬롯 */}
                 <AdSlot
                   slot={AD_SLOT_INDEX_CONTENT}
-                  format="auto"
+                  format="autorelaxed"
                   className="py-1 md:my-6 md:rounded-lg md:overflow-hidden"
-                  style={{ minHeight: 100 }}
                   lazyLoad={false} // 초기 화면 상단 광고는 바로 로드
                 />
 
