@@ -131,6 +131,7 @@ export default function NameGeneratorPage() {
                 <AdSlot
                   slot={AD_SLOT_INFEED}
                   format="fluid"
+                  wrapperClassName="md:rounded-lg md:overflow-hidden"
                   lazyLoad={true}
                 />
               </div>
@@ -294,6 +295,7 @@ export default function NameGeneratorPage() {
               <AdSlot
                 slot={AD_SLOT_SIDEBAR}
                 format="rectangle"
+                wrapperClassName="md:rounded-lg md:overflow-hidden min-h-[250px]"
                 lazyLoad={true}
               />
             </div>

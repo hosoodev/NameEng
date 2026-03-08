@@ -263,6 +263,7 @@ export default function SurnameFrequencyPage() {
                             <AdSlot
                                 slot="4812260682"
                                 format="rectangle"
+                                wrapperClassName="md:rounded-lg md:overflow-hidden min-h-[250px]"
                                 lazyLoad={true}
                             />
                             <div className="mb-6">

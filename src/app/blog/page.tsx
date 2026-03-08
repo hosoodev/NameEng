@@ -86,6 +86,7 @@ export default function Blog() {
             <AdSlot
               slot="2738626516"
               format="vertical"
+              wrapperClassName="hidden md:block"
               lazyLoad={true}
             />
 

@@ -482,7 +482,7 @@ function NameEngConverter() {
                       <AdSlot
                         slot={AD_SLOT_RESULT}
                         format="auto"
-                        className="py-1 md:my-6 md:rounded-lg md:overflow-hidden"
+                        wrapperClassName="py-1 md:my-6 md:rounded-lg md:overflow-hidden"
                         lazyLoad={true}
                       />
 
@@ -516,7 +516,7 @@ function NameEngConverter() {
                 <AdSlot
                   slot={AD_SLOT_CONTENT}
                   format="auto"
-                  className="py-1 md:my-6 md:rounded-lg md:overflow-hidden"
+                  wrapperClassName="py-1 md:my-6 md:rounded-lg md:overflow-hidden"
                   lazyLoad={true}
                 />
 
@@ -612,7 +612,7 @@ function NameEngConverter() {
             <AdSlot
               slot={AD_SLOT_SIDEBAR}
               format="auto"
-              className="sticky top-4 mb-6 overflow-hidden min-h-[250px]"
+              wrapperClassName="sticky top-4 mb-6 overflow-hidden min-h-[250px]"
               lazyLoad={true}
             />
 

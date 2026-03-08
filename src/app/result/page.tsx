@@ -120,7 +120,7 @@ function ResultPageContent() {
                         <AdSlot
                             slot="2738626516"
                             format="auto"
-                            className="py-2 md:my-6 md:rounded-lg md:overflow-hidden"
+                            wrapperClassName="py-2 md:my-6 md:rounded-lg md:overflow-hidden"
                             lazyLoad={false}
                         />
 
