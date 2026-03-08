@@ -569,12 +569,12 @@ function NameEngConverter() {
                   </div>
                 </div>
 
-                {/* 2. 초기화면 광고 슬롯 */}
                 <AdSlot
                   slot={AD_SLOT_INDEX_CONTENT}
                   format="auto"
-                  className="py-1 md:my-6 md:rounded-lg md:overflow-hidden mt-2"
-                  lazyLoad={false} // 초기 화면 상단 광고는 바로 로드
+                  wrapperClassName="py-1 md:my-6 md:rounded-lg md:overflow-hidden mt-2"
+                  lazyLoad={false}
+                  mobileFixed // 모바일에서 320×100 고정
                 />
 
                 <div className="px-4 md:px-0 space-y-6 mt-2">

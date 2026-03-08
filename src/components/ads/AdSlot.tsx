@@ -28,8 +28,11 @@ interface AdSlotProps {
   layout?: string;
   /** fluid 포맷에서 필요한 layout-key 속성 */
   layoutKey?: string;
-  /** 추가 CSS 클래스 */
-  className?: string;
+  /**
+   * 래퍼 <div>에 추가할 CSS 클래스
+   * (기존 className → wrapperClassName 으로 변경, 내부 고정 클래스와 충돌 방지)
+   */
+  wrapperClassName?: string;
   /** <ins> 태그에 직접 적용되는 스타일 */
   style?: React.CSSProperties;
   /** 광고 차단 감지 시 보여줄 fallback UI */
@@ -44,6 +47,12 @@ interface AdSlotProps {
   adBlockDetectDelay?: number;
   /** 개발/테스트 모드 — 실제 push() 호출 없이 placeholder 렌더 */
   testMode?: boolean;
+  /**
+   * 모바일 고정 크기 광고 여부 (기본값: false)
+   * true 시 모바일(767px 이하)에서 320×100px 고정 크기로 로드
+   * → data-full-width-responsive 자동으로 false 처리
+   */
+  mobileFixed?: boolean;
 }
 
 declare global {
@@ -58,6 +67,9 @@ declare global {
 
 const AD_BLOCK_DETECT_DELAY = 1500;
 const INTERSECTION_THRESHOLD = 0.1;
+const MOBILE_FIXED_WIDTH = 320;
+const MOBILE_FIXED_HEIGHT = 100;
+const MOBILE_BREAKPOINT = 767;
 
 // ─────────────────────────────────────────────
 // Component
@@ -69,7 +81,7 @@ export default function AdSlot({
   fullWidth = true,
   layout,
   layoutKey,
-  className = '',
+  wrapperClassName = '',
   style,
   fallback,
   onStatusChange,
@@ -77,6 +89,7 @@ export default function AdSlot({
   threshold = INTERSECTION_THRESHOLD,
   adBlockDetectDelay = AD_BLOCK_DETECT_DELAY,
   testMode = false,
+  mobileFixed = false,
 }: AdSlotProps) {
   const adRef = useRef<HTMLModElement>(null);
   const initialized = useRef(false);
@@ -84,9 +97,19 @@ export default function AdSlot({
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const [status, setStatus] = useState<AdStatus>('idle');
+  const [isMobile, setIsMobile] = useState(false);
 
-  // ── adClient 검증 ──────────────────────────
   const adClient = process.env.NEXT_PUBLIC_ADSENSE_ID;
+
+  // ── 모바일 감지 (mobileFixed 활성 시에만) ──
+  useEffect(() => {
+    if (typeof window === 'undefined' || !mobileFixed) return;
+    const mq = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT}px)`);
+    setIsMobile(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, [mobileFixed]);
 
   const updateStatus = useCallback(
     (next: AdStatus) => {
@@ -113,13 +136,11 @@ export default function AdSlot({
       // 광고 차단 감지: 일정 시간 후 height 확인
       timerRef.current = setTimeout(() => {
         if (!adRef.current) return;
-
         const insEl = adRef.current;
         const isHidden =
           insEl.offsetHeight === 0 ||
           window.getComputedStyle(insEl).display === 'none' ||
           insEl.getAttribute('data-ad-status') === 'unfilled';
-
         updateStatus(isHidden ? 'blocked' : 'loaded');
       }, adBlockDetectDelay);
     } catch {
@@ -135,14 +156,10 @@ export default function AdSlot({
 
   // ── 메인 effect: lazyLoad 분기 ─────────────
   useEffect(() => {
-    // SSR guard
     if (typeof window === 'undefined') return;
 
-    // adClient 미설정 경고
     if (!adClient && !testMode) {
-      console.warn(
-        '[AdSlot] NEXT_PUBLIC_ADSENSE_ID가 설정되지 않았습니다. 광고가 표시되지 않을 수 있습니다.',
-      );
+      console.warn('[AdSlot] NEXT_PUBLIC_ADSENSE_ID가 설정되지 않았습니다.');
       updateStatus('error');
       return;
     }
@@ -150,7 +167,6 @@ export default function AdSlot({
     if (!adRef.current) return;
 
     if (lazyLoad) {
-      // IntersectionObserver로 뷰포트 진입 시에만 로드
       observerRef.current = new IntersectionObserver(
         (entries) => {
           if (entries[0]?.isIntersecting) {
@@ -167,7 +183,6 @@ export default function AdSlot({
     }
 
     return () => {
-      // StrictMode 대응 cleanup
       initialized.current = false;
       observerRef.current?.disconnect();
       observerRef.current = null;
@@ -175,7 +190,7 @@ export default function AdSlot({
     };
   }, [slot, lazyLoad, threshold, adClient, testMode, pushAd, updateStatus]);
 
-  // ── adClient 미설정 / error 상태 ──────────
+  // ── adClient 미설정 ────────────────────────
   if (!adClient && !testMode) {
     return fallback ? <>{fallback}</> : null;
   }
@@ -184,7 +199,7 @@ export default function AdSlot({
   if (status === 'blocked') {
     return fallback ? (
       <div
-        className={className}
+        className={wrapperClassName}
         role="complementary"
         aria-label="광고 대체 콘텐츠"
       >
@@ -193,11 +208,27 @@ export default function AdSlot({
     ) : null;
   }
 
+  // ── 모바일 고정 크기 적용 여부 ───────────────
+  // mobileFixed=true이고 실제 모바일 뷰포트일 때만 고정 크기 적용
+  const applyMobileFixed = mobileFixed && isMobile;
+
+  const insStyle: React.CSSProperties = applyMobileFixed
+    ? {
+      display: 'block',
+      width: `${MOBILE_FIXED_WIDTH}px`,
+      height: `${MOBILE_FIXED_HEIGHT}px`,
+      ...style,
+    }
+    : { display: 'block', ...style };
+
+  // mobileFixed 시 full-width-responsive를 false로 강제
+  const responsiveValue = applyMobileFixed ? 'false' : fullWidth ? 'true' : 'false';
+
   // ── testMode: 시각적 placeholder ──────────
   if (testMode) {
     return (
       <div
-        className={['ad-slot overflow-hidden text-center w-full', className]
+        className={['ad-slot overflow-hidden text-center w-full', wrapperClassName]
           .filter(Boolean)
           .join(' ')}
         aria-label="광고 (테스트 모드)"
@@ -205,21 +236,26 @@ export default function AdSlot({
       >
         <div
           style={{
-            display: 'flex',
+            display: 'inline-flex',
             alignItems: 'center',
             justifyContent: 'center',
-            minHeight: 90,
+            width: applyMobileFixed ? `${MOBILE_FIXED_WIDTH}px` : '100%',
+            minHeight: applyMobileFixed ? `${MOBILE_FIXED_HEIGHT}px` : 90,
             background:
               'repeating-linear-gradient(45deg, #f0f0f0, #f0f0f0 10px, #fafafa 10px, #fafafa 20px)',
             border: '2px dashed #ccc',
             color: '#999',
             fontSize: 12,
-            fontFamily: 'Noto Sans KR',
+            fontFamily: 'monospace',
             ...style,
           }}
         >
-          📢 AdSlot [{slot}] — {format}
-          {fullWidth ? ' · fullWidth:true' : ' · fullWidth:false'}
+          📢 [{slot}] {format}
+          {applyMobileFixed
+            ? ` · mobile fixed ${MOBILE_FIXED_WIDTH}×${MOBILE_FIXED_HEIGHT}`
+            : fullWidth
+              ? ' · responsive'
+              : ''}
         </div>
       </div>
     );
@@ -228,7 +264,7 @@ export default function AdSlot({
   // ── 실제 광고 렌더 ─────────────────────────
   return (
     <div
-      className={['ad-slot overflow-hidden text-center w-full', className]
+      className={['ad-slot overflow-hidden text-center w-full', wrapperClassName]
         .filter(Boolean)
         .join(' ')}
       aria-label="광고"
@@ -237,11 +273,11 @@ export default function AdSlot({
       <ins
         ref={adRef}
         className="adsbygoogle"
-        style={{ display: 'block', ...style }}
+        style={insStyle}
         data-ad-client={adClient}
         data-ad-slot={slot}
         data-ad-format={format}
-        data-full-width-responsive={fullWidth ? 'true' : 'false'}
+        data-full-width-responsive={responsiveValue}
         {...(layout ? { 'data-ad-layout': layout } : {})}
         {...(layoutKey ? { 'data-ad-layout-key': layoutKey } : {})}
       />
