@@ -22,7 +22,7 @@ interface AdSlotProps {
   slot: string;
   /** 광고 포맷 (기본값: 'auto') */
   format?: AdFormat;
-  /** 모바일에서 화면 전체 너비 광고 */
+  /** AdSense의 data-full-width-responsive 속성 제어 (기본값: true) */
   fullWidth?: boolean;
   /** fluid 포맷에서 필요한 layout 속성 */
   layout?: string;
@@ -66,7 +66,7 @@ const INTERSECTION_THRESHOLD = 0.1;
 export default function AdSlot({
   slot,
   format = 'auto',
-  fullWidth = false,
+  fullWidth = true,
   layout,
   layoutKey,
   className = '',
@@ -197,11 +197,7 @@ export default function AdSlot({
   if (testMode) {
     return (
       <div
-        className={[
-          'ad-slot overflow-hidden text-center',
-          fullWidth ? 'w-screen relative left-1/2 -translate-x-1/2' : 'w-full',
-          className,
-        ]
+        className={['ad-slot overflow-hidden text-center w-full', className]
           .filter(Boolean)
           .join(' ')}
         aria-label="광고 (테스트 모드)"
@@ -223,7 +219,7 @@ export default function AdSlot({
           }}
         >
           📢 AdSlot [{slot}] — {format}
-          {fullWidth ? ' · fullWidth' : ''}
+          {fullWidth ? ' · fullWidth:true' : ' · fullWidth:false'}
         </div>
       </div>
     );
@@ -232,11 +228,7 @@ export default function AdSlot({
   // ── 실제 광고 렌더 ─────────────────────────
   return (
     <div
-      className={[
-        'ad-slot overflow-hidden text-center',
-        fullWidth ? 'w-screen relative left-1/2 -translate-x-1/2' : 'w-full',
-        className,
-      ]
+      className={['ad-slot overflow-hidden text-center w-full', className]
         .filter(Boolean)
         .join(' ')}
       aria-label="광고"
