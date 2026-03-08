@@ -51,7 +51,7 @@ export default function Blog() {
               {/* Filtering Post List Component */}
               <BlogFilterList
                 posts={blogPosts}
-                adSlot={<div className="my-8"><AdSlot slot="2738626516" format="horizontal" /></div>}
+                adSlot={<div className="my-8"><AdSlot slot="2738626516" format="horizontal" lazyLoad={true} /></div>}
               />
             </div>
 
@@ -83,7 +83,11 @@ export default function Blog() {
 
           {/* Sidebar Column */}
           <aside className="hidden md:block space-y-8">
-            <AdSlot slot="2738626516" format="vertical" />
+            <AdSlot
+              slot="2738626516"
+              format="vertical"
+              lazyLoad={true}
+            />
 
             <div className="sticky top-4">
               <ContentLinks

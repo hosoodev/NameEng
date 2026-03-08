@@ -484,6 +484,7 @@ function NameEngConverter() {
                         format="auto"
                         className="py-1 md:my-6 md:rounded-lg md:overflow-hidden"
                         style={{ minHeight: 100 }}
+                        lazyLoad={true}
                       />
 
                       {/* 4. 옵션 패널 */}
@@ -517,6 +518,7 @@ function NameEngConverter() {
                   slot={AD_SLOT_CONTENT}
                   format="horizontal"
                   className="py-1 md:my-6 md:rounded-lg md:overflow-hidden"
+                  lazyLoad={true}
                 />
 
                 <div className="md:hidden">
@@ -572,6 +574,7 @@ function NameEngConverter() {
                   format="auto"
                   className="py-1 md:my-6 md:rounded-lg md:overflow-hidden"
                   style={{ minHeight: 100 }}
+                  lazyLoad={false} // 초기 화면 상단 광고는 바로 로드
                 />
 
                 {/* 주요 기능 특징 안내 */}
@@ -604,7 +607,12 @@ function NameEngConverter() {
 
           {/* Sidebar Column (Right) */}
           <div className="hidden md:block w-[300px]">
-            <AdSlot slot={AD_SLOT_SIDEBAR} format="rectangle" className="sticky top-4 mb-6 overflow-hidden min-h-[250px]" />
+            <AdSlot
+              slot={AD_SLOT_SIDEBAR}
+              format="rectangle"
+              className="sticky top-4 mb-6 overflow-hidden min-h-[250px]"
+              lazyLoad={true}
+            />
 
             {/* 데스크탑에서 항상 보이는 가이드 및 도구 메뉴 */}
             <div className="sticky top-[290px]">

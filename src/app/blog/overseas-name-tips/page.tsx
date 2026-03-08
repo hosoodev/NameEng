@@ -301,7 +301,11 @@ export default function OverseasNameTipsPage() {
           {/* Sidebar Column */}
           <div className="hidden md:block w-[300px]">
             <div className="sticky top-4 space-y-4">
-              <AdSlot slot="2738626516" format="rectangle" />
+              <AdSlot
+                slot="2738626516"
+                format="rectangle"
+                lazyLoad={true}
+              />
               <div className="mb-6">
                 <ContentLinks
                   title={<span className="flex items-center gap-1.5"><Globe size={16} className="text-blue-500" /> 연관 추천 콘텐츠</span>}

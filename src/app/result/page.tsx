@@ -121,6 +121,7 @@ function ResultPageContent() {
                             slot="2738626516"
                             format="auto"
                             className="py-2 md:my-6 md:rounded-lg md:overflow-hidden"
+                            lazyLoad={false}
                         />
 
                         <button
@@ -154,7 +155,11 @@ function ResultPageContent() {
                     {/* Sidebar Column (Right) */}
                     <div className="hidden md:block w-[300px]">
                         <div className="sticky top-4 space-y-4">
-                            <AdSlot slot="2738626516" format="rectangle" />
+                            <AdSlot
+                                slot="2738626516"
+                                format="rectangle"
+                                lazyLoad={true}
+                            />
                             <div className="mb-6 mt-6">
                                 <ContentLinks
                                     title={<span className="flex items-center gap-1.5"><BookOpen size={16} className="text-blue-500" /> 유용한 가이드</span>}

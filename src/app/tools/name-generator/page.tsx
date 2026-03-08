@@ -128,7 +128,11 @@ export default function NameGeneratorPage() {
 
               {/* Mobile Ad Slot */}
               <div className="block md:hidden border-t border-b border-gray-100 py-4 -mx-4">
-                <AdSlot slot={AD_SLOT_INFEED} format="fluid" />
+                <AdSlot
+                  slot={AD_SLOT_INFEED}
+                  format="fluid"
+                  lazyLoad={true}
+                />
               </div>
 
               <div className="w-full h-px bg-gray-200"></div>
@@ -287,7 +291,11 @@ export default function NameGeneratorPage() {
           {/* Sidebar Column */}
           <div className="hidden md:block w-[300px]">
             <div className="sticky top-4 space-y-4">
-              <AdSlot slot={AD_SLOT_SIDEBAR} format="rectangle" />
+              <AdSlot
+                slot={AD_SLOT_SIDEBAR}
+                format="rectangle"
+                lazyLoad={true}
+              />
             </div>
           </div>
         </div>

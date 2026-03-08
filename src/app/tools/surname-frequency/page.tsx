@@ -260,7 +260,11 @@ export default function SurnameFrequencyPage() {
                     {/* Sidebar Column */}
                     <div className="hidden md:block w-[300px]">
                         <div className="sticky top-4 space-y-4">
-                            <AdSlot slot="4812260682" format="rectangle" />
+                            <AdSlot
+                                slot="4812260682"
+                                format="rectangle"
+                                lazyLoad={true}
+                            />
                             <div className="mb-6">
                                 <ContentLinks
                                     title={<span className="flex items-center gap-1.5"><Users size={16} className="text-gray-500" /> 다른 앱 보기</span>}

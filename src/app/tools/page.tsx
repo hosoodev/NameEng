@@ -101,7 +101,11 @@ export default function Tools() {
 
             {/* Mobile Ad Slot */}
             <div className="block md:hidden -mx-4">
-              <AdSlot slot={AD_SLOT_INFEED} format="fluid" />
+              <AdSlot
+                slot={AD_SLOT_INFEED}
+                format="fluid"
+                lazyLoad={true}
+              />
             </div>
 
             {/* 도구 목록 */}
@@ -220,7 +224,11 @@ export default function Tools() {
           {/* Sidebar Column */}
           <div className="hidden md:block w-[300px]">
             <div className="sticky top-4 space-y-4">
-              <AdSlot slot={AD_SLOT_SIDEBAR} format="rectangle" />
+              <AdSlot
+                slot={AD_SLOT_SIDEBAR}
+                format="rectangle"
+                lazyLoad={true}
+              />
             </div>
           </div>
         </div>
