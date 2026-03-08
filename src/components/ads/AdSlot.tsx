@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useRef, useState, useCallback, useMemo } from 'react';
 
 // ─────────────────────────────────────────────
 // Types
@@ -24,7 +24,6 @@ interface AdSlotProps {
   layout?: string;
   layoutKey?: string;
   wrapperClassName?: string;
-  /** <ins> 태그에 직접 적용되는 스타일 (mobileFixed 미적용 시에만 사용) */
   style?: React.CSSProperties;
   fallback?: React.ReactNode;
   onStatusChange?: (status: AdStatus) => void;
@@ -34,9 +33,6 @@ interface AdSlotProps {
   testMode?: boolean;
   /**
    * 모바일(767px 이하)에서 320×100px 고정 배너로 로드
-   * - data-ad-format 속성 제거 (AdSense 자동 크기 선택 비활성)
-   * - data-full-width-responsive="false" 강제
-   * - 래퍼를 320×100으로 고정
    */
   mobileFixed?: boolean;
 }
@@ -58,6 +54,34 @@ const MOBILE_FIXED_HEIGHT = 100;
 const MOBILE_BREAKPOINT = 767;
 
 // ─────────────────────────────────────────────
+// 핵심: 렌더 전 동기 모바일 판단
+// useState + useEffect 사용 시 초기값이 false라서
+// lazyLoad=false 환경에서 pushAd()가 isMobile=false 상태에서 먼저 실행됨
+// → useMemo로 렌더 시점에 즉시 판단
+// ─────────────────────────────────────────────
+
+function useIsMobileSync(enabled: boolean): boolean {
+  // SSR에서는 항상 false (서버에서 window 없음)
+  // 클라이언트 hydration 시 즉시 판단 — state 비동기 업데이트 없음
+  const [isMobile, setIsMobile] = useState(() => {
+    if (!enabled || typeof window === 'undefined') return false;
+    return window.innerWidth <= MOBILE_BREAKPOINT;
+  });
+
+  useEffect(() => {
+    if (!enabled || typeof window === 'undefined') return;
+    // resize 대응 (가로/세로 전환 등)
+    const mq = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT}px)`);
+    setIsMobile(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, [enabled]);
+
+  return isMobile;
+}
+
+// ─────────────────────────────────────────────
 // Component
 // ─────────────────────────────────────────────
 
@@ -77,25 +101,18 @@ export default function AdSlot({
   testMode = false,
   mobileFixed = false,
 }: AdSlotProps) {
+  // isMobile을 useState 초기값에서 즉시 계산 → 첫 렌더부터 올바른 값
+  const isMobile = useIsMobileSync(mobileFixed);
+  const applyMobileFixed = mobileFixed && isMobile;
+
   const adRef = useRef<HTMLModElement>(null);
   const initialized = useRef(false);
   const observerRef = useRef<IntersectionObserver | null>(null);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const [status, setStatus] = useState<AdStatus>('idle');
-  const [isMobile, setIsMobile] = useState(false);
 
   const adClient = process.env.NEXT_PUBLIC_ADSENSE_ID;
-
-  // ── 모바일 감지 ────────────────────────────
-  useEffect(() => {
-    if (typeof window === 'undefined' || !mobileFixed) return;
-    const mq = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT}px)`);
-    setIsMobile(mq.matches);
-    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
-    mq.addEventListener('change', handler);
-    return () => mq.removeEventListener('change', handler);
-  }, [mobileFixed]);
 
   const updateStatus = useCallback(
     (next: AdStatus) => {
@@ -186,26 +203,28 @@ export default function AdSlot({
     ) : null;
   }
 
-  // ── 모바일 고정 크기 적용 여부 ───────────────
-  const applyMobileFixed = mobileFixed && isMobile;
-
   // ── testMode placeholder ───────────────────
   if (testMode) {
     return (
       <div
-        className={['ad-slot overflow-hidden text-center w-full', wrapperClassName]
+        className={['ad-slot overflow-hidden text-center', wrapperClassName]
           .filter(Boolean)
           .join(' ')}
+        style={
+          applyMobileFixed
+            ? { width: MOBILE_FIXED_WIDTH, height: MOBILE_FIXED_HEIGHT, margin: '0 auto' }
+            : { width: '100%' }
+        }
         aria-label="광고 (테스트 모드)"
         role="complementary"
       >
         <div
           style={{
-            display: 'inline-flex',
+            display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            width: applyMobileFixed ? `${MOBILE_FIXED_WIDTH}px` : '100%',
-            height: applyMobileFixed ? `${MOBILE_FIXED_HEIGHT}px` : undefined,
+            width: '100%',
+            height: '100%',
             minHeight: applyMobileFixed ? undefined : 90,
             background:
               'repeating-linear-gradient(45deg, #f0f0f0, #f0f0f0 10px, #fafafa 10px, #fafafa 20px)',
@@ -221,34 +240,43 @@ export default function AdSlot({
     );
   }
 
-  // ── 실제 광고 렌더 ─────────────────────────
+  // ─────────────────────────────────────────────────────────
+  // 실제 광고 렌더
   //
-  // [mobileFixed 적용 시 핵심 규칙]
-  // 1. 래퍼를 320×100 고정 크기로 만들어 AdSense가 더 큰 광고를 못 넣게 막음
-  // 2. <ins>에도 동일하게 display:inline-block + width/height 명시
-  // 3. data-ad-format 속성 제거 → AdSense 자동 크기 선택 비활성
-  // 4. data-full-width-responsive="false" 필수
+  // [applyMobileFixed=true] 320×100 고정 배너
+  //   - 래퍼: width/height 고정 + overflow:hidden → AdSense 확장 차단
+  //   - <ins>: display:inline-block + 동일 크기
+  //   - data-ad-format 없음 → AdSense 자동 크기 알고리즘 비활성
+  //   - data-full-width-responsive="false" 필수
   //
-  // [일반 responsive 광고]
-  // - data-ad-format={format} 유지
-  // - data-full-width-responsive로 fullWidth 제어
-  // ──────────────────────────────────────────
+  // [applyMobileFixed=false] 일반 반응형 광고
+  //   - data-ad-format={format} 유지
+  //   - data-full-width-responsive로 fullWidth 제어
+  // ─────────────────────────────────────────────────────────
 
   if (applyMobileFixed) {
     return (
       <div
         className={['ad-slot text-center', wrapperClassName].filter(Boolean).join(' ')}
+        style={{
+          width: MOBILE_FIXED_WIDTH,
+          height: MOBILE_FIXED_HEIGHT,
+          overflow: 'hidden',
+          margin: '0 auto',
+        }}
         aria-label="광고"
         role="complementary"
-        style={{ width: MOBILE_FIXED_WIDTH, height: MOBILE_FIXED_HEIGHT, overflow: 'hidden', margin: '0 auto' }}
       >
         <ins
           ref={adRef}
           className="adsbygoogle"
-          style={{ display: 'inline-block', width: MOBILE_FIXED_WIDTH, height: MOBILE_FIXED_HEIGHT }}
+          style={{
+            display: 'inline-block',
+            width: MOBILE_FIXED_WIDTH,
+            height: MOBILE_FIXED_HEIGHT,
+          }}
           data-ad-client={adClient}
           data-ad-slot={slot}
-          // data-ad-format 의도적으로 제거: format prop 무시
           data-full-width-responsive="false"
         />
       </div>
