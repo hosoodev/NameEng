@@ -573,7 +573,6 @@ function NameEngConverter() {
                   format="auto"
                   wrapperClassName="md:my-6 md:rounded-lg mt-4"
                   lazyLoad={false}
-                  mobileFixed // 모바일에서 320×100 고정
                 />
 
                 <div className="px-4 md:px-0 space-y-6 mt-2">
