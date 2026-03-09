@@ -271,8 +271,10 @@ export default function AdSlot({
           className="adsbygoogle"
           style={{
             display: 'inline-block',
-            width: MOBILE_FIXED_WIDTH,
-            height: MOBILE_FIXED_HEIGHT,
+            width: '300px',
+            height: '50px',
+            maxWidth: MOBILE_FIXED_WIDTH,
+            maxHeight: MOBILE_FIXED_HEIGHT,
           }}
           data-ad-client={adClient}
           data-ad-slot={slot}
