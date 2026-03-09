@@ -573,19 +573,17 @@ function NameEngConverter() {
 
           {/* Sidebar Column (Right) */}
           <div className="hidden md:block w-[300px]">
-            <AdSlot
-              slot={AD_SLOT_SIDEBAR}
-              format="auto"
-              wrapperClassName="sticky top-4 mb-6 overflow-hidden min-h-[250px]"
-              lazyLoad={true}
-            />
+            <div className="sticky top-4 space-y-6">
+              <AdSlot
+                slot={AD_SLOT_SIDEBAR}
+                format="auto"
+                wrapperClassName="overflow-hidden min-h-[250px]"
+                lazyLoad={true}
+              />
 
-            {/* 데스크탑에서 항상 보이는 가이드 및 도구 메뉴 */}
-            <div className="sticky top-[290px]">
-              <div className="mb-6">
+              {/* 데스크탑에서 항상 보이는 가이드 및 도구 메뉴 */}
+              <div className="space-y-6">
                 <ContentLinks title={<span className="flex items-center gap-1.5"><BookOpen size={16} className="text-blue-500" /> 유용한 가이드</span>} items={guideLinks} />
-              </div>
-              <div>
                 <ContentLinks title={<span className="flex items-center gap-1.5"><Briefcase size={16} className="text-gray-500" /> 도구</span>} items={toolLinks} />
               </div>
             </div>
