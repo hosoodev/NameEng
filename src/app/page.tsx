@@ -423,7 +423,6 @@ function NameEngConverter() {
       {/* 페이지 최대 너비 컨테이너 */}
       <main className="max-w-[1280px] mx-auto w-full px-0 md:px-8 flex-1">
 
-        {/* 모바일 헤더 */}
         <div className="px-4 md:hidden">
           <SiteHeader onLogoClick={handleLogoClick} />
         </div>
@@ -434,7 +433,7 @@ function NameEngConverter() {
           {/* Main Column (Left) */}
           <div className="w-full">
             {/* 입력 영역 */}
-            <div className="px-4 md:px-0 mt-4 mb-3">
+            <div className="px-4 md:px-0 mt-1 md:mt-4 mb-3">
               <NameInput
                 value={inputName}
                 onChange={handleNameChange}
