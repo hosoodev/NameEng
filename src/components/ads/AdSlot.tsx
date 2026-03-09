@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState, useCallback, useMemo } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 
 // ─────────────────────────────────────────────
 // Types
@@ -31,10 +31,6 @@ interface AdSlotProps {
   threshold?: number;
   adBlockDetectDelay?: number;
   testMode?: boolean;
-  /**
-   * 모바일(767px 이하)에서 320×100px 고정 배너로 로드
-   */
-  mobileFixed?: boolean;
 }
 
 declare global {
@@ -49,37 +45,6 @@ declare global {
 
 const AD_BLOCK_DETECT_DELAY = 1500;
 const INTERSECTION_THRESHOLD = 0.1;
-const MOBILE_FIXED_WIDTH = 336;
-const MOBILE_FIXED_HEIGHT = 280;
-const MOBILE_BREAKPOINT = 767;
-
-// ─────────────────────────────────────────────
-// 핵심: 렌더 전 동기 모바일 판단
-// useState + useEffect 사용 시 초기값이 false라서
-// lazyLoad=false 환경에서 pushAd()가 isMobile=false 상태에서 먼저 실행됨
-// → useMemo로 렌더 시점에 즉시 판단
-// ─────────────────────────────────────────────
-
-function useIsMobileSync(enabled: boolean): boolean {
-  // SSR에서는 항상 false (서버에서 window 없음)
-  // 클라이언트 hydration 시 즉시 판단 — state 비동기 업데이트 없음
-  const [isMobile, setIsMobile] = useState(() => {
-    if (!enabled || typeof window === 'undefined') return false;
-    return window.innerWidth <= MOBILE_BREAKPOINT;
-  });
-
-  useEffect(() => {
-    if (!enabled || typeof window === 'undefined') return;
-    // resize 대응 (가로/세로 전환 등)
-    const mq = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT}px)`);
-    setIsMobile(mq.matches);
-    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
-    mq.addEventListener('change', handler);
-    return () => mq.removeEventListener('change', handler);
-  }, [enabled]);
-
-  return isMobile;
-}
 
 // ─────────────────────────────────────────────
 // Component
@@ -99,12 +64,7 @@ export default function AdSlot({
   threshold = INTERSECTION_THRESHOLD,
   adBlockDetectDelay = AD_BLOCK_DETECT_DELAY,
   testMode = false,
-  mobileFixed = false,
 }: AdSlotProps) {
-  // isMobile을 useState 초기값에서 즉시 계산 → 첫 렌더부터 올바른 값
-  const isMobile = useIsMobileSync(mobileFixed);
-  const applyMobileFixed = mobileFixed && isMobile;
-
   const adRef = useRef<HTMLModElement>(null);
   const initialized = useRef(false);
   const observerRef = useRef<IntersectionObserver | null>(null);
@@ -207,14 +167,9 @@ export default function AdSlot({
   if (testMode) {
     return (
       <div
-        className={['ad-slot overflow-hidden text-center', wrapperClassName]
+        className={['ad-slot overflow-hidden text-center w-full', wrapperClassName]
           .filter(Boolean)
           .join(' ')}
-        style={
-          applyMobileFixed
-            ? { width: MOBILE_FIXED_WIDTH, height: MOBILE_FIXED_HEIGHT, marginLeft: 'auto', marginRight: 'auto' }
-            : { width: '100%' }
-        }
         aria-label="광고 (테스트 모드)"
         role="complementary"
       >
@@ -225,7 +180,7 @@ export default function AdSlot({
             justifyContent: 'center',
             width: '100%',
             height: '100%',
-            minHeight: applyMobileFixed ? undefined : 90,
+            minHeight: 90,
             background:
               'repeating-linear-gradient(45deg, #f0f0f0, #f0f0f0 10px, #fafafa 10px, #fafafa 20px)',
             border: '2px dashed #ccc',
@@ -234,7 +189,7 @@ export default function AdSlot({
             fontFamily: 'monospace',
           }}
         >
-          📢 [{slot}] {applyMobileFixed ? `${MOBILE_FIXED_WIDTH}×${MOBILE_FIXED_HEIGHT} fixed` : format}
+          📢 [{slot}] {format}
         </div>
       </div>
     );
@@ -242,47 +197,7 @@ export default function AdSlot({
 
   // ─────────────────────────────────────────────────────────
   // 실제 광고 렌더
-  //
-  // [applyMobileFixed=true] 320×100 고정 배너
-  //   - 래퍼: width/height 고정 + overflow:hidden → AdSense 확장 차단
-  //   - <ins>: display:inline-block + 동일 크기
-  //   - data-ad-format 없음 → AdSense 자동 크기 알고리즘 비활성
-  //   - data-full-width-responsive="false" 필수
-  //
-  // [applyMobileFixed=false] 일반 반응형 광고
-  //   - data-ad-format={format} 유지
-  //   - data-full-width-responsive로 fullWidth 제어
   // ─────────────────────────────────────────────────────────
-
-  if (applyMobileFixed) {
-    return (
-      <div
-        className={['ad-slot text-center', wrapperClassName].filter(Boolean).join(' ')}
-        style={{
-          width: MOBILE_FIXED_WIDTH,
-          height: MOBILE_FIXED_HEIGHT,
-          marginLeft: 'auto',
-          marginRight: 'auto',
-        }}
-        aria-label="광고"
-        role="complementary"
-      >
-        <ins
-          ref={adRef}
-          className="adsbygoogle"
-          style={{
-            display: 'inline-block',
-            width: MOBILE_FIXED_WIDTH,
-            height: MOBILE_FIXED_HEIGHT,
-          }}
-          data-ad-client={adClient}
-          data-ad-slot={slot}
-          data-ad-format="rectangle"
-          data-full-width-responsive="false"
-        />
-      </div>
-    );
-  }
 
   return (
     <div
