@@ -49,8 +49,8 @@ declare global {
 
 const AD_BLOCK_DETECT_DELAY = 1500;
 const INTERSECTION_THRESHOLD = 0.1;
-const MOBILE_FIXED_WIDTH = 320;
-const MOBILE_FIXED_HEIGHT = 100;
+const MOBILE_FIXED_WIDTH = 336;
+const MOBILE_FIXED_HEIGHT = 280;
 const MOBILE_BREAKPOINT = 767;
 
 // ─────────────────────────────────────────────
@@ -272,8 +272,7 @@ export default function AdSlot({
           style={{
             display: 'inline-block',
             width: MOBILE_FIXED_WIDTH,
-            minHeight: '50px',
-            maxHeight: MOBILE_FIXED_HEIGHT,
+            height: MOBILE_FIXED_HEIGHT,
           }}
           data-ad-client={adClient}
           data-ad-slot={slot}
