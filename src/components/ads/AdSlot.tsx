@@ -270,8 +270,8 @@ export default function AdSlot({
           ref={adRef}
           className="adsbygoogle"
           style={{
-            display: 'block',
-            maxWidth: MOBILE_FIXED_WIDTH,
+            display: 'inline-block',
+            width: MOBILE_FIXED_WIDTH,
             minHeight: '50px',
             maxHeight: MOBILE_FIXED_HEIGHT,
           }}
