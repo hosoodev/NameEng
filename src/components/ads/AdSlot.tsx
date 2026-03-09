@@ -50,7 +50,7 @@ declare global {
 const AD_BLOCK_DETECT_DELAY = 1500;
 const INTERSECTION_THRESHOLD = 0.1;
 const MOBILE_FIXED_WIDTH = 336;
-const MOBILE_FIXED_HEIGHT = 280;
+const MOBILE_FIXED_HEIGHT = 250;
 const MOBILE_BREAKPOINT = 767;
 
 // ─────────────────────────────────────────────
