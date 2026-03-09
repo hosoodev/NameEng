@@ -11,7 +11,8 @@ import {
     Phone,
     RotateCcw,
     ShieldAlert,
-    Globe
+    Globe,
+    FileText
 } from 'lucide-react';
 import type { Metadata } from 'next';
 import DesktopNavBar from '@/components/layout/DesktopNavBar';
