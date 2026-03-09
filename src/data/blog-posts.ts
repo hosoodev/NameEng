@@ -10,6 +10,24 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
     {
+        id: 'airline-ticket-misspelled-name',
+        title: '항공권 예매 후 영문 이름 스펠링이 틀렸을 때 해결 방법 (수수료 및 변경 기준)',
+        excerpt: '특가 항공권을 잡기 위해 급하게 결제하다 보면 발생하는 영문 이름 오타! 당황하지 말고 골든타임 내에 조치할 수 있는 해결 가이드를 확인하세요.',
+        date: '2025-03-09',
+        readTime: '8분',
+        category: '여행팁',
+        tags: ['항공권영문명', '스펠링오류', '이름변경수수료', '해외여행준비']
+    },
+    {
+        id: 'travel-insurance-passport-name-mismatch',
+        title: '여행자 보험 가입 시 여권 영문명 불일치 문제: 주의사항과 해결 방법',
+        excerpt: '설레는 해외여행 준비, 항공권과 숙소 예약을 마치고 나면 꼭 챙겨야 하는 것이 바로 \'해외 여행자 보험\'입니다. 가입 시 이름 스펠링이 틀렸을 때 발생하는 문제점과 해결 방법을 알아봅니다.',
+        date: '2025-03-09',
+        readTime: '6분',
+        category: '여행팁',
+        tags: ['여권영문명', '여행자보험', '해외여행', '스펠링오류']
+    },
+    {
         id: 'korean-surname-history',
         title: '한국 성씨의 영문 표기 역사와 변천사',
         excerpt: '조선시대부터 현재까지 한국 성씨가 어떻게 로마자로 표기되어 왔는지, 그 역사적 배경과 변화 과정을 살펴봅니다.',
