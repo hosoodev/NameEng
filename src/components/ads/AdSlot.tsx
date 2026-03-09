@@ -50,7 +50,7 @@ declare global {
 const AD_BLOCK_DETECT_DELAY = 1500;
 const INTERSECTION_THRESHOLD = 0.1;
 const MOBILE_FIXED_WIDTH = 336;
-const MOBILE_FIXED_HEIGHT = 250;
+const MOBILE_FIXED_HEIGHT = 280;
 const MOBILE_BREAKPOINT = 767;
 
 // ─────────────────────────────────────────────
@@ -259,6 +259,8 @@ export default function AdSlot({
       <div
         className={['ad-slot text-center', wrapperClassName].filter(Boolean).join(' ')}
         style={{
+          width: MOBILE_FIXED_WIDTH,
+          height: MOBILE_FIXED_HEIGHT,
           overflow: 'hidden',
           marginLeft: 'auto',
           marginRight: 'auto',
@@ -276,6 +278,7 @@ export default function AdSlot({
           }}
           data-ad-client={adClient}
           data-ad-slot={slot}
+          data-ad-format="rectangle"
           data-full-width-responsive="false"
         />
       </div>
