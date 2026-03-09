@@ -261,7 +261,6 @@ export default function AdSlot({
         style={{
           width: MOBILE_FIXED_WIDTH,
           height: MOBILE_FIXED_HEIGHT,
-          overflow: 'hidden',
           marginLeft: 'auto',
           marginRight: 'auto',
         }}
@@ -278,7 +277,7 @@ export default function AdSlot({
           }}
           data-ad-client={adClient}
           data-ad-slot={slot}
-          data-ad-format="rectangle"
+          data-ad-format="auto"
           data-full-width-responsive="false"
         />
       </div>
