@@ -272,7 +272,7 @@ export default function AdSlot({
           ref={adRef}
           className="adsbygoogle"
           style={{
-            display: 'inline-block',
+            display: 'block',
             width: MOBILE_FIXED_WIDTH,
             height: MOBILE_FIXED_HEIGHT,
           }}
