@@ -271,13 +271,13 @@ export default function AdSlot({
           ref={adRef}
           className="adsbygoogle"
           style={{
-            display: 'block',
+            display: 'inline-block',
             width: MOBILE_FIXED_WIDTH,
             height: MOBILE_FIXED_HEIGHT,
           }}
           data-ad-client={adClient}
           data-ad-slot={slot}
-          data-ad-format="auto"
+          data-ad-format="rectangle"
           data-full-width-responsive="false"
         />
       </div>
