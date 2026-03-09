@@ -19,6 +19,7 @@ import OptionsPanel from '@/components/converter/OptionsPanel';
 import ContentLinks from '@/components/converter/ContentLinks';
 import DesktopNavBar from '@/components/layout/DesktopNavBar';
 import AdSlot from '@/components/ads/AdSlot';
+import ExampleNames from '@/components/converter/ExampleNames';
 import {
   FileText,
   AlertTriangle,
@@ -38,26 +39,7 @@ const AD_SLOT_RESULT = '2738626516';    // 결과 카드 하단
 const AD_SLOT_CONTENT = '2738626516';   // 콘텐츠 섹션 진입 전
 const AD_SLOT_SIDEBAR = '2738626516';   // 데스크탑 사이드바
 
-/* 예시 이름 풀: 아이돌·유명인 이름 리스트 */
-const CELEBRITY_NAMES = [
-  // BTS
-  '김남준', '김석진', '민윤기', '정호석', '박지민', '김태형', '전정국',
-  // BLACKPINK
-  '김지수', '김제니', '박채영',
-  // 배우·연예인
-  '송중기', '김수현', '이민호', '전지현', '수지', '배수지',
-  '이종석', '보아', '차은우', '이준호', '박서준', '마동석',
-  // 스포츠
-  '손흥민', '김연경', '박인비', '권은비',
-  // 일반 예시
-  '김민수', '이지은', '박준혁', '최수연', '남궁민',
-];
 
-/** 배열에서 중복 없이 n개를 랜덤으로 추출 */
-function pickRandom<T>(arr: T[], n: number): T[] {
-  const shuffled = [...arr].sort(() => Math.random() - 0.5);
-  return shuffled.slice(0, n);
-}
 
 const DEFAULT_OPTIONS: RomanizationOptions = {
   order: 'family-given',
@@ -387,6 +369,27 @@ function NameEngConverter() {
     [pushHistory]
   );
 
+  const handleExampleSelect = useCallback(
+    (name: string) => {
+      setInputName(name);
+      const nameOpts = getFamilyNameOptions(name);
+      setFamilyNameOptions(nameOpts);
+      const type: 'compound' | 'single' = nameOpts.hasCompoundOption ? 'compound' : 'single';
+      const familyName = type === 'compound' ? nameOpts.compoundFamily : nameOpts.singleFamily;
+      const variants = getSurnameVariants(familyName);
+      setSurnameVariants(variants);
+      const opts: RomanizationOptions = {
+        ...DEFAULT_OPTIONS,
+        familyNameType: type,
+        surnameVariant: variants[0] ?? undefined,
+      };
+      setOptions(opts);
+      const res = romanizeKoreanName(name, opts);
+      setResult(res);
+    },
+    []
+  );
+
   const handleRemoveHistory = useCallback((index: number) => {
     setHistory((prev) => {
       const next = prev.filter((_, i) => i !== index);
@@ -409,9 +412,7 @@ function NameEngConverter() {
     debounceRef.current && clearTimeout(debounceRef.current);
   }, []);
 
-  // 매 마운트 시 유명인 이름 풀에서 7개를 랜덤 추출 (모바일 4개, 데스크탑 7개 표시)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const exampleNames = useMemo(() => pickRandom(CELEBRITY_NAMES, 7), []);
+
 
   const contextualLinks =
     result ? getContextualLinks(inputName, result.warnings, familyNameOptions) : [];
@@ -531,42 +532,7 @@ function NameEngConverter() {
             ) : (
               /* ─── 초기 화면 (입력 전) ─── */
               <>
-                <div className="px-4 md:px-0 space-y-6 mt-2">
-                  {/* 빠른 예시: 유명인 이름에서 랜덤 추출 */}
-                  <div>
-                    <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2.5">
-                      예시 이름
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {exampleNames.map((name, i) => (
-                        <button
-                          key={name}
-                          onClick={() => {
-                            setInputName(name);
-                            const nameOpts = getFamilyNameOptions(name);
-                            setFamilyNameOptions(nameOpts);
-                            const type: 'compound' | 'single' = nameOpts.hasCompoundOption ? 'compound' : 'single';
-                            const familyName = type === 'compound' ? nameOpts.compoundFamily : nameOpts.singleFamily;
-                            const variants = getSurnameVariants(familyName);
-                            setSurnameVariants(variants);
-                            const opts: RomanizationOptions = {
-                              ...DEFAULT_OPTIONS,
-                              familyNameType: type,
-                              surnameVariant: variants[0] ?? undefined,
-                            };
-                            setOptions(opts);
-                            const res = romanizeKoreanName(name, opts);
-                            setResult(res);
-                          }}
-                          className={`px-4 py-2 bg-white border border-gray-200 rounded-xl text-sm font-medium text-gray-700 hover:border-blue-300 hover:text-blue-600 hover:bg-blue-50 active:scale-95 transition-all ${i >= 4 ? 'hidden md:inline-flex' : ''
-                            }`}
-                        >
-                          {name}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                </div>
+                {/* <ExampleNames onSelectName={handleExampleSelect} /> */}
 
                 <AdSlot
                   slot={AD_SLOT_INDEX_CONTENT}
