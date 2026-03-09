@@ -571,7 +571,7 @@ function NameEngConverter() {
                 <AdSlot
                   slot={AD_SLOT_INDEX_CONTENT}
                   format="auto"
-                  wrapperClassName="md:my-6 md:rounded-lg md:overflow-hidden mt-4"
+                  wrapperClassName="md:my-6 md:rounded-lg mt-4"
                   lazyLoad={false}
                   mobileFixed // 모바일에서 320×100 고정
                 />
