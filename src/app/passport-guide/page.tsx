@@ -27,6 +27,7 @@ export const metadata: Metadata = {
 export default function PassportGuide() {
   return (
     <TwoColumnLayout>
+            <div className="flex flex-col gap-8">
             {/* Header Content */}
             <div className="mb-8">
               <a href="/" className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors mb-6 bg-white border border-gray-200 px-3 py-1.5 rounded-lg hover:bg-gray-50">
@@ -194,6 +195,7 @@ export default function PassportGuide() {
                 </a>
               </div>
             </section>
+            </div>
     </TwoColumnLayout>
   );
 }

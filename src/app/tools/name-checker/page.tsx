@@ -158,7 +158,7 @@ export default function NameCheckerPage() {
   };
 
   return (
-    <>
+    <div className="flex flex-col gap-8">
             {/* Header Content */}
             <div className="mb-8">
               <a href="/tools" className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors mb-6 bg-white border border-gray-200 px-3 py-1.5 rounded-lg hover:bg-gray-50">
@@ -305,6 +305,6 @@ export default function NameCheckerPage() {
                 <p className="text-sm text-blue-800"><strong className="font-bold">길이 적합성:</strong> 여권/크레딧카드 각인 및 입력 폼 한계를 고려한 길이 적합성</p>
               </div>
             </section>
-    </>
+    </div>
   );
 }

@@ -101,6 +101,7 @@ function ResultPageContent() {
                 }
             ]}
         >
+                    <div className="flex flex-col gap-6">
                         <div className="text-center space-y-2">
                             <h1 className="text-xl font-bold text-gray-900">
                                 <span className="text-blue-600">{name}</span>님의 영문 이름
@@ -150,6 +151,7 @@ function ResultPageContent() {
                                     }
                                 ]}
                             />
+                        </div>
                         </div>
             </TwoColumnLayout>
     );
