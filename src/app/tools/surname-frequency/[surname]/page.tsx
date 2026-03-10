@@ -196,7 +196,7 @@ export default async function SurnameDetail({ params }: PageProps) {
                     <div className="hidden md:block w-[300px]">
                         <div className="sticky top-4 space-y-4">
                             <AdSlot
-                                slot="4812260682"
+                                slot="2738626516"
                                 format="rectangle"
                                 wrapperClassName="md:rounded-lg md:overflow-hidden min-h-[250px]"
                                 lazyLoad={true}
