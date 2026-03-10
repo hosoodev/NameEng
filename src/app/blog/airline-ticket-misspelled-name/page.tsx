@@ -14,10 +14,7 @@ import {
     FileText
 } from 'lucide-react';
 import type { Metadata } from 'next';
-import DesktopNavBar from '@/components/layout/DesktopNavBar';
-import SiteHeader from '@/components/layout/SiteHeader';
-import SiteFooter from '@/components/layout/SiteFooter';
-import CommonSidebar from '@/components/layout/CommonSidebar';
+
 import AdSlot from '@/components/ads/AdSlot';
 import ContentLinks from '@/components/converter/ContentLinks';
 
@@ -29,17 +26,7 @@ export const metadata: Metadata = {
 
 export default function AirlineTicketMismatchPage() {
     return (
-        <div className="min-h-screen bg-gray-50 flex flex-col">
-            <DesktopNavBar />
-
-            <main className="max-w-[1280px] mx-auto w-full px-0 md:px-8 flex-1">
-                <div className="px-4 md:hidden mt-4">
-                    <SiteHeader />
-                </div>
-
-                <div className="md:grid md:grid-cols-[1fr_300px] gap-8 mt-8">
-                    {/* Main Column */}
-                    <div className="w-full px-4 md:px-0">
+        <>
                         {/* Header Content */}
                         <div className="mb-8">
                             <a href="/blog" className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors mb-6 bg-white border border-gray-200 px-3 py-1.5 rounded-lg hover:bg-gray-50">
@@ -202,21 +189,6 @@ export default function AirlineTicketMismatchPage() {
                                 이 글 공유하기
                             </button>
                         </div>
-                    </div>
-
-                    {/* Sidebar Column */}
-                    <CommonSidebar
-                        customLinks={[
-                            { href: '/blog/travel-insurance-passport-name-mismatch', icon: <AlertCircle className="text-red-500" size={20} />, title: '여행자 보험 영문명 불일치', desc: '보험금 청구 거절 주의' },
-                            { href: '/blog/passport-name-guide', icon: <FileText className="text-blue-500" size={20} />, title: '여권 영문명 작성 가이드', desc: '공식 문서 작성법' }
-                        ]}
-                    />
-                </div>
-            </main>
-
-            <div className="px-4 mb-8 max-w-[1280px] w-full mx-auto">
-                <SiteFooter />
-            </div>
-        </div>
+        </>
     );
 }

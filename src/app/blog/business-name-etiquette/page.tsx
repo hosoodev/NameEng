@@ -11,10 +11,7 @@ import {
   AlertTriangle
 } from 'lucide-react';
 import type { Metadata } from 'next';
-import DesktopNavBar from '@/components/layout/DesktopNavBar';
-import SiteHeader from '@/components/layout/SiteHeader';
-import SiteFooter from '@/components/layout/SiteFooter';
-import CommonSidebar from '@/components/layout/CommonSidebar';
+
 import AdSlot from '@/components/ads/AdSlot';
 import ContentLinks from '@/components/converter/ContentLinks';
 
@@ -26,18 +23,8 @@ export const metadata: Metadata = {
 
 export default function BusinessNameEtiquettePage() {
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
-      <DesktopNavBar />
-
-      <main className="max-w-[1280px] mx-auto w-full px-0 md:px-8 flex-1">
-        <div className="px-4 md:hidden mt-4">
-          <SiteHeader />
-        </div>
-
-        <div className="md:grid md:grid-cols-[1fr_300px] gap-8 mt-8">
-          {/* Main Column */}
-          <div className="w-full px-4 md:px-0">
-            {/* Header Content */}
+    <>
+      {/* Header Content */}
             <div className="mb-8">
               <a href="/blog" className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors mb-6 bg-white border border-gray-200 px-3 py-1.5 rounded-lg hover:bg-gray-50">
                 <ArrowLeft size={16} />
@@ -323,21 +310,6 @@ export default function BusinessNameEtiquettePage() {
                 이 글 공유하기
               </button>
             </div>
-          </div>
-
-          {/* Sidebar Column */}
-          <CommonSidebar
-            customLinks={[
-              { href: '/blog/overseas-name-tips', icon: <Globe className="text-emerald-500" size={20} />, title: '해외 거주 영문명 팁', desc: '다문화 이해와 영문명' },
-              { href: '/blog/negative-meaning-words', icon: <AlertTriangle className="text-amber-500" size={20} />, title: '금지 영문 표기어', desc: '영어권 부정적 의미' }
-            ]}
-          />
-        </div>
-      </main>
-
-      <div className="px-4 mb-8 max-w-[1280px] w-full mx-auto">
-        <SiteFooter />
-      </div>
-    </div>
+    </>
   );
 }

@@ -8,10 +8,7 @@ import {
   XCircle,
   Info
 } from 'lucide-react';
-import DesktopNavBar from '@/components/layout/DesktopNavBar';
-import SiteHeader from '@/components/layout/SiteHeader';
-import SiteFooter from '@/components/layout/SiteFooter';
-import CommonSidebar from '@/components/layout/CommonSidebar';
+
 import AdSlot from '@/components/ads/AdSlot';
 import ContentLinks from '@/components/converter/ContentLinks';
 
@@ -161,17 +158,7 @@ export default function NameCheckerPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
-      <DesktopNavBar />
-
-      <main className="max-w-[1280px] mx-auto w-full px-0 md:px-8 flex-1">
-        <div className="px-4 md:hidden mt-4">
-          <SiteHeader />
-        </div>
-
-        <div className="md:grid md:grid-cols-[1fr_300px] gap-8 mt-8">
-          {/* Main Column */}
-          <div className="w-full px-4 md:px-0">
+    <>
             {/* Header Content */}
             <div className="mb-8">
               <a href="/tools" className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors mb-6 bg-white border border-gray-200 px-3 py-1.5 rounded-lg hover:bg-gray-50">
@@ -318,16 +305,6 @@ export default function NameCheckerPage() {
                 <p className="text-sm text-blue-800"><strong className="font-bold">길이 적합성:</strong> 여권/크레딧카드 각인 및 입력 폼 한계를 고려한 길이 적합성</p>
               </div>
             </section>
-          </div>
-
-          {/* Sidebar Column */}
-          <CommonSidebar type="tool" />
-        </div>
-      </main>
-
-      <div className="px-4 mb-8 max-w-[1280px] w-full mx-auto">
-        <SiteFooter />
-      </div>
-    </div>
+    </>
   );
 }

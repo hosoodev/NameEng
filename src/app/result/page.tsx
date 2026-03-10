@@ -2,11 +2,8 @@
 
 import { Suspense, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import SiteHeader from '@/components/layout/SiteHeader';
-import SiteFooter from '@/components/layout/SiteFooter';
-import DesktopNavBar from '@/components/layout/DesktopNavBar';
+import TwoColumnLayout from '@/components/layout/TwoColumnLayout';
 import ResultCard from '@/components/converter/ResultCard';
-import CommonSidebar from '@/components/layout/CommonSidebar';
 import AdSlot from '@/components/ads/AdSlot';
 import ContentLinks from '@/components/converter/ContentLinks';
 import {
@@ -88,19 +85,22 @@ function ResultPageContent() {
     const copyToClipboard = (text: string) => navigator.clipboard.writeText(text);
 
     return (
-        <div className="min-h-screen bg-gray-50 flex flex-col">
-            <DesktopNavBar />
-
-            <main className="max-w-[1280px] mx-auto w-full px-0 md:px-8 flex-1">
-                {/* 모바일 헤더 */}
-                <div className="px-4 md:hidden mt-4">
-                    <SiteHeader />
-                </div>
-
-                {/* 투칼럼 그리드 레이아웃 */}
-                <div className="md:grid md:grid-cols-[1fr_300px] gap-8 mt-8">
-                    {/* Main Column (Left) */}
-                    <div className="w-full px-4 md:px-0 space-y-6">
+        <TwoColumnLayout
+            sidebarLinks={[
+                {
+                    href: '/blog/passport-name-guide',
+                    icon: <FileText className="text-blue-500" size={20} />,
+                    title: '여권 발급 시 영문명 작성법',
+                    desc: '여권 신청 시 주의사항과 실제 사례',
+                },
+                {
+                    href: '/blog/overseas-name-tips',
+                    icon: <Globe className="text-emerald-500" size={20} />,
+                    title: '해외 거주 시 영문명 사용 팁',
+                    desc: '문화적 차이를 교려한 실용적인 조언',
+                }
+            ]}
+        >
                         <div className="text-center space-y-2">
                             <h1 className="text-xl font-bold text-gray-900">
                                 <span className="text-blue-600">{name}</span>님의 영문 이름
@@ -151,33 +151,7 @@ function ResultPageContent() {
                                 ]}
                             />
                         </div>
-                    </div>
-
-                    {/* Sidebar Column (Right) */}
-                    <CommonSidebar
-                        customLinks={[
-                            {
-                                href: '/blog/passport-name-guide',
-                                icon: <FileText className="text-blue-500" size={20} />,
-                                title: '여권 발급 시 영문명 작성법',
-                                desc: '여권 신청 시 주의사항과 실제 사례',
-                            },
-                            {
-                                href: '/blog/overseas-name-tips',
-                                icon: <Globe className="text-emerald-500" size={20} />,
-                                title: '해외 거주 시 영문명 사용 팁',
-                                desc: '문화적 차이를 교려한 실용적인 조언',
-                            }
-                        ]}
-                    />
-                </div>
-            </main>
-
-            {/* 푸터 */}
-            <div className="px-4 mb-8 max-w-[1280px] w-full mx-auto">
-                <SiteFooter />
-            </div>
-        </div>
+            </TwoColumnLayout>
     );
 }
 

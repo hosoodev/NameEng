@@ -17,10 +17,7 @@ import {
   HelpCircle
 } from 'lucide-react';
 import type { Metadata } from 'next';
-import DesktopNavBar from '@/components/layout/DesktopNavBar';
-import SiteHeader from '@/components/layout/SiteHeader';
-import SiteFooter from '@/components/layout/SiteFooter';
-import CommonSidebar from '@/components/layout/CommonSidebar';
+import TwoColumnLayout from '@/components/layout/TwoColumnLayout';
 
 export const metadata: Metadata = {
   title: 'NameEng 소개 - 영문이름변환기 서비스 개요 | Nameeng 네이밍',
@@ -41,17 +38,12 @@ export const metadata: Metadata = {
 
 export default function About() {
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
-      <DesktopNavBar />
-
-      <main className="max-w-[1280px] mx-auto w-full px-0 md:px-8 flex-1">
-        <div className="px-4 md:hidden mt-4">
-          <SiteHeader />
-        </div>
-
-        <div className="md:grid md:grid-cols-[1fr_300px] gap-8 mt-8">
-          {/* Main Column */}
-          <div className="w-full px-4 md:px-0">
+    <TwoColumnLayout
+      sidebarLinks={[
+        { href: '/how-to-use', icon: <HelpCircle className="text-blue-500" size={20} />, title: '이용 가이드', desc: '서비스 백배 활용하기' },
+        { href: '/tools/name-generator', icon: <Sparkles className="text-purple-500" size={20} />, title: 'AI 이름 생성기', desc: '트렌디한 영문명 추천' }
+      ]}
+    >
 
             {/* Header Content */}
             <div className="mb-8">
@@ -291,21 +283,6 @@ export default function About() {
                 © {new Date().getFullYear()} NameEng. 한국어 이름의 정확한 로마자 표기를 위한 서비스입니다.
               </p>
             </div>
-          </div>
-
-          {/* Sidebar Column */}
-          <CommonSidebar
-            customLinks={[
-              { href: '/how-to-use', icon: <HelpCircle className="text-blue-500" size={20} />, title: '이용 가이드', desc: '서비스 백배 활용하기' },
-              { href: '/tools/name-generator', icon: <Sparkles className="text-purple-500" size={20} />, title: 'AI 이름 생성기', desc: '트렌디한 영문명 추천' }
-            ]}
-          />
-        </div>
-      </main>
-
-      <div className="px-4 mb-8 max-w-[1280px] w-full mx-auto">
-        <SiteFooter />
-      </div>
-    </div>
+    </TwoColumnLayout>
   );
 }

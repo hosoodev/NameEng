@@ -2,9 +2,7 @@
 
 import { useState } from 'react';
 import { ArrowLeft, Calculator, Copy, Download, Zap } from 'lucide-react';
-import DesktopNavBar from '@/components/layout/DesktopNavBar';
-import SiteFooter from '@/components/layout/SiteFooter';
-import CommonSidebar from '@/components/layout/CommonSidebar';
+
 import AdSlot from '@/components/ads/AdSlot';
 const AD_SLOT_INFEED = "2738626516";
 
@@ -94,13 +92,7 @@ export default function NameGeneratorPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
-      <DesktopNavBar />
-
-      <main className="flex-1 w-full max-w-[1280px] mx-auto px-4 md:px-8 py-6 md:py-8">
-        <div className="md:grid md:grid-cols-[1fr_300px] gap-8">
-          {/* Main Content Column */}
-          <div className="w-full space-y-8">
+    <>
             <div className="flex flex-col gap-6">
               {/* Header */}
               <div>
@@ -288,16 +280,6 @@ export default function NameGeneratorPage() {
                 </div>
               </div>
             </div>
-          </div>
-
-          {/* Sidebar Column */}
-          <CommonSidebar type="tool" />
-        </div>
-      </main>
-
-      <div className="px-4 mb-8 max-w-[1280px] w-full mx-auto">
-        <SiteFooter />
-      </div>
-    </div>
+    </>
   );
 }

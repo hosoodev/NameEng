@@ -11,10 +11,7 @@ import {
   Briefcase
 } from 'lucide-react';
 import type { Metadata } from 'next';
-import DesktopNavBar from '@/components/layout/DesktopNavBar';
-import SiteHeader from '@/components/layout/SiteHeader';
-import SiteFooter from '@/components/layout/SiteFooter';
-import CommonSidebar from '@/components/layout/CommonSidebar';
+import TwoColumnLayout from '@/components/layout/TwoColumnLayout';
 
 export const metadata: Metadata = {
   title: '자주 묻는 질문 FAQ - 영문이름변환기 질문과 답변 | Nameeng 네이밍',
@@ -153,17 +150,13 @@ export default function FAQ() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
-      <DesktopNavBar />
-
-      <main className="max-w-[1280px] mx-auto w-full px-0 md:px-8 flex-1">
-        <div className="px-4 md:hidden mt-4">
-          <SiteHeader />
-        </div>
-
-        <div className="md:grid md:grid-cols-[1fr_300px] gap-8 mt-8">
-          {/* Main Column */}
-          <div className="w-full px-4 md:px-0">
+    <TwoColumnLayout
+      sidebarLinks={[
+        { href: '/blog/passport-name-guide', icon: <FileText className="text-blue-500" size={20} />, title: '여권 발급 시 영문명 작성법', desc: '여권 신청 시 주의사항과 실제 사례' },
+        { href: '/blog/overseas-name-tips', icon: <Globe className="text-emerald-500" size={20} />, title: '해외 거주 시 영문명 사용 팁', desc: '문화적 차이를 고려한 실용적인 조언' },
+        { href: '/blog/business-name-etiquette', icon: <Briefcase className="text-slate-500" size={20} />, title: '국제 비즈니스 영문명 에티켓', desc: '전문적인 영문명 사용법과 명함 작성 가이드' }
+      ]}
+    >
             {/* Header Content */}
             <div className="mb-8">
               <a href="/" className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors mb-6 bg-white border border-gray-200 px-3 py-1.5 rounded-lg hover:bg-gray-50">
@@ -294,22 +287,6 @@ export default function FAQ() {
                 FAQ는 사용자 피드백을 바탕으로 지속적으로 업데이트됩니다.
               </p>
             </div>
-          </div>
-
-          {/* Sidebar Column */}
-          <CommonSidebar
-            customLinks={[
-              { href: '/blog/passport-name-guide', icon: <FileText className="text-blue-500" size={20} />, title: '여권 발급 시 영문명 작성법', desc: '여권 신청 시 주의사항과 실제 사례' },
-              { href: '/blog/overseas-name-tips', icon: <Globe className="text-emerald-500" size={20} />, title: '해외 거주 시 영문명 사용 팁', desc: '문화적 차이를 고려한 실용적인 조언' },
-              { href: '/blog/business-name-etiquette', icon: <Briefcase className="text-slate-500" size={20} />, title: '국제 비즈니스 영문명 에티켓', desc: '전문적인 영문명 사용법과 명함 작성 가이드' }
-            ]}
-          />
-        </div>
-      </main>
-
-      <div className="px-4 mb-8 max-w-[1280px] w-full mx-auto">
-        <SiteFooter />
-      </div>
-    </div>
+    </TwoColumnLayout>
   );
 }

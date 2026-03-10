@@ -10,10 +10,7 @@ import {
     Briefcase
 } from 'lucide-react';
 import type { Metadata } from 'next';
-import DesktopNavBar from '@/components/layout/DesktopNavBar';
-import SiteHeader from '@/components/layout/SiteHeader';
-import SiteFooter from '@/components/layout/SiteFooter';
-import CommonSidebar from '@/components/layout/CommonSidebar';
+
 import AdSlot from '@/components/ads/AdSlot';
 import ContentLinks from '@/components/converter/ContentLinks';
 
@@ -25,18 +22,8 @@ export const metadata: Metadata = {
 
 export default function OverseasNameTipsPage() {
     return (
-        <div className="min-h-screen bg-gray-50 flex flex-col">
-            <DesktopNavBar />
-
-            <main className="max-w-[1280px] mx-auto w-full px-0 md:px-8 flex-1">
-                <div className="px-4 md:hidden mt-4">
-                    <SiteHeader />
-                </div>
-
-                <div className="md:grid md:grid-cols-[1fr_300px] gap-8 mt-8">
-                    {/* Main Column */}
-                    <div className="w-full px-4 md:px-0">
-                        {/* Header Content */}
+        <>
+            {/* Header Content */}
                         <div className="mb-8">
                             <a href="/blog" className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors mb-6 bg-white border border-gray-200 px-3 py-1.5 rounded-lg hover:bg-gray-50">
                                 <ArrowLeft size={16} />
@@ -297,21 +284,6 @@ export default function OverseasNameTipsPage() {
                                 이 글 공유하기
                             </button>
                         </div>
-                    </div>
-
-                    {/* Sidebar Column */}
-                    <CommonSidebar
-                        customLinks={[
-                            { href: '/blog/business-name-etiquette', icon: <Briefcase className="text-indigo-500" size={20} />, title: '비즈니스 영문명 매너', desc: '국제 비즈니스 명함 에티켓' },
-                            { href: '/blog/passport-name-guide', icon: <CheckCircle className="text-emerald-500" size={20} />, title: '여권 영문명 가이드', desc: '외교부 여권 발급 공식' }
-                        ]}
-                    />
-                </div>
-            </main>
-
-            <div className="px-4 mb-8 max-w-[1280px] w-full mx-auto">
-                <SiteFooter />
-            </div>
-        </div>
+        </>
     );
 }
