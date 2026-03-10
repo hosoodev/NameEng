@@ -14,8 +14,7 @@ import type { Metadata } from 'next';
 import DesktopNavBar from '@/components/layout/DesktopNavBar';
 import SiteHeader from '@/components/layout/SiteHeader';
 import SiteFooter from '@/components/layout/SiteFooter';
-import AdSlot from '@/components/ads/AdSlot';
-import ContentLinks from '@/components/converter/ContentLinks';
+import CommonSidebar from '@/components/layout/CommonSidebar';
 
 export const metadata: Metadata = {
   title: '외교부 여권 로마자 표기 규정 - 영문이름변환기 가이드 | Nameeng 네이밍',
@@ -217,26 +216,7 @@ export default function PassportGuide() {
           </div>
 
           {/* Sidebar Column */}
-          <div className="hidden md:block w-[300px]">
-            <div className="sticky top-4 space-y-4">
-              <AdSlot
-                slot="2738626516"
-                format="rectangle"
-                wrapperClassName="md:rounded-lg md:overflow-hidden min-h-[250px]"
-                lazyLoad={true}
-              />
-              <div className="mb-6">
-                <ContentLinks
-                  title={<span className="flex items-center gap-1.5"><BookOpen size={16} className="text-blue-500" /> 연관 가이드</span>}
-                  items={[
-                    { href: '/how-to-use', icon: <FileText className="text-emerald-500" size={20} />, title: 'NameEng 기초 사용법', desc: '서비스를 활용법과 꿀팁 알아보기' },
-                    { href: '/romanization-guide', icon: <BookOpen className="text-indigo-500" size={20} />, title: '국어의 로마자 표기법 고시', desc: '국립국어원 2024 기준 최신 고시' },
-                    { href: '/faq', icon: <Search className="text-blue-500" size={20} />, title: '비자/여권 FAQ', desc: '사용자들이 가장 많이 물어보는 여권 질문과 답변' }
-                  ]}
-                />
-              </div>
-            </div>
-          </div>
+          <CommonSidebar />
         </div>
       </main>
 

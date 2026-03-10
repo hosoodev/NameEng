@@ -12,6 +12,7 @@ import type { Metadata } from 'next';
 import DesktopNavBar from '@/components/layout/DesktopNavBar';
 import SiteFooter from '@/components/layout/SiteFooter';
 import AdSlot from '@/components/ads/AdSlot';
+import CommonSidebar from '@/components/layout/CommonSidebar';
 
 export const metadata: Metadata = {
   title: '유용한 도구툴 - 영문명 관련 추가 도구 | NameEng',
@@ -19,7 +20,6 @@ export const metadata: Metadata = {
   keywords: '영문명 생성기, 발음 가이드, 이름 적합성 검사, 로마자 표기 도구, 한글 이름 변환 도구',
 };
 
-const AD_SLOT_SIDEBAR = "2738626516";
 const AD_SLOT_INFEED = "2738626516";
 
 const tools = [
@@ -222,15 +222,7 @@ export default function Tools() {
           </div>
 
           {/* Sidebar Column */}
-          <div className="hidden md:block w-[300px]">
-            <div className="sticky top-4 space-y-4">
-              <AdSlot
-                slot={AD_SLOT_SIDEBAR}
-                format="rectangle"
-                lazyLoad={true}
-              />
-            </div>
-          </div>
+          <CommonSidebar />
         </div>
       </main>
 

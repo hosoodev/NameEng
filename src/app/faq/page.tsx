@@ -16,8 +16,7 @@ import type { Metadata } from 'next';
 import DesktopNavBar from '@/components/layout/DesktopNavBar';
 import SiteHeader from '@/components/layout/SiteHeader';
 import SiteFooter from '@/components/layout/SiteFooter';
-import AdSlot from '@/components/ads/AdSlot';
-import ContentLinks from '@/components/converter/ContentLinks';
+import CommonSidebar from '@/components/layout/CommonSidebar';
 
 export const metadata: Metadata = {
   title: '자주 묻는 질문 FAQ - 영문이름변환기 질문과 답변 | Nameeng 네이밍',
@@ -300,30 +299,13 @@ export default function FAQ() {
           </div>
 
           {/* Sidebar Column */}
-          <div className="hidden md:block w-[300px]">
-            <div className="sticky top-4 space-y-4">
-              <AdSlot slot="2738626516" format="rectangle" />
-              <div className="mb-6">
-                <ContentLinks
-                  title={<span className="flex items-center gap-1.5"><BookOpen size={16} className="text-blue-500" /> 유용한 가이드</span>}
-                  items={[
-                    { href: '/blog/passport-name-guide', icon: <FileText className="text-blue-500" size={20} />, title: '여권 발급 시 영문명 작성법', desc: '여권 신청 시 주의사항과 실제 사례' },
-                    { href: '/blog/overseas-name-tips', icon: <Globe className="text-emerald-500" size={20} />, title: '해외 거주 시 영문명 사용 팁', desc: '문화적 차이를 고려한 실용적인 조언' },
-                    { href: '/blog/business-name-etiquette', icon: <Briefcase className="text-slate-500" size={20} />, title: '국제 비즈니스 영문명 에티켓', desc: '전문적인 영문명 사용법과 명함 작성 가이드' }
-                  ]}
-                />
-              </div>
-              <div>
-                <ContentLinks
-                  title={<span className="flex items-center gap-1.5"><Briefcase size={16} className="text-gray-500" /> 도구</span>}
-                  items={[
-                    { href: '/tools/name-checker', icon: <Search className="text-blue-500" size={20} />, title: '영문명 적합성 검사기', desc: '기존 영문명의 적합성을 종합적으로 분석' },
-                    { href: '/romanization-guide', icon: <Ruler className="text-amber-500" size={20} />, title: '로마자 표기법 가이드', desc: '국어의 로마자 표기법 2024년 기준 정리' }
-                  ]}
-                />
-              </div>
-            </div>
-          </div>
+          <CommonSidebar
+            customLinks={[
+              { href: '/blog/passport-name-guide', icon: <FileText className="text-blue-500" size={20} />, title: '여권 발급 시 영문명 작성법', desc: '여권 신청 시 주의사항과 실제 사례' },
+              { href: '/blog/overseas-name-tips', icon: <Globe className="text-emerald-500" size={20} />, title: '해외 거주 시 영문명 사용 팁', desc: '문화적 차이를 고려한 실용적인 조언' },
+              { href: '/blog/business-name-etiquette', icon: <Briefcase className="text-slate-500" size={20} />, title: '국제 비즈니스 영문명 에티켓', desc: '전문적인 영문명 사용법과 명함 작성 가이드' }
+            ]}
+          />
         </div>
       </main>
 

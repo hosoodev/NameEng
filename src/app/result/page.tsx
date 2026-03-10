@@ -6,6 +6,7 @@ import SiteHeader from '@/components/layout/SiteHeader';
 import SiteFooter from '@/components/layout/SiteFooter';
 import DesktopNavBar from '@/components/layout/DesktopNavBar';
 import ResultCard from '@/components/converter/ResultCard';
+import CommonSidebar from '@/components/layout/CommonSidebar';
 import AdSlot from '@/components/ads/AdSlot';
 import ContentLinks from '@/components/converter/ContentLinks';
 import {
@@ -153,34 +154,22 @@ function ResultPageContent() {
                     </div>
 
                     {/* Sidebar Column (Right) */}
-                    <div className="hidden md:block w-[300px]">
-                        <div className="sticky top-4 space-y-4">
-                            <AdSlot
-                                slot="2738626516"
-                                format="rectangle"
-                                lazyLoad={true}
-                            />
-                            <div className="mb-6 mt-6">
-                                <ContentLinks
-                                    title={<span className="flex items-center gap-1.5"><BookOpen size={16} className="text-blue-500" /> 유용한 가이드</span>}
-                                    items={[
-                                        {
-                                            href: '/blog/passport-name-guide',
-                                            icon: <FileText className="text-blue-500" size={20} />,
-                                            title: '여권 발급 시 영문명 작성법',
-                                            desc: '여권 신청 시 주의사항과 실제 사례',
-                                        },
-                                        {
-                                            href: '/blog/overseas-name-tips',
-                                            icon: <Globe className="text-emerald-500" size={20} />,
-                                            title: '해외 거주 시 영문명 사용 팁',
-                                            desc: '문화적 차이를 교려한 실용적인 조언',
-                                        }
-                                    ]}
-                                />
-                            </div>
-                        </div>
-                    </div>
+                    <CommonSidebar
+                        customLinks={[
+                            {
+                                href: '/blog/passport-name-guide',
+                                icon: <FileText className="text-blue-500" size={20} />,
+                                title: '여권 발급 시 영문명 작성법',
+                                desc: '여권 신청 시 주의사항과 실제 사례',
+                            },
+                            {
+                                href: '/blog/overseas-name-tips',
+                                icon: <Globe className="text-emerald-500" size={20} />,
+                                title: '해외 거주 시 영문명 사용 팁',
+                                desc: '문화적 차이를 교려한 실용적인 조언',
+                            }
+                        ]}
+                    />
                 </div>
             </main>
 
