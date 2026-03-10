@@ -8,7 +8,6 @@ import {
     Clock3,
     CheckCircle,
     HelpCircle,
-    Phone,
     RotateCcw,
     ShieldAlert,
     Globe,

@@ -6,7 +6,8 @@ import {
     Globe,
     Users,
     AlertTriangle,
-    CheckCircle
+    CheckCircle,
+    Briefcase
 } from 'lucide-react';
 import type { Metadata } from 'next';
 import DesktopNavBar from '@/components/layout/DesktopNavBar';
@@ -15,7 +16,6 @@ import SiteFooter from '@/components/layout/SiteFooter';
 import CommonSidebar from '@/components/layout/CommonSidebar';
 import AdSlot from '@/components/ads/AdSlot';
 import ContentLinks from '@/components/converter/ContentLinks';
-import { Search, FileText, Briefcase } from 'lucide-react';
 
 export const metadata: Metadata = {
     title: '해외 거주 시 영문명 사용 팁과 주의사항 | NameEng 블로그',

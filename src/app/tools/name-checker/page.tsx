@@ -6,13 +6,7 @@ import {
   CheckCircle,
   AlertTriangle,
   XCircle,
-  Info,
-  BookOpen,
-  FileText,
-  Globe,
-  Briefcase,
-  Search,
-  Ruler
+  Info
 } from 'lucide-react';
 import DesktopNavBar from '@/components/layout/DesktopNavBar';
 import SiteHeader from '@/components/layout/SiteHeader';

@@ -29,8 +29,6 @@ import {
   Briefcase,
   Search,
   Ruler,
-  CheckCircle2,
-  CircleDollarSign,
   ChevronRight
 } from 'lucide-react';
 

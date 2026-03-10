@@ -15,7 +15,6 @@ import SiteFooter from '@/components/layout/SiteFooter';
 import CommonSidebar from '@/components/layout/CommonSidebar';
 import AdSlot from '@/components/ads/AdSlot';
 import ContentLinks from '@/components/converter/ContentLinks';
-import { Search, FileText, Briefcase } from 'lucide-react';
 
 export const metadata: Metadata = {
     title: '영어권에서 피해야 할 한국 이름 표기들 | NameEng 블로그',

@@ -7,12 +7,9 @@ import {
   AlertTriangle,
   CheckCircle,
   Keyboard,
-  BookOpen,
   FileText,
   Globe,
-  Briefcase,
-  Search,
-  Ruler
+  Briefcase
 } from 'lucide-react';
 import type { Metadata } from 'next';
 import DesktopNavBar from '@/components/layout/DesktopNavBar';

@@ -2,8 +2,7 @@ import {
   ArrowLeft,
   BookOpen,
   FileText,
-  Briefcase,
-  Search
+  Briefcase
 } from 'lucide-react';
 import type { Metadata } from 'next';
 import DesktopNavBar from '@/components/layout/DesktopNavBar';

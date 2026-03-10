@@ -3,12 +3,6 @@ import {
   ExternalLink,
   AlertCircle,
   CheckCircle,
-  BookOpen,
-  FileText,
-  Globe,
-  Briefcase,
-  Search,
-  Ruler
 } from 'lucide-react';
 import type { Metadata } from 'next';
 import DesktopNavBar from '@/components/layout/DesktopNavBar';

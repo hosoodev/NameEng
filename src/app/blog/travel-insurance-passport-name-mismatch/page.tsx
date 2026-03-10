@@ -6,10 +6,8 @@ import {
     Shield,
     AlertTriangle,
     FileText,
-    Phone,
     CheckCircle,
-    Globe,
-    Plane
+    Globe
 } from 'lucide-react';
 import type { Metadata } from 'next';
 import DesktopNavBar from '@/components/layout/DesktopNavBar';

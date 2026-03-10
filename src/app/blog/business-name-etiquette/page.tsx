@@ -17,7 +17,6 @@ import SiteFooter from '@/components/layout/SiteFooter';
 import CommonSidebar from '@/components/layout/CommonSidebar';
 import AdSlot from '@/components/ads/AdSlot';
 import ContentLinks from '@/components/converter/ContentLinks';
-import { Plane, AlertCircle, FileText } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: '국제 비즈니스에서의 영문명 에티켓 | NameEng 블로그',

@@ -6,7 +6,8 @@ import {
     AlertTriangle,
     CheckCircle,
     Info,
-    BookOpen
+    BookOpen,
+    Briefcase
 } from 'lucide-react';
 import type { Metadata } from 'next';
 import DesktopNavBar from '@/components/layout/DesktopNavBar';
@@ -15,7 +16,6 @@ import SiteFooter from '@/components/layout/SiteFooter';
 import CommonSidebar from '@/components/layout/CommonSidebar';
 import AdSlot from '@/components/ads/AdSlot';
 import ContentLinks from '@/components/converter/ContentLinks';
-import { Search, Briefcase, Globe } from 'lucide-react';
 
 export const metadata: Metadata = {
     title: '여권 발급 시 영문명 작성 완벽 가이드 | NameEng 블로그',

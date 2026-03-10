@@ -2,12 +2,7 @@ import {
   ArrowLeft,
   ExternalLink,
   BookOpen,
-  Info,
-  FileText,
-  Globe,
-  Briefcase,
-  Search,
-  Ruler
+  Info
 } from 'lucide-react';
 import type { Metadata } from 'next';
 import DesktopNavBar from '@/components/layout/DesktopNavBar';

@@ -6,7 +6,6 @@ import {
   Heart,
   Users,
   CheckCircle2,
-  AlertTriangle,
   Globe2,
   Sparkles,
   Award,
@@ -15,10 +14,6 @@ import {
   GraduationCap,
   Landmark,
   Baby,
-  FileText,
-  Globe,
-  Search,
-  Ruler,
   HelpCircle
 } from 'lucide-react';
 import type { Metadata } from 'next';
@@ -26,8 +21,6 @@ import DesktopNavBar from '@/components/layout/DesktopNavBar';
 import SiteHeader from '@/components/layout/SiteHeader';
 import SiteFooter from '@/components/layout/SiteFooter';
 import CommonSidebar from '@/components/layout/CommonSidebar';
-import AdSlot from '@/components/ads/AdSlot';
-import ContentLinks from '@/components/converter/ContentLinks';
 
 export const metadata: Metadata = {
   title: 'NameEng 소개 - 영문이름변환기 서비스 개요 | Nameeng 네이밍',
