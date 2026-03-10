@@ -18,6 +18,7 @@ import type { Metadata } from 'next';
 import DesktopNavBar from '@/components/layout/DesktopNavBar';
 import SiteHeader from '@/components/layout/SiteHeader';
 import SiteFooter from '@/components/layout/SiteFooter';
+import CommonSidebar from '@/components/layout/CommonSidebar';
 import AdSlot from '@/components/ads/AdSlot';
 import ContentLinks from '@/components/converter/ContentLinks';
 
@@ -205,25 +206,12 @@ export default function AirlineTicketMismatchPage() {
                     </div>
 
                     {/* Sidebar Column */}
-                    <div className="hidden md:block w-[300px]">
-                        <div className="sticky top-4 space-y-4">
-                            <AdSlot
-                                slot="2738626516"
-                                format="rectangle"
-                                wrapperClassName="md:rounded-lg md:overflow-hidden min-h-[250px]"
-                                lazyLoad={true}
-                            />
-                            <div className="mb-6">
-                                <ContentLinks
-                                    title={<span className="flex items-center gap-1.5"><Globe size={16} className="text-blue-500" /> 연관 추천 콘텐츠</span>}
-                                    items={[
-                                        { href: '/blog/travel-insurance-passport-name-mismatch', icon: <AlertCircle className="text-red-500" size={20} />, title: '여행자 보험 영문명 불일치', desc: '보험금 청구 거절 주의' },
-                                        { href: '/blog/passport-name-guide', icon: <FileText className="text-blue-500" size={20} />, title: '여권 영문명 작성 가이드', desc: '공식 문서 작성법' }
-                                    ]}
-                                />
-                            </div>
-                        </div>
-                    </div>
+                    <CommonSidebar
+                        customLinks={[
+                            { href: '/blog/travel-insurance-passport-name-mismatch', icon: <AlertCircle className="text-red-500" size={20} />, title: '여행자 보험 영문명 불일치', desc: '보험금 청구 거절 주의' },
+                            { href: '/blog/passport-name-guide', icon: <FileText className="text-blue-500" size={20} />, title: '여권 영문명 작성 가이드', desc: '공식 문서 작성법' }
+                        ]}
+                    />
                 </div>
             </main>
 

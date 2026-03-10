@@ -12,6 +12,8 @@ import type { Metadata } from 'next';
 import DesktopNavBar from '@/components/layout/DesktopNavBar';
 import SiteHeader from '@/components/layout/SiteHeader';
 import SiteFooter from '@/components/layout/SiteFooter';
+import CommonSidebar from '@/components/layout/CommonSidebar';
+import { Search, FileText, Briefcase } from 'lucide-react';
 import AdSlot from '@/components/ads/AdSlot';
 import ContentLinks from '@/components/converter/ContentLinks';
 
@@ -384,25 +386,13 @@ export default function RomanizationRulesPage() {
           </div>
 
           {/* Sidebar Column */}
-          <div className="hidden md:block w-[300px]">
-            <div className="sticky top-4 space-y-4">
-              <AdSlot
-                slot="2738626516"
-                format="rectangle"
-                wrapperClassName="md:rounded-lg md:overflow-hidden min-h-[250px]"
-                lazyLoad={true}
-              />
-              <div className="mb-6">
-                <ContentLinks
-                  title={<span className="flex items-center gap-1.5"><Info size={16} className="text-blue-500" /> 연관 추천 콘텐츠</span>}
-                  items={[
-                    { href: '/passport-guide', icon: <CheckCircle className="text-indigo-500" size={20} />, title: '여권 로마자 작성 가이드', desc: '이름 표기법 실전 응용' },
-                    { href: '/tools/name-checker', icon: <BookOpen className="text-emerald-500" size={20} />, title: '영문명 변환기 & 검사기', desc: '정확한 로마자 표기 확인' }
-                  ]}
-                />
-              </div>
-            </div>
-          </div>
+          <CommonSidebar
+            customLinks={[
+              { href: '/tools/name-checker', icon: <Search className="text-blue-500" size={20} />, title: '영문명 적합성 검사', desc: '나의 영문명 디자인 분석' },
+              { href: '/blog/passport-name-guide', icon: <FileText className="text-emerald-500" size={20} />, title: '여권 영문명 가이드', desc: '올바른 로마자 표기법' },
+              { href: '/passport-guide', icon: <Briefcase className="text-indigo-500" size={20} />, title: '여권 발급 공식 규정', desc: '외교부 최신 로마자 규정' }
+            ]}
+          />
         </div>
       </main>
 

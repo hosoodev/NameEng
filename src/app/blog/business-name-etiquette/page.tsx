@@ -14,8 +14,10 @@ import type { Metadata } from 'next';
 import DesktopNavBar from '@/components/layout/DesktopNavBar';
 import SiteHeader from '@/components/layout/SiteHeader';
 import SiteFooter from '@/components/layout/SiteFooter';
+import CommonSidebar from '@/components/layout/CommonSidebar';
 import AdSlot from '@/components/ads/AdSlot';
 import ContentLinks from '@/components/converter/ContentLinks';
+import { Plane, AlertCircle, FileText } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: '국제 비즈니스에서의 영문명 에티켓 | NameEng 블로그',
@@ -325,25 +327,12 @@ export default function BusinessNameEtiquettePage() {
           </div>
 
           {/* Sidebar Column */}
-          <div className="hidden md:block w-[300px]">
-            <div className="sticky top-4 space-y-4">
-              <AdSlot
-                slot="2738626516"
-                format="rectangle"
-                wrapperClassName="md:rounded-lg md:overflow-hidden min-h-[250px]"
-                lazyLoad={true}
-              />
-              <div className="mb-6">
-                <ContentLinks
-                  title={<span className="flex items-center gap-1.5"><Globe size={16} className="text-blue-500" /> 연관 추천 콘텐츠</span>}
-                  items={[
-                    { href: '/blog/overseas-name-tips', icon: <Globe className="text-emerald-500" size={20} />, title: '해외 거주 영문명 팁', desc: '다문화 이해와 영문명' },
-                    { href: '/blog/negative-meaning-words', icon: <AlertTriangle className="text-amber-500" size={20} />, title: '금지 영문 표기어', desc: '영어권 부정적 의미' }
-                  ]}
-                />
-              </div>
-            </div>
-          </div>
+          <CommonSidebar
+            customLinks={[
+              { href: '/blog/overseas-name-tips', icon: <Globe className="text-emerald-500" size={20} />, title: '해외 거주 영문명 팁', desc: '다문화 이해와 영문명' },
+              { href: '/blog/negative-meaning-words', icon: <AlertTriangle className="text-amber-500" size={20} />, title: '금지 영문 표기어', desc: '영어권 부정적 의미' }
+            ]}
+          />
         </div>
       </main>
 

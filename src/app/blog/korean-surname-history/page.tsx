@@ -11,8 +11,10 @@ import type { Metadata } from 'next';
 import DesktopNavBar from '@/components/layout/DesktopNavBar';
 import SiteHeader from '@/components/layout/SiteHeader';
 import SiteFooter from '@/components/layout/SiteFooter';
+import CommonSidebar from '@/components/layout/CommonSidebar';
 import AdSlot from '@/components/ads/AdSlot';
 import ContentLinks from '@/components/converter/ContentLinks';
+import { Search, FileText, Users } from 'lucide-react';
 
 export const metadata: Metadata = {
     title: '한국 성씨의 영문 표기 역사와 변천사 | NameEng 블로그',

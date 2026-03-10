@@ -9,6 +9,7 @@ import type { Metadata } from 'next';
 import DesktopNavBar from '@/components/layout/DesktopNavBar';
 import SiteHeader from '@/components/layout/SiteHeader';
 import SiteFooter from '@/components/layout/SiteFooter';
+import CommonSidebar from '@/components/layout/CommonSidebar';
 import AdSlot from '@/components/ads/AdSlot';
 import ContentLinks from '@/components/converter/ContentLinks';
 import BlogFilterList from './BlogFilterList';
@@ -82,25 +83,7 @@ export default function Blog() {
           </div>
 
           {/* Sidebar Column */}
-          <aside className="hidden md:block space-y-8">
-            <AdSlot
-              slot="2738626516"
-              format="vertical"
-              wrapperClassName="hidden md:block"
-              lazyLoad={true}
-            />
-
-            <div className="sticky top-4">
-              <ContentLinks
-                title={<span className="flex items-center gap-1.5"><BookOpen size={16} className="text-blue-500" /> 연관 추천</span>}
-                items={[
-                  { href: '/how-to-use', icon: <FileText className="text-emerald-500" size={20} />, title: 'NameEng 기초 사용법', desc: '서비스를 활용법과 꿀팁 알아보기' },
-                  { href: '/passport-guide', icon: <Briefcase className="text-indigo-500" size={20} />, title: '여권 로마자 표기 규정', desc: '외교부 여권 발급 공식 가이드' },
-                  { href: '/faq', icon: <Search className="text-blue-500" size={20} />, title: '비자/여권 FAQ', desc: '가장 많이 물어보는 여권 질문과 답변' }
-                ]}
-              />
-            </div>
-          </aside>
+          <CommonSidebar />
         </div>
       </main>
 

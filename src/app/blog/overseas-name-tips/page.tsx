@@ -6,15 +6,16 @@ import {
   Globe,
   Users,
   AlertTriangle,
-  CheckCircle,
-  Briefcase
+  CheckCircle
 } from 'lucide-react';
 import type { Metadata } from 'next';
 import DesktopNavBar from '@/components/layout/DesktopNavBar';
 import SiteHeader from '@/components/layout/SiteHeader';
 import SiteFooter from '@/components/layout/SiteFooter';
+import CommonSidebar from '@/components/layout/CommonSidebar';
 import AdSlot from '@/components/ads/AdSlot';
 import ContentLinks from '@/components/converter/ContentLinks';
+import { Search, FileText, Briefcase } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: '해외 거주 시 영문명 사용 팁과 주의사항 | NameEng 블로그',
@@ -299,25 +300,12 @@ export default function OverseasNameTipsPage() {
           </div>
 
           {/* Sidebar Column */}
-          <div className="hidden md:block w-[300px]">
-            <div className="sticky top-4 space-y-4">
-              <AdSlot
-                slot="2738626516"
-                format="rectangle"
-                wrapperClassName="md:rounded-lg md:overflow-hidden min-h-[250px]"
-                lazyLoad={true}
-              />
-              <div className="mb-6">
-                <ContentLinks
-                  title={<span className="flex items-center gap-1.5"><Globe size={16} className="text-blue-500" /> 연관 추천 콘텐츠</span>}
-                  items={[
-                    { href: '/blog/business-name-etiquette', icon: <Briefcase className="text-indigo-500" size={20} />, title: '비즈니스 영문명 매너', desc: '국제 비즈니스 명함 에티켓' },
-                    { href: '/passport-guide', icon: <CheckCircle className="text-emerald-500" size={20} />, title: '여권 영문명 가이드', desc: '외교부 여권 발급 공식' }
-                  ]}
-                />
-              </div>
-            </div>
-          </div>
+          <CommonSidebar
+            customLinks={[
+              { href: '/blog/business-name-etiquette', icon: <Briefcase className="text-indigo-500" size={20} />, title: '비즈니스 영문명 매너', desc: '국제 비즈니스 명함 에티켓' },
+              { href: '/passport-guide', icon: <CheckCircle className="text-emerald-500" size={20} />, title: '여권 영문명 가이드', desc: '외교부 여권 발급 공식' }
+            ]}
+          />
         </div>
       </main>
 

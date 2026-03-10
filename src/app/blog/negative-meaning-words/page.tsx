@@ -12,8 +12,10 @@ import type { Metadata } from 'next';
 import DesktopNavBar from '@/components/layout/DesktopNavBar';
 import SiteHeader from '@/components/layout/SiteHeader';
 import SiteFooter from '@/components/layout/SiteFooter';
+import CommonSidebar from '@/components/layout/CommonSidebar';
 import AdSlot from '@/components/ads/AdSlot';
 import ContentLinks from '@/components/converter/ContentLinks';
+import { Search, FileText, Briefcase } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: '영어권에서 피해야 할 한국 이름 표기들 | NameEng 블로그',
@@ -309,25 +311,12 @@ export default function NegativeMeaningWordsPage() {
           </div>
 
           {/* Sidebar Column */}
-          <div className="hidden md:block w-[300px]">
-            <div className="sticky top-4 space-y-4">
-              <AdSlot
-                slot="2738626516"
-                format="rectangle"
-                wrapperClassName="md:rounded-lg md:overflow-hidden min-h-[250px]"
-                lazyLoad={true}
-              />
-              <div className="mb-6">
-                <ContentLinks
-                  title={<span className="flex items-center gap-1.5"><AlertTriangle size={16} className="text-orange-500" /> 연관 추천 콘텐츠</span>}
-                  items={[
-                    { href: '/blog/business-name-etiquette', icon: <CheckCircle className="text-indigo-500" size={20} />, title: '비즈니스 영문명 에티켓', desc: '이름 소개시 매너' },
-                    { href: '/blog/overseas-name-tips', icon: <Shield className="text-emerald-500" size={20} />, title: '해외 거주 영문명 팁', desc: '문화적 차이 이해하기' }
-                  ]}
-                />
-              </div>
-            </div>
-          </div>
+          <CommonSidebar
+            customLinks={[
+              { href: '/blog/business-name-etiquette', icon: <CheckCircle className="text-indigo-500" size={20} />, title: '비즈니스 영문명 에티켓', desc: '이름 소개시 매너' },
+              { href: '/blog/overseas-name-tips', icon: <Shield className="text-emerald-500" size={20} />, title: '해외 거주 영문명 팁', desc: '문화적 차이 이해하기' }
+            ]}
+          />
         </div>
       </main>
 

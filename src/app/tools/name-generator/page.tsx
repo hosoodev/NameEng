@@ -4,7 +4,11 @@ import { useState } from 'react';
 import { ArrowLeft, Calculator, Copy, Download, Zap } from 'lucide-react';
 import DesktopNavBar from '@/components/layout/DesktopNavBar';
 import SiteFooter from '@/components/layout/SiteFooter';
+import CommonSidebar from '@/components/layout/CommonSidebar';
 import AdSlot from '@/components/ads/AdSlot';
+import ContentLinks from '@/components/converter/ContentLinks';
+import { Search } from 'lucide-react';
+const AD_SLOT_INFEED = "2738626516";
 
 const surnameVariations: Record<string, string[]> = {
   '김': ['KIM', 'GEEM'],
@@ -35,8 +39,7 @@ const nameStyles = [
   { id: 'spaced', label: '띄어쓰기', example: 'Min jun' }
 ];
 
-const AD_SLOT_SIDEBAR = "2738626516";
-const AD_SLOT_INFEED = "2738626516";
+
 
 export default function NameGeneratorPage() {
   const [surname, setSurname] = useState('');
@@ -290,16 +293,7 @@ export default function NameGeneratorPage() {
           </div>
 
           {/* Sidebar Column */}
-          <div className="hidden md:block w-[300px]">
-            <div className="sticky top-4 space-y-4">
-              <AdSlot
-                slot={AD_SLOT_SIDEBAR}
-                format="rectangle"
-                wrapperClassName="md:rounded-lg md:overflow-hidden min-h-[250px]"
-                lazyLoad={true}
-              />
-            </div>
-          </div>
+          <CommonSidebar type="tool" />
         </div>
       </main>
 

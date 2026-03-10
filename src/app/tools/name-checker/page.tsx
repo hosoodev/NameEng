@@ -17,6 +17,7 @@ import {
 import DesktopNavBar from '@/components/layout/DesktopNavBar';
 import SiteHeader from '@/components/layout/SiteHeader';
 import SiteFooter from '@/components/layout/SiteFooter';
+import CommonSidebar from '@/components/layout/CommonSidebar';
 import AdSlot from '@/components/ads/AdSlot';
 import ContentLinks from '@/components/converter/ContentLinks';
 
@@ -326,20 +327,7 @@ export default function NameCheckerPage() {
           </div>
 
           {/* Sidebar Column */}
-          <div className="hidden md:block w-[300px]">
-            <div className="sticky top-4 space-y-4">
-              <AdSlot slot="2738626516" format="rectangle" />
-              <div className="mb-6">
-                <ContentLinks
-                  title={<span className="flex items-center gap-1.5"><Briefcase size={16} className="text-gray-500" /> 연관 도구</span>}
-                  items={[
-                    { href: '/tools/surname-frequency', icon: <Search className="text-amber-500" size={20} />, title: '성씨 표기 빈도 검색', desc: '특정 성씨의 영문 표기 통계 검색' },
-                    { href: '/', icon: <Search className="text-blue-500" size={20} />, title: '영문이름변환기', desc: '이름을 가장 적합한 로마자로 변환' }
-                  ]}
-                />
-              </div>
-            </div>
-          </div>
+          <CommonSidebar type="tool" />
         </div>
       </main>
 

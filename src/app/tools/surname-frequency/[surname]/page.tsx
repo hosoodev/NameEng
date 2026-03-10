@@ -4,6 +4,7 @@ import DesktopNavBar from '@/components/layout/DesktopNavBar';
 import SiteHeader from '@/components/layout/SiteHeader';
 import SiteFooter from '@/components/layout/SiteFooter';
 import ContentLinks from '@/components/converter/ContentLinks';
+import CommonSidebar from '@/components/layout/CommonSidebar';
 import AdSlot from '@/components/ads/AdSlot';
 import surnameData from '@/data/normalized_romanization.json';
 import SourceCitation from '@/components/converter/SourceCitation';
@@ -193,25 +194,7 @@ export default async function SurnameDetail({ params }: PageProps) {
                     </div>
 
                     {/* Sidebar Column */}
-                    <div className="hidden md:block w-[300px]">
-                        <div className="sticky top-4 space-y-4">
-                            <AdSlot
-                                slot="2738626516"
-                                format="rectangle"
-                                wrapperClassName="md:rounded-lg md:overflow-hidden min-h-[250px]"
-                                lazyLoad={true}
-                            />
-                            <div className="mb-6">
-                                <ContentLinks
-                                    title={<span className="flex items-center gap-1.5"><Users size={16} className="text-gray-500" /> 다른 앱 보기</span>}
-                                    items={[
-                                        { href: '/tools/name-checker', icon: <Search className="text-blue-500" size={20} />, title: '영문명 적합성 검사', desc: '나의 영문명 디자인 분석' },
-                                        { href: '/', icon: <Search className="text-blue-500" size={20} />, title: '영문이름변환기', desc: '이름을 가장 적합한 로마자로 변환' }
-                                    ]}
-                                />
-                            </div>
-                        </div>
-                    </div>
+                    <CommonSidebar type="tool" />
                 </div>
             </main>
 
