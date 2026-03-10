@@ -85,7 +85,7 @@ export default function CommonSidebar({
                 {/* 상단 광고 슬롯 */}
                 <AdSlot
                     slot={adSlotId}
-                    format="rectangle"
+                    format="auto"
                     wrapperClassName="md:rounded-lg md:overflow-hidden min-h-[250px]"
                     lazyLoad={true}
                 />
