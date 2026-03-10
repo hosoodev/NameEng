@@ -69,7 +69,7 @@ const tools = [
 
 export default function Tools() {
   return (
-    <div className="flex flex-col gap-8">
+    <div className="space-y-8">
             {/* Header Section */}
             <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
               <a
@@ -209,6 +209,6 @@ export default function Tools() {
                 NameEng 변환기 사용하기
               </a>
             </div>
-    </div>
+            </div>
   );
 }

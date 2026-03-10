@@ -27,7 +27,6 @@ export const metadata: Metadata = {
 export default function RomanizationGuide() {
   return (
     <TwoColumnLayout>
-            <div className="flex flex-col gap-8">
             {/* Header Content */}
             <div className="mb-8">
               <a href="/" className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors mb-6 bg-white border border-gray-200 px-3 py-1.5 rounded-lg hover:bg-gray-50">
@@ -428,7 +427,6 @@ export default function RomanizationGuide() {
                 문화체육관광부 고시 제2014-42호 (2014.12.5.) 기준<br />
                 최종 업데이트: {new Date().toLocaleDateString('ko-KR')}
               </p>
-            </div>
             </div>
     </TwoColumnLayout>
   );
