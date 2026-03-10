@@ -9,11 +9,8 @@ import {
   BarChart3
 } from 'lucide-react';
 import type { Metadata } from 'next';
-import DesktopNavBar from '@/components/layout/DesktopNavBar';
-import SiteFooter from '@/components/layout/SiteFooter';
-import AdSlot from '@/components/ads/AdSlot';
-import CommonSidebar from '@/components/layout/CommonSidebar';
 
+import AdSlot from '@/components/ads/AdSlot';
 export const metadata: Metadata = {
   title: '유용한 도구툴 - 영문명 관련 추가 도구 | NameEng',
   description: '영문명 조합 생성기, 발음 가이드, 영문명 적합성 검사기 등 한국 이름의 로마자 표기와 관련된 다양한 유용한 도구들을 제공합니다.',
@@ -72,13 +69,7 @@ const tools = [
 
 export default function Tools() {
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
-      <DesktopNavBar />
-
-      <main className="flex-1 w-full max-w-[1280px] mx-auto px-4 md:px-8 py-6 md:py-8">
-        <div className="md:grid md:grid-cols-[1fr_300px] gap-8">
-          {/* Main Content Column */}
-          <div className="w-full space-y-8">
+    <>
             {/* Header Section */}
             <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
               <a
@@ -218,17 +209,6 @@ export default function Tools() {
                 NameEng 변환기 사용하기
               </a>
             </div>
-
-          </div>
-
-          {/* Sidebar Column */}
-          <CommonSidebar />
-        </div>
-      </main>
-
-      <div className="px-4 mb-8 max-w-[1280px] w-full mx-auto">
-        <SiteFooter />
-      </div>
-    </div>
+    </>
   );
 }
