@@ -42,6 +42,10 @@ const SECTION_MARKERS: Record<string, string> = {
     "2011_internet": "2011년 인터넷 표기 자료",
 };
 
+// 한국 성씨 인구 순위 (상위 12개)
+const POPULAR_SURNAMES_ORDER = ["김", "이", "박", "최", "정", "강", "조", "윤", "장", "임", "한", "오"];
+
+
 export default function SurnameFrequencyPage() {
     const [searchTerm, setSearchTerm] = useState('');
 
@@ -51,16 +55,30 @@ export default function SurnameFrequencyPage() {
             hangul,
             combined_ranking: (data as any).combined_ranking as RomanizationStat[],
             sources: (data as any).sources as Record<string, SourceCount[]>
-        })).sort((a, b) => a.hangul.localeCompare(b.hangul, 'ko'));
+        }));
     }, []);
 
     // 검색 필터링 logic
     const filteredSurnames = useMemo(() => {
-        // 공백 무시
         const term = searchTerm.replace(/\s/g, '');
-        if (!term) return allSurnames.slice(0, 12); // 초기에는 우선 상위 표기/가나다 일부
-        return allSurnames.filter(s => s.hangul.includes(term)).slice(0, 20);
+
+        // 검색어가 없을 때: 인구 순위 상위 12개 먼저 표시, 나머지는 가나다순
+        if (!term) {
+            const popular = POPULAR_SURNAMES_ORDER.map(h => allSurnames.find(s => s.hangul === h)).filter(Boolean) as SurnameEntry[];
+            const others = allSurnames
+                .filter(s => !POPULAR_SURNAMES_ORDER.includes(s.hangul))
+                .sort((a, b) => a.hangul.localeCompare(b.hangul, 'ko'));
+
+            return [...popular, ...others].slice(0, 12);
+        }
+
+        // 검색어가 있을 때: 가나다 순으로 필터링
+        return allSurnames
+            .filter(s => s.hangul.includes(term))
+            .sort((a, b) => a.hangul.localeCompare(b.hangul, 'ko'))
+            .slice(0, 20);
     }, [searchTerm, allSurnames]);
+
 
     return (
         <div className="min-h-screen bg-gray-50 flex flex-col">
