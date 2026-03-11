@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Copy, Check, Share2, ChevronRight, Wifi } from 'lucide-react';
+import { Copy, Check, Share2, ChevronRight, Wifi, Award } from 'lucide-react';
 
 interface ContextualLink {
   href: string;
@@ -105,6 +105,22 @@ export default function ResultCard({
                 />
               </span>
             </a>
+
+            {/* CTA: 미국 이름 순위 차트 */}
+            <a
+              href="/names/us/popular"
+              className="flex items-center justify-between bg-white hover:bg-blue-50 active:bg-blue-100 rounded-xl px-3 py-2.5 transition-colors group border border-blue-100 hover:border-blue-200"
+            >
+              <span className="flex items-center gap-2 text-sm text-gray-700 group-hover:text-blue-700 font-medium transition-colors">
+                <Award size={14} className="text-amber-500 flex-shrink-0" />
+                요즘 미국에서 가장 인기있는 영어 이름 Top 50
+              </span>
+              <ChevronRight
+                size={13}
+                className="text-gray-300 group-hover:text-blue-400 group-hover:translate-x-0.5 transition-all"
+              />
+            </a>
+
             {contextualLinks.map((link) => (
               <a
                 key={link.href}

@@ -12,6 +12,8 @@ import {
     getSurnameVariants,
     type RomanizationOptions,
 } from '@/lib/romanization';
+import { decodeOptions } from '@/lib/converter/urlOptions';
+import { getContextualLinks } from '@/lib/converter/contextualLinks';
 import {
     Sparkles,
     FileText,
@@ -20,19 +22,6 @@ import {
     Award
 } from 'lucide-react';
 
-/* 단축 URL 옵션 디코딩 함수 */
-function decodeOptions(s: string): Partial<RomanizationOptions> {
-    if (s.length < 4) return {};
-    const caseMap: Record<string, 'capitalized' | 'lowercase' | 'uppercase'> = {
-        c: 'capitalized', l: 'lowercase', u: 'uppercase',
-    };
-    return {
-        order: s[0] === '1' ? 'given-family' : 'family-given',
-        hyphen: s[1] === '1',
-        caseStyle: caseMap[s[2]] || 'capitalized',
-        ...(s[3] !== '-' && { familyNameType: s[3] === 'c' ? 'compound' : 'single' }),
-    };
-}
 
 function ResultPageContent() {
     const searchParams = useSearchParams();
@@ -76,12 +65,7 @@ function ResultPageContent() {
 
     const result = romanizeKoreanName(name.trim(), options);
 
-    /* 하단 CTA 링크 목록 */
-    const contextualLinks = [
-        { href: '/names/us/popular', label: '미국 인기 영문명 차트', icon: <Award className="text-amber-500" size={18} /> },
-        { href: '/passport-guide', label: '여권 발급 표기법', icon: <FileText className="text-blue-500" size={18} /> },
-        { href: '/romanization-guide', label: '로마자 표기 안내', icon: <BookOpen className="text-emerald-500" size={18} /> },
-    ];
+    const contextualLinks = getContextualLinks(name.trim(), result.warnings, nameOpts);
 
     const copyToClipboard = (text: string) => navigator.clipboard.writeText(text);
 
