@@ -4,8 +4,8 @@ import { ShieldCheck, Info, Zap } from 'lucide-react';
 import { Suspense } from 'react';
 
 export const metadata: Metadata = {
-  title: '영어 이름 희귀도 분석 - 1880~2024 데이터 기반 | NameEng',
-  description: '내 영어 이름이 미국에서 얼마나 흔한지 확인해보세요. 145년 누적 데이터를 바탕으로 희귀도와 인기 세대를 분석합니다.',
+  title: '내 영어 이름 희귀도 분석 - 유니크하고 흔하지 않은 이름 찾기 | NameEng',
+  description: '내 영어 이름은 미국에서 얼마나 흔할까요? 미국 145년 공식 누적 통계 데이터를 활용하여 내 이름의 상위 퍼센트, 희소성(TOP 10, TOP 100 등), 그리고 가장 인기를 끌었던 시기를 정확하게 분석해줍니다. 나만을 위한 특별한 의미의 영어 이름을 찾아보세요.',
 };
 
 export default function RarityPage() {

@@ -4,8 +4,8 @@ import TwoColumnLayout from '@/components/layout/TwoColumnLayout';
 import { Map, Flag, Clock } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: '세계 이름 데이터베이스 - 국가별 영어 이름 통계 | NameEng',
-  description: '미국, 영국 등 국가별 이름 순위와 트렌드 데이터를 확인하세요.',
+  title: '영어 이름 국가별 데이터 허브 - 예쁜 영어 이름, 남자/여자 이름 추천 | NameEng',
+  description: '최고의 영어 이름을 찾고 계신가요? 미국, 영국, 호주 등 국가별 공식 통계 데이터를 기반으로 한 영어 이름 추천, 인기 순위, 이름의 뜻과 기원을 상세히 제공합니다. 나만의 유니크하고 세련된 영어 이름을 지금 바로 찾아보세요.',
 };
 
 export default function NamesHubPage() {
