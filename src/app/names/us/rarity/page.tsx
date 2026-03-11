@@ -1,35 +1,46 @@
 import { Metadata } from 'next';
 import RarityClient from './_components/RarityClient';
-import { ShieldCheck } from 'lucide-react';
+import { ShieldCheck, Info, Zap } from 'lucide-react';
 import { Suspense } from 'react';
 
 export const metadata: Metadata = {
-  title: '영어 이름 희귀도 분석 - NameEng',
+  title: '영어 이름 희귀도 분석 - 1880~2024 데이터 기반 | NameEng',
   description: '내 영어 이름이 미국에서 얼마나 흔한지 확인해보세요. 145년 누적 데이터를 바탕으로 희귀도와 인기 세대를 분석합니다.',
 };
 
 export default function RarityPage() {
   return (
-    <div className="space-y-8 pb-12 w-full max-w-4xl mx-auto pt-8">
-      <div className="text-center space-y-4">
-        <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">
-          영어 이름 희귀도 분석
+    <div className="space-y-8 pb-12 w-full max-w-5xl mx-auto pt-4">
+      {/* Header Info */}
+      <div className="space-y-4">
+        <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 flex items-center gap-3">
+          <Zap className="text-amber-500" size={32} />
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-indigo-700">영어 이름 희귀도 분석</span>
         </h1>
-        <p className="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto">
-          내 영어 이름은 얼마나 흔할까요? 1880년부터 누적된 미국 출생 데이터를 바탕으로 이름의 희소성을 분석합니다.
+        <p className="text-gray-600 text-lg">
+          내 영어 이름은 얼마나 흔할까요? 미국 사회보장국(SSA)의 방대한 데이터를 바탕으로<br className="hidden md:block"/> 이름의 희소성과 시대별 트렌드를 분석해 드립니다.
         </p>
       </div>
 
-      <Suspense fallback={<div className="h-64 flex items-center justify-center"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div></div>}>
+      <div className="bg-purple-50 border border-purple-100 rounded-xl p-4 flex items-start gap-3">
+        <Info className="text-purple-500 shrink-0 mt-0.5" size={20} />
+        <p className="text-purple-800 text-sm leading-relaxed">
+          <strong>활용 팁:</strong> 궁금한 영어 이름을 입력하면 1880년부터 현재까지의 데이터를 분석합니다. 분석 결과에서는 해당 이름이 미국에서 **상위 몇 %**인지, 그리고 **어떤 세대**에서 가장 인기가 많았는지 확인할 수 있습니다.
+        </p>
+      </div>
+
+      {/* Client Component for Interactive Analysis */}
+      <Suspense fallback={<div className="h-64 flex items-center justify-center bg-gray-50 rounded-3xl animate-pulse text-gray-400">분석기 준비 중...</div>}>
         <RarityClient />
       </Suspense>
 
-      <div className="pt-16 text-center space-y-3">
-        <div className="inline-flex items-center gap-1.5 justify-center text-sm font-medium text-gray-500 bg-gray-50 px-3 py-1.5 rounded-md border border-gray-200">
-          <ShieldCheck size={16} /> 데이터 출처
+      {/* Footer Info / Data Source */}
+      <div className="pt-8 border-t border-gray-100 text-center space-y-3">
+        <div className="inline-flex items-center gap-1.5 justify-center text-xs font-semibold text-gray-400 uppercase tracking-wider">
+          <ShieldCheck size={14} /> Data Source: Social Security Administration (SSA)
         </div>
-        <p className="text-gray-500 text-sm max-w-lg mx-auto leading-relaxed">
-          미국 사회보장국(SSA) 구체적 출생 데이터(1880~2024년) 기준 1억 명 이상의 데이터를 사용합니다.
+        <p className="text-gray-400 text-xs max-w-lg mx-auto leading-relaxed">
+          본 도구는 미국 사회보장국의 공식 통계 데이터를 바탕으로 작동하며,<br className="hidden sm:inline"/> 1880년부터 2024년까지의 모든 누적 출생 기록을 반영합니다.
         </p>
       </div>
     </div>
