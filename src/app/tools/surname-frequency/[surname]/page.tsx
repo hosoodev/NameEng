@@ -6,7 +6,7 @@ import SiteFooter from '@/components/layout/SiteFooter';
 
 import CommonSidebar from '@/components/layout/CommonSidebar';
 
-import surnameData from '@/data/normalized_romanization.json';
+import surnameData from '@/data/romanization/normalized_romanization.json';
 import SourceCitation from '@/components/converter/SourceCitation';
 import { Metadata } from 'next';
 

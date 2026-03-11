@@ -13,7 +13,7 @@ import {
 
 
 import SourceCitation from '@/components/converter/SourceCitation';
-import surnameData from '@/data/normalized_romanization.json';
+import surnameData from '@/data/romanization/normalized_romanization.json';
 
 interface RomanizationStat {
     romanization: string;

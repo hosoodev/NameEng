@@ -2,8 +2,8 @@
  * 국어의 로마자 표기법 (2024.05.23 시행) 기반 한글 → 로마자 변환 엔진
  */
 
-import romanizationData from '@/data/romanization.json';
-import surnameStatData from '@/data/combined_ranking_only.json';
+import romanizationData from '@/data/romanization/romanization.json';
+import surnameStatData from '@/data/romanization/combined_ranking_only.json';
 
 // 한글 자음/모음 매핑 테이블 (국어의 로마자 표기법 기준)
 const INITIAL_CONSONANTS = {
