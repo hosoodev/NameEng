@@ -29,7 +29,8 @@ import {
   Briefcase,
   Search,
   Ruler,
-  ChevronRight
+  ChevronRight,
+  Award
 } from 'lucide-react';
 
 /* ─── 상수 ─── */
@@ -143,6 +144,12 @@ const guideLinks = [
 ];
 
 const toolLinks = [
+  {
+    href: '/names/us/popular',
+    icon: <Award className="text-amber-500" size={20} />,
+    title: '미국 영어 이름 순위 차트',
+    desc: '2024년 글로벌 인기 이름 TOP 50',
+  },
   {
     href: '/tools/name-checker',
     icon: <Search className="text-blue-500" size={20} />,
@@ -542,20 +549,38 @@ function NameEngConverter() {
 
                 <div className="px-4 md:px-0 space-y-6 mt-2">
                   {/* 주요 기능 특징 안내 */}
-                  <div className="mt-4">
+                  <div className="mt-4 space-y-3">
                     <a
-                      href="/about"
-                      className="group bg-white rounded-2xl border border-gray-100 p-5 flex items-center justify-between transition-all hover:border-blue-300 hover:shadow-md hover:-translate-y-0.5"
+                      href="/names/us/popular"
+                      className="group bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl border border-blue-100 p-5 flex items-center justify-between transition-all hover:border-blue-300 hover:shadow-md hover:-translate-y-0.5"
                     >
                       <div className="flex flex-col gap-1.5">
                         <div className="flex items-center gap-2">
-                          <span className="text-base font-bold text-gray-900 group-hover:text-blue-600 transition-colors">Nameeng 서비스 소개</span>
+                          <Award className="text-amber-500" size={20} />
+                          <span className="text-base font-extrabold text-blue-900 group-hover:text-blue-700 transition-colors">2024년 미국 인기 영어 이름 TOP 50</span>
+                        </div>
+                        <span className="text-sm text-blue-800/70 leading-relaxed pr-8 line-clamp-2 md:line-clamp-none">
+                          요즘 가장 핫한 영어 이름은? 미국 실데이터 기반 인기 랭킹을 확인해보세요!
+                        </span>
+                      </div>
+                      <div className="shrink-0 text-blue-300 group-hover:text-blue-600 transition-colors bg-white group-hover:bg-blue-100 p-2 rounded-full shadow-sm">
+                        <ChevronRight size={20} />
+                      </div>
+                    </a>
+
+                    <a
+                      href="/about"
+                      className="group bg-white rounded-2xl border border-gray-100 p-5 flex items-center justify-between transition-all hover:border-gray-300 hover:shadow-md hover:-translate-y-0.5"
+                    >
+                      <div className="flex flex-col gap-1.5">
+                        <div className="flex items-center gap-2">
+                          <span className="text-base font-bold text-gray-900 group-hover:text-gray-700 transition-colors">Nameeng 서비스 소개</span>
                         </div>
                         <span className="text-sm text-gray-500 leading-relaxed pr-8 line-clamp-2 md:line-clamp-none">
                           여권 로마자 표기 규정부터 부정적 영단어 어감 분석까지. 가장 쉽고 정확하게 내 이름의 영문 스펠링을 찾아보세요.
                         </span>
                       </div>
-                      <div className="shrink-0 text-gray-300 group-hover:text-blue-500 transition-colors bg-gray-50 group-hover:bg-blue-50 p-2 rounded-full">
+                      <div className="shrink-0 text-gray-300 group-hover:text-gray-600 transition-colors bg-gray-50 group-hover:bg-gray-100 p-2 rounded-full">
                         <ChevronRight size={20} />
                       </div>
                     </a>

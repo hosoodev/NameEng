@@ -16,7 +16,8 @@ import {
     Sparkles,
     FileText,
     BookOpen,
-    Globe
+    Globe,
+    Award
 } from 'lucide-react';
 
 /* 단축 URL 옵션 디코딩 함수 */
@@ -77,7 +78,7 @@ function ResultPageContent() {
 
     /* 하단 CTA 링크 목록 */
     const contextualLinks = [
-        { href: '/', label: '내 이름 변환하기', icon: <Sparkles className="text-amber-500" size={18} /> },
+        { href: '/names/us/popular', label: '미국 인기 영문명 차트', icon: <Award className="text-amber-500" size={18} /> },
         { href: '/passport-guide', label: '여권 발급 표기법', icon: <FileText className="text-blue-500" size={18} /> },
         { href: '/romanization-guide', label: '로마자 표기 안내', icon: <BookOpen className="text-emerald-500" size={18} /> },
     ];

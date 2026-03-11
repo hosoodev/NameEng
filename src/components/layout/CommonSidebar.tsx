@@ -5,7 +5,8 @@ import {
     Search,
     Globe,
     AlertCircle,
-    Users
+    Users,
+    Award
 } from 'lucide-react';
 import AdSlot from '../ads/AdSlot';
 import ContentLinks from '../converter/ContentLinks';
@@ -27,6 +28,12 @@ interface CommonSidebarProps {
 }
 
 const DEFAULT_LINKS: ContentLinkItem[] = [
+    {
+        href: '/names/us/popular',
+        icon: <Award className="text-amber-500" size={20} />,
+        title: '미국 영어 이름 순위 TOP 50',
+        desc: '가장 핫한 글로벌 영어 이름 트렌드'
+    },
     {
         href: '/how-to-use',
         icon: <FileText className="text-emerald-500" size={20} />,
