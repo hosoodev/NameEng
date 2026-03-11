@@ -1,10 +1,6 @@
 import { notFound } from 'next/navigation';
 import { ArrowLeft, BarChart3, ChevronRight, Search, Star, Users } from 'lucide-react';
-import DesktopNavBar from '@/components/layout/DesktopNavBar';
-import SiteHeader from '@/components/layout/SiteHeader';
-import SiteFooter from '@/components/layout/SiteFooter';
 
-import CommonSidebar from '@/components/layout/CommonSidebar';
 
 import surnameData from '@/data/romanization/normalized_romanization.json';
 import SourceCitation from '@/components/converter/SourceCitation';
@@ -66,19 +62,9 @@ export default async function SurnameDetail({ params }: PageProps) {
     const sources = data.sources as Record<string, SourceCount[]>;
 
     return (
-        <div className="min-h-screen bg-gray-50 flex flex-col">
-            <DesktopNavBar />
-
-            <main className="max-w-[1280px] mx-auto w-full px-0 md:px-8 flex-1">
-                <div className="px-4 md:hidden mt-4">
-                    <SiteHeader />
-                </div>
-
-                <div className="md:grid md:grid-cols-[1fr_300px] gap-8 mt-8">
-                    {/* Main Column */}
-                    <div className="w-full px-4 md:px-0">
-                        {/* Header Content */}
-                        <div className="mb-8">
+        <>
+            {/* Header Content */}
+            <div className="mb-8">
                             <a href="/tools/surname-frequency" className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors mb-6 bg-white border border-gray-200 px-3 py-1.5 rounded-lg hover:bg-gray-50 shadow-sm">
                                 <ArrowLeft size={16} />
                                 성씨 빈도 검색 목록으로
@@ -188,19 +174,8 @@ export default async function SurnameDetail({ params }: PageProps) {
                             </section>
                         )}
 
-                        {/* Citation Section */}
-                        <SourceCitation />
-
-                    </div>
-
-                    {/* Sidebar Column */}
-                    <CommonSidebar type="tool" />
-                </div>
-            </main>
-
-            <div className="px-4 mb-8 max-w-[1280px] w-full mx-auto mt-12">
-                <SiteFooter />
-            </div>
-        </div>
+            {/* Citation Section */}
+            <SourceCitation />
+        </>
     );
 }
