@@ -206,18 +206,16 @@ export default function TrendsClient() {
               이름 추가 (최대 5개)
             </label>
             <div className="relative flex items-center">
-              <Search className="absolute left-3 text-gray-400" size={18} />
-              <input
-                type="text"
+              <NameAutocomplete 
                 value={inputValue}
-                onChange={e => setInputValue(e.target.value)}
-                onKeyDown={handleKeyDown}
+                onChange={setInputValue}
+                onSelect={(name) => {
+                  handleLoadNames([name]);
+                  setInputValue('');
+                }}
                 placeholder="예: James, Michael, Liam..."
-                className="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
                 disabled={names.length >= 5 || loading}
-                spellCheck={false}
               />
-              {loading && <Loader2 className="absolute right-3 text-blue-500 animate-spin" size={18} />}
             </div>
             {errorMsg && (
               <p className="absolute -bottom-6 left-1 text-sm text-red-500 font-medium flex items-center gap-1">
@@ -277,19 +275,19 @@ export default function TrendsClient() {
         </h3>
         <div className="flex flex-wrap gap-3">
           <button 
-            onClick={() => { clearAll(); handleLoadNames(['liam', 'noah', 'olivia', 'emma']); }}
+            onClick={() => { clearAll(); setTimeout(() => handleLoadNames(['liam', 'noah', 'olivia', 'emma']), 100); }}
             className="px-4 py-2 bg-white border border-gray-200 hover:border-gray-300 hover:bg-gray-50 text-gray-700 font-medium rounded-full shadow-sm text-sm transition-all"
           >
             🔥 Z세대/α세대 인기 (Liam & Noah)
           </button>
           <button 
-            onClick={() => { clearAll(); handleLoadNames(['james', 'william', 'robert', 'john', 'michael']); }}
+            onClick={() => { clearAll(); setTimeout(() => handleLoadNames(['james', 'william', 'robert', 'john', 'michael']), 100); }}
             className="px-4 py-2 bg-white border border-gray-200 hover:border-gray-300 hover:bg-gray-50 text-gray-700 font-medium rounded-full shadow-sm text-sm transition-all"
           >
             🕰️ 미국의 영원한 클래식 TOP 5
           </button>
           <button 
-            onClick={() => { clearAll(); handleLoadNames(['michael', 'jason', 'christopher', 'linda', 'amanda']); }}
+            onClick={() => { clearAll(); setTimeout(() => handleLoadNames(['michael', 'jason', 'christopher', 'linda', 'amanda']), 100); }}
             className="px-4 py-2 bg-white border border-gray-200 hover:border-gray-300 hover:bg-gray-50 text-gray-700 font-medium rounded-full shadow-sm text-sm transition-all"
           >
             📻 X세대의 대표적인 이름들

@@ -3,7 +3,8 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { checkNameRarity, IndexEntry } from '../_actions';
-import { Search, Loader2, Calendar, TrendingUp, AlertCircle, RefreshCw, ArrowRight } from 'lucide-react';
+import { Loader2, Calendar, TrendingUp, AlertCircle, RefreshCw, ArrowRight } from 'lucide-react';
+import NameAutocomplete from '../../_components/NameAutocomplete';
 
 const getRarityInfo = (lr: number) => {
   if (lr <= 10) return { label: 'TOP 10 (매우 흔함)', desc: '미국에서 가장 대중적이고 널리 쓰이는 이름입니다.', color: 'text-blue-600', bgColor: 'bg-blue-50' };
@@ -58,7 +59,6 @@ export default function RarityClient() {
 
   return (
     <div className="space-y-8">
-      {/* Search Input Card */}
       <div className="bg-white p-6 md:p-8 rounded-3xl border border-gray-200 shadow-sm space-y-6">
         <form onSubmit={handleSearch} className="space-y-4">
           <div className="flex flex-col md:flex-row gap-4 items-end">
@@ -66,19 +66,18 @@ export default function RarityClient() {
               <label className="block text-sm font-bold text-gray-700 mb-2">
                 분석할 영어 이름
               </label>
-              <div className="relative flex items-center">
-                <Search className="absolute left-3 text-gray-400" size={18} />
-                <input
-                  type="text"
-                  value={query}
-                  onChange={(e) => setQuery(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
-                  placeholder="예: Olivia, James, Liam..."
-                  spellCheck={false}
-                  autoComplete="off"
-                  disabled={loading}
-                />
-              </div>
+              <NameAutocomplete 
+                value={query}
+                onChange={setQuery}
+                onSelect={(name: string) => {
+                  const cleanName = name.trim();
+                  if (cleanName) {
+                    setQuery(cleanName.charAt(0).toUpperCase() + cleanName.slice(1));
+                  }
+                }}
+                placeholder="예: Olivia, James, Liam..."
+                disabled={loading}
+              />
             </div>
             
             <button
@@ -99,65 +98,67 @@ export default function RarityClient() {
         </div>
       )}
 
-      {!loading && hasSearched && result && (() => {
-        const rarityInfo = getRarityInfo(result.lr);
-        return (
-          <div className="bg-white rounded-3xl border border-gray-200 shadow-md overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="p-8 md:p-12 space-y-10">
-              <div className="text-center space-y-4">
-                <span className="inline-flex items-center px-4 py-1.5 bg-gray-100 text-gray-600 rounded-full text-xs font-bold uppercase tracking-widest">
-                  {result.g === 'M' ? 'Male Name' : result.g === 'F' ? 'Female Name' : 'Unisex Name'}
-                </span>
-                <h2 className="text-5xl md:text-6xl font-black text-gray-900 capitalize tracking-tight">
-                  {result.n}
-                </h2>
-                <p className="text-gray-500 font-medium flex items-center justify-center gap-2">
-                  <Calendar size={16} className="text-blue-500" /> {result.my}년간의 통계 데이터 보유
-                </p>
-              </div>
-
-              <div className={`text-center py-10 px-6 rounded-2xl ${rarityInfo.bgColor} border border-transparent transition-colors`}>
-                <h3 className={`text-3xl font-black mb-3 ${rarityInfo.color}`}>
-                  {rarityInfo.label}
-                </h3>
-                <p className="text-gray-700 text-lg font-medium leading-relaxed max-w-lg mx-auto">
-                  {rarityInfo.desc}
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-gray-50 p-6 rounded-2xl border border-gray-100 flex flex-col items-center text-center group hover:bg-white hover:shadow-sm transition-all">
-                  <span className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-2">2024년 순위</span>
-                  <div className="text-4xl font-black text-gray-900">
-                    {result.lr === 9999 ? '순위 밖' : `${result.lr}위`}
-                  </div>
-                  <p className="text-xs text-gray-400 mt-2 font-medium">최신 트렌드 기준</p>
-                </div>
-                
-                <div className="bg-gray-50 p-6 rounded-2xl border border-gray-100 flex flex-col items-center text-center group hover:bg-white hover:shadow-sm transition-all">
-                  <span className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-2">최고 전성기</span>
-                  <div className="text-4xl font-black text-gray-900">
-                    {result.py}년
-                  </div>
-                  <div className="mt-2 inline-flex items-center gap-1 px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-bold">
-                    {getGeneration(result.py).split(' ')[0]}
-                  </div>
-                </div>
-              </div>
+      {!loading && hasSearched && result && (
+        <div className="bg-white rounded-3xl border border-gray-200 shadow-md overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-500">
+          <div className="p-8 md:p-12 space-y-10">
+            <div className="text-center space-y-4">
+              <span className="inline-flex items-center px-4 py-1.5 bg-gray-100 text-gray-600 rounded-full text-xs font-bold uppercase tracking-widest">
+                {result.g === 'M' ? 'Male Name' : result.g === 'F' ? 'Female Name' : 'Unisex Name'}
+              </span>
+              <h2 className="text-5xl md:text-6xl font-black text-gray-900 capitalize tracking-tight">
+                {result.n}
+              </h2>
+              <p className="text-gray-500 font-medium flex items-center justify-center gap-2">
+                <Calendar size={16} className="text-blue-500" /> {result.my}년간의 통계 데이터 보유
+              </p>
             </div>
-            
-            <div className="bg-gray-50 p-6 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-gray-100">
-              <Link href={`/names/us/${result.n}`} className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-xl font-bold hover:bg-gray-800 transition-colors">
-                <TrendingUp size={18} /> 상세 통계 레포트 보기 <ArrowRight size={18} />
-              </Link>
+
+            {(() => {
+              const rarityInfo = getRarityInfo(result.lr);
+              return (
+                <div className={`text-center py-10 px-6 rounded-2xl ${rarityInfo.bgColor} border border-transparent transition-colors`}>
+                  <h3 className={`text-3xl font-black mb-3 ${rarityInfo.color}`}>
+                    {rarityInfo.label}
+                  </h3>
+                  <p className="text-gray-700 text-lg font-medium leading-relaxed max-w-lg mx-auto">
+                    {rarityInfo.desc}
+                  </p>
+                </div>
+              );
+            })()}
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-gray-50 p-6 rounded-2xl border border-gray-100 flex flex-col items-center text-center group hover:bg-white hover:shadow-sm transition-all">
+                <span className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-2">2024년 순위</span>
+                <div className="text-4xl font-black text-gray-900">
+                  {result.lr === 9999 ? '순위 밖' : `${result.lr}위`}
+                </div>
+                <p className="text-xs text-gray-400 mt-2 font-medium">최신 트렌드 기준</p>
+              </div>
               
-              <button onClick={handleReset} className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 text-gray-500 hover:text-gray-900 font-bold transition-colors">
-                <RefreshCw size={18} /> 다시 분석하기
-              </button>
+              <div className="bg-gray-50 p-6 rounded-2xl border border-gray-100 flex flex-col items-center text-center group hover:bg-white hover:shadow-sm transition-all">
+                <span className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-2">최고 전성기</span>
+                <div className="text-4xl font-black text-gray-900">
+                  {result.py}년
+                </div>
+                <div className="mt-2 inline-flex items-center gap-1 px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-bold">
+                  {getGeneration(result.py).split(' ')[0]}
+                </div>
+              </div>
             </div>
           </div>
-        );
-      })()}
+          
+          <div className="bg-gray-50 p-6 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-gray-100">
+            <Link href={`/names/us/${result.n}`} className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-xl font-bold hover:bg-gray-800 transition-colors">
+              <TrendingUp size={18} /> 상세 통계 레포트 보기 <ArrowRight size={18} />
+            </Link>
+            
+            <button onClick={handleReset} className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 text-gray-500 hover:text-gray-900 font-bold transition-colors">
+              <RefreshCw size={18} /> 다시 분석하기
+            </button>
+          </div>
+        </div>
+      )}
 
       {!loading && hasSearched && !result && (
         <div className="bg-white border border-gray-200 rounded-3xl p-12 text-center space-y-6 shadow-sm animate-in fade-in zoom-in-95 duration-300">

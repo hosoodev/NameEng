@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Search } from 'lucide-react';
+import NameAutocomplete from './NameAutocomplete';
 
 export default function NameSearchForm() {
   const [query, setQuery] = useState('');
@@ -19,21 +19,21 @@ export default function NameSearchForm() {
   return (
     <form onSubmit={handleSubmit} className="relative max-w-xl w-full">
       <div className="relative flex items-center">
-        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-          <Search className="h-5 w-5 text-gray-400" />
-        </div>
-        <input
-          type="text"
+        <NameAutocomplete 
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          className="block w-full pl-11 pr-32 py-4 bg-white border border-gray-200 rounded-full text-base focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-sm transition-shadow outline-none"
+          onChange={setQuery}
+          onSelect={(name) => {
+            const cleanName = name.trim().toLowerCase();
+            if (cleanName) {
+              router.push(`/names/us/${cleanName}`);
+            }
+          }}
           placeholder="영어 이름을 입력해 보세요 (예: James, Olivia)"
-          spellCheck={false}
-          autoComplete="off"
+          className="max-w-xl"
         />
         <button
           type="submit"
-          className="absolute right-2 top-2 bottom-2 px-6 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-medium rounded-full transition-colors"
+          className="absolute right-2 top-2 bottom-2 px-6 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-medium rounded-xl transition-colors z-10"
         >
           검색
         </button>
