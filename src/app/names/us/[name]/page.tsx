@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Metadata } from 'next';
 import NameTrendChart from './_components/NameTrendChart';
-import indexData from '@/data/names/us/index.json';
+// import indexData from '@/data/names/us/index.json'; (Removed to prevent bundling duplication)
 import { ArrowLeft, Award, Calendar, Hash, Zap, ArrowRight, ArrowRightCircle, TrendingUp } from 'lucide-react';
 import fs from 'fs/promises';
 import path from 'path';
@@ -29,8 +29,12 @@ type ByNameFile = {
 };
 
 export async function generateStaticParams() {
-  const index = indexData as IndexEntry[];
-  return index.map(e => ({ name: e.n }));
+  const filePath = path.join(process.cwd(), 'src', 'data', 'names', 'us', 'index.json');
+  const fileContent = await fs.readFile(filePath, 'utf-8');
+  const index = JSON.parse(fileContent) as IndexEntry[];
+  // Minimal static generation to keep build size under limits.
+  // Other names will be generated as Dynamic/SSR on first visit.
+  return index.filter(e => e.lr <= 20).map(e => ({ name: e.n }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ name: string }> }): Promise<Metadata> {
@@ -88,7 +92,9 @@ export default async function NamePage({ params }: { params: Promise<{ name: str
   }
 
   // Load index data for overview stats
-  const index = indexData as IndexEntry[];
+  const indexPath = path.join(process.cwd(), 'src', 'data', 'names', 'us', 'index.json');
+  const indexContent = await fs.readFile(indexPath, 'utf-8');
+  const index = JSON.parse(indexContent) as IndexEntry[];
   const overview = index.find(e => e.n === name);
 
   if (!overview) {

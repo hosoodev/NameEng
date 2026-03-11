@@ -4,7 +4,8 @@ import NameSearchForm from './_components/NameSearchForm';
 import { Database, TrendingUp, Users, Calendar, Award, Zap, ArrowRight } from 'lucide-react';
 
 // Data is loaded at build time since this is a server component
-import indexData from '@/data/names/us/index.json';
+import fs from 'fs/promises';
+import path from 'path';
 
 export const metadata: Metadata = {
   title: '미국 이름 데이터베이스 - 1880~2024 영어 이름 순위 | NameEng',
@@ -22,8 +23,10 @@ type IndexEntry = {
   my: number;
 };
 
-export default function UsNamesHubPage() {
-  const typedIndex = indexData as IndexEntry[];
+export default async function UsNamesHubPage() {
+  const indexPath = path.join(process.cwd(), 'src', 'data', 'names', 'us', 'index.json');
+  const indexContent = await fs.readFile(indexPath, 'utf-8');
+  const typedIndex = JSON.parse(indexContent) as IndexEntry[];
   
   // Get 2024 Top 5 for each gender
   const top5Male = typedIndex.filter(e => e.g === 'M' && e.lr <= 5).sort((a, b) => a.lr - b.lr);
