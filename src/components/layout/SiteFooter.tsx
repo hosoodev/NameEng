@@ -3,6 +3,7 @@ const footerLinks = [
   { href: '/how-to-use', label: '사용 방법' },
   { href: '/romanization-guide', label: '로마자 표기법' },
   { href: '/passport-guide', label: '여권 가이드' },
+  { href: '/names/us/popular', label: '영어 이름 순위' },
   { href: '/faq', label: 'FAQ' },
   { href: '/blog', label: '블로그' },
   { href: '/about', label: '소개' },

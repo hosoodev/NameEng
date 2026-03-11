@@ -13,6 +13,7 @@ export default function DesktopNavBar() {
                 <nav className="flex items-center gap-3 lg:gap-6 whitespace-nowrap">
                     <a href="/romanization-guide" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">로마자 표기법</a>
                     <a href="/passport-guide" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">여권 가이드</a>
+                    <a href="/names/us/popular" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">영어 이름 순위</a>
                     <a href="/blog" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">블로그</a>
                     <a href="/tools" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">도구</a>
                     <a href="/faq" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">FAQ</a>
