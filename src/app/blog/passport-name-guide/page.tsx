@@ -11,8 +11,7 @@ import {
 } from 'lucide-react';
 import type { Metadata } from 'next';
 
-import AdSlot from '@/components/ads/AdSlot';
-import ContentLinks from '@/components/converter/ContentLinks';
+
 
 export const metadata: Metadata = {
     title: '여권 발급 시 영문명 작성 완벽 가이드 | NameEng 블로그',

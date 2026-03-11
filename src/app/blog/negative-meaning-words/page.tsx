@@ -10,8 +10,7 @@ import {
 } from 'lucide-react';
 import type { Metadata } from 'next';
 
-import AdSlot from '@/components/ads/AdSlot';
-import ContentLinks from '@/components/converter/ContentLinks';
+
 
 export const metadata: Metadata = {
     title: '영어권에서 피해야 할 한국 이름 표기들 | NameEng 블로그',

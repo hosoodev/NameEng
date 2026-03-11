@@ -3,9 +3,9 @@ import { ArrowLeft, BarChart3, ChevronRight, Search, Star, Users } from 'lucide-
 import DesktopNavBar from '@/components/layout/DesktopNavBar';
 import SiteHeader from '@/components/layout/SiteHeader';
 import SiteFooter from '@/components/layout/SiteFooter';
-import ContentLinks from '@/components/converter/ContentLinks';
+
 import CommonSidebar from '@/components/layout/CommonSidebar';
-import AdSlot from '@/components/ads/AdSlot';
+
 import surnameData from '@/data/normalized_romanization.json';
 import SourceCitation from '@/components/converter/SourceCitation';
 import { Metadata } from 'next';

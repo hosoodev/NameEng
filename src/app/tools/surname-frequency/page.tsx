@@ -11,8 +11,7 @@ import {
     ChevronDown
 } from 'lucide-react';
 
-import AdSlot from '@/components/ads/AdSlot';
-import ContentLinks from '@/components/converter/ContentLinks';
+
 import SourceCitation from '@/components/converter/SourceCitation';
 import surnameData from '@/data/normalized_romanization.json';
 

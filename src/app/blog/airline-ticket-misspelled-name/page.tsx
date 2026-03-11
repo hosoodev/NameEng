@@ -10,13 +10,11 @@ import {
     HelpCircle,
     RotateCcw,
     ShieldAlert,
-    Globe,
-    FileText
+    Globe
 } from 'lucide-react';
 import type { Metadata } from 'next';
 
-import AdSlot from '@/components/ads/AdSlot';
-import ContentLinks from '@/components/converter/ContentLinks';
+
 
 export const metadata: Metadata = {
     title: '항공권 예매 후 영문 이름 스펠링이 틀렸을 때 해결 방법 | NameEng 블로그',

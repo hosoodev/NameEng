@@ -8,8 +8,7 @@ import {
 } from 'lucide-react';
 import type { Metadata } from 'next';
 
-import AdSlot from '@/components/ads/AdSlot';
-import ContentLinks from '@/components/converter/ContentLinks';
+
 
 export const metadata: Metadata = {
     title: '한국 성씨의 영문 표기 역사와 변천사 | NameEng 블로그',

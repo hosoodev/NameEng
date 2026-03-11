@@ -7,13 +7,11 @@ import {
   AlertCircle,
   CheckCircle,
   Search,
-  FileText,
   Briefcase
 } from 'lucide-react';
 import type { Metadata } from 'next';
 
-import AdSlot from '@/components/ads/AdSlot';
-import ContentLinks from '@/components/converter/ContentLinks';
+
 
 export const metadata: Metadata = {
   title: '국어의 로마자 표기법 규칙 상세 해설 | NameEng 블로그',

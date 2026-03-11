@@ -9,8 +9,7 @@ import {
   Info
 } from 'lucide-react';
 
-import AdSlot from '@/components/ads/AdSlot';
-import ContentLinks from '@/components/converter/ContentLinks';
+
 
 interface CheckResult {
   category: string;

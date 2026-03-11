@@ -11,8 +11,7 @@ import {
 } from 'lucide-react';
 import type { Metadata } from 'next';
 
-import AdSlot from '@/components/ads/AdSlot';
-import ContentLinks from '@/components/converter/ContentLinks';
+
 
 export const metadata: Metadata = {
     title: '해외 거주 시 영문명 사용 팁과 주의사항 | NameEng 블로그',

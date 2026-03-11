@@ -12,8 +12,7 @@ import {
 } from 'lucide-react';
 import type { Metadata } from 'next';
 
-import AdSlot from '@/components/ads/AdSlot';
-import ContentLinks from '@/components/converter/ContentLinks';
+
 
 export const metadata: Metadata = {
   title: '국제 비즈니스에서의 영문명 에티켓 | NameEng 블로그',
