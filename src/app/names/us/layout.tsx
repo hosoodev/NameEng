@@ -1,0 +1,48 @@
+import { Metadata } from 'next';
+import TwoColumnLayout from '@/components/layout/TwoColumnLayout';
+import { LineChart, ListOrdered, BarChart2, CheckCircle2 } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: '미국 이름 데이터베이스 - Layout | NameEng',
+  description: '미국 이름 데이터베이스 통합 레이아웃',
+};
+
+// 사이드바 링크
+const US_NAMES_SIDEBAR_LINKS = [
+  {
+    href: '/names/us',
+    icon: <ListOrdered className="text-blue-500" size={20} />,
+    title: '미국 이름 홈',
+    desc: '전체 데이터 요약 및 검색',
+  },
+  {
+    href: '/names/us/popular',
+    icon: <BarChart2 className="text-emerald-500" size={20} />,
+    title: '연도별 순위 (TOP 50)',
+    desc: '1880~2024년 인기 이름',
+  },
+  {
+    href: '/names/us/trends',
+    icon: <LineChart className="text-indigo-500" size={20} />,
+    title: '이름 트렌드 탐색기',
+    desc: '다중 이름 인기도 비교 분석',
+  },
+  {
+    href: '/names/us/rarity',
+    icon: <CheckCircle2 className="text-purple-500" size={20} />,
+    title: '이름 희귀도 체크',
+    desc: '내 영문명의 희소성 확인',
+  },
+];
+
+export default function UsNamesLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <TwoColumnLayout sidebarLinks={US_NAMES_SIDEBAR_LINKS}>
+      {children}
+    </TwoColumnLayout>
+  );
+}
