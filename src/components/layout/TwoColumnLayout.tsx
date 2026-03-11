@@ -10,9 +10,10 @@ type SidebarLinks = ComponentProps<typeof CommonSidebar>['customLinks'];
 interface TwoColumnLayoutProps {
   children: React.ReactNode;
   sidebarLinks?: SidebarLinks;
+  extraContent?: React.ReactNode;
 }
 
-export default function TwoColumnLayout({ children, sidebarLinks }: TwoColumnLayoutProps) {
+export default function TwoColumnLayout({ children, sidebarLinks, extraContent }: TwoColumnLayoutProps) {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <DesktopNavBar />
@@ -27,7 +28,7 @@ export default function TwoColumnLayout({ children, sidebarLinks }: TwoColumnLay
             {children}
           </div>
 
-          <CommonSidebar customLinks={sidebarLinks} />
+          <CommonSidebar customLinks={sidebarLinks} extraContent={extraContent} />
         </div>
       </main>
 

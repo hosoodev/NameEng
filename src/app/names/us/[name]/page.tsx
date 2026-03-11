@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Metadata } from 'next';
 import NameTrendChart from './_components/NameTrendChart';
 // import indexData from '@/data/names/us/index.json'; (Removed to prevent bundling duplication)
-import { ArrowLeft, Award, Calendar, Hash, Zap, ArrowRight, ArrowRightCircle, TrendingUp } from 'lucide-react';
+import { ArrowLeft, Award, Calendar, Hash, Zap, ArrowRight, ArrowRightCircle, TrendingUp, ShieldCheck } from 'lucide-react';
 import fs from 'fs/promises';
 import path from 'path';
 
@@ -189,35 +189,40 @@ export default async function NamePage({ params }: { params: Promise<{ name: str
         
         <NameTrendChart maleData={data.male} femaleData={data.female} />
         
-        <div className="mt-8 bg-gray-50 rounded-2xl p-6 border border-gray-100">
-          <h3 className="text-lg font-bold text-gray-900 mb-4">💡 {capLabel} 이름 인사이트</h3>
-          <ul className="space-y-3 text-gray-700 leading-relaxed">
-            <li className="flex gap-2">
-              <span className="text-blue-500 font-bold">•</span>
-              <span>
-                <strong>{capLabel}</strong>는 <strong>{overview.py}년</strong>에 미국에서 <strong>{overview.pr}위</strong>를 기록하며 전성기를 맞았습니다. 
-                당시에만 무려 <strong>{maxBirths.toLocaleString()}명</strong>이 태어났어요.
-              </span>
-            </li>
-            <li className="flex gap-2">
-              <span className="text-blue-500 font-bold">•</span>
-              <span>
-                최근 5년간의 순위를 분석해보면, 인기가 <strong>{trend}</strong> 상태입니다.
-              </span>
-            </li>
-            <li className="flex gap-2">
-              <span className="text-blue-500 font-bold">•</span>
-              <span>
-                세대별로 분류하면 주로 <strong>{generation}</strong>를 대표하는 이름 중 하나입니다.
-              </span>
-            </li>
-            <li className="flex gap-2">
-              <span className="text-blue-500 font-bold">•</span>
-              <span>
-                2024년 기준 <strong>{rarity}</strong>인 이름으로 분류됩니다.
-              </span>
-            </li>
-          </ul>
+        <div className="mt-8 flex flex-col md:flex-row gap-6">
+          <div className="flex-1 bg-gray-50 rounded-2xl p-6 border border-gray-100">
+            <h3 className="text-lg font-bold text-gray-900 mb-4">💡 {capLabel} 이름 인사이트</h3>
+            <ul className="space-y-3 text-gray-700 leading-relaxed text-sm">
+              <li className="flex gap-2">
+                <span className="text-blue-500 font-bold">•</span>
+                <span>
+                  <strong>{capLabel}</strong>는 <strong>{overview.py}년</strong>에 미국에서 <strong>{overview.pr}위</strong>를 기록하며 전성기를 맞았습니다.
+                </span>
+              </li>
+              <li className="flex gap-2">
+                <span className="text-blue-500 font-bold">•</span>
+                <span>
+                  최근 5년간의 순위를 분석해보면, 인기가 <strong>{trend}</strong> 상태입니다.
+                </span>
+              </li>
+              <li className="flex gap-2">
+                <span className="text-blue-500 font-bold">•</span>
+                <span>
+                  세대별로는 <strong>{generation}</strong>를 대표하는 이름입니다.
+                </span>
+              </li>
+            </ul>
+          </div>
+
+          <div className="md:w-64 bg-blue-50/50 rounded-2xl p-6 border border-blue-100/50 flex flex-col justify-center text-center space-y-2">
+            <div className="inline-flex items-center gap-1.5 justify-center text-[10px] font-bold text-blue-400 uppercase tracking-widest">
+              <ShieldCheck size={14} /> Data Source
+            </div>
+            <p className="text-xs font-bold text-blue-900">U.S. Social Security Administration (SSA)</p>
+            <p className="text-[10px] text-blue-700/70 leading-relaxed">
+              1880년부터 2024년까지의<br/>실제 출생 기록 1억 건 이상 정밀 분석
+            </p>
+          </div>
         </div>
       </div>
 

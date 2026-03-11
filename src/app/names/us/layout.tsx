@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import TwoColumnLayout from '@/components/layout/TwoColumnLayout';
-import { LineChart, ListOrdered, BarChart2, CheckCircle2 } from 'lucide-react';
+import { LineChart, ListOrdered, BarChart2, CheckCircle2, ShieldCheck } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: '미국 이름 데이터베이스 - Layout | NameEng',
@@ -41,7 +41,22 @@ export default function UsNamesLayout({
   children: React.ReactNode;
 }) {
   return (
-    <TwoColumnLayout sidebarLinks={US_NAMES_SIDEBAR_LINKS}>
+    <TwoColumnLayout 
+      sidebarLinks={US_NAMES_SIDEBAR_LINKS}
+      extraContent={
+        <div className="mt-8 pt-6 border-t border-gray-100 space-y-3 px-4 md:px-0">
+          <div className="flex items-center gap-1.5 text-xs font-bold text-gray-400 uppercase tracking-widest">
+            <ShieldCheck size={14} className="text-blue-400" />
+            Official Data Source
+          </div>
+          <p className="text-[11px] leading-relaxed text-gray-400">
+            Social Security Administration (SSA)<br/>
+            1880 - 2024 Cumulative Data<br/>
+            Analyze over 100M+ birth records.
+          </p>
+        </div>
+      }
+    >
       {children}
     </TwoColumnLayout>
   );

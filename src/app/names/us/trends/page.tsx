@@ -18,7 +18,7 @@ export default function TrendsPage() {
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-indigo-700">이름 트렌드 탐색기</span>
         </h1>
         <p className="text-gray-600 text-lg">
-          영어 이름의 시대별 유행 흐름을 한눈에 확인할 수 있습니다.<br className="hidden md:block"/> 최대 5개의 이름을 입력하여 차트로 비교해보세요.
+          미국 사회보장국(SSA) 145년 시계열 데이터를 바탕으로 영어 이름의 유행 흐름을 분석합니다.<br className="hidden md:block"/> 최대 5개의 이름을 입력하여 차트로 비교해보세요.
         </p>
       </div>
 

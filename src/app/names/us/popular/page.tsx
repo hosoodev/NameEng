@@ -57,7 +57,7 @@ export default async function PopularNamesPage({
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-indigo-700">연도별 인기 이름 TOP 50</span>
         </h1>
         <p className="text-gray-600 text-lg">
-          1880년부터 2024년까지 원하는 시작 연도의 가장 인기 있는 영어 이름들을 확인해보세요.
+          미국 사회보장국(SSA)의 1880~2024년 공식 데이터를 통해 시대별 가장 인기 있는 영어 이름들을 확인해보세요.
         </p>
       </div>
 

@@ -37,7 +37,7 @@ export default function UsNamesHubPage() {
           미국 이름 데이터베이스 <span className="text-blue-600 block sm:inline">(1880~2024)</span>
         </h1>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-          미국 사회보장국(SSA)의 방대한 데이터를 바탕으로 이름의 트렌드, 인기 순위, 희귀도를 시각화하여 보여줍니다.
+          미국 사회보장국(SSA)의 <strong>145년 공식 누적 데이터</strong>를 바탕으로 이름의 트렌드, 인기 순위, 희귀도를 시각적으로 분석해 드립니다.
         </p>
         
         <div className="flex justify-center pt-4">
