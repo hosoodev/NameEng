@@ -1,8 +1,6 @@
 import { Metadata } from 'next';
 import PopularNamesClient from './_components/PopularNamesClient';
 import { Award, Info } from 'lucide-react';
-import fs from 'fs/promises';
-import path from 'path';
 
 export const metadata: Metadata = {
   title: '연도별 미국 인기 이름 순위 - 1880~2024 TOP 50 | NameEng',
@@ -35,9 +33,8 @@ export default async function PopularNamesPage({
   // Load static data file dynamically
   let data: ByYearEntry[] = [];
   try {
-    const filePath = path.join(process.cwd(), 'src', 'data', 'names', 'us', 'by-year', `${year}.json`);
-    const fileContent = await fs.readFile(filePath, 'utf-8');
-    data = JSON.parse(fileContent).slice(0, 50); // Get TOP 50
+    const res = await import(`@/data/names/us/by-year/${year}.json`);
+    data = res.default.slice(0, 50); // Get TOP 50
   } catch (err) {
     // Graceful degradation if year file isn't found
     console.error(`Failed to load data for year ${year}`);
