@@ -3,9 +3,10 @@
 import React, { useState, useEffect, useMemo, KeyboardEvent } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { loadNameData, ByNameFile } from '../_actions';
-import { Search, X, Loader2, Sparkles, TrendingUp, AlertCircle } from 'lucide-react';
+import { X, Loader2, Sparkles, TrendingUp, AlertCircle, Info } from 'lucide-react';
+import NameAutocomplete from '../../_components/NameAutocomplete';
 import {
-  LineChart,
+  LineChart as RechartsLineChart,
   Line,
   XAxis,
   YAxis,
@@ -329,7 +330,7 @@ export default function TrendsClient() {
           
           <div className="w-full h-[500px]">
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart
+              <RechartsLineChart
                 data={chartData}
                 margin={{ top: 20, right: 20, left: 0, bottom: 20 }}
               >
@@ -367,7 +368,7 @@ export default function TrendsClient() {
                     connectNulls
                   />
                 ))}
-              </LineChart>
+              </RechartsLineChart>
             </ResponsiveContainer>
           </div>
         </div>
