@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
+import { Loader2 } from 'lucide-react';
 import {
   LineChart,
   Line,
@@ -83,6 +84,20 @@ export default function NameTrendChart({ maleData, femaleData }: NameTrendChartP
     }
     return null;
   };
+
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <div className="w-full h-[400px] mt-8 flex items-center justify-center bg-gray-50 rounded-xl border border-gray-100">
+        <Loader2 className="animate-spin text-gray-400" size={24} />
+      </div>
+    );
+  }
 
   return (
     <div className="w-full h-[400px] mt-8">
