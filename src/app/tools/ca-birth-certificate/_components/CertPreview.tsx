@@ -65,19 +65,19 @@ export default function CertPreview({ data }: CertPreviewProps) {
             box-sizing: border-box;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             margin: 0 auto;
-            transition: max-width 0.3s ease, min-height 0.3s ease;
+            transition: width 0.3s ease, min-height 0.3s ease;
             font-family: 'Malgun Gothic', '맑은 고딕', sans-serif;
             color: #333;
         }
 
         .size-letter {
-            max-width: 816px;
+            width: 816px;
             min-height: 1056px;
             padding: 35px 38px;
         }
 
         .size-a4 {
-            max-width: 794px;
+            width: 794px;
             min-height: 1123px;
             padding: 32px 36px;
         }

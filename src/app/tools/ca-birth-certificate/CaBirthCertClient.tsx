@@ -180,8 +180,8 @@ export default function CaBirthCertClient() {
          <CertStepForm data={data} onChange={handleChange} onShare={handleShare} onPrint={handlePrint} />
       </div>
 
-      <div className="w-full overflow-hidden flex justify-center pb-20 no-print-bg">
-        <div className="scale-75 sm:scale-90 md:scale-100 print:scale-100 print:transform-none origin-top w-full flex justify-center">
+      <div className="w-full overflow-x-auto pb-10 no-print-bg bg-gray-100 sm:rounded-xl border-y sm:border border-gray-200 py-6 sm:py-10 print:py-0 print:border-none print:bg-white">
+        <div className="w-[850px] mx-auto lg:w-full flex justify-start lg:justify-center px-4 md:px-0 print:w-full print:px-0 py-4 print:py-0">
           <CertPreview data={data} />
         </div>
       </div>
