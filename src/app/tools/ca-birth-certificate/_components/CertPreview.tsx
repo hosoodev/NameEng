@@ -135,8 +135,11 @@ export default function CertPreview({ data }: CertPreviewProps) {
             .no-print { display: none !important; }
             .no-print-bg { background-color: transparent !important; padding-bottom: 0 !important; }
             
-            /* Next.js 등에서 생성하는 외부 영역 감추기 */
-            header, nav, footer, aside, .sidebar-container { display: none !important; }
+            /* Next.js 등에서 생성하는 외부 영역 및 광고 감추기 */
+            header, nav, footer, aside, .sidebar-container,
+            ins, .adsbygoogle, .adsbygoogle-noablate, .adsbygoogle-noablate * { 
+                display: none !important; 
+            }
             
             #print-section {
                 width: 100% !important; min-height: auto !important; max-width: none !important; box-shadow: none;
@@ -378,6 +381,10 @@ export default function CertPreview({ data }: CertPreviewProps) {
                     </>
                   )}
               </div>
+          </div>
+          
+          <div className="text-center text-[10px] text-gray-500 mt-10 mb-2 font-sans tracking-wide">
+             &copy; {new Date().getFullYear()} NameEng.
           </div>
       </div>
     </>
