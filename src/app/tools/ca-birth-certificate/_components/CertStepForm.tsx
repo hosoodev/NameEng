@@ -23,9 +23,24 @@ const COUNTIES = ["Alameda", "Alpine", "Amador", "Butte", "Calaveras", "Colusa",
 
 export default function CertStepForm({ data, onChange, onShare, onPrint, onClear }: CertStepFormProps) {
   const [currentStep, setCurrentStep] = useState(0);
-  // 카운티 필터링을 위한 상태 (사용자가 입력 중일 때만 옵션을 보여주기 위함)
+  // 카운티 필터링을 위한 상태
   const [countySearch, setCountySearch] = useState('');
-  const [showCounties, setShowCounties] = useState(false);
+  const [showCounties, setShowCounties] = useState<'top' | '5d' | null>(null);
+
+  // 검색어 하이라이팅 헬퍼 함수
+  const highlightMatch = (text: string, query: string) => {
+    if (!query) return text;
+    const parts = text.split(new RegExp(`(${query})`, 'gi'));
+    return (
+      <span>
+        {parts.map((part, i) => 
+          part.toLowerCase() === query.toLowerCase() 
+            ? <span key={i} className="text-blue-600 font-bold">{part}</span> 
+            : <span key={i}>{part}</span>
+        )}
+      </span>
+    );
+  };
 
   const nextStep = () => setCurrentStep(p => Math.min(STEPS.length - 1, p + 1));
   const prevStep = () => setCurrentStep(p => Math.max(0, p - 1));
@@ -73,35 +88,47 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
                 <label className="text-xs font-bold text-gray-600">파일번호</label>
                 <input type="text" className="w-full p-2 border border-gray-300 rounded-lg text-sm" value={data['file-no']} onChange={e => onChange('file-no', e.target.value)} />
               </div>
-              <div className="space-y-1 relative">
-                <label className="text-xs font-bold text-gray-600">중앙 카운티 명</label>
-                <input 
-                  type="text" 
-                  className="w-full p-2 border border-gray-300 rounded-lg text-sm" 
-                  placeholder="영문 검색 (예: Los Angeles)" 
-                  value={data['top-county']} 
-                  onChange={e => {
-                    onChange('top-county', e.target.value);
-                    setCountySearch(e.target.value);
-                  }} 
-                  onFocus={() => setShowCounties(true)}
-                  onBlur={() => setTimeout(() => setShowCounties(false), 200)}
-                />
-                {showCounties && data['top-county'] && (
-                  <div className="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg max-h-48 overflow-y-auto">
-                    {COUNTIES.filter(c => c.toLowerCase().includes(data['top-county'].toLowerCase())).map(c => (
-                      <button
-                        key={c}
-                        className="w-full text-left px-3 py-2 text-sm hover:bg-blue-50 transition-colors"
-                        onClick={() => {
-                          onChange('top-county', c);
-                          setCountySearch('');
-                          setShowCounties(false);
-                        }}
-                      >
-                        {c}
-                      </button>
-                    ))}
+              <div className="space-y-1 relative group">
+                <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600">중앙 카운티 명</label>
+                <div className="relative">
+                  <input 
+                    type="text" 
+                    className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none shadow-sm" 
+                    placeholder="영문 검색 (예: Los Angeles)" 
+                    value={data['top-county']} 
+                    onChange={e => {
+                      onChange('top-county', e.target.value);
+                    }} 
+                    onFocus={() => setShowCounties('top')}
+                    onBlur={() => setTimeout(() => setShowCounties(null), 200)}
+                  />
+                  <div className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                  </div>
+                </div>
+                {showCounties === 'top' && data['top-county'] && (
+                  <div className="absolute z-50 w-full mt-2 bg-white/90 backdrop-blur-md border border-gray-100 rounded-xl shadow-2xl max-h-60 overflow-y-auto animate-in fade-in slide-in-from-top-2 duration-200">
+                    <div className="p-1.5">
+                      {COUNTIES.filter(c => c.toLowerCase().includes(data['top-county'].toLowerCase())).length > 0 ? (
+                        COUNTIES.filter(c => c.toLowerCase().includes(data['top-county'].toLowerCase())).map(c => (
+                          <button
+                            key={c}
+                            className="w-full text-left px-3 py-2.5 text-sm rounded-lg hover:bg-blue-50 transition-all flex justify-between items-center group/item"
+                            onClick={() => {
+                              onChange('top-county', c);
+                              setShowCounties(null);
+                            }}
+                          >
+                            <span>{highlightMatch(c, data['top-county'])}</span>
+                            <span className="opacity-0 group-hover/item:opacity-100 text-blue-400 transition-opacity">
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
+                            </span>
+                          </button>
+                        ))
+                      ) : (
+                        <div className="px-3 py-4 text-center text-xs text-gray-400 italic">일치하는 카운티가 없습니다.</div>
+                      )}
+                    </div>
                   </div>
                 )}
               </div>
@@ -181,31 +208,45 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
               <label className="text-xs font-bold text-gray-600">5C. 도시</label>
               <input type="text" className="w-full p-2 border border-gray-300 rounded-lg text-sm" value={data['5c']} onChange={e => onChange('5c', e.target.value)} />
             </div>
-            <div className="space-y-1 relative">
-              <label className="text-xs font-bold text-gray-600">5D. 카운티</label>
-              <input 
-                type="text" 
-                className="w-full p-2 border border-gray-300 rounded-lg text-sm" 
-                placeholder="영문 카운티" 
-                value={data['5d']} 
-                onChange={e => onChange('5d', e.target.value)} 
-                onFocus={() => setShowCounties(true)}
-                onBlur={() => setTimeout(() => setShowCounties(false), 200)}
-              />
-              {showCounties && data['5d'] && (
-                <div className="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg max-h-48 overflow-y-auto">
-                  {COUNTIES.filter(c => c.toLowerCase().includes(data['5d'].toLowerCase())).map(c => (
-                    <button
-                      key={c}
-                      className="w-full text-left px-3 py-2 text-sm hover:bg-blue-50 transition-colors"
-                      onClick={() => {
-                        onChange('5d', c);
-                        setShowCounties(false);
-                      }}
-                    >
-                      {c}
-                    </button>
-                  ))}
+            <div className="space-y-1 relative group">
+              <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600">5D. 카운티</label>
+              <div className="relative">
+                <input 
+                  type="text" 
+                  className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none shadow-sm" 
+                  placeholder="영문 카운티" 
+                  value={data['5d']} 
+                  onChange={e => onChange('5d', e.target.value)} 
+                  onFocus={() => setShowCounties('5d')}
+                  onBlur={() => setTimeout(() => setShowCounties(null), 200)}
+                />
+                <div className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                </div>
+              </div>
+              {showCounties === '5d' && data['5d'] && (
+                <div className="absolute z-50 w-full mt-2 bg-white/90 backdrop-blur-md border border-gray-100 rounded-xl shadow-2xl max-h-60 overflow-y-auto animate-in fade-in slide-in-from-top-2 duration-200">
+                  <div className="p-1.5">
+                    {COUNTIES.filter(c => c.toLowerCase().includes(data['5d'].toLowerCase())).length > 0 ? (
+                      COUNTIES.filter(c => c.toLowerCase().includes(data['5d'].toLowerCase())).map(c => (
+                        <button
+                          key={c}
+                          className="w-full text-left px-3 py-2.5 text-sm rounded-lg hover:bg-blue-50 transition-all flex justify-between items-center group/item"
+                          onClick={() => {
+                            onChange('5d', c);
+                            setShowCounties(null);
+                          }}
+                        >
+                          <span>{highlightMatch(c, data['5d'])}</span>
+                          <span className="opacity-0 group-hover/item:opacity-100 text-blue-400 transition-opacity">
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
+                          </span>
+                        </button>
+                      ))
+                    ) : (
+                      <div className="px-3 py-4 text-center text-xs text-gray-400 italic">일치하는 카운티가 없습니다.</div>
+                    )}
+                  </div>
                 </div>
               )}
             </div>
