@@ -4,8 +4,8 @@ import { ShieldCheck, Info, Zap } from 'lucide-react';
 import { Suspense } from 'react';
 
 export const metadata: Metadata = {
-  title: '내 영어 이름 희귀도 측정 및 유니크 점수 분석 | NameEng',
-  description: '내 영어 이름이 미국에서 얼마나 고유한지 확인해 보세요. 145년 누적 통계 기반으로 내 이름의 희소성 레벨과 아기 이름 상위 퍼센트를 정확히 알려드립니다.',
+  title: '희귀한 영어 이름 찾기 및 내 이름 유니크 점수 측정 - 영어 이름 희귀도 분석 | NameEng',
+  description: '희귀한 영어 이름을 찾고 있거나 내 영어 이름이 미국에서 얼마나 유니크한지 알고 싶다면 지금 바로 측정해 보세요. 145년 누적 데이터를 바탕으로 내 이름의 희소성 레벨, 상위 퍼센트, 그리고 흔하지 않은 나만의 특별한 이름을 제안해 드립니다.',
 };
 
 export default function RarityPage() {

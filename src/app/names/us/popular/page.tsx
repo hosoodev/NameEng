@@ -3,8 +3,8 @@ import PopularNamesClient from './_components/PopularNamesClient';
 import { Award, Info } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: '연도별 미국 인기 영어 이름 TOP 100 순위 센터 | NameEng',
-  description: '1880년부터 2024년까지, 각 시대를 풍미한 미국 인기 영어 이름 순위를 확인하세요. 연도별 남자/여자 아기 이름 트렌드와 변화를 한눈에 볼 수 있습니다.',
+  title: '연도별 인기 영어 이름 TOP 100 순위 확인 - 미국 아기 이름 트렌드 랭킹 | NameEng',
+  description: '연도별 인기 영어 이름 TOP 100 순위를 1880년부터 최신 2024년 데이터까지 상세히 제공합니다. 각 시대를 대표하는 유행하는 영어 이름의 변화와 흐름을 비교 분석하고, 가장 세련된 남자/여자 아기 이름을 추천받으세요.',
 };
 
 type ByYearEntry = {

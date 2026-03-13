@@ -7,9 +7,9 @@ import { Database, TrendingUp, Users, Calendar, Award, Zap, ArrowRight } from 'l
 import indexData from '@/data/names/us/index.json';
 
 export const metadata: Metadata = {
-  title: '미국 인기 영어 이름 순위 및 빅데이터 분석 센터 | NameEng',
-  description: '미국 사회보장국(SSA) 145년 실데이터를 기반으로 한 가장 정확한 미국 이름 랭킹과 트렌드를 확인하세요. 남자, 여자 영어 이름 추천부터 상세 통계까지 제공합니다.',
-  keywords: '미국 이름 순위, 영어 이름 추천, 미국 인기 이름, 영문명 통계, 영어 이름 뜻, SSA 데이터 분석',
+  title: '미국 영어 이름 순위 및 인기 이름 빅데이터 분석 - 145년 SSA 공식 통계 기반 | NameEng',
+  description: '미국 영어 이름 순위와 인기 트렌드를 미국 사회보장국(SSA)의 145년 실데이터로 분석합니다. 1880년부터 2024년까지의 1억 건 이상의 성명 데이터를 바탕으로 가장 공신력 있는 남자/여자 영어 이름 추천 및 통계 정보를 제공합니다.',
+  keywords: '미국 이름 순위, 영어 이름 추천, 미국 인기 이름, 영문명 통계, 영어 이름 뜻, SSA 데이터 분석, 인기 영문 이름 랭킹',
 };
 
 // Define the type loosely based on usage since it's from JSON

@@ -41,8 +41,8 @@ export async function generateMetadata({ params }: { params: Promise<{ name: str
   const { name } = await params;
   const cap = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
   return {
-    title: `${cap} 이름 뜻, 인기 순위 및 성별 사용량 분석 | NameEng`,
-    description: `미국 영어 이름 '${cap}'의 모든 데이터를 확인하세요. 의미(뜻), 시대별 인기 변화 차트, 성별 사용 비중 등 실제 데이터를 기반으로 상세히 분석해 드립니다.`,
+    title: `${cap} 영어 이름 뜻, 인기 순위 및 성별 통계 분석 - 미국 이름 상세 정보 | NameEng`,
+    description: `'${cap}' 영어 이름의 모든 정보를 확인하세요. 실제 미국 사회보장국 데이터를 기반으로 분석한 ${cap}의 의미(뜻), 시대별 인기 변화 차트, 성별 사용 비중 및 실제 유행 트렌드 데이터를 상세하게 제공합니다.`,
   };
 }
 
