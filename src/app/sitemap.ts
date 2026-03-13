@@ -23,6 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         '/names/us/popular',
         '/names/us/rarity',
         '/names/us/trends',
+        '/tools/ca-birth-certificate',
     ];
 
     const staticEntries = staticRoutes.map((route) => ({

@@ -64,6 +64,15 @@ const tools = [
     color: 'amber',
     status: '준비 중',
     features: ['사용 빈도', '연도별 트렌드', '지역별 선호도']
+  },
+  {
+    id: 'ca-birth-certificate',
+    title: '캘리포니아 출생증명서 번역기',
+    description: '캘리포니아주 출생증명서를 한국어로 쉽게 번역하고, 제출용 포맷으로 바로 인쇄(PDF 저장)할 수 있습니다.',
+    icon: <span className="text-orange-500 font-bold text-2xl" style={{ lineHeight: 1 }}>📄</span>,
+    color: 'amber',
+    status: '사용 가능',
+    features: ['번역 및 템플릿 제공', '인쇄 지원', '자동 저장', '링크 공유']
   }
 ];
 
