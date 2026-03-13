@@ -168,6 +168,25 @@ export default function CaBirthCertClient() {
 
   // 인쇄 실행
   const handlePrint = useCallback(() => {
+    // 디버깅을 위한 출력 요소 로깅
+    console.log("--- [인쇄 직전 노출 요소 분석] ---");
+    const allElements = document.querySelectorAll('body > *:not(script):not(style)');
+    allElements.forEach(el => {
+      const style = window.getComputedStyle(el);
+      const isVisible = style.display !== 'none' && style.visibility !== 'hidden' && parseFloat(style.opacity) !== 0;
+      if (isVisible) {
+        console.log(`[노출] 태그: <${el.tagName.toLowerCase()}>, 클래스: "${el.className}", ID: "${el.id}"`);
+      }
+    });
+    
+    // 추가로 html 바로 아래에 붙은 광고 관련 요소들 체크
+    const rootElements = document.querySelectorAll('html > ins, html > iframe');
+    if (rootElements.length > 0) {
+      console.log("[경고] <html> 직계 자식으로 광고 요소가 발견됨:");
+      rootElements.forEach(el => console.log(`[발견] <${el.tagName.toLowerCase()}> 클래스: "${el.className}"`));
+    }
+    console.log("---------------------------------");
+    
     window.print();
   }, []);
 
