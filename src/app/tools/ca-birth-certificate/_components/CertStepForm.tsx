@@ -361,9 +361,9 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden mb-8">
+    <div className="bg-white rounded-2xl shadow-sm border border-gray-200 mb-8">
       {/* Step Indicators */}
-      <div className="flex flex-wrap overflow-x-auto border-b border-gray-100 bg-gray-50/50">
+      <div className="flex flex-wrap overflow-x-auto border-b border-gray-100 bg-gray-50/50 rounded-t-2xl">
         {STEPS.map((step, idx) => (
           <button
             key={idx}
@@ -384,7 +384,7 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
       </div>
 
       {/* Navigation Footer */}
-      <div className="px-5 sm:px-7 py-4 bg-gray-50 border-t border-gray-100 flex justify-between items-center overflow-x-auto gap-2">
+      <div className="px-5 sm:px-7 py-4 bg-gray-50 border-t border-gray-100 flex justify-between items-center overflow-x-auto gap-2 rounded-b-2xl">
         <div className="flex items-center gap-2 shrink-0">
           <button
             onClick={prevStep}
