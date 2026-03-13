@@ -137,16 +137,15 @@ export default function CertPreview({ data }: CertPreviewProps) {
             
             /* Next.js 등에서 생성하는 외부 영역 및 광고 감추기 */
             header, nav, footer, aside, .sidebar-container,
-            ins, .adsbygoogle, .adsbygoogle-noablate, .adsbygoogle-noablate * { 
+            ins, .adsbygoogle, .adsbygoogle-noablate, .adsbygoogle-noablate *,
+            .google-auto-placed, .google-auto-placed * { 
                 display: none !important; 
             }
             
             #print-section {
-                width: 100% !important; 
-                min-height: auto !important; 
-                max-width: none !important; 
                 box-shadow: none !important;
                 margin: 0 !important;
+                /* 웹과 동일한 height를 유지하여 absolute 카피라이트 위치가 같도록 함 */
                 page-break-after: avoid;
             }
         }
@@ -386,7 +385,7 @@ export default function CertPreview({ data }: CertPreviewProps) {
                     </div>
                 </div>
 
-                <div className="absolute print:fixed bottom-8 print:bottom-8 left-0 right-0 text-center text-[10px] text-gray-400 font-sans tracking-wide print:z-50">
+                <div className="absolute bottom-8 left-0 right-0 text-center text-[10px] text-gray-400 font-sans tracking-wide">
                     &copy; {new Date().getFullYear()} NameEng.
                 </div>
             </div>
