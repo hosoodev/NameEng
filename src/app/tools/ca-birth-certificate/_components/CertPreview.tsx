@@ -82,10 +82,10 @@ export default function CertPreview({ data }: CertPreviewProps) {
             padding: 32px 36px;
         }
 
-        .doc-title-right { text-align: right; font-size: 13px; letter-spacing: 1px; margin-bottom: 15px; }
-        .doc-main-title { text-align: center; margin-bottom: 25px; }
+        .doc-title-right { text-align: right; font-size: 13px; letter-spacing: 1px; margin-bottom: 4px; }
+        .doc-main-title { text-align: center; margin-bottom: 20px; }
         .doc-main-title h1 { font-size: 32px; margin: 0; font-weight: 900; letter-spacing: 2px; }
-        .doc-main-title h2 { font-size: 26px; margin: 5px 0 0 0; font-weight: 900; letter-spacing: 2px; }
+        .doc-main-title h2 { font-size: 26px; margin: 4px 0 0 0; font-weight: 900; letter-spacing: 2px; }
 
         .top-info-section { display: flex; justify-content: space-between; align-items: flex-end; text-align: center; font-size: 13px; margin-bottom: 10px; }
         .top-info-box { width: 28%; }
@@ -105,7 +105,7 @@ export default function CertPreview({ data }: CertPreviewProps) {
         #out-top-county { font-size: 18px !important; letter-spacing: 1px; color: #111; }
         #out-5d { font-size: 14px !important; }
 
-        .top-label { margin-top: 5px; color: #000; font-size: 14px; }
+        .top-label { margin-top: 4px; color: #000; font-size: 14px; }
 
         .cert-table { width: 100%; border-collapse: collapse; border: 2px solid #000; table-layout: fixed; }
         .cert-table th, .cert-table td { border: 1px solid #000; padding: 4px; vertical-align: top; word-break: keep-all; overflow: hidden; height: 56px; }
