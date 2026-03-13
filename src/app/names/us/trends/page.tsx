@@ -4,8 +4,8 @@ import { LineChart, Info } from 'lucide-react';
 import { Suspense } from 'react';
 
 export const metadata: Metadata = {
-  title: '영어 이름 트렌드 탐색 및 인기도 비교 분석 - 시대별 이름 변화 | NameEng',
-  description: '최대 5개의 영어 이름을 동시에 비교하여 145년 동안의 인기도 변화를 한눈에 볼 수 있는 트렌드 차트입니다. 내가 선택한 영어 이름이 어느 시대에 가장 유행했는지, 서로 어떤 변화 양상을 보이는지 상세한 데이터 시각화를 통해 시각적으로 분석해보세요.',
+  title: '영어 이름 인기도 트렌드 비교 및 시대별 변화 분석 | NameEng',
+  description: '최대 5개의 영어 이름을 선택해 145년간의 인기도 변화를 차트로 직접 비교해 보세요. 시대별 유행의 흐름을 분석하여 가장 세련된 이름을 추천합니다.',
 };
 
 export default function TrendsPage() {

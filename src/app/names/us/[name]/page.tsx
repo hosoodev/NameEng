@@ -39,10 +39,10 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ name: string }> }): Promise<Metadata> {
   const { name } = await params;
-  const cap = name.charAt(0).toUpperCase() + name.slice(1);
+  const cap = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
   return {
-    title: `${cap} 이름 뜻과 인기 순위 - 미국 영어 이름 통계 | NameEng`,
-    description: `${cap}는 미국에서 몇 위 이름일까요? 1880~2024 연도별 순위 변화와 세대별 트렌드를 확인하세요.`,
+    title: `${cap} 이름 뜻, 인기 순위 및 성별 사용량 분석 | NameEng`,
+    description: `미국 영어 이름 '${cap}'의 모든 데이터를 확인하세요. 의미(뜻), 시대별 인기 변화 차트, 성별 사용 비중 등 실제 데이터를 기반으로 상세히 분석해 드립니다.`,
   };
 }
 
