@@ -142,8 +142,9 @@ export default function CertPreview({ data }: CertPreviewProps) {
             }
             
             #print-section {
-                width: 100% !important; min-height: auto !important; max-width: none !important; box-shadow: none;
-                /* JS에서 주어지는 padding (사이즈별) 그대로 유지됨 */
+                box-shadow: none !important;
+                margin: 0 !important;
+                /* 웹과 동일한 height를 유지하여 absolute 카피라이트 위치가 같도록 함 */
                 page-break-after: avoid;
             }
         }
@@ -212,7 +213,7 @@ export default function CertPreview({ data }: CertPreviewProps) {
                             <td colSpan={2}><span className="cell-label">3A. 단생아, 쌍생아 등</span>
                                 <div className="cell-data" id="out-3a">{val3a}</div>
                             </td>
-                            <td colSpan={2}><span className="cell-label">3B. 쌍둥이 첫째, 둘째 등</span>
+                            <td colSpan={2}><span className="cell-label">3B. 쌍생아 첫째, 둘째 등</span>
                                 <div className="cell-data" id="out-3b">{getValue('3b')}</div>
                             </td>
                             <td colSpan={2}><span className="cell-label">4A. 출생일자 - 월/일/년</span>

@@ -52,7 +52,7 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
               </span>
               <div className="flex items-center gap-3">
                 <label className="font-semibold text-gray-700">인쇄 용지:</label>
-                <select 
+                <select
                   className="px-3 py-1.5 border border-gray-300 rounded-lg text-sm bg-white"
                   value={data['paper-size']}
                   onChange={e => onChange('paper-size', e.target.value)}
@@ -62,7 +62,7 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
                 </select>
               </div>
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="space-y-1">
                 <label className="text-xs font-bold text-gray-600">파일번호</label>
@@ -98,85 +98,85 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 pt-2">
-               <div className="space-y-1">
-                  <label className="text-xs font-bold text-gray-600 block">2. 성별</label>
-                  <div className="flex gap-4 pt-2">
-                    <label className="flex items-center gap-1.5 text-sm cursor-pointer"><input type="radio" checked={data['2']==='남'} onChange={() => onChange('2', '남')} className="w-4 h-4 text-blue-600" /> 남</label>
-                    <label className="flex items-center gap-1.5 text-sm cursor-pointer"><input type="radio" checked={data['2']==='여'} onChange={() => onChange('2', '여')} className="w-4 h-4 text-blue-600" /> 여</label>
-                  </div>
-               </div>
-               
-               <div className="lg:col-span-2 space-y-1">
-                  <label className="text-xs font-bold text-gray-600 block">3A. 단생아/쌍생아 등</label>
-                  <div className="flex gap-3 pt-2 flex-wrap items-center">
-                    <label className="flex items-center gap-1 text-sm cursor-pointer"><input type="radio" checked={data['3a']==='단생아'} onChange={() => onChange('3a', '단생아')} className="w-4 h-4" /> 단생아</label>
-                    <label className="flex items-center gap-1 text-sm cursor-pointer"><input type="radio" checked={data['3a']==='쌍생아'} onChange={() => onChange('3a', '쌍생아')} className="w-4 h-4" /> 쌍생아</label>
-                    <label className="flex items-center gap-1 text-sm cursor-pointer"><input type="radio" checked={data['3a']==='기타'} onChange={() => onChange('3a', '기타')} className="w-4 h-4" /> 기타</label>
-                    {data['3a'] === '기타' && (
-                      <input type="text" className="w-16 p-1 border border-gray-300 rounded text-xs ml-1" placeholder="직접입력" value={data['3a-text']} onChange={e => onChange('3a-text', e.target.value)} />
-                    )}
-                  </div>
-               </div>
+              <div className="space-y-1">
+                <label className="text-xs font-bold text-gray-600 block">2. 성별</label>
+                <div className="flex gap-4 pt-2">
+                  <label className="flex items-center gap-1.5 text-sm cursor-pointer"><input type="radio" checked={data['2'] === '남'} onChange={() => onChange('2', '남')} className="w-4 h-4 text-blue-600" /> 남</label>
+                  <label className="flex items-center gap-1.5 text-sm cursor-pointer"><input type="radio" checked={data['2'] === '여'} onChange={() => onChange('2', '여')} className="w-4 h-4 text-blue-600" /> 여</label>
+                </div>
+              </div>
 
-               <div className="space-y-1">
-                  <label className="text-xs font-bold text-gray-600">3B. 쌍둥이 순번</label>
-                  <input type="text" disabled={data['3a'] !== '쌍생아' && data['3a'] !== '기타'} className="w-full p-2 border border-gray-300 rounded-lg text-sm bg-gray-50 disabled:bg-gray-100 disabled:cursor-not-allowed" placeholder={data['3a'] === '단생아' || !data['3a'] ? '비활성' : '첫째, 둘째'} value={data['3b']} onChange={e => onChange('3b', e.target.value)} />
-               </div>
+              <div className="lg:col-span-2 space-y-1">
+                <label className="text-xs font-bold text-gray-600 block">3A. 단생아/쌍생아 등</label>
+                <div className="flex gap-3 pt-2 flex-wrap items-center">
+                  <label className="flex items-center gap-1 text-sm cursor-pointer"><input type="radio" checked={data['3a'] === '단생아'} onChange={() => onChange('3a', '단생아')} className="w-4 h-4" /> 단생아</label>
+                  <label className="flex items-center gap-1 text-sm cursor-pointer"><input type="radio" checked={data['3a'] === '쌍생아'} onChange={() => onChange('3a', '쌍생아')} className="w-4 h-4" /> 쌍생아</label>
+                  <label className="flex items-center gap-1 text-sm cursor-pointer"><input type="radio" checked={data['3a'] === '기타'} onChange={() => onChange('3a', '기타')} className="w-4 h-4" /> 기타</label>
+                  {data['3a'] === '기타' && (
+                    <input type="text" className="w-16 p-1 border border-gray-300 rounded text-xs ml-1" placeholder="직접입력" value={data['3a-text']} onChange={e => onChange('3a-text', e.target.value)} />
+                  )}
+                </div>
+              </div>
 
-               <div className="space-y-1">
-                  <label className="text-xs font-bold text-gray-600">4A. 출생일자 / 4B. 시간</label>
-                  <div className="flex gap-2">
-                    <input type="text" className="w-3/5 p-2 border border-gray-300 rounded-lg text-sm placeholder:text-gray-300" placeholder="MM/DD/YYYY" value={data['4a']} onChange={e => handleDateInput('4a', e.target.value)} />
-                    <input type="text" className="w-2/5 p-2 border border-gray-300 rounded-lg text-sm placeholder:text-gray-300" placeholder="HH:MM" value={data['4b']} onChange={e => handleTimeInput('4b', e.target.value)} />
-                  </div>
-               </div>
+              <div className="space-y-1">
+                <label className="text-xs font-bold text-gray-600">3B. 쌍생아 순번</label>
+                <input type="text" disabled={data['3a'] !== '쌍생아' && data['3a'] !== '기타'} className="w-full p-2 border border-gray-300 rounded-lg text-sm bg-gray-50 disabled:bg-gray-100 disabled:cursor-not-allowed" placeholder={data['3a'] === '단생아' || !data['3a'] ? '비활성' : '첫째, 둘째'} value={data['3b']} onChange={e => onChange('3b', e.target.value)} />
+              </div>
+
+              <div className="space-y-1">
+                <label className="text-xs font-bold text-gray-600">4A. 출생일자 / 4B. 시간</label>
+                <div className="flex gap-2">
+                  <input type="text" className="w-3/5 p-2 border border-gray-300 rounded-lg text-sm placeholder:text-gray-300" placeholder="MM/DD/YYYY" value={data['4a']} onChange={e => handleDateInput('4a', e.target.value)} />
+                  <input type="text" className="w-2/5 p-2 border border-gray-300 rounded-lg text-sm placeholder:text-gray-300" placeholder="HH:MM" value={data['4b']} onChange={e => handleTimeInput('4b', e.target.value)} />
+                </div>
+              </div>
             </div>
           </div>
         );
       case 2:
         return (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-             <div className="space-y-1">
-                <label className="text-xs font-bold text-gray-600">5A. 병원 또는 기관</label>
-                <input type="text" className="w-full p-2 border border-gray-300 rounded-lg text-sm" value={data['5a']} onChange={e => onChange('5a', e.target.value)} />
-             </div>
-             <div className="space-y-1">
-                <label className="text-xs font-bold text-gray-600">5B. 주소 (번지 또는 위치)</label>
-                <input type="text" className="w-full p-2 border border-gray-300 rounded-lg text-sm" value={data['5b']} onChange={e => onChange('5b', e.target.value)} />
-             </div>
-             <div className="space-y-1">
-                <label className="text-xs font-bold text-gray-600">5C. 도시</label>
-                <input type="text" className="w-full p-2 border border-gray-300 rounded-lg text-sm" value={data['5c']} onChange={e => onChange('5c', e.target.value)} />
-             </div>
-             <div className="space-y-1">
-                <label className="text-xs font-bold text-gray-600">5D. 카운티</label>
-                <input type="text" list="ca-counties" className="w-full p-2 border border-gray-300 rounded-lg text-sm" placeholder="영문 카운티" value={data['5d']} onChange={e => onChange('5d', e.target.value)} />
-             </div>
+            <div className="space-y-1">
+              <label className="text-xs font-bold text-gray-600">5A. 병원 또는 기관</label>
+              <input type="text" className="w-full p-2 border border-gray-300 rounded-lg text-sm" value={data['5a']} onChange={e => onChange('5a', e.target.value)} />
+            </div>
+            <div className="space-y-1">
+              <label className="text-xs font-bold text-gray-600">5B. 주소 (번지 또는 위치)</label>
+              <input type="text" className="w-full p-2 border border-gray-300 rounded-lg text-sm" value={data['5b']} onChange={e => onChange('5b', e.target.value)} />
+            </div>
+            <div className="space-y-1">
+              <label className="text-xs font-bold text-gray-600">5C. 도시</label>
+              <input type="text" className="w-full p-2 border border-gray-300 rounded-lg text-sm" value={data['5c']} onChange={e => onChange('5c', e.target.value)} />
+            </div>
+            <div className="space-y-1">
+              <label className="text-xs font-bold text-gray-600">5D. 카운티</label>
+              <input type="text" list="ca-counties" className="w-full p-2 border border-gray-300 rounded-lg text-sm" placeholder="영문 카운티" value={data['5d']} onChange={e => onChange('5d', e.target.value)} />
+            </div>
           </div>
         );
       case 3:
         return (
           <div className="space-y-6">
-             <div>
-                <h4 className="font-bold text-sm text-blue-700 mb-3 block pb-1 border-b border-gray-100">아버지 정보</h4>
-                <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
-                  <div className="space-y-1"><label className="text-[11px] font-bold text-gray-500">6A. 아버지 이름</label><input type="text" className="w-full p-2 border border-gray-300 rounded-md text-sm" value={data['6a']} onChange={e => onChange('6a', e.target.value)} /></div>
-                  <div className="space-y-1"><label className="text-[11px] font-bold text-gray-500">6B. 중간이름</label><input type="text" className="w-full p-2 border border-gray-300 rounded-md text-sm" value={data['6b']} onChange={e => onChange('6b', e.target.value)} /></div>
-                  <div className="space-y-1"><label className="text-[11px] font-bold text-gray-500">6C. 성</label><input type="text" className="w-full p-2 border border-gray-300 rounded-md text-sm" value={data['6c']} onChange={e => onChange('6c', e.target.value)} /></div>
-                  <div className="space-y-1"><label className="text-[11px] font-bold text-gray-500">7. 출생지</label><input type="text" className="w-full p-2 border border-gray-300 rounded-md text-sm" value={data['7']} onChange={e => onChange('7', e.target.value)} /></div>
-                  <div className="space-y-1"><label className="text-[11px] font-bold text-gray-500">8. 출생일자</label><input type="text" className="w-full p-2 border border-gray-300 rounded-md text-sm placeholder:text-gray-300" placeholder="MM/DD/YYYY" value={data['8']} onChange={e => handleDateInput('8', e.target.value)} /></div>
-                </div>
-             </div>
-             <div>
-                <h4 className="font-bold text-sm text-pink-700 mb-3 block pb-1 border-b border-gray-100">어머니 정보</h4>
-                <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
-                  <div className="space-y-1"><label className="text-[11px] font-bold text-gray-500">9A. 어머니 이름</label><input type="text" className="w-full p-2 border border-gray-300 rounded-md text-sm" value={data['9a']} onChange={e => onChange('9a', e.target.value)} /></div>
-                  <div className="space-y-1"><label className="text-[11px] font-bold text-gray-500">9B. 중간이름</label><input type="text" className="w-full p-2 border border-gray-300 rounded-md text-sm" value={data['9b']} onChange={e => onChange('9b', e.target.value)} /></div>
-                  <div className="space-y-1"><label className="text-[11px] font-bold text-gray-500">9C. 성</label><input type="text" className="w-full p-2 border border-gray-300 rounded-md text-sm" value={data['9c']} onChange={e => onChange('9c', e.target.value)} /></div>
-                  <div className="space-y-1"><label className="text-[11px] font-bold text-gray-500">10. 출생지</label><input type="text" className="w-full p-2 border border-gray-300 rounded-md text-sm" value={data['10']} onChange={e => onChange('10', e.target.value)} /></div>
-                  <div className="space-y-1"><label className="text-[11px] font-bold text-gray-500">11. 출생일자</label><input type="text" className="w-full p-2 border border-gray-300 rounded-md text-sm placeholder:text-gray-300" placeholder="MM/DD/YYYY" value={data['11']} onChange={e => handleDateInput('11', e.target.value)} /></div>
-                </div>
-             </div>
+            <div>
+              <h4 className="font-bold text-sm text-blue-700 mb-3 block pb-1 border-b border-gray-100">아버지 정보</h4>
+              <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
+                <div className="space-y-1"><label className="text-[11px] font-bold text-gray-500">6A. 아버지 이름</label><input type="text" className="w-full p-2 border border-gray-300 rounded-md text-sm" value={data['6a']} onChange={e => onChange('6a', e.target.value)} /></div>
+                <div className="space-y-1"><label className="text-[11px] font-bold text-gray-500">6B. 중간이름</label><input type="text" className="w-full p-2 border border-gray-300 rounded-md text-sm" value={data['6b']} onChange={e => onChange('6b', e.target.value)} /></div>
+                <div className="space-y-1"><label className="text-[11px] font-bold text-gray-500">6C. 성</label><input type="text" className="w-full p-2 border border-gray-300 rounded-md text-sm" value={data['6c']} onChange={e => onChange('6c', e.target.value)} /></div>
+                <div className="space-y-1"><label className="text-[11px] font-bold text-gray-500">7. 출생지</label><input type="text" className="w-full p-2 border border-gray-300 rounded-md text-sm" value={data['7']} onChange={e => onChange('7', e.target.value)} /></div>
+                <div className="space-y-1"><label className="text-[11px] font-bold text-gray-500">8. 출생일자</label><input type="text" className="w-full p-2 border border-gray-300 rounded-md text-sm placeholder:text-gray-300" placeholder="MM/DD/YYYY" value={data['8']} onChange={e => handleDateInput('8', e.target.value)} /></div>
+              </div>
+            </div>
+            <div>
+              <h4 className="font-bold text-sm text-pink-700 mb-3 block pb-1 border-b border-gray-100">어머니 정보</h4>
+              <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
+                <div className="space-y-1"><label className="text-[11px] font-bold text-gray-500">9A. 어머니 이름</label><input type="text" className="w-full p-2 border border-gray-300 rounded-md text-sm" value={data['9a']} onChange={e => onChange('9a', e.target.value)} /></div>
+                <div className="space-y-1"><label className="text-[11px] font-bold text-gray-500">9B. 중간이름</label><input type="text" className="w-full p-2 border border-gray-300 rounded-md text-sm" value={data['9b']} onChange={e => onChange('9b', e.target.value)} /></div>
+                <div className="space-y-1"><label className="text-[11px] font-bold text-gray-500">9C. 성</label><input type="text" className="w-full p-2 border border-gray-300 rounded-md text-sm" value={data['9c']} onChange={e => onChange('9c', e.target.value)} /></div>
+                <div className="space-y-1"><label className="text-[11px] font-bold text-gray-500">10. 출생지</label><input type="text" className="w-full p-2 border border-gray-300 rounded-md text-sm" value={data['10']} onChange={e => onChange('10', e.target.value)} /></div>
+                <div className="space-y-1"><label className="text-[11px] font-bold text-gray-500">11. 출생일자</label><input type="text" className="w-full p-2 border border-gray-300 rounded-md text-sm placeholder:text-gray-300" placeholder="MM/DD/YYYY" value={data['11']} onChange={e => handleDateInput('11', e.target.value)} /></div>
+              </div>
+            </div>
           </div>
         );
       case 4:
@@ -190,14 +190,14 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
               <div className="space-y-1"><label className="text-[11px] font-bold text-gray-500">13A. 담당자 서명</label><input type="text" className="w-full p-2 border border-gray-300 rounded-md text-sm" value={data['13a']} onChange={e => onChange('13a', e.target.value)} /></div>
               <div className="space-y-1"><label className="text-[11px] font-bold text-gray-500">13B. 인가번호</label><input type="text" className="w-full p-2 border border-gray-300 rounded-md text-sm" value={data['13b']} onChange={e => onChange('13b', e.target.value)} /></div>
               <div className="space-y-1"><label className="text-[11px] font-bold text-gray-500">13C. 서명일</label><input type="text" className="w-full p-2 border border-gray-300 rounded-md text-sm placeholder:text-gray-300" placeholder="MM/DD/YYYY" value={data['13c']} onChange={e => handleDateInput('13c', e.target.value)} /></div>
-              
+
               <div className="space-y-1"><label className="text-[11px] font-bold text-gray-500">13D. 담당의사명</label><input type="text" className="w-full p-2 border border-gray-300 rounded-md text-sm" value={data['13d-name']} onChange={e => onChange('13d-name', e.target.value)} /></div>
               <div className="space-y-1"><label className="text-[11px] font-bold text-gray-500">13D. 담당의사 주소</label><input type="text" className="w-full p-2 border border-gray-300 rounded-md text-sm" value={data['13d-addr']} onChange={e => onChange('13d-addr', e.target.value)} /></div>
               <div className="space-y-1"><label className="text-[11px] font-bold text-gray-500">14. 기타 증명인 이름</label><input type="text" className="w-full p-2 border border-gray-300 rounded-md text-sm" value={data['14']} onChange={e => onChange('14', e.target.value)} /></div>
             </div>
 
             <hr className="border-gray-100" />
-            
+
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               <div className="space-y-1"><label className="text-[11px] font-bold text-gray-500">15A. 사망일시</label><input type="text" className="w-full p-2 border border-gray-300 rounded-md text-sm placeholder:text-gray-300" placeholder="MM/DD/YYYY" value={data['15a']} onChange={e => handleDateInput('15a', e.target.value)} /></div>
               <div className="space-y-1"><label className="text-[11px] font-bold text-gray-500">15B. 주정부인가번호</label><input type="text" className="w-full p-2 border border-gray-300 rounded-md text-sm" value={data['15b']} onChange={e => onChange('15b', e.target.value)} /></div>
@@ -233,10 +233,10 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
                 <input type="text" className="w-full p-2 border border-gray-300 rounded-lg text-sm placeholder:text-gray-300" placeholder="example@email.com" value={data['t-email']} onChange={e => onChange('t-email', e.target.value)} />
               </div>
             </div>
-            
+
             <div className="bg-gray-50 border border-gray-200 mt-6 rounded-xl p-4 sm:p-5 flex flex-col sm:flex-row gap-4 items-center justify-between">
               <div className="text-sm text-gray-600 w-full sm:w-auto text-center sm:text-left">
-                모든 입력을 마쳤습니다.<br/>
+                모든 입력을 마쳤습니다.<br />
                 하단의 <strong>미리보기</strong>를 확인하고 결과를 공유하거나 인쇄하세요!
               </div>
               <div className="flex gap-2 w-full sm:w-auto">
@@ -270,11 +270,10 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
           <button
             key={idx}
             onClick={() => setCurrentStep(idx)}
-            className={`flex-1 min-w-[100px] text-center py-3 text-xs sm:text-sm font-medium border-b-2 transition-colors ${
-              currentStep === idx 
-              ? 'border-blue-600 text-blue-700 bg-white' 
-              : 'border-transparent text-gray-400 hover:text-gray-600 hover:bg-white/50'
-            }`}
+            className={`flex-1 min-w-[100px] text-center py-3 text-xs sm:text-sm font-medium border-b-2 transition-colors ${currentStep === idx
+                ? 'border-blue-600 text-blue-700 bg-white'
+                : 'border-transparent text-gray-400 hover:text-gray-600 hover:bg-white/50'
+              }`}
           >
             {step}
           </button>
@@ -292,11 +291,10 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
           <button
             onClick={prevStep}
             disabled={currentStep === 0}
-            className={`flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-              currentStep === 0 
-              ? 'text-gray-300 cursor-not-allowed' 
-              : 'text-gray-600 hover:bg-gray-200 bg-gray-100'
-            }`}
+            className={`flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${currentStep === 0
+                ? 'text-gray-300 cursor-not-allowed'
+                : 'text-gray-600 hover:bg-gray-200 bg-gray-100'
+              }`}
           >
             <ChevronLeft size={16} /> 이전
           </button>
@@ -308,7 +306,7 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
             <Trash2 size={16} /> <span className="hidden sm:inline">전체</span> 지우기
           </button>
         </div>
-        
+
         {currentStep < STEPS.length - 1 ? (
           <button
             onClick={nextStep}
