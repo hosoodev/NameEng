@@ -135,21 +135,10 @@ export default function CertPreview({ data }: CertPreviewProps) {
             .no-print { display: none !important; }
             .no-print-bg { background-color: transparent !important; padding-bottom: 0 !important; }
             
-            /* Next.js 등에서 생성하는 외부 영역 및 광고 감추기 (확장) */
+            /* Next.js 등에서 생성하는 외부 영역 감추기 */
             header, nav, footer, aside, .sidebar-container,
-            next-route-announcer,
-            ins, iframe, .adsbygoogle, .adsbygoogle-noablate, .adsbygoogle-noablate *,
-            .google-auto-placed, .google-auto-placed *,
-            html > iframe, html > ins, body > iframe, body > ins { 
+            ins, .adsbygoogle, .adsbygoogle-noablate, .adsbygoogle-noablate * { 
                 display: none !important; 
-                opacity: 0 !important;
-                visibility: hidden !important;
-                height: 0 !important;
-                margin: 0 !important;
-                padding: 0 !important;
-                position: absolute !important;
-                top: -9999px !important;
-                left: -9999px !important;
             }
             
             #print-section {

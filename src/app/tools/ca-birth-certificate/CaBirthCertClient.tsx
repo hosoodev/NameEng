@@ -168,49 +168,7 @@ export default function CaBirthCertClient() {
 
   // 인쇄 실행
   const handlePrint = useCallback(() => {
-    // 1. 디버깅 로그 출력
-    console.log("--- [인쇄 직전 노출 요소 분석 및 강제 숨김] ---");
-    
-    // 숨길 대상 쿼리 (광고, 시스템 요소 등)
-    const selectors = [
-      'ins', 'iframe', 'next-route-announcer', 
-      '.adsbygoogle', '.google-auto-placed', '.adsbygoogle-noablate',
-      '#google_esf', 'header', 'nav', 'footer', 'aside'
-    ];
-    
-    const hiddenElements: HTMLElement[] = [];
-    
-    selectors.forEach(selector => {
-      const elements = document.querySelectorAll(selector);
-      elements.forEach(el => {
-        const htmlEl = el as HTMLElement;
-        const style = window.getComputedStyle(htmlEl);
-        // 이미 숨겨진게 아니라면 강제로 숨김 처리
-        if (style.display !== 'none') {
-           console.log(`[강제숨김] <${htmlEl.tagName.toLowerCase()}> class: "${htmlEl.className}"`);
-           // 인라인 스타일로 강력하게 덮어쓰기
-           htmlEl.style.setProperty('display', 'none', 'important');
-           htmlEl.style.setProperty('visibility', 'hidden', 'important');
-           htmlEl.style.setProperty('opacity', '0', 'important');
-           hiddenElements.push(htmlEl);
-        }
-      });
-    });
-
-    // 2. <html> 이나 <body> 직계 자식 중 광고 요소들 별도 체크 및 제거
-    const rootUnwanted = document.querySelectorAll('html > ins, html > iframe, body > ins, body > iframe');
-    rootUnwanted.forEach(el => {
-      console.log(`[강제삭제] 루트 요소 제거: <${el.tagName.toLowerCase()}>`);
-      el.remove(); // 루트 레벨 광고 요소는 아예 제거가 안전
-    });
-    
-    console.log("---------------------------------");
-    
-    // 3. 인쇄 실행
     window.print();
-    
-    // 4. (선택 사항) 인쇄 창이 닫힌 후 인라인 스타일 복구 (필요시)
-    // 여기서는 사용자 편의를 위해 일단 그대로 둠 (이미 인쇄 목적이 달성되었으므로)
   }, []);
 
   // 전체 초기화
