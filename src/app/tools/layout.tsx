@@ -20,6 +20,12 @@ const toolsSidebarLinks = [
     title: '성씨 빈도 분석',
     desc: '한국 성씨의 영문 표기 빈도 분석',
   },
+  {
+    href: '/tools/ca-birth-certificate',
+    icon: <span className="text-orange-500 font-bold text-lg">📄</span>,
+    title: '캘리포니아 출생증명서',
+    desc: '출생증명서 번역 및 템플릿 출력',
+  },
 ];
 
 export default function ToolsLayout({ children }: { children: React.ReactNode }) {
