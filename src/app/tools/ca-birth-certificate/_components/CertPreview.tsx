@@ -146,7 +146,12 @@ export default function CertPreview({ data }: CertPreviewProps) {
         }
       `}</style>
 
-      <div id="print-section" className={paperSizeClass}>
+      <div id="print-section" className={`${paperSizeClass} relative`}>
+          {/* 화면에서만 보이는 현재 규격 안내 뱃지 */}
+          <div className="absolute top-4 left-4 bg-gray-100 text-gray-600 font-semibold text-[11px] px-2.5 py-1 rounded shadow-sm no-print border border-gray-200">
+            현재 인쇄 규격 : {data['paper-size'] === 'A4' ? 'A4 (한국 표준)' : 'Letter (미국 표준)'}
+          </div>
+
           <div className="doc-title-right">&lt;출생증명서 번역본&gt;</div>
 
           <div className="doc-main-title">
