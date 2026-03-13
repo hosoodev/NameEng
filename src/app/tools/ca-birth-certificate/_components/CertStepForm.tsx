@@ -157,7 +157,7 @@ export default function CertStepForm({ data, onChange, onShare, onPrint }: CertS
         return (
           <div className="space-y-6">
              <div>
-                <h4 className="font-bold text-sm text-blue-700 mb-3 block pb-1 border-b border-gray-100">아버지 구조</h4>
+                <h4 className="font-bold text-sm text-blue-700 mb-3 block pb-1 border-b border-gray-100">아버지 정보</h4>
                 <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
                   <div className="space-y-1"><label className="text-[11px] font-bold text-gray-500">6A. 아버지 이름</label><input type="text" className="w-full p-2 border border-gray-300 rounded-md text-sm" value={data['6a']} onChange={e => onChange('6a', e.target.value)} /></div>
                   <div className="space-y-1"><label className="text-[11px] font-bold text-gray-500">6B. 중간이름</label><input type="text" className="w-full p-2 border border-gray-300 rounded-md text-sm" value={data['6b']} onChange={e => onChange('6b', e.target.value)} /></div>
@@ -167,7 +167,7 @@ export default function CertStepForm({ data, onChange, onShare, onPrint }: CertS
                 </div>
              </div>
              <div>
-                <h4 className="font-bold text-sm text-pink-700 mb-3 block pb-1 border-b border-gray-100">어머니 구조</h4>
+                <h4 className="font-bold text-sm text-pink-700 mb-3 block pb-1 border-b border-gray-100">어머니 정보</h4>
                 <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
                   <div className="space-y-1"><label className="text-[11px] font-bold text-gray-500">9A. 어머니 이름</label><input type="text" className="w-full p-2 border border-gray-300 rounded-md text-sm" value={data['9a']} onChange={e => onChange('9a', e.target.value)} /></div>
                   <div className="space-y-1"><label className="text-[11px] font-bold text-gray-500">9B. 중간이름</label><input type="text" className="w-full p-2 border border-gray-300 rounded-md text-sm" value={data['9b']} onChange={e => onChange('9b', e.target.value)} /></div>
