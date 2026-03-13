@@ -137,6 +137,7 @@ export default function CertPreview({ data }: CertPreviewProps) {
             
             /* Next.js 등에서 생성하는 외부 영역 및 광고 감추기 (확장) */
             header, nav, footer, aside, .sidebar-container,
+            next-route-announcer,
             ins, iframe, .adsbygoogle, .adsbygoogle-noablate, .adsbygoogle-noablate *,
             .google-auto-placed, .google-auto-placed *,
             html > iframe, html > ins, body > iframe, body > ins { 
@@ -146,6 +147,9 @@ export default function CertPreview({ data }: CertPreviewProps) {
                 height: 0 !important;
                 margin: 0 !important;
                 padding: 0 !important;
+                position: absolute !important;
+                top: -9999px !important;
+                left: -9999px !important;
             }
             
             #print-section {
