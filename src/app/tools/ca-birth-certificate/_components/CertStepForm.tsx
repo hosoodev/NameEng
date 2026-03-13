@@ -19,8 +19,13 @@ const STEPS = [
   '번역인 정보'
 ];
 
+const COUNTIES = ["Alameda", "Alpine", "Amador", "Butte", "Calaveras", "Colusa", "Contra Costa", "Del Norte", "El Dorado", "Fresno", "Glenn", "Humboldt", "Imperial", "Inyo", "Kern", "Kings", "Lake", "Lassen", "Los Angeles", "Madera", "Marin", "Mariposa", "Mendocino", "Merced", "Modoc", "Mono", "Monterey", "Napa", "Nevada", "Orange", "Placer", "Plumas", "Riverside", "Sacramento", "San Benito", "San Bernardino", "San Diego", "San Francisco", "San Joaquin", "San Luis Obispo", "San Mateo", "Santa Barbara", "Santa Clara", "Santa Cruz", "Shasta", "Sierra", "Siskiyou", "Solano", "Sonoma", "Stanislaus", "Sutter", "Tehama", "Trinity", "Tulare", "Tuolumne", "Ventura", "Yolo", "Yuba"];
+
 export default function CertStepForm({ data, onChange, onShare, onPrint, onClear }: CertStepFormProps) {
   const [currentStep, setCurrentStep] = useState(0);
+  // 카운티 필터링을 위한 상태 (사용자가 입력 중일 때만 옵션을 보여주기 위함)
+  const [countySearch, setCountySearch] = useState('');
+  const [showCounties, setShowCounties] = useState(false);
 
   const nextStep = () => setCurrentStep(p => Math.min(STEPS.length - 1, p + 1));
   const prevStep = () => setCurrentStep(p => Math.max(0, p - 1));
@@ -46,11 +51,11 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
       case 0:
         return (
           <div className="space-y-4">
-            <div className="bg-blue-50/50 p-4 rounded-xl border border-blue-100 flex justify-between items-center mb-6 text-sm">
-              <span className="text-gray-600">
+            <div className="bg-blue-50/50 p-4 rounded-xl border border-blue-100 flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 text-sm gap-4">
+              <span className="text-gray-600 leading-relaxed">
                 <span className="font-semibold text-blue-700">※ 인쇄 안내:</span> 브라우저 인쇄 시 <strong>"배율: 100%, 여백: 없음"</strong>을 설정해주세요.
               </span>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 shrink-0">
                 <label className="font-semibold text-gray-700">인쇄 용지:</label>
                 <select
                   className="px-3 py-1.5 border border-gray-300 rounded-lg text-sm bg-white"
@@ -68,9 +73,37 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
                 <label className="text-xs font-bold text-gray-600">파일번호</label>
                 <input type="text" className="w-full p-2 border border-gray-300 rounded-lg text-sm" value={data['file-no']} onChange={e => onChange('file-no', e.target.value)} />
               </div>
-              <div className="space-y-1">
+              <div className="space-y-1 relative">
                 <label className="text-xs font-bold text-gray-600">중앙 카운티 명</label>
-                <input type="text" list="ca-counties" className="w-full p-2 border border-gray-300 rounded-lg text-sm" placeholder="영문 검색 (예: Los Angeles)" value={data['top-county']} onChange={e => onChange('top-county', e.target.value)} />
+                <input 
+                  type="text" 
+                  className="w-full p-2 border border-gray-300 rounded-lg text-sm" 
+                  placeholder="영문 검색 (예: Los Angeles)" 
+                  value={data['top-county']} 
+                  onChange={e => {
+                    onChange('top-county', e.target.value);
+                    setCountySearch(e.target.value);
+                  }} 
+                  onFocus={() => setShowCounties(true)}
+                  onBlur={() => setTimeout(() => setShowCounties(false), 200)}
+                />
+                {showCounties && data['top-county'] && (
+                  <div className="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg max-h-48 overflow-y-auto">
+                    {COUNTIES.filter(c => c.toLowerCase().includes(data['top-county'].toLowerCase())).map(c => (
+                      <button
+                        key={c}
+                        className="w-full text-left px-3 py-2 text-sm hover:bg-blue-50 transition-colors"
+                        onClick={() => {
+                          onChange('top-county', c);
+                          setCountySearch('');
+                          setShowCounties(false);
+                        }}
+                      >
+                        {c}
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
               <div className="space-y-1">
                 <label className="text-xs font-bold text-gray-600">지방등기소 증명번호</label>
@@ -148,9 +181,33 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
               <label className="text-xs font-bold text-gray-600">5C. 도시</label>
               <input type="text" className="w-full p-2 border border-gray-300 rounded-lg text-sm" value={data['5c']} onChange={e => onChange('5c', e.target.value)} />
             </div>
-            <div className="space-y-1">
+            <div className="space-y-1 relative">
               <label className="text-xs font-bold text-gray-600">5D. 카운티</label>
-              <input type="text" list="ca-counties" className="w-full p-2 border border-gray-300 rounded-lg text-sm" placeholder="영문 카운티" value={data['5d']} onChange={e => onChange('5d', e.target.value)} />
+              <input 
+                type="text" 
+                className="w-full p-2 border border-gray-300 rounded-lg text-sm" 
+                placeholder="영문 카운티" 
+                value={data['5d']} 
+                onChange={e => onChange('5d', e.target.value)} 
+                onFocus={() => setShowCounties(true)}
+                onBlur={() => setTimeout(() => setShowCounties(false), 200)}
+              />
+              {showCounties && data['5d'] && (
+                <div className="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg max-h-48 overflow-y-auto">
+                  {COUNTIES.filter(c => c.toLowerCase().includes(data['5d'].toLowerCase())).map(c => (
+                    <button
+                      key={c}
+                      className="w-full text-left px-3 py-2 text-sm hover:bg-blue-50 transition-colors"
+                      onClick={() => {
+                        onChange('5d', c);
+                        setShowCounties(false);
+                      }}
+                    >
+                      {c}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         );
@@ -321,9 +378,6 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
         )}
       </div>
 
-      <datalist id="ca-counties">
-        <option value="Alameda"></option><option value="Alpine"></option><option value="Amador"></option><option value="Butte"></option><option value="Calaveras"></option><option value="Colusa"></option><option value="Contra Costa"></option><option value="Del Norte"></option><option value="El Dorado"></option><option value="Fresno"></option><option value="Glenn"></option><option value="Humboldt"></option><option value="Imperial"></option><option value="Inyo"></option><option value="Kern"></option><option value="Kings"></option><option value="Lake"></option><option value="Lassen"></option><option value="Los Angeles"></option><option value="Madera"></option><option value="Marin"></option><option value="Mariposa"></option><option value="Mendocino"></option><option value="Merced"></option><option value="Modoc"></option><option value="Mono"></option><option value="Monterey"></option><option value="Napa"></option><option value="Nevada"></option><option value="Orange"></option><option value="Placer"></option><option value="Plumas"></option><option value="Riverside"></option><option value="Sacramento"></option><option value="San Benito"></option><option value="San Bernardino"></option><option value="San Diego"></option><option value="San Francisco"></option><option value="San Joaquin"></option><option value="San Luis Obispo"></option><option value="San Mateo"></option><option value="Santa Barbara"></option><option value="Santa Clara"></option><option value="Santa Cruz"></option><option value="Shasta"></option><option value="Sierra"></option><option value="Siskiyou"></option><option value="Solano"></option><option value="Sonoma"></option><option value="Stanislaus"></option><option value="Sutter"></option><option value="Tehama"></option><option value="Trinity"></option><option value="Tulare"></option><option value="Tuolumne"></option><option value="Ventura"></option><option value="Yolo"></option><option value="Yuba"></option>
-      </datalist>
     </div>
   );
 }
