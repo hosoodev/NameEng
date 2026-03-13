@@ -142,9 +142,11 @@ export default function CertPreview({ data }: CertPreviewProps) {
             }
             
             #print-section {
+                width: 100% !important; 
+                min-height: auto !important; 
+                max-width: none !important; 
                 box-shadow: none !important;
                 margin: 0 !important;
-                /* 웹과 동일한 height를 유지하여 absolute 카피라이트 위치가 같도록 함 */
                 page-break-after: avoid;
             }
         }
@@ -384,7 +386,7 @@ export default function CertPreview({ data }: CertPreviewProps) {
                     </div>
                 </div>
 
-                <div className="absolute bottom-8 left-0 right-0 text-center text-[10px] text-gray-400 font-sans tracking-wide">
+                <div className="absolute print:fixed bottom-8 print:bottom-8 left-0 right-0 text-center text-[10px] text-gray-400 font-sans tracking-wide print:z-50">
                     &copy; {new Date().getFullYear()} NameEng.
                 </div>
             </div>
