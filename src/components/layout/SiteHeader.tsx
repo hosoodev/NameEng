@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import MobileSlideMenu from './MobileSlideMenu';
 
 interface SiteHeaderProps {
   onLogoClick?: () => void;
@@ -27,6 +28,8 @@ export default function SiteHeader({ onLogoClick }: SiteHeaderProps) {
       <p className="hidden md:block text-sm text-gray-400 font-medium tracking-wide">
         한글 이름 영문 변환기
       </p>
+      
+      <MobileSlideMenu />
     </header>
   );
 }
