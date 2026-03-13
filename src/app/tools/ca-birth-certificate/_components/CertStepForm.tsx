@@ -19,23 +19,42 @@ const STEPS = [
   '번역인 정보'
 ];
 
-const COUNTIES = ["Alameda", "Alpine", "Amador", "Butte", "Calaveras", "Colusa", "Contra Costa", "Del Norte", "El Dorado", "Fresno", "Glenn", "Humboldt", "Imperial", "Inyo", "Kern", "Kings", "Lake", "Lassen", "Los Angeles", "Madera", "Marin", "Mariposa", "Mendocino", "Merced", "Modoc", "Mono", "Monterey", "Napa", "Nevada", "Orange", "Placer", "Plumas", "Riverside", "Sacramento", "San Benito", "San Bernardino", "San Diego", "San Francisco", "San Joaquin", "San Luis Obispo", "San Mateo", "Santa Barbara", "Santa Clara", "Santa Cruz", "Shasta", "Sierra", "Siskiyou", "Solano", "Sonoma", "Stanislaus", "Sutter", "Tehama", "Trinity", "Tulare", "Tuolumne", "Ventura", "Yolo", "Yuba"];
+import { CA_COUNTIES, countyTranslations } from '../_lib/countyData';
 
 export default function CertStepForm({ data, onChange, onShare, onPrint, onClear }: CertStepFormProps) {
   const [currentStep, setCurrentStep] = useState(0);
   // 카운티 필터링을 위한 상태
-  const [countySearch, setCountySearch] = useState('');
   const [showCounties, setShowCounties] = useState<'top' | '5d' | null>(null);
+
+  // 한글/영어 통합 검색 필터링
+  const getFilteredCounties = (searchTerm: string) => {
+    if (!searchTerm) return [];
+    const lowSearch = searchTerm.toLowerCase();
+
+    return CA_COUNTIES.filter(county => {
+      const engName = county.toLowerCase();
+      const korName = countyTranslations[engName] || '';
+      return engName.includes(lowSearch) || korName.includes(searchTerm);
+    });
+  };
+
+  // 사용자가 한글로 검색 중인지 확인
+  const isSearchingInKorean = (searchTerm: string) => {
+    return /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/.test(searchTerm);
+  };
 
   // 검색어 하이라이팅 헬퍼 함수
   const highlightMatch = (text: string, query: string) => {
     if (!query) return text;
+    // 한글로 검색했을 때는 하이라이팅 생략 (영문 텍스트 기준이므로)
+    if (isSearchingInKorean(query)) return text;
+
     const parts = text.split(new RegExp(`(${query})`, 'gi'));
     return (
       <span>
-        {parts.map((part, i) => 
-          part.toLowerCase() === query.toLowerCase() 
-            ? <span key={i} className="text-blue-600 font-bold">{part}</span> 
+        {parts.map((part, i) =>
+          part.toLowerCase() === query.toLowerCase()
+            ? <span key={i} className="text-blue-600 font-bold underline decoration-2 underline-offset-2">{part}</span>
             : <span key={i}>{part}</span>
         )}
       </span>
@@ -86,64 +105,68 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="space-y-1 group">
                 <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600">파일번호</label>
-                <input 
-                  type="text" 
-                  className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " 
-                  value={data['file-no']} 
-                  onChange={e => onChange('file-no', e.target.value)} 
+                <input
+                  type="text"
+                  className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none "
+                  value={data['file-no']}
+                  onChange={e => onChange('file-no', e.target.value)}
                 />
               </div>
               <div className="space-y-1 relative group">
                 <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600">중앙 카운티 명</label>
                 <div className="relative">
-                  <input 
-                    type="text" 
-                    className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " 
-                    placeholder="영문 검색 (예: Los Angeles)" 
-                    value={data['top-county']} 
+                  <input
+                    type="text"
+                    className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none "
+                    placeholder="예: 로스앤젤레스, Los Angeles"
+                    value={data['top-county']}
                     onChange={e => {
                       onChange('top-county', e.target.value);
-                    }} 
+                    }}
                     onFocus={() => setShowCounties('top')}
                     onBlur={() => setTimeout(() => setShowCounties(null), 200)}
                   />
                   <div className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                   </div>
-                  {showCounties === 'top' && data['top-county'] && (
-                    <div className="absolute z-50 w-full top-full left-0 mt-1.5 bg-white/90 backdrop-blur-md border border-gray-100 rounded-xl max-h-60 overflow-y-auto animate-in fade-in slide-in-from-top-2 duration-200">
+                  {showCounties === 'top' && getFilteredCounties(data['top-county']).length > 0 && (
+                    <div className="absolute z-50 w-full top-full left-0 mt-1.5 bg-white/90 backdrop-blur-md border border-gray-100 rounded-xl max-h-60 overflow-y-auto shadow-xl animate-in fade-in slide-in-from-top-2 duration-200">
                       <div className="p-1.5">
-                        {COUNTIES.filter(c => c.toLowerCase().includes(data['top-county'].toLowerCase())).length > 0 ? (
-                          COUNTIES.filter(c => c.toLowerCase().includes(data['top-county'].toLowerCase())).map(c => (
-                            <button
-                              key={c}
-                              className="w-full text-left px-3 py-2.5 text-sm rounded-lg hover:bg-blue-50 transition-all flex justify-between items-center group/item"
-                              onClick={() => {
-                                onChange('top-county', c);
-                                setShowCounties(null);
-                              }}
-                            >
-                              <span>{highlightMatch(c, data['top-county'])}</span>
-                              <span className="opacity-0 group-hover/item:opacity-100 text-blue-400 transition-opacity">
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
-                              </span>
-                            </button>
-                          ))
-                        ) : (
-                          <div className="px-3 py-4 text-center text-xs text-gray-400 italic">일치하는 카운티가 없습니다.</div>
-                        )}
+                        {getFilteredCounties(data['top-county']).map(c => (
+                          <button
+                            key={c}
+                            className="w-full text-left px-3 py-2.5 text-sm rounded-lg hover:bg-blue-50 transition-all flex justify-between items-center group/item"
+                            onClick={() => {
+                              const valueToSet = isSearchingInKorean(data['top-county'])
+                                ? (countyTranslations[c.toLowerCase()] || c)
+                                : c;
+                              onChange('top-county', valueToSet);
+                              setShowCounties(null);
+                            }}
+                          >
+                            <span className="font-medium text-gray-700 group-hover/item:text-blue-700">{highlightMatch(c, data['top-county'])}</span>
+                            <span className="text-xs text-gray-400 group-hover/item:text-blue-400 transition-colors uppercase tracking-wider font-semibold">
+                              {countyTranslations[c.toLowerCase()] || ''}
+                            </span>
+                          </button>
+                        ))}
                       </div>
+                    </div>
+                  )}
+                  {showCounties === 'top' && data['top-county'] && getFilteredCounties(data['top-county']).length === 0 && (
+                    <div className="absolute z-50 w-full top-full left-0 mt-1.5 bg-white/90 backdrop-blur-md border border-gray-100 rounded-xl shadow-xl animate-in fade-in slide-in-from-top-2 duration-200">
+                      <div className="px-3 py-4 text-center text-xs text-gray-400 italic">일치하는 카운티가 없습니다.</div>
                     </div>
                   )}
                 </div>
               </div>
               <div className="space-y-1 group">
                 <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600">지방등기소 증명번호</label>
-                <input 
-                  type="text" 
-                  className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " 
-                  value={data['reg-no']} 
-                  onChange={e => onChange('reg-no', e.target.value)} 
+                <input
+                  type="text"
+                  className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none "
+                  value={data['reg-no']}
+                  onChange={e => onChange('reg-no', e.target.value)}
                 />
               </div>
             </div>
@@ -155,71 +178,108 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="space-y-1 group">
                 <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600">1A. 이름</label>
-                <input 
-                  type="text" 
-                  className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " 
-                  value={data['1a']} 
-                  onChange={e => onChange('1a', e.target.value)} 
+                <input
+                  type="text"
+                  className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none "
+                  value={data['1a']}
+                  onChange={e => onChange('1a', e.target.value)}
                 />
               </div>
               <div className="space-y-1 group">
                 <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600">1B. 중간이름</label>
-                <input 
-                  type="text" 
-                  className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " 
-                  value={data['1b']} 
-                  onChange={e => onChange('1b', e.target.value)} 
+                <input
+                  type="text"
+                  className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none "
+                  value={data['1b']}
+                  onChange={e => onChange('1b', e.target.value)}
                 />
               </div>
               <div className="space-y-1 group">
                 <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600">1C. 성</label>
-                <input 
-                  type="text" 
-                  className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " 
-                  value={data['1c']} 
-                  onChange={e => onChange('1c', e.target.value)} 
+                <input
+                  type="text"
+                  className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none "
+                  value={data['1c']}
+                  onChange={e => onChange('1c', e.target.value)}
                 />
               </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 pt-2">
-              <div className="space-y-1">
-                <label className="text-xs font-bold text-gray-600 block">2. 성별</label>
-                <div className="flex gap-4 pt-2">
-                  <label className="flex items-center gap-1.5 text-sm cursor-pointer"><input type="radio" checked={data['2'] === '남'} onChange={() => onChange('2', '남')} className="w-4 h-4 text-blue-600" /> 남</label>
-                  <label className="flex items-center gap-1.5 text-sm cursor-pointer"><input type="radio" checked={data['2'] === '여'} onChange={() => onChange('2', '여')} className="w-4 h-4 text-blue-600" /> 여</label>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-6 gap-y-4 pt-4">
+              <div className="lg:col-span-2 space-y-1 group">
+                <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 block">2. 성별</label>
+                <div className="flex gap-4 h-[42px] items-center">
+                  <label className="flex items-center gap-1.5 text-sm cursor-pointer group/radio">
+                    <input type="radio" checked={data['2'] === '남'} onChange={() => onChange('2', '남')} className="w-4 h-4 text-blue-600 focus:ring-blue-500/20" />
+                    <span className="text-gray-700 group-hover/radio:text-blue-600 transition-colors">남</span>
+                  </label>
+                  <label className="flex items-center gap-1.5 text-sm cursor-pointer group/radio">
+                    <input type="radio" checked={data['2'] === '여'} onChange={() => onChange('2', '여')} className="w-4 h-4 text-blue-600 focus:ring-blue-500/20" />
+                    <span className="text-gray-700 group-hover/radio:text-blue-600 transition-colors">여</span>
+                  </label>
                 </div>
               </div>
 
-              <div className="lg:col-span-2 space-y-1">
-                <label className="text-xs font-bold text-gray-600 block">3A. 단생아/쌍생아 등</label>
-                <div className="flex gap-3 pt-2 flex-wrap items-center">
-                  <label className="flex items-center gap-1 text-sm cursor-pointer"><input type="radio" checked={data['3a'] === '단생아'} onChange={() => onChange('3a', '단생아')} className="w-4 h-4" /> 단생아</label>
-                  <label className="flex items-center gap-1 text-sm cursor-pointer"><input type="radio" checked={data['3a'] === '쌍생아'} onChange={() => onChange('3a', '쌍생아')} className="w-4 h-4" /> 쌍생아</label>
-                  <label className="flex items-center gap-1 text-sm cursor-pointer"><input type="radio" checked={data['3a'] === '기타'} onChange={() => onChange('3a', '기타')} className="w-4 h-4" /> 기타</label>
-                  {data['3a'] === '기타' && (
-                    <input type="text" className="w-16 p-1 border border-gray-300 rounded text-xs ml-1" placeholder="직접입력" value={data['3a-text']} onChange={e => onChange('3a-text', e.target.value)} />
+              <div className="lg:col-span-4 space-y-1 group">
+                <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 block">3A. 단생아/쌍생아 등</label>
+                <div className="flex gap-4 h-[42px] items-center">
+                  {data['3a'] === '기타' ? (
+                    <div className="flex items-center gap-2 w-full">
+                      <input
+                        type="text"
+                        autoFocus
+                        className="flex-1 h-[42px] px-3 py-2.5 border border-blue-500 rounded-xl text-sm focus:ring-4 focus:ring-blue-500/10 focus:outline-none"
+                        placeholder="기타 유형 직접 입력"
+                        value={data['3a-text']}
+                        onChange={e => onChange('3a-text', e.target.value)}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => {
+                          onChange('3a', '단생아');
+                          onChange('3a-text', '');
+                        }}
+                        className="px-3 h-[42px] text-xs font-bold text-red-500 hover:bg-red-50 rounded-xl transition-colors whitespace-nowrap border border-red-100"
+                      >
+                        취소
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="flex gap-4 items-center">
+                      <label className="flex items-center gap-1.5 text-sm cursor-pointer group/radio">
+                        <input type="radio" checked={data['3a'] === '단생아'} onChange={() => onChange('3a', '단생아')} className="w-4 h-4 text-blue-600 focus:ring-blue-500/20" />
+                        <span className="text-gray-700 group-hover/radio:text-blue-600 transition-colors">단생아</span>
+                      </label>
+                      <label className="flex items-center gap-1.5 text-sm cursor-pointer group/radio">
+                        <input type="radio" checked={data['3a'] === '쌍생아'} onChange={() => onChange('3a', '쌍생아')} className="w-4 h-4 text-blue-600 focus:ring-blue-500/20" />
+                        <span className="text-gray-700 group-hover/radio:text-blue-600 transition-colors">쌍생아</span>
+                      </label>
+                      <label className="flex items-center gap-1.5 text-sm cursor-pointer group/radio">
+                        <input type="radio" checked={data['3a'] === '기타'} onChange={() => onChange('3a', '기타')} className="w-4 h-4 text-blue-600 focus:ring-blue-500/20" />
+                        <span className="text-gray-700 group-hover/radio:text-blue-600 transition-colors">기타</span>
+                      </label>
+                    </div>
                   )}
                 </div>
               </div>
 
-              <div className="space-y-1 group">
-                <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600">3B. 쌍생아 순번</label>
-                <input 
-                  type="text" 
-                  disabled={data['3a'] !== '쌍생아' && data['3a'] !== '기타'} 
-                  className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none  bg-gray-50 disabled:bg-gray-100 disabled:cursor-not-allowed" 
-                  placeholder={data['3a'] === '단생아' || !data['3a'] ? '비활성' : '첫째, 둘째'} 
-                  value={data['3b']} 
-                  onChange={e => onChange('3b', e.target.value)} 
+              <div className="lg:col-span-2 space-y-1 group">
+                <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 block">3B. 쌍생아 순번</label>
+                <input
+                  type="text"
+                  disabled={data['3a'] !== '쌍생아' && data['3a'] !== '기타'}
+                  className="w-full h-[42px] px-3 py-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none bg-white disabled:bg-gray-100 disabled:cursor-not-allowed"
+                  placeholder={data['3a'] === '단생아' || !data['3a'] ? '비활성' : '첫째, 둘째'}
+                  value={data['3b']}
+                  onChange={e => onChange('3b', e.target.value)}
                 />
               </div>
 
-              <div className="space-y-1 group">
-                <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600">4A. 출생일자 / 4B. 시간</label>
+              <div className="lg:col-span-4 space-y-1 group">
+                <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 block">4A. 출생일자 / 4B. 시간</label>
                 <div className="flex gap-2">
-                  <input type="text" className="w-3/5 p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none  placeholder:text-gray-300" placeholder="MM/DD/YYYY" value={data['4a']} onChange={e => handleDateInput('4a', e.target.value)} />
-                  <input type="text" className="w-2/5 p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none  placeholder:text-gray-300" placeholder="HH:MM" value={data['4b']} onChange={e => handleTimeInput('4b', e.target.value)} />
+                  <input type="text" className="w-3/5 h-[42px] px-3 py-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none placeholder:text-gray-300" placeholder="MM/DD/YYYY" value={data['4a']} onChange={e => handleDateInput('4a', e.target.value)} />
+                  <input type="text" className="w-2/5 h-[42px] px-3 py-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none placeholder:text-gray-300" placeholder="HH:MM" value={data['4b']} onChange={e => handleTimeInput('4b', e.target.value)} />
                 </div>
               </div>
             </div>
@@ -243,41 +303,45 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
             <div className="space-y-1 relative group">
               <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600">5D. 카운티</label>
               <div className="relative">
-                <input 
-                  type="text" 
-                  className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " 
-                  placeholder="영문 카운티" 
-                  value={data['5d']} 
-                  onChange={e => onChange('5d', e.target.value)} 
+                <input
+                  type="text"
+                  className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none "
+                  placeholder="예: 로스앤젤레스, Los Angeles"
+                  value={data['5d']}
+                  onChange={e => onChange('5d', e.target.value)}
                   onFocus={() => setShowCounties('5d')}
                   onBlur={() => setTimeout(() => setShowCounties(null), 200)}
                 />
                 <div className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                 </div>
-                {showCounties === '5d' && data['5d'] && (
-                  <div className="absolute z-50 w-full top-full left-0 mt-1.5 bg-white/90 backdrop-blur-md border border-gray-100 rounded-xl max-h-60 overflow-y-auto animate-in fade-in slide-in-from-top-2 duration-200">
+                {showCounties === '5d' && getFilteredCounties(data['5d']).length > 0 && (
+                  <div className="absolute z-50 w-full top-full left-0 mt-1.5 bg-white/90 backdrop-blur-md border border-gray-100 rounded-xl max-h-60 overflow-y-auto shadow-xl animate-in fade-in slide-in-from-top-2 duration-200">
                     <div className="p-1.5">
-                      {COUNTIES.filter(c => c.toLowerCase().includes(data['5d'].toLowerCase())).length > 0 ? (
-                        COUNTIES.filter(c => c.toLowerCase().includes(data['5d'].toLowerCase())).map(c => (
-                          <button
-                            key={c}
-                            className="w-full text-left px-3 py-2.5 text-sm rounded-lg hover:bg-blue-50 transition-all flex justify-between items-center group/item"
-                            onClick={() => {
-                              onChange('5d', c);
-                              setShowCounties(null);
-                            }}
-                          >
-                            <span>{highlightMatch(c, data['5d'])}</span>
-                            <span className="opacity-0 group-hover/item:opacity-100 text-blue-400 transition-opacity">
-                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
-                            </span>
-                          </button>
-                        ))
-                      ) : (
-                        <div className="px-3 py-4 text-center text-xs text-gray-400 italic">일치하는 카운티가 없습니다.</div>
-                      )}
+                      {getFilteredCounties(data['5d']).map(c => (
+                        <button
+                          key={c}
+                          className="w-full text-left px-3 py-2.5 text-sm rounded-lg hover:bg-blue-50 transition-all flex justify-between items-center group/item"
+                          onClick={() => {
+                            const valueToSet = isSearchingInKorean(data['5d'])
+                              ? (countyTranslations[c.toLowerCase()] || c)
+                              : c;
+                            onChange('5d', valueToSet);
+                            setShowCounties(null);
+                          }}
+                        >
+                          <span className="font-medium text-gray-700 group-hover/item:text-blue-700">{highlightMatch(c, data['5d'])}</span>
+                          <span className="text-xs text-gray-400 group-hover/item:text-blue-400 transition-colors uppercase tracking-wider font-semibold">
+                            {countyTranslations[c.toLowerCase()] || ''}
+                          </span>
+                        </button>
+                      ))}
                     </div>
+                  </div>
+                )}
+                {showCounties === '5d' && data['5d'] && getFilteredCounties(data['5d']).length === 0 && (
+                  <div className="absolute z-50 w-full top-full left-0 mt-1.5 bg-white/90 backdrop-blur-md border border-gray-100 rounded-xl shadow-xl animate-in fade-in slide-in-from-top-2 duration-200">
+                    <div className="px-3 py-4 text-center text-xs text-gray-400 italic">일치하는 카운티가 없습니다.</div>
                   </div>
                 )}
               </div>
@@ -294,7 +358,7 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
                 <div className="space-y-1 group"><label className="text-[11px] font-bold text-gray-500 transition-colors group-focus-within:text-blue-600">6B. 중간이름</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " value={data['6b']} onChange={e => onChange('6b', e.target.value)} /></div>
                 <div className="space-y-1 group"><label className="text-[11px] font-bold text-gray-500 transition-colors group-focus-within:text-blue-600">6C. 성</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " value={data['6c']} onChange={e => onChange('6c', e.target.value)} /></div>
                 <div className="space-y-1 group"><label className="text-[11px] font-bold text-gray-500 transition-colors group-focus-within:text-blue-600">7. 출생지</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " value={data['7']} onChange={e => onChange('7', e.target.value)} /></div>
-                <div className="space-y-1 group"><label className="text-[11px] font-bold text-gray-500 transition-colors group-focus-within:text-blue-600">8. 출생일자</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none  placeholder:text-gray-300" placeholder="MM/DD/YYYY" value={data['8']} onChange={e => handleDateInput('8', e.target.value)} /></div>
+                <div className="space-y-1 group"><label className="text-[11px] font-bold text-gray-500 transition-colors group-focus-within:text-blue-600">8. 생년월일</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none  placeholder:text-gray-300" placeholder="MM/DD/YYYY" value={data['8']} onChange={e => handleDateInput('8', e.target.value)} /></div>
               </div>
             </div>
             <div>
@@ -304,7 +368,7 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
                 <div className="space-y-1 group"><label className="text-[11px] font-bold text-gray-500 transition-colors group-focus-within:text-pink-600">9B. 중간이름</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-pink-500 focus:ring-4 focus:ring-pink-500/10 focus:outline-none " value={data['9b']} onChange={e => onChange('9b', e.target.value)} /></div>
                 <div className="space-y-1 group"><label className="text-[11px] font-bold text-gray-500 transition-colors group-focus-within:text-pink-600">9C. 성</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-pink-500 focus:ring-4 focus:ring-pink-500/10 focus:outline-none " value={data['9c']} onChange={e => onChange('9c', e.target.value)} /></div>
                 <div className="space-y-1 group"><label className="text-[11px] font-bold text-gray-500 transition-colors group-focus-within:text-pink-600">10. 출생지</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-pink-500 focus:ring-4 focus:ring-pink-500/10 focus:outline-none " value={data['10']} onChange={e => onChange('10', e.target.value)} /></div>
-                <div className="space-y-1 group"><label className="text-[11px] font-bold text-gray-500 transition-colors group-focus-within:text-pink-600">11. 출생일자</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-pink-500 focus:ring-4 focus:ring-pink-500/10 focus:outline-none  placeholder:text-gray-300" placeholder="MM/DD/YYYY" value={data['11']} onChange={e => handleDateInput('11', e.target.value)} /></div>
+                <div className="space-y-1 group"><label className="text-[11px] font-bold text-gray-500 transition-colors group-focus-within:text-pink-600">11. 생년월일</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-pink-500 focus:ring-4 focus:ring-pink-500/10 focus:outline-none  placeholder:text-gray-300" placeholder="MM/DD/YYYY" value={data['11']} onChange={e => handleDateInput('11', e.target.value)} /></div>
               </div>
             </div>
           </div>
@@ -401,8 +465,8 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
             key={idx}
             onClick={() => setCurrentStep(idx)}
             className={`flex-1 min-w-[100px] text-center py-3 text-xs sm:text-sm font-medium border-b-2 transition-colors ${currentStep === idx
-                ? 'border-blue-600 text-blue-700 bg-white'
-                : 'border-transparent text-gray-400 hover:text-gray-600 hover:bg-white/50'
+              ? 'border-blue-600 text-blue-700 bg-white'
+              : 'border-transparent text-gray-400 hover:text-gray-600 hover:bg-white/50'
               }`}
           >
             {step}
@@ -422,8 +486,8 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
             onClick={prevStep}
             disabled={currentStep === 0}
             className={`flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${currentStep === 0
-                ? 'text-gray-300 cursor-not-allowed'
-                : 'text-gray-600 hover:bg-gray-200 bg-gray-100'
+              ? 'text-gray-300 cursor-not-allowed'
+              : 'text-gray-600 hover:bg-gray-200 bg-gray-100'
               }`}
           >
             <ChevronLeft size={16} /> 이전
