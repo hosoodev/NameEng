@@ -171,13 +171,28 @@ export default function CaBirthCertClient() {
     window.print();
   }, []);
 
+  // 전체 초기화
+  const handleClear = useCallback(() => {
+    if (window.confirm("입력된 모든 정보를 지우시겠습니까? 이 작업은 되돌릴 수 없습니다.")) {
+      localStorage.removeItem(STORAGE_KEY);
+      setData({ ...defaultData });
+      
+      const url = new URL(window.location.href);
+      if (url.search) {
+        url.search = '';
+        window.history.replaceState({}, document.title, url.toString());
+      }
+      
+      alert('모든 입력 정보가 삭제되었습니다.');
+    }
+  }, []);
 
   if (!isLoaded) return null; // Hydration 렌더링 방지
 
   return (
     <div className="flex flex-col gap-10">
       <div className="no-print">
-         <CertStepForm data={data} onChange={handleChange} onShare={handleShare} onPrint={handlePrint} />
+         <CertStepForm data={data} onChange={handleChange} onShare={handleShare} onPrint={handlePrint} onClear={handleClear} />
       </div>
 
       <div className="w-full overflow-x-auto pb-10 no-print-bg bg-gray-100 sm:rounded-xl border-y sm:border border-gray-200 py-6 sm:py-10 print:py-0 print:border-none print:bg-white">

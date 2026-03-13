@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import type { CertData } from '../CaBirthCertClient';
-import { ChevronRight, ChevronLeft, Printer, Share2 } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Printer, Share2, Trash2 } from 'lucide-react';
 
 interface CertStepFormProps {
   data: CertData;
   onChange: (key: keyof CertData, value: string) => void;
   onShare: () => void;
   onPrint: () => void;
+  onClear: () => void;
 }
 
 const STEPS = [
@@ -18,7 +19,7 @@ const STEPS = [
   '번역인 정보'
 ];
 
-export default function CertStepForm({ data, onChange, onShare, onPrint }: CertStepFormProps) {
+export default function CertStepForm({ data, onChange, onShare, onPrint, onClear }: CertStepFormProps) {
   const [currentStep, setCurrentStep] = useState(0);
 
   const nextStep = () => setCurrentStep(p => Math.min(STEPS.length - 1, p + 1));
@@ -286,18 +287,27 @@ export default function CertStepForm({ data, onChange, onShare, onPrint }: CertS
       </div>
 
       {/* Navigation Footer */}
-      <div className="px-5 sm:px-7 py-4 bg-gray-50 border-t border-gray-100 flex justify-between items-center">
-        <button
-          onClick={prevStep}
-          disabled={currentStep === 0}
-          className={`flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-            currentStep === 0 
-            ? 'text-gray-300 cursor-not-allowed' 
-            : 'text-gray-600 hover:bg-gray-200 bg-gray-100'
-          }`}
-        >
-          <ChevronLeft size={16} /> 이전
-        </button>
+      <div className="px-5 sm:px-7 py-4 bg-gray-50 border-t border-gray-100 flex justify-between items-center overflow-x-auto gap-2">
+        <div className="flex items-center gap-2 shrink-0">
+          <button
+            onClick={prevStep}
+            disabled={currentStep === 0}
+            className={`flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+              currentStep === 0 
+              ? 'text-gray-300 cursor-not-allowed' 
+              : 'text-gray-600 hover:bg-gray-200 bg-gray-100'
+            }`}
+          >
+            <ChevronLeft size={16} /> 이전
+          </button>
+          <button
+            onClick={onClear}
+            className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs md:text-sm font-medium text-gray-500 hover:text-red-600 hover:bg-red-50 transition-colors"
+            title="모든 입력값을 초기화합니다"
+          >
+            <Trash2 size={16} /> <span className="hidden sm:inline">전체</span> 지우기
+          </button>
+        </div>
         
         {currentStep < STEPS.length - 1 ? (
           <button
