@@ -85,22 +85,6 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
       case 0:
         return (
           <div className="space-y-4">
-            <div className="bg-blue-50/50 p-4 rounded-xl border border-blue-100 flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 text-sm gap-4">
-              <span className="text-gray-600 leading-relaxed">
-                <span className="font-semibold text-blue-700">※ 인쇄 안내:</span> 브라우저 인쇄 시 <strong>"배율: 100%, 여백: 없음"</strong>을 설정해주세요.
-              </span>
-              <div className="flex items-center gap-3 shrink-0">
-                <label className="font-semibold text-gray-700 block">인쇄 용지:</label>
-                <select
-                  className="px-3 py-2 border border-gray-300 rounded-xl text-sm bg-white transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none  cursor-pointer"
-                  value={data['paper-size']}
-                  onChange={e => onChange('paper-size', e.target.value)}
-                >
-                  <option value="letter">Letter (미국 표준)</option>
-                  <option value="A4">A4 (한국 표준)</option>
-                </select>
-              </div>
-            </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="space-y-1 group">
@@ -424,28 +408,6 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
               </div>
             </div>
 
-            <div className="bg-gray-50 border border-gray-200 mt-6 rounded-xl p-4 sm:p-5 flex flex-col sm:flex-row gap-4 items-center justify-between">
-              <div className="text-sm text-gray-600 w-full sm:w-auto text-center sm:text-left">
-                모든 입력을 마쳤습니다.<br />
-                하단의 <strong>미리보기</strong>를 확인하고 결과를 공유하거나 인쇄하세요!
-              </div>
-              <div className="flex gap-2 w-full sm:w-auto">
-                <button
-                  type="button"
-                  onClick={onShare}
-                  className="flex items-center justify-center gap-1.5 px-4 py-2.5 bg-white border border-gray-300 text-gray-700 rounded-lg text-sm font-semibold hover:bg-gray-50 flex-1 sm:flex-auto whitespace-nowrap"
-                >
-                  <Share2 size={16} /> 링크 공유
-                </button>
-                <button
-                  type="button"
-                  onClick={onPrint}
-                  className="flex items-center justify-center gap-1.5 px-4 py-2.5 bg-blue-600 text-white rounded-lg text-sm font-semibold hover:bg-blue-700  flex-1 sm:flex-auto whitespace-nowrap"
-                >
-                  <Printer size={16} /> 인쇄 및 PDF 저장
-                </button>
-              </div>
-            </div>
           </div>
         );
       default: return null;
@@ -471,46 +433,128 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
       </div>
 
       {/* Form Content */}
-      <div className="p-5 sm:p-7">
+      <div className="p-5 sm:p-7 min-h-[440px] max-h-[60vh] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-200">
         {renderStepContent()}
       </div>
 
+      {/* ActionBar: Notice, Paper Size, Share, Print */}
+      <div className="border-y border-gray-100 bg-gray-50/80 backdrop-blur-sm">
+        {/* Dynamic Notice Area */}
+        <div className="px-5 sm:px-7 py-3 border-b border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="flex items-start gap-2.5 text-[11px] sm:text-xs leading-relaxed transition-all">
+            <div className="mt-0.5 p-1 bg-blue-100 rounded-lg shrink-0">
+              <svg className="w-3.5 h-3.5 text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0114 0z" /></svg>
+            </div>
+            <div>
+              <p className="text-blue-800 font-bold mb-0.5">인쇄 및 저장 가이드</p>
+              <p className="text-gray-600">브라우저 인쇄 설정에서 <strong className="text-gray-900 underline decoration-gray-300 underline-offset-2">"배율: 100%, 여백: 없음"</strong> 설정을 확인해 주세요.</p>
+            </div>
+          </div>
+
+          {currentStep === 5 && (
+            <div className="flex items-center gap-2 px-4 py-2 bg-emerald-50 border border-emerald-100 rounded-xl animate-in fade-in slide-in-from-right-2">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              <span className="text-xs font-bold text-emerald-700">모든 입력을 마쳤습니다. 미리보기를 확인하세요!</span>
+            </div>
+          )}
+        </div>
+
+        {/* Action Controls */}
+        <div className="px-5 sm:px-7 py-4 flex flex-col lg:flex-row justify-between items-center gap-4">
+          <div className="flex items-center gap-4 w-full lg:w-auto justify-between lg:justify-start">
+            {/* Paper Size Toggle */}
+            <div className="flex items-center gap-3">
+              <span className="text-xs font-bold text-gray-500 whitespace-nowrap">용지 설정</span>
+              <div className="flex bg-white p-1 rounded-xl border border-gray-200 shadow-sm">
+                <button
+                  type="button"
+                  onClick={() => onChange('paper-size', 'letter')}
+                  className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-all ${data['paper-size'] === 'letter'
+                    ? 'bg-blue-600 text-white shadow-md'
+                    : 'text-gray-500 hover:bg-gray-50'
+                    }`}
+                >
+                  Letter
+                </button>
+                <button
+                  type="button"
+                  onClick={() => onChange('paper-size', 'A4')}
+                  className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-all ${data['paper-size'] === 'A4'
+                    ? 'bg-blue-600 text-white shadow-md'
+                    : 'text-gray-500 hover:bg-gray-50'
+                    }`}
+                >
+                  A4
+                </button>
+              </div>
+            </div>
+
+            <div className="h-6 w-px bg-gray-200 mx-2 hidden lg:block"></div>
+          </div>
+
+          <div className="flex gap-2 w-full lg:w-auto">
+            <button
+              type="button"
+              onClick={onShare}
+              className="flex items-center justify-center gap-2 px-4 py-2.5 bg-white border border-gray-200 text-gray-700 rounded-xl text-sm font-semibold hover:bg-gray-50 hover:border-gray-300 flex-1 sm:flex-auto whitespace-nowrap shadow-sm transition-all active:scale-95 group"
+            >
+              <Share2 size={16} className="text-gray-400 group-hover:text-blue-600 transition-colors" /> 링크 공유
+            </button>
+            <button
+              type="button"
+              onClick={onPrint}
+              className="flex items-center justify-center gap-2 px-5 py-2.5 bg-blue-600 text-white rounded-xl text-sm font-semibold hover:bg-blue-700 flex-1 sm:flex-auto whitespace-nowrap shadow-md shadow-blue-500/10 transition-all active:scale-95 group"
+            >
+              <Printer size={16} className="animate-pulse" /> 인쇄 및 PDF 저장
+            </button>
+          </div>
+        </div>
+      </div>
+
       {/* Navigation Footer */}
-      <div className="px-5 sm:px-7 py-4 bg-gray-50 border-t border-gray-100 flex justify-between items-center overflow-x-auto gap-2 rounded-b-2xl">
-        <div className="flex items-center gap-2 shrink-0">
+      <div className="px-5 sm:px-7 py-4 bg-gray-50/50 flex flex-col md:flex-row justify-between items-center gap-4 rounded-b-2xl">
+        <div className="flex items-center gap-2 w-full md:w-auto justify-between md:justify-start">
           <button
             onClick={prevStep}
             disabled={currentStep === 0}
-            className={`flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${currentStep === 0
-              ? 'text-gray-300 cursor-not-allowed'
-              : 'text-gray-600 hover:bg-gray-200 bg-gray-100'
+            className={`flex items-center gap-1 px-4 py-2 rounded-xl text-sm font-medium transition-colors ${currentStep === 0
+              ? 'text-gray-300 cursor-not-allowed bg-gray-50 border border-gray-100'
+              : 'text-gray-600 hover:bg-gray-200 bg-gray-100 shadow-sm border border-gray-200'
               }`}
           >
             <ChevronLeft size={16} /> 이전
           </button>
           <button
             onClick={onClear}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs md:text-sm font-medium text-gray-500 hover:text-red-600 hover:bg-red-50 transition-colors"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs md:text-sm font-medium text-gray-500 hover:text-red-600 hover:bg-red-50 transition-colors border border-transparent hover:border-red-100"
             title="모든 입력값을 초기화합니다"
           >
             <Trash2 size={16} /> <span className="hidden sm:inline">전체</span> 지우기
           </button>
         </div>
 
-        {currentStep < STEPS.length - 1 ? (
-          <button
-            onClick={nextStep}
-            className="flex items-center gap-1 px-5 py-2 rounded-lg text-sm font-medium text-white bg-blue-600 hover:bg-blue-700  transition-all active:scale-95"
-          >
-            다음 <ChevronRight size={16} />
-          </button>
-        ) : (
-          <span className="text-xs font-medium text-emerald-600 flex items-center gap-1 bg-emerald-50 px-3 py-1.5 rounded-full">
-            완료
-          </span>
-        )}
-      </div>
+        <div className="flex items-center gap-4 w-full md:w-auto justify-end">
+          <div className="text-xs font-bold text-gray-400 mr-2 tabular-nums">
+            {currentStep + 1} / {STEPS.length}
+          </div>
 
+          {currentStep < STEPS.length - 1 ? (
+            <button
+              onClick={nextStep}
+              className="flex items-center gap-1 px-5 py-2 rounded-xl text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 shadow-md transition-all active:scale-95"
+            >
+              다음 <ChevronRight size={16} />
+            </button>
+          ) : (
+            <span className="text-xs font-bold text-emerald-600 flex items-center gap-1 bg-emerald-50 px-4 py-2 rounded-xl border border-emerald-100">
+              완료
+            </span>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
