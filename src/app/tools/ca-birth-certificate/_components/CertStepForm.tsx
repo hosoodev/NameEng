@@ -257,7 +257,7 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
                       <button
                         type="button"
                         onClick={() => {
-                          onChange('3a', '단생아');
+                          onChange('3a', '');
                           onChange('3a-text', '');
                         }}
                         className="px-3 h-[42px] text-xs font-bold text-red-500 hover:bg-red-50 rounded-xl transition-colors whitespace-nowrap border border-red-100"
