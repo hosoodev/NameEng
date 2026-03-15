@@ -68,19 +68,49 @@ const defaultData: CertData = {
   't-date': '', 't-name': '', 't-addr': '', 't-contact': '', 't-email': ''
 };
 
+import { useRouter, useSearchParams, usePathname } from 'next/navigation';
+import { encryptPayload, decryptPayload } from './_lib/crypto-url';
+
 const STORAGE_KEY = 'californiaBirthCertFinalV12';
 
 export default function CaBirthCertClient() {
   const [data, setData] = useState<CertData>(defaultData);
   const [isLoaded, setIsLoaded] = useState(false);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
 
-  // 로드 로직 (URL -> LocalStorage -> Default)
+  // 1. 초기 로딩 및 복호화 로직
   useEffect(() => {
-    const loadData = () => {
+    const handleInitialLoad = async () => {
+      const dParam = searchParams.get('d');
+      
+      // 보안 링크 처리 (d 파라미터 우선)
+      if (dParam) {
+        const password = window.prompt("보안 링크를 열기 위해 비밀번호를 입력해주세요.");
+        if (password) {
+          try {
+            const decrypted = await decryptPayload(dParam, password);
+            setData(decrypted);
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(decrypted));
+            // 처리 후 클린 URL로 변경
+            router.replace(pathname);
+            setIsLoaded(true);
+            return;
+          } catch (e) {
+            alert("비밀번호가 일치하지 않거나 링크가 손상되었습니다.");
+            router.replace(pathname);
+          }
+        } else {
+          // 비밀번호 취소 시 d 파라미터 제거
+          router.replace(pathname);
+        }
+      }
+
+      // 평문 URL 파라미터 로드
       const params = new URLSearchParams(window.location.search);
       let initialData: CertData | null = null;
 
-      // 1. URL 파라미터가 있으면 URL에서 로드
       if (Array.from(params.keys()).length > 0) {
         initialData = { ...defaultData };
         (Object.keys(defaultData) as (keyof CertData)[]).forEach(k => {
@@ -89,7 +119,7 @@ export default function CaBirthCertClient() {
           }
         });
       }
-      // 2. 없으면 로컬스토리지에서 로드
+      // 로컬스토리지 로드
       else {
         const saved = localStorage.getItem(STORAGE_KEY);
         if (saved) {
@@ -104,7 +134,6 @@ export default function CaBirthCertClient() {
 
       if (initialData) {
         setData(initialData);
-        // URL로 로드했더라도 즉시 스토리지에 동기화
         if (Array.from(params.keys()).length > 0) {
           localStorage.setItem(STORAGE_KEY, JSON.stringify(initialData));
         }
@@ -112,8 +141,8 @@ export default function CaBirthCertClient() {
       setIsLoaded(true);
     };
 
-    loadData();
-  }, []);
+    handleInitialLoad();
+  }, [searchParams, pathname, router]);
 
   // 데이터 업데이트 및 스토리지 저장
   const handleChange = useCallback((key: keyof CertData, value: string) => {
@@ -135,36 +164,33 @@ export default function CaBirthCertClient() {
     });
   }, []);
 
-  // 전체 공유 링크 복사
-  const handleShare = useCallback(() => {
-    const params = new URLSearchParams();
-    (Object.entries(data) as [keyof CertData, string][]).forEach(([k, v]) => {
-      if (v) params.append(k, v);
-    });
+  // 보안 공유 링크 생성 (암호화)
+  const handleShare = useCallback(async () => {
+    const password = window.prompt("보안 공유를 위해 비밀번호를 설정해주세요.\n(비밀번호를 아는 사람만 이 링크를 열 수 있습니다)");
+    if (!password) return;
 
-    const shareUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
-    
-    // Fallback 복사 로직 포함
-    if (navigator.clipboard && window.isSecureContext) {
-      navigator.clipboard.writeText(shareUrl).then(() => {
-        alert('링크가 복사되었습니다!');
-      }).catch(err => {
-        console.error('클립보드 복사 실패:', err);
-      });
-    } else {
-      const tempInput = document.createElement("input");
-      tempInput.value = shareUrl;
-      document.body.appendChild(tempInput);
-      tempInput.select();
-      try {
+    try {
+      const token = await encryptPayload(data, password);
+      const shareUrl = `${window.location.origin}${pathname}?d=${token}`;
+      
+      // 클립보드 복사
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(shareUrl);
+        alert('암호화된 보안 링크가 클립보드에 복사되었습니다. 설정하신 비밀번호와 함께 상대방에게 전달해주세요.');
+      } else {
+        const tempInput = document.createElement("input");
+        tempInput.value = shareUrl;
+        document.body.appendChild(tempInput);
+        tempInput.select();
         document.execCommand("copy");
-        alert('링크가 복사되었습니다!');
-      } catch (err) {
-        console.error("링크 복사 실패", err);
+        document.body.removeChild(tempInput);
+        alert('암호화된 보안 링크가 복사되었습니다.');
       }
-      document.body.removeChild(tempInput);
+    } catch (e) {
+      console.error('Sharing failed:', e);
+      alert('보안 링크 생성 중 오류가 발생했습니다.');
     }
-  }, [data]);
+  }, [data, pathname]);
 
   // 인쇄 실행
   const handlePrint = useCallback(() => {
