@@ -1,5 +1,5 @@
 import { strFromU8, strToU8, zlibSync, unzlibSync } from 'fflate';
-import { CA_COUNTY_MAP, COUNTRY_TO_CODE, CODE_TO_COUNTRY } from './mappings';
+import { CA_COUNTY_BY_ID, CA_COUNTY_BY_NAME, COUNTRY_TO_CODE, CODE_TO_COUNTRY } from './mappings';
 import type { CertData } from '../CaBirthCertClient';
 
 const toBase64Url = (buf: ArrayBuffer) => btoa(String.fromCharCode(...new Uint8Array(buf))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
@@ -17,17 +17,12 @@ async function deriveKey(password: string, salt: Uint8Array) {
 function optimizeData(form: CertData) {
     const optimized: any = { ...form };
     
-    // 1. 카운티 매핑 최적화 (텍스트 -> 코드)
-    const reverseCountyMap: Record<string, number> = {};
-    Object.entries(CA_COUNTY_MAP).forEach(([code, name]) => {
-        reverseCountyMap[name.toLowerCase()] = parseInt(code);
-    });
-
+    // 1. 카운티 매핑 최적화 (텍스트 -> ID)
     const topCounty = (form['top-county'] || '').toLowerCase();
     const county5d = (form['5d'] || '').toLowerCase();
 
-    if (reverseCountyMap[topCounty]) optimized['top-county'] = reverseCountyMap[topCounty];
-    if (reverseCountyMap[county5d]) optimized['5d'] = reverseCountyMap[county5d];
+    if (CA_COUNTY_BY_NAME[topCounty]) optimized['top-county'] = CA_COUNTY_BY_NAME[topCounty].id;
+    if (CA_COUNTY_BY_NAME[county5d]) optimized['5d'] = CA_COUNTY_BY_NAME[county5d].id;
 
     // 2. 국가 코드 최적화
     if (COUNTRY_TO_CODE[form['7']]) optimized['7'] = COUNTRY_TO_CODE[form['7']];
@@ -53,12 +48,12 @@ function optimizeData(form: CertData) {
 function restoreData(opt: any) {
     const restored: any = { ...opt };
     
-    // 1. 카운티 복구
-    if (typeof opt['top-county'] === 'number' && CA_COUNTY_MAP[opt['top-county']]) {
-        restored['top-county'] = CA_COUNTY_MAP[opt['top-county']];
+    // 1. 카운티 복구 (ID -> 영문명)
+    if (typeof opt['top-county'] === 'number' && CA_COUNTY_BY_ID[opt['top-county']]) {
+        restored['top-county'] = CA_COUNTY_BY_ID[opt['top-county']].en;
     }
-    if (typeof opt['5d'] === 'number' && CA_COUNTY_MAP[opt['5d']]) {
-        restored['5d'] = CA_COUNTY_MAP[opt['5d']];
+    if (typeof opt['5d'] === 'number' && CA_COUNTY_BY_ID[opt['5d']]) {
+        restored['5d'] = CA_COUNTY_BY_ID[opt['5d']].en;
     }
 
     // 2. 국가 코드 복구

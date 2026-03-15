@@ -71,6 +71,8 @@ const defaultData: CertData = {
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import { encryptPayload, decryptPayload } from './_lib/crypto-url';
 
+import PasswordModal from './_components/PasswordModal';
+
 const STORAGE_KEY = 'californiaBirthCertFinalV12';
 
 export default function CaBirthCertClient() {
@@ -80,6 +82,22 @@ export default function CaBirthCertClient() {
   const searchParams = useSearchParams();
   const pathname = usePathname();
 
+  // 모달 상태
+  const [modalConfig, setModalConfig] = useState<{
+    isOpen: boolean;
+    mode: 'encrypt' | 'decrypt';
+    title: string;
+    description: string;
+    submitLabel: string;
+    token?: string;
+  }>({
+    isOpen: false,
+    mode: 'encrypt',
+    title: '',
+    description: '',
+    submitLabel: ''
+  });
+
   // 1. 초기 로딩 및 복호화 로직
   useEffect(() => {
     const handleInitialLoad = async () => {
@@ -87,24 +105,16 @@ export default function CaBirthCertClient() {
       
       // 보안 링크 처리 (d 파라미터 우선)
       if (dParam) {
-        const password = window.prompt("보안 링크를 열기 위해 비밀번호를 입력해주세요.");
-        if (password) {
-          try {
-            const decrypted = await decryptPayload(dParam, password);
-            setData(decrypted);
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(decrypted));
-            // 처리 후 클린 URL로 변경
-            router.replace(pathname);
-            setIsLoaded(true);
-            return;
-          } catch (e) {
-            alert("비밀번호가 일치하지 않거나 링크가 손상되었습니다.");
-            router.replace(pathname);
-          }
-        } else {
-          // 비밀번호 취소 시 d 파라미터 제거
-          router.replace(pathname);
-        }
+        setModalConfig({
+          isOpen: true,
+          mode: 'decrypt',
+          title: '보안 링크 복구',
+          description: '이 링크는 암호화되어 있습니다. 비밀번호를 입력해주세요.',
+          submitLabel: '복구하기',
+          token: dParam
+        });
+        // 복호화 로직은 Modal의 onSubmit에서 처리하므로 여기서 중단
+        return;
       }
 
       // 평문 URL 파라미터 로드
@@ -144,6 +154,54 @@ export default function CaBirthCertClient() {
     handleInitialLoad();
   }, [searchParams, pathname, router]);
 
+  // 비밀번호 입력 완료 시 실행
+  const handleModalSubmit = async (password: string) => {
+    if (modalConfig.mode === 'decrypt' && modalConfig.token) {
+      try {
+        const decrypted = await decryptPayload(modalConfig.token, password);
+        setData(decrypted);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(decrypted));
+        setModalConfig(prev => ({ ...prev, isOpen: false }));
+        router.replace(pathname);
+        setIsLoaded(true);
+      } catch (e) {
+        alert("비밀번호가 일치하지 않거나 링크가 손상되었습니다.");
+      }
+    } else if (modalConfig.mode === 'encrypt') {
+      try {
+        const token = await encryptPayload(data, password);
+        const shareUrl = `${window.location.origin}${pathname}?d=${token}`;
+        
+        setModalConfig(prev => ({ ...prev, isOpen: false }));
+
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(shareUrl);
+          alert('암호화된 보안 링크가 클립보드에 복사되었습니다. 설정하신 비밀번호와 함께 상대방에게 전달해주세요.');
+        } else {
+          // Fallback
+          const tempInput = document.createElement("input");
+          tempInput.value = shareUrl;
+          document.body.appendChild(tempInput);
+          tempInput.select();
+          document.execCommand("copy");
+          document.body.removeChild(tempInput);
+          alert('암호화된 보안 링크가 복사되었습니다.');
+        }
+      } catch (e) {
+        console.error('Sharing failed:', e);
+        alert('보안 링크 생성 중 오류가 발생했습니다.');
+      }
+    }
+  };
+
+  const handleModalClose = () => {
+    setModalConfig(prev => ({ ...prev, isOpen: false }));
+    if (modalConfig.mode === 'decrypt') {
+      router.replace(pathname);
+      setIsLoaded(true); // 복호화 취소 시에도 폼은 보여줘야 함 (기존 데이터 유지)
+    }
+  };
+
   // 데이터 업데이트 및 스토리지 저장
   const handleChange = useCallback((key: keyof CertData, value: string) => {
     setData(prev => {
@@ -164,33 +222,16 @@ export default function CaBirthCertClient() {
     });
   }, []);
 
-  // 보안 공유 링크 생성 (암호화)
+  // 보안 공유 링크 생성 (암호화 모달 띄우기)
   const handleShare = useCallback(async () => {
-    const password = window.prompt("보안 공유를 위해 비밀번호를 설정해주세요.\n(비밀번호를 아는 사람만 이 링크를 열 수 있습니다)");
-    if (!password) return;
-
-    try {
-      const token = await encryptPayload(data, password);
-      const shareUrl = `${window.location.origin}${pathname}?d=${token}`;
-      
-      // 클립보드 복사
-      if (navigator.clipboard && window.isSecureContext) {
-        await navigator.clipboard.writeText(shareUrl);
-        alert('암호화된 보안 링크가 클립보드에 복사되었습니다. 설정하신 비밀번호와 함께 상대방에게 전달해주세요.');
-      } else {
-        const tempInput = document.createElement("input");
-        tempInput.value = shareUrl;
-        document.body.appendChild(tempInput);
-        tempInput.select();
-        document.execCommand("copy");
-        document.body.removeChild(tempInput);
-        alert('암호화된 보안 링크가 복사되었습니다.');
-      }
-    } catch (e) {
-      console.error('Sharing failed:', e);
-      alert('보안 링크 생성 중 오류가 발생했습니다.');
-    }
-  }, [data, pathname]);
+    setModalConfig({
+      isOpen: true,
+      mode: 'encrypt',
+      title: '보안 링크 생성',
+      description: '링크를 보호할 비밀번호를 설정해주세요.',
+      submitLabel: '링크 생성 및 복사'
+    });
+  }, []);
 
   // 인쇄 실행
   const handlePrint = useCallback(() => {
@@ -226,6 +267,16 @@ export default function CaBirthCertClient() {
           <CertPreview data={data} />
         </div>
       </div>
+
+      {/* 비밀번호 입력 모달 */}
+      <PasswordModal
+        isOpen={modalConfig.isOpen}
+        onClose={handleModalClose}
+        onSubmit={handleModalSubmit}
+        title={modalConfig.title}
+        description={modalConfig.description}
+        submitLabel={modalConfig.submitLabel}
+      />
     </div>
   );
 }

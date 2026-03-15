@@ -5,7 +5,7 @@ interface CertPreviewProps {
     data: CertData;
 }
 
-import { countyTranslations } from '../_lib/countyData';
+import { countyTranslations } from '../_lib/mappings';
 
 function convertDateToKorean(dateStr: string) {
     if (!dateStr || dateStr.length !== 10) return dateStr;

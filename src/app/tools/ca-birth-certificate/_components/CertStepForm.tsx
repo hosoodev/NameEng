@@ -19,7 +19,7 @@ const STEPS = [
   '번역인 정보'
 ];
 
-import { CA_COUNTIES, countyTranslations } from '../_lib/countyData';
+import { CA_COUNTIES, countyTranslations } from '../_lib/mappings';
 
 export default function CertStepForm({ data, onChange, onShare, onPrint, onClear }: CertStepFormProps) {
   const [currentStep, setCurrentStep] = useState(0);
