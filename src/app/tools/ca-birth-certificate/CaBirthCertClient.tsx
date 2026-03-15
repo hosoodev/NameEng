@@ -169,26 +169,41 @@ export default function CaBirthCertClient() {
     const password = window.prompt("보안 공유를 위해 비밀번호를 설정해주세요.\n(비밀번호를 아는 사람만 이 링크를 열 수 있습니다)");
     if (!password) return;
 
+    let shareUrl = "";
     try {
       const token = await encryptPayload(data, password);
-      const shareUrl = `${window.location.origin}${pathname}?d=${token}`;
+      shareUrl = `${window.location.origin}${pathname}?d=${token}`;
       
-      // 클립보드 복사
-      if (navigator.clipboard && window.isSecureContext) {
+      // 데스크탑 환경 판별 (단순화된 체크)
+      const isDesktop = !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+      // 1. 데스크탑: 클립보드 복사 우선
+      if (isDesktop && navigator.clipboard && window.isSecureContext) {
         await navigator.clipboard.writeText(shareUrl);
-        alert('암호화된 보안 링크가 클립보드에 복사되었습니다. 설정하신 비밀번호와 함께 상대방에게 전달해주세요.');
-      } else {
-        const tempInput = document.createElement("input");
-        tempInput.value = shareUrl;
-        document.body.appendChild(tempInput);
-        tempInput.select();
-        document.execCommand("copy");
-        document.body.removeChild(tempInput);
-        alert('암호화된 보안 링크가 복사되었습니다.');
+        alert('공유 링크가 클립보드에 복사되었습니다!\n비밀번호와 함께 전달해 주세요.');
+      } 
+      // 2. 모바일 또는 데스크탑 복사 실패 시: 네이티브 공유 시도
+      else if (navigator.share) {
+        await navigator.share({
+          title: '출생증명서 보안 링크',
+          text: '안전하게 암호화된 출생증명서 데이터입니다. 전달받은 비밀번호를 입력해 주세요.',
+          url: shareUrl
+        });
       }
-    } catch (e) {
-      console.error('Sharing failed:', e);
-      alert('보안 링크 생성 중 오류가 발생했습니다.');
+      // 3. 둘 다 불가능한 경우 (예: 구형 브라우저, http 환경 등)
+      else if (navigator.clipboard) {
+        await navigator.clipboard.writeText(shareUrl);
+        alert('공유 링크가 클립보드에 복사되었습니다!');
+      } else {
+        throw new Error("Sharing methods not available");
+      }
+    } catch (error: any) {
+      // 사용자가 공유 창을 띄웠다가 그냥 닫은 경우(AbortError)는 무시
+      if (error.name === 'AbortError') return;
+
+      // 브라우저 정책상 자동 복사가 완전히 막힌 경우 최후의 방어책 (window.prompt)
+      console.warn("자동 공유 실패:", error);
+      window.prompt('보안 정책으로 자동 복사가 차단되었습니다.\n아래 링크를 직접 복사하여 전달해 주세요.', shareUrl);
     }
   }, [data, pathname]);
 
