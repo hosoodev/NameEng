@@ -74,19 +74,63 @@ export const CA_COUNTY_BY_NAME = CA_COUNTY_DATA.reduce((acc, c) => ({
   [c.ko]: c
 }), {} as Record<string, CountyInfo>);
 
-// 기존 코드와의 호환성을 위한 shim
-export const CA_COUNTY_MAP = CA_COUNTY_DATA.reduce((acc, c) => ({ ...acc, [c.id]: c.en }), {} as Record<number, string>);
-export const CA_COUNTIES = CA_COUNTY_DATA.map(c => c.en);
-export const countyTranslations = CA_COUNTY_DATA.reduce((acc, c) => ({ ...acc, [c.en.toLowerCase()]: c.ko }), {} as Record<string, string>);
+// 국가 데이터 정의
+export interface CountryInfo {
+  code: string;
+  en: string;
+  ko: string;
+  aliases?: string[];
+}
 
-// 국가 코드 매핑 사전
-export const COUNTRY_TO_CODE: Record<string, string> = {
-  "대한민국": "kr", "한국": "kr", "South Korea": "kr", "Korea": "kr", "kr": "kr",
-  "미국": "us", "USA": "us", "United States": "us", "us": "us",
-  "멕시코": "mx", "Mexico": "mx", "mx": "mx",
-  "캐나다": "ca", "Canada": "ca", "ca": "ca"
-};
+export const COUNTRY_DATA: CountryInfo[] = [
+  { code: "kr", en: "South Korea", ko: "대한민국", aliases: ["한국", "Korea"] },
+  { code: "us", en: "United States", ko: "미국", aliases: ["USA"] },
+  { code: "jp", en: "Japan", ko: "일본" },
+  { code: "cn", en: "China", ko: "중국" },
+  { code: "vn", en: "Vietnam", ko: "베트남" },
+  { code: "tw", en: "Taiwan", ko: "대만" },
+  { code: "th", en: "Thailand", ko: "태국" },
+  { code: "ph", en: "Philippines", ko: "필리핀" },
+  { code: "au", en: "Australia", ko: "호주" },
+  { code: "nz", en: "New Zealand", ko: "뉴질랜드" },
+  { code: "gb", en: "United Kingdom", ko: "영국", aliases: ["UK"] },
+  { code: "de", en: "Germany", ko: "독일" },
+  { code: "fr", en: "France", ko: "프랑스" },
+  { code: "it", en: "Italy", ko: "이탈리아" },
+  { code: "es", en: "Spain", ko: "스페인" },
+  { code: "ca", en: "Canada", ko: "캐나다" },
+  { code: "mx", en: "Mexico", ko: "멕시코" },
+  { code: "br", en: "Brazil", ko: "브라질" },
+  { code: "ru", en: "Russia", ko: "러시아" },
+  { code: "in", en: "India", ko: "인도" }
+];
 
-export const CODE_TO_COUNTRY: Record<string, string> = {
-  "kr": "대한민국", "us": "미국", "mx": "멕시코", "ca": "캐나다"
-};
+// 국가 코드 매핑 사전 (COUNTRY_DATA에서 동적 생성)
+export const COUNTRY_TO_CODE: Record<string, string> = COUNTRY_DATA.reduce((acc, c) => {
+  acc[c.en.toLowerCase()] = c.code;
+  acc[c.ko] = c.code;
+  acc[c.code] = c.code;
+  if (c.aliases) {
+    c.aliases.forEach(alias => {
+      acc[alias.toLowerCase()] = c.code;
+    });
+  }
+  return acc;
+}, {} as Record<string, string>);
+
+export const CODE_TO_COUNTRY: Record<string, string> = COUNTRY_DATA.reduce((acc, c) => ({
+  ...acc,
+  [c.code]: c.ko
+}), {} as Record<string, string>);
+
+// 국가 검색 도우미
+export const COUNTRY_BY_NAME = COUNTRY_DATA.reduce((acc, c) => {
+  acc[c.en.toLowerCase()] = c;
+  acc[c.ko] = c;
+  if (c.aliases) {
+    c.aliases.forEach(alias => {
+      acc[alias.toLowerCase()] = c;
+    });
+  }
+  return acc;
+}, {} as Record<string, CountryInfo>);

@@ -5,7 +5,7 @@ interface CertPreviewProps {
     data: CertData;
 }
 
-import { countyTranslations } from '../_lib/mappings';
+import { CA_COUNTY_BY_NAME } from '../_lib/mappings';
 
 function convertDateToKorean(dateStr: string) {
     if (!dateStr || dateStr.length !== 10) return dateStr;
@@ -27,8 +27,8 @@ export default function CertPreview({ data }: CertPreviewProps) {
     const getCounty = (key: 'top-county' | '5d') => {
         let val = getValue(key);
         if (val.trim() !== '') {
-            const matchKey = Object.keys(countyTranslations).find(k => k === val.toLowerCase());
-            if (matchKey) val = countyTranslations[matchKey];
+            const county = CA_COUNTY_BY_NAME[val.toLowerCase()];
+            if (county) val = county.ko;
             if (key === 'top-county') val = val + " 카운티";
         }
         return val;

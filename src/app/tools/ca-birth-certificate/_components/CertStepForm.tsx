@@ -19,28 +19,44 @@ const STEPS = [
   '번역인 정보'
 ];
 
-import { CA_COUNTIES, countyTranslations } from '../_lib/mappings';
+import { CA_COUNTY_DATA, CA_COUNTY_BY_NAME, COUNTRY_DATA, COUNTRY_BY_NAME } from '../_lib/mappings';
 
 export default function CertStepForm({ data, onChange, onShare, onPrint, onClear }: CertStepFormProps) {
   const [currentStep, setCurrentStep] = useState(0);
-  // 카운티 필터링을 위한 상태
+  // 카운티 및 국가 필터링을 위한 상태
   const [showCounties, setShowCounties] = useState<'top' | '5d' | null>(null);
+  const [showCountries, setShowCountries] = useState<'7' | '10' | null>(null);
 
-  // 한글/영어 통합 검색 필터링
+  // 한글/영어 통합 검색 필터링 (카운티)
   const getFilteredCounties = (searchTerm: string) => {
     if (!searchTerm) return [];
     const lowSearch = searchTerm.toLowerCase();
 
-    return CA_COUNTIES.filter(county => {
-      const engName = county.toLowerCase();
-      const korName = countyTranslations[engName] || '';
+    return CA_COUNTY_DATA.filter(county => {
+      const engName = county.en.toLowerCase();
+      const korName = county.ko;
       return engName.includes(lowSearch) || korName.includes(searchTerm);
-    });
+    }).map(c => c.en);
+  };
+
+  // 한글/영어 통합 검색 필터링 (국가)
+  const getFilteredCountries = (searchTerm: string) => {
+    if (!searchTerm) return [];
+    const lowSearch = searchTerm.toLowerCase();
+
+    return COUNTRY_DATA.filter(country => {
+      const engName = country.en.toLowerCase();
+      const korName = country.ko;
+      const aliasMatch = country.aliases?.some(a => a.toLowerCase().includes(lowSearch));
+      return engName.includes(lowSearch) || korName.includes(searchTerm) || aliasMatch;
+    }).map(c => c.en);
   };
 
   // 사용자가 한글로 검색 중인지 확인
   const isSearchingInKorean = (searchTerm: string) => {
-    return /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/.test(searchTerm);
+    const isCountyKor = CA_COUNTY_DATA.some(c => c.ko.includes(searchTerm) && searchTerm.length > 0);
+    const isCountryKor = COUNTRY_DATA.some(c => c.ko.includes(searchTerm) && searchTerm.length > 0);
+    return isCountyKor || isCountryKor;
   };
 
   // 검색어 하이라이팅 헬퍼 함수
@@ -158,8 +174,9 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
                             key={c}
                             className="w-full text-left px-3 py-2.5 text-sm rounded-lg hover:bg-blue-50 transition-all flex justify-between items-center group/item"
                             onClick={() => {
+                              const county = CA_COUNTY_BY_NAME[c.toLowerCase()];
                               const valueToSet = isSearchingInKorean(data['top-county'])
-                                ? (countyTranslations[c.toLowerCase()] || c)
+                                ? (county?.ko || c)
                                 : c;
                               onChange('top-county', valueToSet);
                               setShowCounties(null);
@@ -167,7 +184,7 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
                           >
                             <span className="font-medium text-gray-700 group-hover/item:text-blue-700">{highlightMatch(c, data['top-county'])}</span>
                             <span className="text-xs text-gray-400 group-hover/item:text-blue-400 transition-colors uppercase tracking-wider font-semibold">
-                              {countyTranslations[c.toLowerCase()] || ''}
+                              {CA_COUNTY_BY_NAME[c.toLowerCase()]?.ko || ''}
                             </span>
                           </button>
                         ))}
@@ -344,8 +361,9 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
                           key={c}
                           className="w-full text-left px-3 py-2.5 text-sm rounded-lg hover:bg-blue-50 transition-all flex justify-between items-center group/item"
                           onClick={() => {
+                            const county = CA_COUNTY_BY_NAME[c.toLowerCase()];
                             const valueToSet = isSearchingInKorean(data['5d'])
-                              ? (countyTranslations[c.toLowerCase()] || c)
+                              ? (county?.ko || c)
                               : c;
                             onChange('5d', valueToSet);
                             setShowCounties(null);
@@ -353,7 +371,7 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
                         >
                           <span className="font-medium text-gray-700 group-hover/item:text-blue-700">{highlightMatch(c, data['5d'])}</span>
                           <span className="text-xs text-gray-400 group-hover/item:text-blue-400 transition-colors uppercase tracking-wider font-semibold">
-                            {countyTranslations[c.toLowerCase()] || ''}
+                            {CA_COUNTY_BY_NAME[c.toLowerCase()]?.ko || ''}
                           </span>
                         </button>
                       ))}
@@ -378,7 +396,43 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
                 <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 flex items-center h-[21px]">6A. 아버지 이름</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " value={data['6a']} onChange={e => onChange('6a', e.target.value)} /></div>
                 <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 flex items-center h-[21px]">6B. 중간이름</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " value={data['6b']} onChange={e => onChange('6b', e.target.value)} /></div>
                 <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 flex items-center h-[21px]">6C. 성</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " value={data['6c']} onChange={e => onChange('6c', e.target.value)} /></div>
-                <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 flex items-center h-[21px]">7. 출생지</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " value={data['7']} onChange={e => onChange('7', e.target.value)} /></div>
+                <div className="space-y-1 relative group">
+                  <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 flex items-center h-[21px]">7. 출생지</label>
+                  <div className="relative">
+                    <input
+                      type="text"
+                      className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none "
+                      placeholder="예: 대한민국, South Korea"
+                      value={data['7']}
+                      onChange={e => onChange('7', e.target.value)}
+                      onFocus={() => setShowCountries('7')}
+                      onBlur={() => setTimeout(() => setShowCountries(null), 200)}
+                    />
+                    {showCountries === '7' && getFilteredCountries(data['7']).length > 0 && (
+                      <div className="absolute z-50 w-full top-full left-0 mt-1.5 bg-white/90 backdrop-blur-md border border-gray-100 rounded-xl max-h-60 overflow-y-auto shadow-xl animate-in fade-in slide-in-from-top-2 duration-200">
+                        <div className="p-1.5">
+                          {getFilteredCountries(data['7']).map(c => (
+                            <button
+                              key={c}
+                              className="w-full text-left px-3 py-2.5 text-sm rounded-lg hover:bg-blue-50 transition-all flex justify-between items-center group/item"
+                              onClick={() => {
+                                const country = COUNTRY_BY_NAME[c.toLowerCase()];
+                                const valueToSet = isSearchingInKorean(data['7']) ? (country?.ko || c) : c;
+                                onChange('7', valueToSet);
+                                setShowCountries(null);
+                              }}
+                            >
+                              <span className="font-medium text-gray-700 group-hover/item:text-blue-700">{highlightMatch(c, data['7'])}</span>
+                              <span className="text-xs text-gray-400 group-hover/item:text-blue-400 transition-colors uppercase tracking-wider font-semibold">
+                                {COUNTRY_BY_NAME[c.toLowerCase()]?.ko || ''}
+                              </span>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
                 <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 flex items-center h-[21px]">8. 생년월일</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none  placeholder:text-gray-300" placeholder="MM/DD/YYYY" value={data['8']} onChange={e => handleDateInput('8', e.target.value)} /></div>
               </div>
             </div>
@@ -388,7 +442,43 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
                 <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-pink-600 flex items-center h-[21px]">9A. 어머니 이름</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-pink-500 focus:ring-4 focus:ring-pink-500/10 focus:outline-none " value={data['9a']} onChange={e => onChange('9a', e.target.value)} /></div>
                 <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-pink-600 flex items-center h-[21px]">9B. 중간이름</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-pink-500 focus:ring-4 focus:ring-pink-500/10 focus:outline-none " value={data['9b']} onChange={e => onChange('9b', e.target.value)} /></div>
                 <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-pink-600 flex items-center h-[21px]">9C. 성</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-pink-500 focus:ring-4 focus:ring-pink-500/10 focus:outline-none " value={data['9c']} onChange={e => onChange('9c', e.target.value)} /></div>
-                <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-pink-600 flex items-center h-[21px]">10. 출생지</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-pink-500 focus:ring-4 focus:ring-pink-500/10 focus:outline-none " value={data['10']} onChange={e => onChange('10', e.target.value)} /></div>
+                <div className="space-y-1 relative group">
+                  <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-pink-600 flex items-center h-[21px]">10. 출생지</label>
+                  <div className="relative">
+                    <input
+                      type="text"
+                      className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-pink-500 focus:ring-4 focus:ring-pink-500/10 focus:outline-none "
+                      placeholder="예: 대한민국, South Korea"
+                      value={data['10']}
+                      onChange={e => onChange('10', e.target.value)}
+                      onFocus={() => setShowCountries('10')}
+                      onBlur={() => setTimeout(() => setShowCountries(null), 200)}
+                    />
+                    {showCountries === '10' && getFilteredCountries(data['10']).length > 0 && (
+                      <div className="absolute z-50 w-full top-full left-0 mt-1.5 bg-white/90 backdrop-blur-md border border-gray-100 rounded-xl max-h-60 overflow-y-auto shadow-xl animate-in fade-in slide-in-from-top-2 duration-200">
+                        <div className="p-1.5">
+                          {getFilteredCountries(data['10']).map(c => (
+                            <button
+                              key={c}
+                              className="w-full text-left px-3 py-2.5 text-sm rounded-lg hover:bg-pink-50 transition-all flex justify-between items-center group/item"
+                              onClick={() => {
+                                const country = COUNTRY_BY_NAME[c.toLowerCase()];
+                                const valueToSet = isSearchingInKorean(data['10']) ? (country?.ko || c) : c;
+                                onChange('10', valueToSet);
+                                setShowCountries(null);
+                              }}
+                            >
+                              <span className="font-medium text-gray-700 group-hover/item:text-pink-700">{highlightMatch(c, data['10'])}</span>
+                              <span className="text-xs text-gray-400 group-hover/item:text-pink-400 transition-colors uppercase tracking-wider font-semibold">
+                                {COUNTRY_BY_NAME[c.toLowerCase()]?.ko || ''}
+                              </span>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
                 <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-pink-600 flex items-center h-[21px]">11. 생년월일</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-pink-500 focus:ring-4 focus:ring-pink-500/10 focus:outline-none  placeholder:text-gray-300" placeholder="MM/DD/YYYY" value={data['11']} onChange={e => handleDateInput('11', e.target.value)} /></div>
               </div>
             </div>

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 import CaBirthCertClient from './CaBirthCertClient';
 
 export const metadata: Metadata = {
@@ -18,7 +19,9 @@ export default function CaBirthCertificatePage() {
         </p>
       </div>
 
-      <CaBirthCertClient />
+      <Suspense fallback={<div className="min-h-[400px] flex items-center justify-center text-gray-400">도구 로딩 중...</div>}>
+        <CaBirthCertClient />
+      </Suspense>
     </div>
   );
 }
