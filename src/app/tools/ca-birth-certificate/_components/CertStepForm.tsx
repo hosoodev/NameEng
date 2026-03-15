@@ -80,6 +80,43 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
     onChange(key, v);
   };
 
+  // 부모 정보 자동 완성 핸들러
+  const fillParentInfo = (target: '12' | 't', parentType: 'Father' | 'Mother') => {
+    // 부모 성함 생성 (성이름 붙여서 + 중간이름)
+    const getCompactName = (first: string, middle: string, last: string) => {
+      const mainName = (last + first).trim();
+      return middle ? `${mainName} ${middle}` : mainName;
+    };
+
+    const fName = getCompactName(data['6a'], data['6b'], data['6c']);
+    const mName = getCompactName(data['9a'], data['9b'], data['9c']);
+
+    if (target === '12') {
+      if (parentType === 'Father') {
+        onChange('12a', fName);
+        onChange('12b', '부');
+      } else {
+        onChange('12a', mName);
+        onChange('12b', '모');
+      }
+    } else if (target === 't') {
+      if (parentType === 'Father') {
+        onChange('t-name', fName);
+      } else {
+        onChange('t-name', mName);
+      }
+    }
+  };
+
+  // 오늘 날짜 입력 핸들러
+  const fillTodayDate = (key: keyof CertData) => {
+    const today = new Date();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+    const yyyy = today.getFullYear();
+    onChange(key, `${mm}/${dd}/${yyyy}`);
+  };
+
   const renderStepContent = () => {
     switch (currentStep) {
       case 0:
@@ -88,7 +125,7 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="space-y-1 group">
-                <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 block">파일번호</label>
+                <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 flex items-center h-[21px]">파일번호</label>
                 <input
                   type="text"
                   className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none "
@@ -97,7 +134,7 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
                 />
               </div>
               <div className="space-y-1 relative group">
-                <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 block">중앙 카운티 명</label>
+                <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 flex items-center h-[21px]">중앙 카운티 명</label>
                 <div className="relative">
                   <input
                     type="text"
@@ -145,7 +182,7 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
                 </div>
               </div>
               <div className="space-y-1 group">
-                <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 block">지방등기소 증명번호</label>
+                <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 flex items-center h-[21px]">지방등기소 증명번호</label>
                 <input
                   type="text"
                   className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none "
@@ -161,7 +198,7 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
           <div className="space-y-5">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="space-y-1 group">
-                <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 block">1A. 이름</label>
+                <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 flex items-center h-[21px]">1A. 이름</label>
                 <input
                   type="text"
                   className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none "
@@ -170,7 +207,7 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
                 />
               </div>
               <div className="space-y-1 group">
-                <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 block">1B. 중간이름</label>
+                <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 flex items-center h-[21px]">1B. 중간이름</label>
                 <input
                   type="text"
                   className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none "
@@ -179,7 +216,7 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
                 />
               </div>
               <div className="space-y-1 group">
-                <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 block">1C. 성</label>
+                <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 flex items-center h-[21px]">1C. 성</label>
                 <input
                   type="text"
                   className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none "
@@ -191,7 +228,7 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-6 gap-y-4 pt-4">
               <div className="lg:col-span-2 space-y-1 group">
-                <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 block">2. 성별</label>
+                <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 flex items-center h-[21px]">2. 성별</label>
                 <div className="flex gap-4 h-[42px] items-center">
                   <label className="flex items-center gap-1.5 text-sm cursor-pointer group/radio">
                     <input type="radio" checked={data['2'] === '남'} onChange={() => onChange('2', '남')} className="w-4 h-4 text-blue-600 focus:ring-blue-500/20" />
@@ -205,7 +242,7 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
               </div>
 
               <div className="lg:col-span-4 space-y-1 group">
-                <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 block">3A. 단생아/쌍생아 등</label>
+                <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 flex items-center h-[21px]">3A. 단생아/쌍생아 등</label>
                 <div className="flex gap-4 h-[42px] items-center">
                   {data['3a'] === '기타' ? (
                     <div className="flex items-center gap-2 w-full">
@@ -248,7 +285,7 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
               </div>
 
               <div className="lg:col-span-2 space-y-1 group">
-                <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 block">3B. 쌍생아 순번</label>
+                <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 flex items-center h-[21px]">3B. 쌍생아 순번</label>
                 <input
                   type="text"
                   disabled={data['3a'] !== '쌍생아' && data['3a'] !== '기타'}
@@ -260,7 +297,7 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
               </div>
 
               <div className="lg:col-span-4 space-y-1 group">
-                <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 block">4A. 출생일자 / 4B. 시간</label>
+                <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 flex items-center h-[21px]">4A. 출생일자 / 4B. 시간</label>
                 <div className="flex gap-2">
                   <input type="text" className="w-3/5 h-[42px] px-3 py-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none placeholder:text-gray-300" placeholder="MM/DD/YYYY" value={data['4a']} onChange={e => handleDateInput('4a', e.target.value)} />
                   <input type="text" className="w-2/5 h-[42px] px-3 py-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none placeholder:text-gray-300" placeholder="HH:MM" value={data['4b']} onChange={e => handleTimeInput('4b', e.target.value)} />
@@ -273,19 +310,19 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
         return (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-1 group">
-              <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 block">5A. 병원 또는 기관</label>
+              <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 flex items-center h-[21px]">5A. 병원 또는 기관</label>
               <input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " value={data['5a']} onChange={e => onChange('5a', e.target.value)} />
             </div>
             <div className="space-y-1 group">
-              <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 block">5B. 주소 (번지 또는 위치)</label>
+              <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 flex items-center h-[21px]">5B. 주소 (번지 또는 위치)</label>
               <input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " value={data['5b']} onChange={e => onChange('5b', e.target.value)} />
             </div>
             <div className="space-y-1 group">
-              <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 block">5C. 도시</label>
+              <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 flex items-center h-[21px]">5C. 도시</label>
               <input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " value={data['5c']} onChange={e => onChange('5c', e.target.value)} />
             </div>
             <div className="space-y-1 relative group">
-              <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 block">5D. 카운티</label>
+              <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 flex items-center h-[21px]">5D. 카운티</label>
               <div className="relative">
                 <input
                   type="text"
@@ -336,23 +373,23 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
         return (
           <div className="space-y-6">
             <div>
-              <h4 className="font-bold text-sm text-blue-700 mb-3 block pb-1 border-b border-gray-100">아버지 정보</h4>
+              <h4 className="font-bold text-sm text-blue-700 mb-3 flex items-center h-[21px] pb-1 border-b border-gray-100">아버지 정보</h4>
               <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
-                <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 block">6A. 아버지 이름</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " value={data['6a']} onChange={e => onChange('6a', e.target.value)} /></div>
-                <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 block">6B. 중간이름</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " value={data['6b']} onChange={e => onChange('6b', e.target.value)} /></div>
-                <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 block">6C. 성</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " value={data['6c']} onChange={e => onChange('6c', e.target.value)} /></div>
-                <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 block">7. 출생지</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " value={data['7']} onChange={e => onChange('7', e.target.value)} /></div>
-                <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 block">8. 생년월일</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none  placeholder:text-gray-300" placeholder="MM/DD/YYYY" value={data['8']} onChange={e => handleDateInput('8', e.target.value)} /></div>
+                <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 flex items-center h-[21px]">6A. 아버지 이름</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " value={data['6a']} onChange={e => onChange('6a', e.target.value)} /></div>
+                <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 flex items-center h-[21px]">6B. 중간이름</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " value={data['6b']} onChange={e => onChange('6b', e.target.value)} /></div>
+                <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 flex items-center h-[21px]">6C. 성</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " value={data['6c']} onChange={e => onChange('6c', e.target.value)} /></div>
+                <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 flex items-center h-[21px]">7. 출생지</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " value={data['7']} onChange={e => onChange('7', e.target.value)} /></div>
+                <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 flex items-center h-[21px]">8. 생년월일</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none  placeholder:text-gray-300" placeholder="MM/DD/YYYY" value={data['8']} onChange={e => handleDateInput('8', e.target.value)} /></div>
               </div>
             </div>
             <div>
-              <h4 className="font-bold text-sm text-pink-700 mb-3 block pb-1 border-b border-gray-100">어머니 정보</h4>
+              <h4 className="font-bold text-sm text-pink-700 mb-3 flex items-center h-[21px] pb-1 border-b border-gray-100">어머니 정보</h4>
               <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
-                <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-pink-600 block">9A. 어머니 이름</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-pink-500 focus:ring-4 focus:ring-pink-500/10 focus:outline-none " value={data['9a']} onChange={e => onChange('9a', e.target.value)} /></div>
-                <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-pink-600 block">9B. 중간이름</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-pink-500 focus:ring-4 focus:ring-pink-500/10 focus:outline-none " value={data['9b']} onChange={e => onChange('9b', e.target.value)} /></div>
-                <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-pink-600 block">9C. 성</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-pink-500 focus:ring-4 focus:ring-pink-500/10 focus:outline-none " value={data['9c']} onChange={e => onChange('9c', e.target.value)} /></div>
-                <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-pink-600 block">10. 출생지</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-pink-500 focus:ring-4 focus:ring-pink-500/10 focus:outline-none " value={data['10']} onChange={e => onChange('10', e.target.value)} /></div>
-                <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-pink-600 block">11. 생년월일</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-pink-500 focus:ring-4 focus:ring-pink-500/10 focus:outline-none  placeholder:text-gray-300" placeholder="MM/DD/YYYY" value={data['11']} onChange={e => handleDateInput('11', e.target.value)} /></div>
+                <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-pink-600 flex items-center h-[21px]">9A. 어머니 이름</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-pink-500 focus:ring-4 focus:ring-pink-500/10 focus:outline-none " value={data['9a']} onChange={e => onChange('9a', e.target.value)} /></div>
+                <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-pink-600 flex items-center h-[21px]">9B. 중간이름</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-pink-500 focus:ring-4 focus:ring-pink-500/10 focus:outline-none " value={data['9b']} onChange={e => onChange('9b', e.target.value)} /></div>
+                <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-pink-600 flex items-center h-[21px]">9C. 성</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-pink-500 focus:ring-4 focus:ring-pink-500/10 focus:outline-none " value={data['9c']} onChange={e => onChange('9c', e.target.value)} /></div>
+                <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-pink-600 flex items-center h-[21px]">10. 출생지</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-pink-500 focus:ring-4 focus:ring-pink-500/10 focus:outline-none " value={data['10']} onChange={e => onChange('10', e.target.value)} /></div>
+                <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-pink-600 flex items-center h-[21px]">11. 생년월일</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-pink-500 focus:ring-4 focus:ring-pink-500/10 focus:outline-none  placeholder:text-gray-300" placeholder="MM/DD/YYYY" value={data['11']} onChange={e => handleDateInput('11', e.target.value)} /></div>
               </div>
             </div>
           </div>
@@ -361,22 +398,31 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
         return (
           <div className="space-y-5">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-4">
-              <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 block">12A. 증명자 서명</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " value={data['12a']} onChange={e => onChange('12a', e.target.value)} /></div>
-              <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 block">12B. 출생자와 관계</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " value={data['12b']} onChange={e => onChange('12b', e.target.value)} /></div>
-              <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 block">12C. 서명일</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none  placeholder:text-gray-300" placeholder="MM/DD/YYYY" value={data['12c']} onChange={e => handleDateInput('12c', e.target.value)} /></div>
-              <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 block">13A. 담당자 서명</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " value={data['13a']} onChange={e => onChange('13a', e.target.value)} /></div>
-              <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 block">13B. 인가번호</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " value={data['13b']} onChange={e => onChange('13b', e.target.value)} /></div>
-              <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 block">13C. 서명일</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none  placeholder:text-gray-300" placeholder="MM/DD/YYYY" value={data['13c']} onChange={e => handleDateInput('13c', e.target.value)} /></div>
-              <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 block">13D. 담당의사명</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " value={data['13d-name']} onChange={e => onChange('13d-name', e.target.value)} /></div>
-              <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 block">13D. 담당의사 주소</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " value={data['13d-addr']} onChange={e => onChange('13d-addr', e.target.value)} /></div>
-              <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 block">14. 기타 증명인 이름</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " value={data['14']} onChange={e => onChange('14', e.target.value)} /></div>
+              <div className="space-y-1 group">
+                <div className="flex justify-between items-center h-[21px]">
+                  <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 flex items-center h-[21px]">12A. 증명자 서명</label>
+                  <div className="flex gap-1 mb-0.5">
+                    <button type="button" onClick={() => fillParentInfo('12', 'Father')} className="text-[10px] px-1.5 py-0.5 bg-blue-50 text-blue-600 border border-blue-100 rounded hover:bg-blue-600 hover:text-white transition-all font-bold">부</button>
+                    <button type="button" onClick={() => fillParentInfo('12', 'Mother')} className="text-[10px] px-1.5 py-0.5 bg-pink-50 text-pink-600 border border-pink-100 rounded hover:bg-pink-600 hover:text-white transition-all font-bold">모</button>
+                  </div>
+                </div>
+                <input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " value={data['12a']} onChange={e => onChange('12a', e.target.value)} />
+              </div>
+              <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 flex items-center h-[21px]">12B. 출생자와 관계</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " value={data['12b']} onChange={e => onChange('12b', e.target.value)} /></div>
+              <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 flex items-center h-[21px]">12C. 서명일</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none  placeholder:text-gray-300" placeholder="MM/DD/YYYY" value={data['12c']} onChange={e => handleDateInput('12c', e.target.value)} /></div>
+              <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 flex items-center h-[21px]">13A. 담당자 서명</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " value={data['13a']} onChange={e => onChange('13a', e.target.value)} /></div>
+              <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 flex items-center h-[21px]">13B. 인가번호</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " value={data['13b']} onChange={e => onChange('13b', e.target.value)} /></div>
+              <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 flex items-center h-[21px]">13C. 서명일</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none  placeholder:text-gray-300" placeholder="MM/DD/YYYY" value={data['13c']} onChange={e => handleDateInput('13c', e.target.value)} /></div>
+              <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 flex items-center h-[21px]">13D. 담당의사명</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " value={data['13d-name']} onChange={e => onChange('13d-name', e.target.value)} /></div>
+              <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 flex items-center h-[21px]">13D. 담당의사 주소</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " value={data['13d-addr']} onChange={e => onChange('13d-addr', e.target.value)} /></div>
+              <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 flex items-center h-[21px]">14. 기타 증명인 이름</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " value={data['14']} onChange={e => onChange('14', e.target.value)} /></div>
             </div>
             <hr className="border-gray-100" />
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 block">15A. 사망일시</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none  placeholder:text-gray-300" placeholder="MM/DD/YYYY" value={data['15a']} onChange={e => handleDateInput('15a', e.target.value)} /></div>
-              <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 block">15B. 주정부인가번호</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " value={data['15b']} onChange={e => onChange('15b', e.target.value)} /></div>
-              <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 block">16. 지역담당자 서명</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " value={data['16']} onChange={e => onChange('16', e.target.value)} /></div>
-              <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 block">17. 등록 승인일</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none  placeholder:text-gray-300" placeholder="MM/DD/YYYY" value={data['17']} onChange={e => handleDateInput('17', e.target.value)} /></div>
+              <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 flex items-center h-[21px]">15A. 사망일시</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none  placeholder:text-gray-300" placeholder="MM/DD/YYYY" value={data['15a']} onChange={e => handleDateInput('15a', e.target.value)} /></div>
+              <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 flex items-center h-[21px]">15B. 주정부인가번호</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " value={data['15b']} onChange={e => onChange('15b', e.target.value)} /></div>
+              <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 flex items-center h-[21px]">16. 지역담당자 서명</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " value={data['16']} onChange={e => onChange('16', e.target.value)} /></div>
+              <div className="space-y-1 group"><label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 flex items-center h-[21px]">17. 등록 승인일</label><input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none  placeholder:text-gray-300" placeholder="MM/DD/YYYY" value={data['17']} onChange={e => handleDateInput('17', e.target.value)} /></div>
             </div>
           </div>
         );
@@ -385,25 +431,34 @@ export default function CertStepForm({ data, onChange, onShare, onPrint, onClear
           <div className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-1 group">
-                <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 block">번역일</label>
+                <div className="flex justify-between items-center h-[21px]">
+                  <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 flex items-center h-[21px]">번역일</label>
+                  <button type="button" onClick={() => fillTodayDate('t-date')} className="text-[10px] px-2 py-0.5 bg-gray-100 text-gray-600 border border-gray-200 rounded hover:bg-gray-800 hover:text-white transition-all font-bold mb-0.5">오늘날짜로</button>
+                </div>
                 <input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none  placeholder:text-gray-300" placeholder="MM/DD/YYYY" value={data['t-date']} onChange={e => handleDateInput('t-date', e.target.value)} />
               </div>
               <div className="space-y-1 group">
-                <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 block">번역인 이름</label>
+                <div className="flex justify-between items-center h-[21px]">
+                  <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 flex items-center h-[21px]">번역인 이름</label>
+                  <div className="flex gap-1 mb-0.5">
+                    <button type="button" onClick={() => fillParentInfo('t', 'Father')} className="text-[10px] px-1.5 py-0.5 bg-blue-50 text-blue-600 border border-blue-100 rounded hover:bg-blue-600 hover:text-white transition-all font-bold">부</button>
+                    <button type="button" onClick={() => fillParentInfo('t', 'Mother')} className="text-[10px] px-1.5 py-0.5 bg-pink-50 text-pink-600 border border-pink-100 rounded hover:bg-pink-600 hover:text-white transition-all font-bold">모</button>
+                  </div>
+                </div>
                 <input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " value={data['t-name']} onChange={e => onChange('t-name', e.target.value)} />
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="space-y-1 group">
-                <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 block">주소</label>
+                <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 flex items-center h-[21px]">주소</label>
                 <input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " value={data['t-addr']} onChange={e => onChange('t-addr', e.target.value)} />
               </div>
               <div className="space-y-1 group">
-                <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 block">연락처</label>
+                <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 flex items-center h-[21px]">연락처</label>
                 <input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none " value={data['t-contact']} onChange={e => onChange('t-contact', e.target.value)} />
               </div>
               <div className="space-y-1 group">
-                <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 block">이메일 (선택)</label>
+                <label className="text-xs font-bold text-gray-600 transition-colors group-focus-within:text-blue-600 flex items-center h-[21px]">이메일 (선택)</label>
                 <input type="text" className="w-full p-2.5 border border-gray-300 rounded-xl text-sm transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 focus:outline-none  placeholder:text-gray-300" placeholder="example@email.com" value={data['t-email']} onChange={e => onChange('t-email', e.target.value)} />
               </div>
             </div>
